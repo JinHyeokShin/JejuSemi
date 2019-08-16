@@ -10,12 +10,14 @@ public class Payment {
 	private String payMethod;
 	private String payCancel;
 	private Date payDate;
+	private Date payCancelDate;
 	
 	public Payment() {
 		
 	}
 
-	public Payment(int payNum, int resNum, int payPrice, String payMethod, String payCancel, Date payDate) {
+	public Payment(int payNum, int resNum, int payPrice, String payMethod, String payCancel, Date payDate,
+			Date payCancelDate) {
 		super();
 		this.payNum = payNum;
 		this.resNum = resNum;
@@ -23,6 +25,7 @@ public class Payment {
 		this.payMethod = payMethod;
 		this.payCancel = payCancel;
 		this.payDate = payDate;
+		this.payCancelDate = payCancelDate;
 	}
 
 	public int getPayNum() {
@@ -73,19 +76,21 @@ public class Payment {
 		this.payDate = payDate;
 	}
 
+	public Date getPayCancelDate() {
+		return payCancelDate;
+	}
+
+	public void setPayCancelDate(Date payCancelDate) {
+		this.payCancelDate = payCancelDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Payment [payNum=" + payNum + ", resNum=" + resNum + ", payPrice=" + payPrice + ", payMethod="
-				+ payMethod + ", payCancel=" + payCancel + ", payDate=" + payDate + ", getPayNum()=" + getPayNum()
-				+ ", getResNum()=" + getResNum() + ", getPayPrice()=" + getPayPrice() + ", getPayMethod()="
-				+ getPayMethod() + ", getPayCancel()=" + getPayCancel() + ", getPayDate()=" + getPayDate()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ payMethod + ", payCancel=" + payCancel + ", payDate=" + payDate + ", payCancelDate=" + payCancelDate
 				+ "]";
 	}
-	
-	
-	
-	
+
 	
 	
 	

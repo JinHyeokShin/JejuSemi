@@ -13,13 +13,15 @@ public class Reservation {
 	private String resCancel;
 	private int resPrice;
 	private String resCheckIn;
+	private Date resDate;
+	private Date resCancelDate;
 	
 	public Reservation() {
 		
 	}
 
 	public Reservation(int resNum, int memNum, int roomNum, int resPax, Date checkInDate, Date checkOutDate,
-			String resCancel, int resPrice, String resCheckIn) {
+			String resCancel, int resPrice, String resCheckIn, Date resDate, Date resCancelDate) {
 		super();
 		this.resNum = resNum;
 		this.memNum = memNum;
@@ -30,6 +32,8 @@ public class Reservation {
 		this.resCancel = resCancel;
 		this.resPrice = resPrice;
 		this.resCheckIn = resCheckIn;
+		this.resDate = resDate;
+		this.resCancelDate = resCancelDate;
 	}
 
 	public int getResNum() {
@@ -104,27 +108,30 @@ public class Reservation {
 		this.resCheckIn = resCheckIn;
 	}
 
+	public Date getResDate() {
+		return resDate;
+	}
+
+	public void setResDate(Date resDate) {
+		this.resDate = resDate;
+	}
+
+	public Date getResCancelDate() {
+		return resCancelDate;
+	}
+
+	public void setResCancelDate(Date resCancelDate) {
+		this.resCancelDate = resCancelDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Reservation [resNum=" + resNum + ", memNum=" + memNum + ", roomNum=" + roomNum + ", resPax=" + resPax
 				+ ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate + ", resCancel=" + resCancel
-				+ ", resPrice=" + resPrice + ", resCheckIn=" + resCheckIn + ", getResNum()=" + getResNum()
-				+ ", getMemNum()=" + getMemNum() + ", getRoomNum()=" + getRoomNum() + ", getResPax()=" + getResPax()
-				+ ", getCheckInDate()=" + getCheckInDate() + ", getCheckOutDate()=" + getCheckOutDate()
-				+ ", getResCancel()=" + getResCancel() + ", getResPrice()=" + getResPrice() + ", getResCheckIn()="
-				+ getResCheckIn() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ ", resPrice=" + resPrice + ", resCheckIn=" + resCheckIn + ", resDate=" + resDate + ", resCancelDate="
+				+ resCancelDate + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

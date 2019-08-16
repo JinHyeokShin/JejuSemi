@@ -295,6 +295,8 @@ CREATE TABLE reservation
     res_cancel            VARCHAR2(5)    NULL, 
     res_price             INT            NULL, 
     res_checkin           VARCHAR2(5)    NULL, 
+    res_date	Date	    not null,
+    res_cancel_date       date      null,
     CONSTRAINT RESERVATION_PK PRIMARY KEY (res_num)
 )
 /
@@ -329,6 +331,12 @@ COMMENT ON COLUMN reservation.res_price IS '결제금액'
 COMMENT ON COLUMN reservation.res_checkin IS '체크인여부(Y/N)'
 /
 
+COMMENT ON COLUMN reservation.res_date IS '예약 완료한 날짜'
+/
+
+COMMENT ON COLUMN reservation.res_cancel_date IS '예약 취소한 날짜'
+/
+
 ALTER TABLE reservation
     ADD CONSTRAINT FK_reservation_mem_num_member_ FOREIGN KEY (mem_num)
         REFERENCES member (mem_num)
@@ -349,7 +357,8 @@ CREATE TABLE payment
     pay_price     INT             NULL, 
     pay_method    VARCHAR2(20)    NULL, 
     pay_cancel    VARCHAR2(5)     NULL, 
-    pay_date      date            NULL, 
+    pay_date      date            not null,
+    pay_cancel_date      date     null,
     CONSTRAINT PAYMENT_PK PRIMARY KEY (pay_num)
 )
 /
@@ -373,6 +382,9 @@ COMMENT ON COLUMN payment.pay_cancel IS '결제취소(Y/N)'
 /
 
 COMMENT ON COLUMN payment.pay_date IS '결제일'
+/
+
+COMMENT ON COLUMN payment.pay_cancel_date IS '결제취소일'
 /
 
 ALTER TABLE payment
@@ -653,6 +665,7 @@ ADD CONSTRAINT RES_CHECKIN_CK CHECK(RES_CHECKIN IN('Y','N'));
 
 ALTER TABLE RESERVATION MODIFY RES_CANCEL DEFAULT 'N';
 ALTER TABLE RESERVATION MODIFY RES_CHECKIN DEFAULT 'N';
+ALTER TABLE RESERVATION MODIFY res_date DEFAULT sysdate;
 
 
 --결제
@@ -661,7 +674,7 @@ ALTER TABLE PAYMENT
 ADD CONSTRAINT PAY_CANCEL_CK CHECK(PAY_CANCEL IN('Y','N'));
 
 ALTER TABLE PAYMENT MODIFY PAY_CANCEL DEFAULT 'N';
-
+ALTER TABLE PAYMENT MODIFY pay_date DEFAULT sysdate;
 
 
 --룸 이미지
