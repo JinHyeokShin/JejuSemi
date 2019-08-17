@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class Qna {
 	
-	private int qnaNum;
-	private int memNum;
-	private String qnaTitle;
-	private String qnaContent;
-	private Date qnaDate;
-	private String answer;
-	private Date answerDate;
-	private String answerStatus;
+	private int qnaNum;				// 문의 번호
+	private int memNum;				// 회원 번호
+	private String qnaTitle;		// 문의 제목
+	private String qnaContent;		// 문의 내용
+	private Date qnaDate;			// 문의 날짜
+	private String answer;			// 답변 내용
+	private Date answerDate;		// 답변 날짜
+	private String answerStatus;	// 답변 상태(y/n)
 	
 	public Qna() {
 		

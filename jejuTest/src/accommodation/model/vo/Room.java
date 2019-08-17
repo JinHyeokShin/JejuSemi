@@ -2,13 +2,13 @@ package accommodation.model.vo;
 
 public class Room {
 	
-	private int roomNum;
-	private int acmNum;
-	private String roomName;
-	private int roomPrice;
-	private int roomPax;
-	private String roomType;
-	private String roomDescript;
+	private int roomNum;			// 방 번호
+	private int acmNum;				// 숙소 번호
+	private String roomName;		// 방 이름
+	private int roomPrice;			// 가격(1박당)
+	private int roomPax;			// 정원
+	private String roomType;		// 방 종류 (s:싱글 / d:더블 / t:트리플(트윈) / o:도미토리)
+	private String roomDescript;	// 방 설명
 	
 	
 	public Room() {

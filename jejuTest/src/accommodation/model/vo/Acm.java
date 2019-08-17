@@ -2,17 +2,17 @@ package accommodation.model.vo;
 
 public class Acm {
 	
-	private int acmNum;
-	private String acmName;
-	private String acmOwner;
-	private String acmPhone;
-	private String acmAddress;
-	private String acmType;
-	private String acmDescript;
-	private String acmCoordX;
-	private String acmCoordY;
-	private String acmCity;
-	private String acmPower;
+	private int acmNum;				// 숙소 번호
+	private String acmName;			// 숙소 이름
+	private String acmOwner;		// 숙소 주인
+	private String acmPhone;		// 숙소 전화번호
+	private String acmAddress;		// 숙소 주소
+	private String acmType;			// 숙소 타입(h:호텔 / r:리조트 / c:콘도 / g:게스트 / m:민박)
+	private String acmDescript;		// 숙소 설명
+	private String acmCoordX;		// 숙소 x좌표
+	private String acmCoordY;		// 숙소 y좌표
+	private String acmCity;			// 숙소 행정구역(제주시/서귀포시)
+	private String acmPower;		// 숙소 파워등록 여부(y/n)
 	
 	public Acm() {}
 

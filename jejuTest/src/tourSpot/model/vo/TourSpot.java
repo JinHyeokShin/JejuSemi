@@ -2,13 +2,13 @@ package tourSpot.model.vo;
 
 public class TourSpot {
 	
-	private int spotCode;
-	private String spotName;
-	private String spotCoordX;
-	private String spotCoordY;
-	private String spotAddress;
-	private String spotImgPath;
-	private String spotDescript;
+	private int spotCode;			// 관광지 번호
+	private String spotName;		// 관광지 이름
+	private String spotCoordX;		// 관광지 x좌표
+	private String spotCoordY;		// 관광지 y좌표
+	private String spotAddress;		// 관광지 주소
+	private String spotImgPath;		// 관광지 이미지 경로(로컬,썸네일 이미지)
+	private String spotDescript;	// 관광지 설명
 	
 	public TourSpot() {
 		

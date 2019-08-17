@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class WishList {
 	
-	private int memNum;
-	private int acmNum;
-	private Date wishDate;
+	private int memNum;		// 찜한 회원 번호
+	private int acmNum;		// 찜한 숙소 번호
+	private Date wishDate;	// 찜한 날짜
 	
 	public WishList() {
 		

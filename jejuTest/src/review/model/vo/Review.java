@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class Review {
 	
-	private int reviewNum;
-	private int memNum;
-	private int acmNum;
-	private int reviewScore;
-	private String reviewContent;
-	private Date reviewDate;
+	private int reviewNum;			// 후기 번호
+	private int memNum;				// 회원 번호
+	private int acmNum;				// 숙소 번호
+	private int reviewScore;		// 숙소 별점
+	private String reviewContent;	// 후기 내용
+	private Date reviewDate;		// 후기 작성 날짜
 	
 	
 	public Review() {

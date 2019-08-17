@@ -2,12 +2,12 @@ package accommodation.model.vo;
 
 import java.util.Date;
 
-public class Search {
+public class Search {	// 검색 값 넘길 때 사용할 객체
 	
-	private Date searchCheckInDate;
-	private Date searchCheckOutDate;
-	private int adult;
-	private int child;
+	private Date searchCheckInDate;		// 체크인
+	private Date searchCheckOutDate;	// 체크아웃
+	private int adult;					// 성인 인원수
+	private int child;					// 어린이 인원수
 	
 	public Search() {
 		

@@ -10,19 +10,19 @@ public class Member implements Serializable{
 	 */
 	private static final long serialVersionUID = -7519517155433097312L;
 	
-	private int memNum;
-	private String memId;
-	private String memPwd;
-	private String memName;
-	private String memGender;
-	private String memPhone;
-	private int nationCode;
-	private Date memJoin;
-	private Date memOut;
-	private int memPoint;
-	private int memNoShow;
-	private String memType;
-	private String memStatus;
+	private int memNum;			// 회원번호
+	private String memId;		// 회원아이디(이메일)
+	private String memPwd;		// 회원 비밀번호
+	private String memName;		// 회원 이름
+	private String memGender;	// 회원 성별
+	private String memPhone;	// 회원 전화번호
+	private int nationCode;		// 회원 국적(국가코드)
+	private Date memJoin;		// 가입일
+	private Date memOut;		// 탈퇴일
+	private int memPoint;		// 포인트
+	private int memNoShow;		// 노쇼 횟수(누적3회시 ban)
+	private String memType;		// 회원 분류(관리자, 오너, 회원)
+	private String memStatus;	// 회원상태(y/n)
 	
 	public Member() {}
 
