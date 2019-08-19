@@ -119,6 +119,7 @@ CREATE TABLE lodge
     lodge_contact     VARCHAR2(20)     NULL, 
     lodge_address     VARCHAR2(50)     NULL, 
     lodge_type        VARCHAR2(10)     NULL, 
+    lodge_grade        int              null,
     lodge_descrip     CLOB             NULL, 
     lodge_coord_x      VARCHAR2(20)     NULL, 
     lodge_coord_y      VARCHAR2(20)     NULL, 
@@ -147,6 +148,9 @@ COMMENT ON COLUMN lodge.lodge_address IS '槛家林家'
 /
 
 COMMENT ON COLUMN lodge.lodge_type IS '槛家蜡屈hrcgm'
+/
+
+COMMENT ON COLUMN lodge.lodge_grade IS '槛家殿鞭'
 /
 
 COMMENT ON COLUMN lodge.lodge_descrip IS '槛家汲疙'

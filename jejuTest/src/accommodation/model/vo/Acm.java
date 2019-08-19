@@ -8,6 +8,7 @@ public class Acm {
 	private String acmPhone;		// 숙소 전화번호
 	private String acmAddress;		// 숙소 주소
 	private String acmType;			// 숙소 타입(h:호텔 / r:리조트 / c:콘도 / g:게스트 / m:민박)
+	private int acmGrade;			// 숙소 등급 (5/4/3/2/1)
 	private String acmDescript;		// 숙소 설명
 	private String acmCoordX;		// 숙소 x좌표
 	private String acmCoordY;		// 숙소 y좌표
@@ -17,7 +18,7 @@ public class Acm {
 	public Acm() {}
 
 	public Acm(int acmNum, String acmName, String acmOwner, String acmPhone, String acmAddress, String acmType,
-			String acmDescript, String acmCoordX, String acmCoordY, String acmCity, String acmPower) {
+			int acmGrade, String acmDescript, String acmCoordX, String acmCoordY, String acmCity, String acmPower) {
 		super();
 		this.acmNum = acmNum;
 		this.acmName = acmName;
@@ -25,6 +26,7 @@ public class Acm {
 		this.acmPhone = acmPhone;
 		this.acmAddress = acmAddress;
 		this.acmType = acmType;
+		this.acmGrade = acmGrade;
 		this.acmDescript = acmDescript;
 		this.acmCoordX = acmCoordX;
 		this.acmCoordY = acmCoordY;
@@ -80,6 +82,14 @@ public class Acm {
 		this.acmType = acmType;
 	}
 
+	public int getAcmGrade() {
+		return acmGrade;
+	}
+
+	public void setAcmGrade(int acmGrade) {
+		this.acmGrade = acmGrade;
+	}
+
 	public String getAcmDescript() {
 		return acmDescript;
 	}
@@ -122,10 +132,10 @@ public class Acm {
 
 	@Override
 	public String toString() {
-		return "acm [acmNum=" + acmNum + ", acmName=" + acmName + ", acmOwner=" + acmOwner + ", acmPhone=" + acmPhone
-				+ ", acmAddress=" + acmAddress + ", acmType=" + acmType + ", acmDescript=" + acmDescript
-				+ ", acmCoordX=" + acmCoordX + ", acmCoordY=" + acmCoordY + ", acmCity=" + acmCity + ", acmPower="
-				+ acmPower + "]";
+		return "Acm [acmNum=" + acmNum + ", acmName=" + acmName + ", acmOwner=" + acmOwner + ", acmPhone=" + acmPhone
+				+ ", acmAddress=" + acmAddress + ", acmType=" + acmType + ", acmGrade=" + acmGrade + ", acmDescript="
+				+ acmDescript + ", acmCoordX=" + acmCoordX + ", acmCoordY=" + acmCoordY + ", acmCity=" + acmCity
+				+ ", acmPower=" + acmPower + "]";
 	}
 
 	

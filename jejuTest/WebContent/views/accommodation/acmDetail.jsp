@@ -248,7 +248,7 @@
         	height:1400px;
         }
         .headDiv{
-            height: 160px;
+            height: 130px;
         }
         .body_1_Div{
             height: 500px;
@@ -397,6 +397,10 @@
         	height:100%;
         }
         
+        
+        
+       
+        
          
 </style>
 
@@ -406,11 +410,30 @@
 	<%-- 헤더,메뉴바 --%>
     <%@ include file="../main/header.jsp" %>
     
+    <style>
+    	 .map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
+		.radius_border{border:1px solid #919191;border-radius:5px;}     
+		.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:132px;height:30px;margin:0;padding:0;z-index:2;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
+		.custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;z-index:2;cursor:pointer;}
+		.custom_typecontrol .skyBtn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}       
+		.custom_typecontrol .skyBtn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
+		.custom_typecontrol .skyBtn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}    
+		.custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
+		.custom_typecontrol .selected_btn:hover {color:#fff;}   
+		.custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:2;background-color:#f5f5f5;} 
+		.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
+		.custom_zoomcontrol span img {width:15px;padding:12px 0;z-index:2;border:none;}             
+		.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}
+    </style>
+    
     
     
     <section class="detailView" style="text-align:center">
     	<div class="detailWrap test aa container">
-            <div class="headDiv test aa">헤더(검색창?)</div>		<!-- header div -->
+            <div class="headDiv test aa" align="left">			<!-- header div -->
+            <label style="font-weight:bold; font-size:3em; color:#fd7e14;" >testHotel</label><br>
+            <label>호텔주소</label>
+            </div>		
             <div class="bodyDiv test aa">
                 <div class="body_1_Div test aa">	<!-- 사진들어갈 div -->
 					<div class="slideImgDiv test aa dd">
@@ -474,16 +497,7 @@
 							});
 							
 							marker.setMap(map);	/* 마커 표시 */
-							
-							/* $(function() {
-								$("#map").on('click',function(){
-									var map = $("#map").html();
-									$("#map2").html(map);
-								});
-							}); */
-													
-							
-							
+														
 							
 						</script>
 
@@ -689,24 +703,61 @@
     <!--  -->
     
     <div id="BigMapModal" class="popModal">
-    	<div class="modal-content">
-    		<span class="close">&times;</span>
-    		<div id="map2"></div>
+    	<div class="modal-content map_wrap" style="width:70%; height:70%;">
+    		<span class="close" style="margin-left:auto;">&times;</span>
+    		<div id="map2">
+    			<div class="custom_typecontrol radius_border">
+        			<span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
+        			<span id="btnSkyview" class="skyBtn" onclick="setMapType('skyview')">스카이뷰</span>
+    				</div>
+    			<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+    			<div class="custom_zoomcontrol radius_border"> 
+			        <span onclick="zoomIn()"><img src="<%= request.getContextPath() %>/resources/images/ico_plus.png"></span>  
+			        <span onclick="zoomOut()"><img src="<%= request.getContextPath() %>/resources/images/ico_minus.png"></span>
+			    </div>  		
+    		</div>
     	</div>    
     </div>
     
     
     <script>
     
-    var container2 = document.getElementById('map2');
+    var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(33.506768, 126.493103), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+	
+	var map2 = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    
+	function setMapType(maptype) { 
+	    var roadmapControl = document.getElementById('btnRoadmap');
+	    var skyviewControl = document.getElementById('btnSkyview'); 
+	    if (maptype === 'roadmap') {
+	        map2.setMapTypeId(kakao.maps.MapTypeId.ROADMAP);    
+	        roadmapControl.className = 'selected_btn';
+	        skyviewControl.className = 'skyBtn';
+	    } else {
+	        map2.setMapTypeId(kakao.maps.MapTypeId.HYBRID);    
+	        skyviewControl.className = 'selected_btn';
+	        roadmapControl.className = 'skyBtn';
+	    }
+	}
 
-	var options = {
-		center : new kakao.maps.LatLng(33.506768, 126.493103), /* 지도 중심 좌표 */
-		level : 3
-	};
+	// 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+	function zoomIn() {
+	    map2.setLevel(map2.getLevel() - 1);
+	}
 
-	var map2 = new kakao.maps.Map(container2, options); /* 지도 생성 */
-
+	// 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+	function zoomOut() {
+	    map2.setLevel(map2.getLevel() + 1);
+	}
+	
+	
+	
+	
+	
 	var markerPosition = new kakao.maps.LatLng(33.506768,
 			126.493103) /* 마커 표시될 위치 */
 
