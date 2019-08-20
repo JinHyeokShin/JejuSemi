@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <%@ include file="../../../views/adminowner/common/sidebar.jsp" %>
+    <%-- <%@ include file="../../../views/adminowner/common/sidebar.jsp" %> --%>
 </body>
 </html>

@@ -1,595 +1,156 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="Dashboard">
-  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Come To Jeju -</title>
-  < 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<%@ include file="../../../views/adminowner/common/ownerSidebar.jsp" %>
+
+	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+	<link href="<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+	    <link href="<%= request.getContextPath() %>/resources/adminowner/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+    <link href="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/css/DT_bootstrap.css" />
+	
+	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/moment.min.js'></script>
+	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/jquery.min.js'></script>
+	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.js'></script>
+	
+	
+	<link href='../fullcalendar.min.css' rel='stylesheet' />
+<link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='../lib/moment.min.js'></script>
+<script src='../lib/jquery.min.js'></script>
+<script src='../fullcalendar.min.js'></script>
+<script>
+
+	$(document).ready(function() {
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			defaultDate: '2019-08-20',
+			navLinks: true, // can click day/week names to navigate views
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2019-08-01'
+				},
+				{
+					title: '신진혁, 010-7316-0813',
+					start: '2019-08-24',
+					end: '2019-08-25'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-04-09T16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-04-16T16:00:00'
+				},
+				{
+					title: 'Conference',
+					start: '2017-04-11',
+					end: '2017-04-13'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-04-12T10:30:00',
+					end: '2017-04-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2017-04-12T12:00:00'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-04-12T14:30:00'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2017-04-12T17:30:00'
+				},
+				{
+					title: 'Dinner',
+					start: '2017-04-12T20:00:00'
+				},
+				{
+					title: 'Birthday Party',
+					start: '2017-04-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2017-04-28'
+				}
+			]
+		});
+		
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+ul.sidebar-menu li a.active2, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+    background: #fd7e14;
+    color: #fff;
+    display: block;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+ul.sidebar-menu li ul.sub li.active a {
+    color: #fd7e14;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    display: block;
+    cursor: pointer;
+}
+
+</style>
 </head>
-
 <body>
-  <section id="container">
-    <%@ include file="../../../views/adminowner/common/sidebar.jsp" %>
-    <!--sidebar end-->
-    <!-- **********************************************************************************************************************************************************
-        MAIN CONTENT
-        *********************************************************************************************************************************************************** -->
-    <!--main content start-->
-		<section id="main-content">
-			<section class="wrapper">
-				<h3>
-					<i class="fa fa-angle-right"></i> Calendar
-				</h3>
-				<!-- page start-->
-				<div class="row mt">
-					<aside class="col-lg-3 mt">
-						<h4>
-							<i class="fa fa-angle-right"></i> Draggable Events
-						</h4>
-						<div id="external-events">
-							<div class="external-event label label-theme">My Event 1</div>
-							<div class="external-event label label-success">My Event 2</div>
-							<div class="external-event label label-info">My Event 3</div>
-							<div class="external-event label label-warning">My Event 4</div>
-							<div class="external-event label label-danger">My Event 5</div>
-							<div class="external-event label label-default">My Event 6</div>
-							<div class="external-event label label-theme">My Event 7</div>
-							<div class="external-event label label-info">My Event 8</div>
-							<div class="external-event label label-success">My Event 9</div>
-							<p class="drop-after">
-								<input type="checkbox" id="drop-remove"> Remove After
-								Drop
-							</p>
-						</div>
-					</aside>
-					<aside class="col-lg-9 mt">
-						<section class="panel">
-							<div class="panel-body">
-								<div id="calendar" class="has-toolbar fc">
-								</div>
-							</div>
-
-						</section>
-					</aside>
-					<!-- page end-->
-				<div id="contact" class="tab-pane">
-					<div class="col-md-12 mt">
-						<div class="content-panel">
-							<h3>
-								<i class="fa fa-angle-right"></i> Advanced Table Example
-							</h3>
-							<table cellpadding="0" cellspacing="0" border="0"
-								class="display table table-bordered" id="hidden-table-info">
-								<thead>
-									<tr>
-										<th>Rendering engine</th>
-										<th>Browser</th>
-										<th class="hidden-phone">Platform(s)</th>
-										<th class="hidden-phone">Engine version</th>
-										<th class="hidden-phone">CSS grade</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="gradeX">
-										<td>Trident</td>
-										<td>Internet Explorer 4.0</td>
-										<td class="hidden-phone">Win 95+</td>
-										<td class="center hidden-phone">4</td>
-										<td class="center hidden-phone">X</td>
-									</tr>
-									<tr class="gradeC">
-										<td>Trident</td>
-										<td>Internet Explorer 5.0</td>
-										<td class="hidden-phone">Win 95+</td>
-										<td class="center hidden-phone">5</td>
-										<td class="center hidden-phone">C</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Trident</td>
-										<td>Internet Explorer 5.5</td>
-										<td class="hidden-phone">Win 95+</td>
-										<td class="center hidden-phone">5.5</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Trident</td>
-										<td>Internet Explorer 6</td>
-										<td class="hidden-phone">Win 98+</td>
-										<td class="center hidden-phone">6</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Trident</td>
-										<td>Internet Explorer 7</td>
-										<td class="hidden-phone">Win XP SP2+</td>
-										<td class="center hidden-phone">7</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Trident</td>
-										<td>AOL browser (AOL desktop)</td>
-										<td class="hidden-phone">Win XP</td>
-										<td class="center hidden-phone">6</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Firefox 1.0</td>
-										<td class="hidden-phone">Win 98+ / OSX.2+</td>
-										<td class="center hidden-phone">1.7</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Firefox 1.5</td>
-										<td class="hidden-phone">Win 98+ / OSX.2+</td>
-										<td class="center hidden-phone">1.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Firefox 2.0</td>
-										<td class="hidden-phone">Win 98+ / OSX.2+</td>
-										<td class="center hidden-phone">1.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Firefox 3.0</td>
-										<td class="hidden-phone">Win 2k+ / OSX.3+</td>
-										<td class="center hidden-phone">1.9</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Camino 1.0</td>
-										<td class="hidden-phone">OSX.2+</td>
-										<td class="center hidden-phone">1.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Camino 1.5</td>
-										<td class="hidden-phone">OSX.3+</td>
-										<td class="center hidden-phone">1.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Netscape 7.2</td>
-										<td class="hidden-phone">Win 95+ / Mac OS 8.6-9.2</td>
-										<td class="center hidden-phone">1.7</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Netscape Browser 8</td>
-										<td class="hidden-phone">Win 98SE+</td>
-										<td class="center hidden-phone">1.7</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Netscape Navigator 9</td>
-										<td class="hidden-phone">Win 98+ / OSX.2+</td>
-										<td class="center hidden-phone">1.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.0</td>
-										<td class="hidden-phone">Win 95+ / OSX.1+</td>
-										<td class="center hidden-phone">1</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.1</td>
-										<td class="hidden-phone">Win 95+ / OSX.1+</td>
-										<td class="center hidden-phone">1.1</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.2</td>
-										<td class="hidden-phone">Win 95+ / OSX.1+</td>
-										<td class="center hidden-phone">1.2</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.3</td>
-										<td class="hidden-phone">Win 95+ / OSX.1+</td>
-										<td class="center hidden-phone">1.3</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.4</td>
-										<td class="hidden-phone">Win 95+ / OSX.1+</td>
-										<td class="center hidden-phone">1.4</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.5</td>
-										<td class="hidden-phone">Win 95+ / OSX.1+</td>
-										<td class="center hidden-phone">1.5</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.6</td>
-										<td class="hidden-phone">Win 95+ / OSX.1+</td>
-										<td class="center hidden-phone">1.6</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.7</td>
-										<td class="hidden-phone">Win 98+ / OSX.1+</td>
-										<td class="center hidden-phone">1.7</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Mozilla 1.8</td>
-										<td class="hidden-phone">Win 98+ / OSX.1+</td>
-										<td class="center hidden-phone">1.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Seamonkey 1.1</td>
-										<td class="hidden-phone">Win 98+ / OSX.2+</td>
-										<td class="center hidden-phone">1.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Gecko</td>
-										<td>Epiphany 2.20</td>
-										<td class="hidden-phone">Gnome</td>
-										<td class="center hidden-phone">1.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Webkit</td>
-										<td>Safari 1.2</td>
-										<td class="hidden-phone">OSX.3</td>
-										<td class="center hidden-phone">125.5</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Webkit</td>
-										<td>Safari 1.3</td>
-										<td class="hidden-phone">OSX.3</td>
-										<td class="center hidden-phone">312.8</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Webkit</td>
-										<td>Safari 2.0</td>
-										<td class="hidden-phone">OSX.4+</td>
-										<td class="center hidden-phone">419.3</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Webkit</td>
-										<td>Safari 3.0</td>
-										<td class="hidden-phone">OSX.4+</td>
-										<td class="center hidden-phone">522.1</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Webkit</td>
-										<td>OmniWeb 5.5</td>
-										<td class="hidden-phone">OSX.4+</td>
-										<td class="center hidden-phone">420</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Webkit</td>
-										<td>iPod Touch / iPhone</td>
-										<td class="hidden-phone">iPod</td>
-										<td class="center hidden-phone">420.1</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Webkit</td>
-										<td>S60</td>
-										<td class="hidden-phone">S60</td>
-										<td class="center hidden-phone">413</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Opera 7.0</td>
-										<td class="hidden-phone">Win 95+ / OSX.1+</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Opera 7.5</td>
-										<td class="hidden-phone">Win 95+ / OSX.2+</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Opera 8.0</td>
-										<td class="hidden-phone">Win 95+ / OSX.2+</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Opera 8.5</td>
-										<td class="hidden-phone">Win 95+ / OSX.2+</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Opera 9.0</td>
-										<td class="hidden-phone">Win 95+ / OSX.3+</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Opera 9.2</td>
-										<td class="hidden-phone">Win 88+ / OSX.3+</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Opera 9.5</td>
-										<td class="hidden-phone">Win 88+ / OSX.3+</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Opera for Wii</td>
-										<td class="hidden-phone">Wii</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Nokia N800</td>
-										<td class="hidden-phone">N800</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Presto</td>
-										<td>Nintendo DS browser</td>
-										<td class="hidden-phone">Nintendo DS</td>
-										<td class="center hidden-phone">8.5</td>
-										<td class="center hidden-phone">C/A<sup>1</sup></td>
-									</tr>
-									<tr class="gradeC">
-										<td>KHTML</td>
-										<td>Konqureror 3.1</td>
-										<td class="hidden-phone">KDE 3.1</td>
-										<td class="center hidden-phone">3.1</td>
-										<td class="center hidden-phone">C</td>
-									</tr>
-									<tr class="gradeA">
-										<td>KHTML</td>
-										<td>Konqureror 3.3</td>
-										<td class="hidden-phone">KDE 3.3</td>
-										<td class="center hidden-phone">3.3</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeA">
-										<td>KHTML</td>
-										<td>Konqureror 3.5</td>
-										<td class="hidden-phone">KDE 3.5</td>
-										<td class="center hidden-phone">3.5</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeX">
-										<td>Tasman</td>
-										<td>Internet Explorer 4.5</td>
-										<td class="hidden-phone">Mac OS 8-9</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">X</td>
-									</tr>
-									<tr class="gradeC">
-										<td>Tasman</td>
-										<td>Internet Explorer 5.1</td>
-										<td class="hidden-phone">Mac OS 7.6-9</td>
-										<td class="center hidden-phone">1</td>
-										<td class="center hidden-phone">C</td>
-									</tr>
-									<tr class="gradeC">
-										<td>Tasman</td>
-										<td>Internet Explorer 5.2</td>
-										<td class="hidden-phone">Mac OS 8-X</td>
-										<td class="center hidden-phone">1</td>
-										<td class="center hidden-phone">C</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Misc</td>
-										<td>NetFront 3.1</td>
-										<td>Embedded devices</td>
-										<td class="center">-</td>
-										<td class="center">C</td>
-									</tr>
-									<tr class="gradeA">
-										<td>Misc</td>
-										<td>NetFront 3.4</td>
-										<td class="hidden-phone">Embedded devices</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">A</td>
-									</tr>
-									<tr class="gradeX">
-										<td>Misc</td>
-										<td>Dillo 0.8</td>
-										<td class="hidden-phone">Embedded devices</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">X</td>
-									</tr>
-									<tr class="gradeX">
-										<td>Misc</td>
-										<td>Links</td>
-										<td class="hidden-phone">Text only</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">X</td>
-									</tr>
-									<tr class="gradeX">
-										<td>Misc</td>
-										<td>Lynx</td>
-										<td class="hidden-phone">Text only</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">X</td>
-									</tr>
-									<tr class="gradeC">
-										<td>Misc</td>
-										<td>IE Mobile</td>
-										<td class="hidden-phone">Windows Mobile 6</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">C</td>
-									</tr>
-									<tr class="gradeC">
-										<td>Misc</td>
-										<td>PSP browser</td>
-										<td class="hidden-phone">PSP</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">C</td>
-									</tr>
-									<tr class="gradeU">
-										<td>Other browsers</td>
-										<td>All others</td>
-										<td class="hidden-phone">-</td>
-										<td class="center hidden-phone">-</td>
-										<td class="center hidden-phone">U</td>
-									</tr>
-								</tbody>
-							</table>
-
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- /wrapper -->
-		</section>
-		<!-- /MAIN CONTENT -->
-    <!--main content end-->
-    <!--footer start-->
-    <footer class="site-footer">
-      <div class="text-center">
-        <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-        </p>
-        <div class="credits">
-          <!--
-            You are NOT allowed to delete the credit link to TemplateMag with free version.
-            You can delete the credit link only if you bought the pro version.
-            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-            Licensing information: https://templatemag.com/license/
-          -->
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
-        </div>
-        <a href="calendar.html#" class="go-top">
-          <i class="fa fa-angle-up"></i>
-          </a>
-      </div>
-    </footer>
-    <!--footer end-->
-  </section>
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery/jquery.min.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery-ui-1.9.2.custom.min.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.scrollTo.min.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--common script for all pages-->
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/common-scripts.js"></script>
-  <!--script for this page-->
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/calendar-conf-events.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/js/jquery.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.scrollTo.min.js"></script>
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script type="text/javascript" language="javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/js/jquery.dataTables.js"></script>
-  <script type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/js/DT_bootstrap.js"></script>
-  <!--common script for all pages-->
-  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/common-scripts.js"></script>
-  <!--script for this page-->
-  <script type="text/javascript">
-    /* Formating function for row details */
-/*     function fnFormatDetails(oTable, nTr) {
-      var aData = oTable.fnGetData(nTr);
-      var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-      sOut += '<tr><td>Rendering engine:</td><td>' + aData[1] + ' ' + aData[4] + '</td></tr>';
-      sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
-      sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
-      sOut += '</table>';
-
-      return sOut;
-    } */
-
-<%--     $(document).ready(function() {
-      /*
-       * Insert a 'details' column to the table
-       */
-      var nCloneTh = document.createElement('th');
-      var nCloneTd = document.createElement('td');
-      nCloneTd.innerHTML = '<img src="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/images/details_open.png">';
-      nCloneTd.className = "center";
-
-      $('#hidden-table-info thead tr').each(function() {
-        this.insertBefore(nCloneTh, this.childNodes[0]);
-      });
-
-      $('#hidden-table-info tbody tr').each(function() {
-        this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
-      });
-
-      /*
-       * Initialse DataTables, with no sorting on the 'details' column
-       */
-      var oTable = $('#hidden-table-info').dataTable({
-        "aoColumnDefs": [{
-          "bSortable": false,
-          "aTargets": [0]
-        }],
-        "aaSorting": [
-          [1, 'asc']
-        ]
-      }); --%>
-
-      /* Add event listener for opening and closing details
-       * Note that the indicator for showing which row is open is not controlled by DataTables,
-       * rather it is done here
-       */
-      $('#hidden-table-info tbody td img').live('click', function() {
-        var nTr = $(this).parents('tr')[0];
-        if (oTable.fnIsOpen(nTr)) {
-          /* This row is already open - close it */
-          this.src = "<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/media/images/details_open.png";
-          oTable.fnClose(nTr);
-        } else {
-          /* Open this row */
-          this.src = "<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/images/details_close.png";
-          oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
-        }
-      });
-    });
-  </script>
+  <section id="main-content">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Calendar</h3>
+        <!-- page start-->
+        <div class="row mt">
+          <aside class="col-lg-12 mt">
+            <section class="panel">
+              <div class="panel-body">
+                <div id="calendar"></div>
+              </div>
+            </section>
+          </aside>
+         </div>
+        </section>
+    </section>
 </body>
-
 </html>
