@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 	<%@ include file="../../../views/adminowner/common/ownerSidebar.jsp" %>
 
-	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+<%-- 	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
 	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<link href="<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
 	    <link href="<%= request.getContextPath() %>/resources/adminowner/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -18,14 +18,14 @@
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/moment.min.js'></script>
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/jquery.min.js'></script>
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.js'></script>
-	
+	 --%>
 	
 	<link href='../fullcalendar.min.css' rel='stylesheet' />
-<link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<script src='../lib/moment.min.js'></script>
-<script src='../lib/jquery.min.js'></script>
-<script src='../fullcalendar.min.js'></script>
-<script>
+	<link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
+	<script src='../lib/moment.min.js'></script>
+	<script src='../lib/jquery.min.js'></script>
+	<script src='../fullcalendar.min.js'></script>
+	<script>
 
 	$(document).ready(function() {
 		
@@ -35,9 +35,9 @@
 				center: 'title',
 				right: 'month,basicWeek,basicDay'
 			},
-			defaultDate: '2019-08-20',
+/* 			defaultDate: '2019-08-20', */
 			navLinks: true, // can click day/week names to navigate views
-			editable: true,
+			editable: false,
 			eventLimit: true, // allow "more" link when too many events
 			events: [
 				{
