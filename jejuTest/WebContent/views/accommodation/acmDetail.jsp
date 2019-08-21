@@ -117,79 +117,12 @@
 <!-- T-MAP API header 끝 -->
 
 <style>
-/* The Modal (background) */
-          .popModal {
-             display: none; /* Hidden by default */
-             position: fixed; /* Stay in place */
-             z-index: 2; /* Sit on top */
-             left: 0;
-             top: 0;
-             width: 100%; /* Full width */
-             height: 100%; /* Full height */
-             overflow: hidden; /* Enable scroll if needed */
-             background-color: rgb(0,0,0); /* Fallback color */
-             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-         }
-     
-         /* Modal Content/Box */
-         .modal-content {
-             background-color: #fefefe;
-             margin: 10% auto; /* 15% from the top and centered */
-             padding: 20px;
-             border: 1px solid #888;
-             /* width: 30%; */ /* Could be more or less, depending on screen size */
-             width:745px;
-        	 height:450px;                        
-         }
-         /* The Close Button */
-         .close {
-             color: #aaa;
-             float: right;
-             font-size: 28px;
-             font-weight: bold;
-             text-align: right;
-         }
-         .close:hover,
-         .close:focus {
-             color: black;
-             text-decoration: none;
-             cursor: pointer;
-         }
-         .nav-item{
-           cursor: pointer;
-         }
-         #logoutBtn{
-         	display: none;
-         }
-         aside {
-           float: left;
-         }
-         .star{
-           color:gold;
-           font-size: 20px;
-         }
-         .searchForm{
-           border: 1px solid lightgray;
-           width: 100%;
-         }
-         .result{
-          border: 1px solid lightgray;
-          width: 85%;
-         }
-         .searchPhoto{
-          border: 1px solid lightgray;
-          width: 300px;
-          height: 200px;
-         }
-         .test{
-          border: 1px solid lightgray;
-         }         
+
+                
          li{
             list-style-type: none;
         }
-        .aa{
-            box-sizing: border-box;
-        }
+        
         .resultWrap{
             width: 100%;
             height: 250px;
@@ -233,10 +166,7 @@
             width: 300px;
             height: 170px;
             margin:auto;
-        }
-        .dd{
-            float: left;
-        }
+        }        
         .title{
        		text-align:left;
         	text-indent: 25px;
@@ -395,13 +325,8 @@
         #map2{
         	width:100%;
         	height:100%;
-        }
+        }        
         
-        
-        
-       
-        
-         
 </style>
 
 </head>
@@ -411,7 +336,7 @@
     <%@ include file="../main/header.jsp" %>
     
     <style>
-    	 .map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
+    	.map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
 		.radius_border{border:1px solid #919191;border-radius:5px;}     
 		.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:132px;height:30px;margin:0;padding:0;z-index:2;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
 		.custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;z-index:2;cursor:pointer;}
@@ -428,7 +353,7 @@
     
     
     
-    <section class="detailView" style="text-align:center">
+    <section class="detailSection" style="text-align:center">
     	<div class="detailWrap test aa container">
             <div class="headDiv test aa" align="left">			<!-- header div -->
             <label style="font-weight:bold; font-size:3em; color:#fd7e14;" >testHotel</label><br>
@@ -691,6 +616,8 @@
 
         </div>
     </section>
+    
+    <!-- 티맵 모달 -->
     
     <div id="routeModal" class="popModal">
     	<div class="modal-content">
