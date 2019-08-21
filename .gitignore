@@ -25,4 +25,4 @@ context.xml
 .metadata/
 RemoteSystemsTempFiles/
 Servers/
-jejuTest/WebContent/META-INF/
+jejuTest/WebContent/META-INF/*.xml
