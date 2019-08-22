@@ -319,8 +319,9 @@ ul.sidebar-menu li ul.sub li.active a {
           <!-- /wrapper -->
         </section>
     <!-- main content end-->
+        <%@ include file="../../../views/adminowner/common/footer.jsp" %>
     <!--footer start-->
-    <footer class="site-footer">
+<!--     <footer class="site-footer">
       <div class="text-center">
         <p>
           &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
@@ -333,7 +334,7 @@ ul.sidebar-menu li ul.sub li.active a {
           </a>
       </div>
     </footer>
-    <!--footer end-->
+    footer end-->
   </section>
 </body>
 </html>

@@ -114,5 +114,6 @@
       </section>
       <!-- /wrapper -->
     </section>
+        <%@ include file="../../../views/adminowner/common/footer.jsp" %>
 </body>
 </html>

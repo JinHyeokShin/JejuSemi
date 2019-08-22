@@ -31,6 +31,6 @@
   </style>
 </head>
 <body>
-
+    <%@ include file="../../../views/adminowner/common/footer.jsp" %>
 </body>
 </html>

@@ -152,5 +152,6 @@ ul.sidebar-menu li ul.sub li.active a {
          </div>
         </section>
     </section>
+        <%@ include file="../../../views/adminowner/common/footer.jsp" %>
 </body>
 </html>
