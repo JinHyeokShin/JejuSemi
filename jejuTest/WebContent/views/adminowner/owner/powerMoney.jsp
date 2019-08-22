@@ -54,7 +54,7 @@
                   <li>WordPress Installation</li>
                   <li>24/7 Support</li>
                 </ul>
-                <a class="btn btn-theme" href="invoice.html">Order Now</a>
+                <a class="btn btn-theme" onclick="movePayment();">Order Now</a>
               </div>
               <!-- end custombox -->
             </div>
@@ -78,7 +78,7 @@
                   <li>WordPress Installation</li>
                   <li>24/7 Support</li>
                 </ul>
-                <a class="btn btn-theme" href="invoice.html">Order Now</a>
+                <a class="btn btn-theme" onclick="movePayment();">Order Now</a>
               </div>
               <!-- end custombox -->
             </div>
@@ -102,7 +102,7 @@
                   <li>WordPress Installation</li>
                   <li>24/7 Support</li>
                 </ul>
-                <a class="btn btn-theme" href="invoice.html">Order Now</a>
+                <a class="btn btn-theme" onclick="movePayment();">Order Now</a>
               </div>
               <!-- end custombox -->
             </div>
@@ -114,6 +114,11 @@
       </section>
       <!-- /wrapper -->
     </section>
+    <script>
+  	function movePayment(){
+  		location.href ="../owner/payment.jsp"
+  	}
+    </script>
         <%@ include file="../../../views/adminowner/common/footer.jsp" %>
 </body>
 </html>
