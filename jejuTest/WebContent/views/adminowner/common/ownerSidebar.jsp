@@ -53,10 +53,10 @@ ul.sidebar-menu li ul.sub li.active a {
    <!--header start-->
     <header class="header black-bg">
       <div class="sidebar-toggle-box">
-        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="확대 / 축소"></div>
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp" class="logo"><b>Come To<span> Jeju</span></b></a>
+      <a href="index.html" class="logo"><b>Come To<span> Jeju</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -245,7 +245,7 @@ ul.sidebar-menu li ul.sub li.active a {
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="<%= request.getContextPath() %>">Logout</a></li>
+          <li><a class="logout" href="login.html">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -258,7 +258,7 @@ ul.sidebar-menu li ul.sub li.active a {
         <div id="sidebar" class="nav-collapse ">
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+            <p class="centered"><a href="profile.html"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
             <h5 class="centered">Sam Soffes</h5>
             <li>
               <a class="active1" onclick="moveDashBoard();">

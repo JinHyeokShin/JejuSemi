@@ -76,7 +76,6 @@
         <!-- page end-->
       </section>
     </section>
-        <%@ include file="../../../views/adminowner/common/footer.jsp" %>
       <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery/jquery.min.js"></script>
 	  <script class="include" type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.dcjqaccordion.2.7.js"></script>
 	  <script src="<%= request.getContextPath() %>/resources/adminowner/lib/raphael/raphael.min.js"></script>

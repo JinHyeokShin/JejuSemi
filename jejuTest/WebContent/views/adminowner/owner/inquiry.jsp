@@ -88,7 +88,6 @@
       </section>
       <!-- /wrapper -->
     </section>
-    <%@ include file="../../../views/adminowner/common/footer.jsp" %>
     <!-- /MAIN CONTENT -->
 <%--   <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery/jquery.min.js"></script> --%>
 <%--   <script src="<%= request.getContextPath() %>/resources/adminowner/lib/bootstrap/js/bootstrap.min.js"></script> --%>
