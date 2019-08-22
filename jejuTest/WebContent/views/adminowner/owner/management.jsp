@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 	<%@ include file="../../../views/adminowner/common/ownerSidebar.jsp" %>
 
-<%-- 	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+ 	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
 	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<link href="<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-	    <link href="<%= request.getContextPath() %>/resources/adminowner/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link href="<%= request.getContextPath() %>/resources/adminowner/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
     <link href="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/css/DT_bootstrap.css" />
@@ -18,7 +18,7 @@
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/moment.min.js'></script>
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/jquery.min.js'></script>
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.js'></script>
-	 --%>
+	
 	
 	<link href='../fullcalendar.min.css' rel='stylesheet' />
 	<link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />

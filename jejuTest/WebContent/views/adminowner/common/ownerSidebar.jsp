@@ -273,35 +273,37 @@ ul.sidebar-menu li ul.sub li.active a {
             </a>
             </li>
             <li>
-            <a class="active3" onclick="moveDashBoard();">
+            <a class="active3" onclick="movepsManagement();">
                 <i class="fa fa-comment-o"></i>
                 <span>숙소 후기 관리</span>
             </a>
             <li>
-            <a class="active4" onclick="moveDashBoard();">
+            <a class="active4" onclick="moveChartManagement();">
                 <i class="fa fa-users"></i>
                 <span>숙소 통계 관리</span>
             </a>
             </li>
             </li>
             <li>
-                <a href="pricing_table.html" class="active5">
+                <a class="active5" onclick="movePowerMoney();">
                   <i class="fa fa-bolt"></i>
                   <span>파워 등록 !</span>
-                  <span class="label label-theme pull-right mail-info">2</span>
+                  <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
             <li>
-                <a href="contactform.html" class="active6">
+                <a class="active6" onclick="moveInquiry();">
                   <i class="fa fa-envelope"></i>
                   <span>문의하기</span>
-                  <span class="label label-theme pull-right mail-info">2</span>
+                  <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
           </ul>
           <!-- sidebar menu end-->
         </div>
       </aside>
+      
+      
     <!--sidebar end-->
   <!-- js placed at the end of the document so the pages load faster -->
 
@@ -324,6 +326,18 @@ ul.sidebar-menu li ul.sub li.active a {
   	}
   	function moveManagement(){
   		location.href ="../owner/management.jsp"
+  	}
+  	function movepsManagement(){
+  		location.href ="../owner/psManagement.jsp"
+  	}
+  	function moveChartManagement(){
+  		location.href ="../owner/chartManagement.jsp"
+  	}
+  	function movePowerMoney(){
+  		location.href ="../owner/powerMoney.jsp"
+  	}
+  	function moveInquiry(){
+  		location.href ="../owner/inquiry.jsp"
   	}
   </script>
 </body>
