@@ -19,70 +19,71 @@ import member.model.vo.Member;
 @WebServlet("/login.me")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		
-		Member loginUser = new MemberService().loginMember(userId, userPwd);
-	
-		if(loginUser == null) {	// 로그인 실패
-			request.setAttribute("msg", "로그인 실패");
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-			
-		} else if(loginUser.getMemType() == "U"){
-			HttpSession session = request.getSession();
-			
-//			session.setMaxInactiveInterval(600);	// 10분(600초)뒤 자동 로그아웃
-			
-			session.setAttribute("loginUser", loginUser);
-			
-			
-			// 로그인 완료 후 다시 메인 페이지로 
-			response.sendRedirect(request.getContextPath());
-		} else if(loginUser.getMemType() == "A"){
-			HttpSession session = request.getSession();
-			
-//			session.setMaxInactiveInterval(600);	// 10분(600초)뒤 자동 로그아웃
-			
-			session.setAttribute("loginUser", loginUser);
-			
-			
-			// 로그인 완료 후 다시 메인 페이지로 
-			response.sendRedirect("/views/adminowner/owner/adminIndex.jsp");
-		} else if(loginUser.getMemType() == "O"){
-			HttpSession session = request.getSession();
-			
-//			session.setMaxInactiveInterval(600);	// 10분(600초)뒤 자동 로그아웃
-			
-			session.setAttribute("loginUser", loginUser);
-			
-			
-			// 로그인 완료 후 다시 메인 페이지로 
-			response.sendRedirect("/views/adminowner/owner/ownerIndex.jsp");
-		}
-	
-	
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		System.out.println(userId + " " + userPwd);
+
+		Member loginUser = new MemberService().loginMember(userId, userPwd);
+		if (loginUser == null) { // 로그인 실패
+			request.setAttribute("msg", "로그인 실패");
+
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+
+		} else if ((loginUser.getMemType()).equals("U")) {
+			System.out.println(loginUser.getMemType());
+			HttpSession session = request.getSession();
+
+			// session.setMaxInactiveInterval(600); // 10분(600초)뒤 자동 로그아웃
+
+			session.setAttribute("loginUser", loginUser);
+
+			// 로그인 완료 후 다시 메인 페이지로
+			response.sendRedirect(request.getContextPath());
+		} else if ((loginUser.getMemType()).equals("A")) {
+			HttpSession session = request.getSession();
+
+			// session.setMaxInactiveInterval(600); // 10분(600초)뒤 자동 로그아웃
+
+			session.setAttribute("loginUser", loginUser);
+
+			// 로그인 완료 후 다시 메인 페이지로
+			response.sendRedirect("views/adminowner/admin/adminIndex.jsp");
+		} else if (loginUser.getMemType().equals("O")) {
+			HttpSession session = request.getSession();
+
+			// session.setMaxInactiveInterval(600); // 10분(600초)뒤 자동 로그아웃
+
+			session.setAttribute("loginUser", loginUser);
+
+			// 로그인 완료 후 다시 메인 페이지로
+			response.sendRedirect("views/adminowner/owner/ownerIndex.jsp");
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -54,17 +54,17 @@ public class MemberDao {
 			if(rset.next()) {
 				loginUser = new Member(rset.getInt("mem_num"),
 									   rset.getString("mem_id"),
-									   rset.getString("mem_pw"),
+									   rset.getString("mem_pwd"),
 									   rset.getString("mem_name"),
 									   rset.getString("mem_gender"),
 									   rset.getString("mem_phone"),
 									   rset.getInt("nation_code"),									   
-									   rset.getDate("mem_join"),									   
-									   rset.getDate("mem_out"),
-									   rset.getInt("mem_point"),
-									   rset.getInt("mem_noshow"),
+									   rset.getInt("mem_point"),									   
 									   rset.getString("mem_type"),
-									   rset.getString("mem_status"));
+									   rset.getString("mem_status"),
+									   rset.getDate("enroll_date"),
+									   rset.getDate("out_date"),
+									   rset.getInt("noshow"));
 			}
 			
 			} catch (SQLException e) {

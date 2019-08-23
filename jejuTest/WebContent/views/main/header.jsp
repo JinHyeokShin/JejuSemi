@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,9 +106,9 @@
               <h2 class="form-login-heading">sign in now</h2>
               <div class="login-wrap">
                   <span class="close" style="margin-left:auto;">&times;</span>
-                <input type="text" class="form-control" placeholder="User ID" id="userId" autofocus>
+                <input type="text" name="userId" class="form-control" placeholder="User ID" id="userId" autofocus>
                 <br>
-                <input type="password" class="form-control" placeholder="Password" id="userPwd">
+                <input type="password" name="userPwd"class="form-control" placeholder="Password" id="userPwd">
                 <!-- <label class="checkbox"> -->
                   <input type="checkbox" value="remember-me"> 기억하기
                   <span class="pull-right">
@@ -190,7 +193,8 @@
             // 모달창 x 버튼 누르면 창 꺼지기
             $(".close").click(function(){
               // console.log("sss");
-              $(this).parents(".popModal").css("display", "none");
+              $(this).parents(".popModal")
+              .css("display", "none");
             });
           });
           
