@@ -9,32 +9,27 @@ public class Qna {
 	private String qnaTitle;		// 문의 제목
 	private String qnaContent;		// 문의 내용
 	private Date qnaDate;			// 문의 날짜
-	private String answer;			// 답변 내용
-	private Date answerDate;		// 답변 날짜
-	private String answerStatus;	// 답변 상태(y/n)
+	private String qnaStatus;	// 답변 상태(y/n)
 	
 	public Qna() {
 		
 	}
 
-	public Qna(int qnaNum, int memNum, String qnaTitle, String qnaContent, Date qnaDate, String answer, Date answerDate,
-			String answerStatus) {
+	public Qna(int qnaNum, int memNum, String qnaTitle, String qnaContent, Date qnaDate, String qnaStatus) {
 		super();
 		this.qnaNum = qnaNum;
 		this.memNum = memNum;
 		this.qnaTitle = qnaTitle;
 		this.qnaContent = qnaContent;
 		this.qnaDate = qnaDate;
-		this.answer = answer;
-		this.answerDate = answerDate;
-		this.answerStatus = answerStatus;
+		this.qnaStatus = qnaStatus;
 	}
 
 	public int getQnaNum() {
 		return qnaNum;
 	}
 
-	public void setQndNum(int qnaNum) {
+	public void setQnaNum(int qnaNum) {
 		this.qnaNum = qnaNum;
 	}
 
@@ -70,36 +65,18 @@ public class Qna {
 		this.qnaDate = qnaDate;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public String getQnaStatus() {
+		return qnaStatus;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
-
-	public Date getAnswerDate() {
-		return answerDate;
-	}
-
-	public void setAnswerDate(Date answerDate) {
-		this.answerDate = answerDate;
-	}
-
-	public String getAnswerStatus() {
-		return answerStatus;
-	}
-
-	public void setAnswerStatus(String answerStatus) {
-		this.answerStatus = answerStatus;
+	public void setQnaStatus(String qnaStatus) {
+		this.qnaStatus = qnaStatus;
 	}
 
 	@Override
 	public String toString() {
 		return "Qna [qnaNum=" + qnaNum + ", memNum=" + memNum + ", qnaTitle=" + qnaTitle + ", qnaContent=" + qnaContent
-				+ ", qnaDate=" + qnaDate + ", answer=" + answer + ", answerDate=" + answerDate + ", answerStatus="
-				+ answerStatus + "]";
+				+ ", qnaDate=" + qnaDate + ", qnaStatus=" + qnaStatus + "]";
 	}
-	
-	
+
 }

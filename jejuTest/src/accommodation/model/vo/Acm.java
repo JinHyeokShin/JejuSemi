@@ -1,37 +1,48 @@
 package accommodation.model.vo;
 
+/**
+ * @author Sangyoon Kim
+ *
+ */
 public class Acm {
 	
-	private int acmNum;				// 숙소 번호
-	private String acmName;			// 숙소 이름
-	private String acmOwner;		// 숙소 주인
-	private String acmPhone;		// 숙소 전화번호
-	private String acmAddress;		// 숙소 주소
-	private String acmType;			// 숙소 타입(h:호텔 / r:리조트 / c:콘도 / g:게스트 / m:민박)
-	private int acmGrade;			// 숙소 등급 (5/4/3/2/1)
-	private String acmDescript;		// 숙소 설명
-	private String acmCoordX;		// 숙소 x좌표
-	private String acmCoordY;		// 숙소 y좌표
-	private String acmCity;			// 숙소 행정구역(제주시/서귀포시)
-	private String acmPower;		// 숙소 파워등록 여부(y/n)
+	private int acmNum;				
+	private String acmName;			
+	private String memNum;		
+	private String acmPhone;		
+	private String acmAddress;		
+	private String acmType;			
+	private int acmGrade;
+	private String acmDescriptA;
+	private String acmDescriptB;
+	private String acmCoordX;		
+	private String acmCoordY;		
+	private String acmDescript;		
+	private String acmPower;		
+	private String status;			
 	
-	public Acm() {}
+	public Acm() {
+		
+	}
 
-	public Acm(int acmNum, String acmName, String acmOwner, String acmPhone, String acmAddress, String acmType,
-			int acmGrade, String acmDescript, String acmCoordX, String acmCoordY, String acmCity, String acmPower) {
+	public Acm(int acmNum, String acmName, String memNum, String acmPhone, String acmAddress, String acmType,
+			int acmGrade, String acmDescriptA, String acmDescriptB, String acmCoordX, String acmCoordY,
+			String acmDescript, String acmPower, String status) {
 		super();
 		this.acmNum = acmNum;
 		this.acmName = acmName;
-		this.acmOwner = acmOwner;
+		this.memNum = memNum;
 		this.acmPhone = acmPhone;
 		this.acmAddress = acmAddress;
 		this.acmType = acmType;
 		this.acmGrade = acmGrade;
-		this.acmDescript = acmDescript;
+		this.acmDescriptA = acmDescriptA;
+		this.acmDescriptB = acmDescriptB;
 		this.acmCoordX = acmCoordX;
 		this.acmCoordY = acmCoordY;
-		this.acmCity = acmCity;
+		this.acmDescript = acmDescript;
 		this.acmPower = acmPower;
+		this.status = status;
 	}
 
 	public int getAcmNum() {
@@ -50,12 +61,12 @@ public class Acm {
 		this.acmName = acmName;
 	}
 
-	public String getAcmOwner() {
-		return acmOwner;
+	public String getMemNum() {
+		return memNum;
 	}
 
-	public void setAcmOwner(String acmOwner) {
-		this.acmOwner = acmOwner;
+	public void setMemNum(String memNum) {
+		this.memNum = memNum;
 	}
 
 	public String getAcmPhone() {
@@ -90,12 +101,20 @@ public class Acm {
 		this.acmGrade = acmGrade;
 	}
 
-	public String getAcmDescript() {
-		return acmDescript;
+	public String getAcmDescriptA() {
+		return acmDescriptA;
 	}
 
-	public void setAcmDescript(String acmDescript) {
-		this.acmDescript = acmDescript;
+	public void setAcmDescriptA(String acmDescriptA) {
+		this.acmDescriptA = acmDescriptA;
+	}
+
+	public String getAcmDescriptB() {
+		return acmDescriptB;
+	}
+
+	public void setAcmDescriptB(String acmDescriptB) {
+		this.acmDescriptB = acmDescriptB;
 	}
 
 	public String getAcmCoordX() {
@@ -114,12 +133,12 @@ public class Acm {
 		this.acmCoordY = acmCoordY;
 	}
 
-	public String getAcmCity() {
-		return acmCity;
+	public String getAcmDescript() {
+		return acmDescript;
 	}
 
-	public void setAcmCity(String acmCity) {
-		this.acmCity = acmCity;
+	public void setAcmDescript(String acmDescript) {
+		this.acmDescript = acmDescript;
 	}
 
 	public String getAcmPower() {
@@ -130,13 +149,23 @@ public class Acm {
 		this.acmPower = acmPower;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
-		return "Acm [acmNum=" + acmNum + ", acmName=" + acmName + ", acmOwner=" + acmOwner + ", acmPhone=" + acmPhone
-				+ ", acmAddress=" + acmAddress + ", acmType=" + acmType + ", acmGrade=" + acmGrade + ", acmDescript="
-				+ acmDescript + ", acmCoordX=" + acmCoordX + ", acmCoordY=" + acmCoordY + ", acmCity=" + acmCity
-				+ ", acmPower=" + acmPower + "]";
+		return "Acm [acmNum=" + acmNum + ", acmName=" + acmName + ", memNum=" + memNum + ", acmPhone=" + acmPhone
+				+ ", acmAddress=" + acmAddress + ", acmType=" + acmType + ", acmGrade=" + acmGrade + ", acmDescriptA="
+				+ acmDescriptA + ", acmDescriptB=" + acmDescriptB + ", acmCoordX=" + acmCoordX + ", acmCoordY="
+				+ acmCoordY + ", acmDescript=" + acmDescript + ", acmPower=" + acmPower + ", status=" + status + "]";
 	}
+
+	
 
 	
 }

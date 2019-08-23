@@ -4,44 +4,49 @@ import java.util.Date;
 
 public class Reservation {
 
-	private int resNum;
+	private int reservNum;
 	private int memNum;
 	private int roomNum;
-	private int resPax;
+	private int reservPax;
 	private Date checkInDate;
 	private Date checkOutDate;
-	private String resCancel;
-	private int resPrice;
-	private String resCheckIn;
-	private Date resDate;
-	private Date resCancelDate;
+	private int reservPrice;
+	private String reservCancel;
+	private Date reservDate;
+	private Date cancelDate;
+	private String reservRequire;
+	private String noShow;
+	private String status;
 	
 	public Reservation() {
 		
 	}
 
-	public Reservation(int resNum, int memNum, int roomNum, int resPax, Date checkInDate, Date checkOutDate,
-			String resCancel, int resPrice, String resCheckIn, Date resDate, Date resCancelDate) {
+	public Reservation(int reservNum, int memNum, int roomNum, int reservPax, Date checkInDate, Date checkOutDate,
+			int reservPrice, String reservCancel, Date reservDate, Date cancelDate, String reservRequire, String noShow,
+			String status) {
 		super();
-		this.resNum = resNum;
+		this.reservNum = reservNum;
 		this.memNum = memNum;
 		this.roomNum = roomNum;
-		this.resPax = resPax;
+		this.reservPax = reservPax;
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
-		this.resCancel = resCancel;
-		this.resPrice = resPrice;
-		this.resCheckIn = resCheckIn;
-		this.resDate = resDate;
-		this.resCancelDate = resCancelDate;
+		this.reservPrice = reservPrice;
+		this.reservCancel = reservCancel;
+		this.reservDate = reservDate;
+		this.cancelDate = cancelDate;
+		this.reservRequire = reservRequire;
+		this.noShow = noShow;
+		this.status = status;
 	}
 
-	public int getResNum() {
-		return resNum;
+	public int getReservNum() {
+		return reservNum;
 	}
 
-	public void setResNum(int resNum) {
-		this.resNum = resNum;
+	public void setReservNum(int reservNum) {
+		this.reservNum = reservNum;
 	}
 
 	public int getMemNum() {
@@ -60,12 +65,12 @@ public class Reservation {
 		this.roomNum = roomNum;
 	}
 
-	public int getResPax() {
-		return resPax;
+	public int getReservPax() {
+		return reservPax;
 	}
 
-	public void setResPax(int resPax) {
-		this.resPax = resPax;
+	public void setReservPax(int reservPax) {
+		this.reservPax = reservPax;
 	}
 
 	public Date getCheckInDate() {
@@ -84,55 +89,68 @@ public class Reservation {
 		this.checkOutDate = checkOutDate;
 	}
 
-	public String getResCancel() {
-		return resCancel;
+	public int getReservPrice() {
+		return reservPrice;
 	}
 
-	public void setResCancel(String resCancel) {
-		this.resCancel = resCancel;
+	public void setReservPrice(int reservPrice) {
+		this.reservPrice = reservPrice;
 	}
 
-	public int getResPrice() {
-		return resPrice;
+	public String getReservCancel() {
+		return reservCancel;
 	}
 
-	public void setResPrice(int resPrice) {
-		this.resPrice = resPrice;
+	public void setReservCancel(String reservCancel) {
+		this.reservCancel = reservCancel;
 	}
 
-	public String getResCheckIn() {
-		return resCheckIn;
+	public Date getReservDate() {
+		return reservDate;
 	}
 
-	public void setResCheckIn(String resCheckIn) {
-		this.resCheckIn = resCheckIn;
+	public void setReservDate(Date reservDate) {
+		this.reservDate = reservDate;
 	}
 
-	public Date getResDate() {
-		return resDate;
+	public Date getCancelDate() {
+		return cancelDate;
 	}
 
-	public void setResDate(Date resDate) {
-		this.resDate = resDate;
+	public void setCancelDate(Date cancelDate) {
+		this.cancelDate = cancelDate;
 	}
 
-	public Date getResCancelDate() {
-		return resCancelDate;
+	public String getReservRequire() {
+		return reservRequire;
 	}
 
-	public void setResCancelDate(Date resCancelDate) {
-		this.resCancelDate = resCancelDate;
+	public void setReservRequire(String reservRequire) {
+		this.reservRequire = reservRequire;
+	}
+
+	public String getNoShow() {
+		return noShow;
+	}
+
+	public void setNoShow(String noShow) {
+		this.noShow = noShow;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "Reservation [resNum=" + resNum + ", memNum=" + memNum + ", roomNum=" + roomNum + ", resPax=" + resPax
-				+ ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate + ", resCancel=" + resCancel
-				+ ", resPrice=" + resPrice + ", resCheckIn=" + resCheckIn + ", resDate=" + resDate + ", resCancelDate="
-				+ resCancelDate + "]";
+		return "Reservation [reservNum=" + reservNum + ", memNum=" + memNum + ", roomNum=" + roomNum + ", reservPax="
+				+ reservPax + ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate + ", reservPrice="
+				+ reservPrice + ", reservCancel=" + reservCancel + ", reservDate=" + reservDate + ", cancelDate="
+				+ cancelDate + ", reservRequire=" + reservRequire + ", noShow=" + noShow + ", status=" + status + "]";
 	}
 
-	
-	
-	
 }

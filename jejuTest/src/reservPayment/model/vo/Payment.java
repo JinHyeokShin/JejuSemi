@@ -5,7 +5,7 @@ import java.util.Date;
 public class Payment {
 	
 	private int payNum;
-	private int resNum;
+	private int reservNum;
 	private int payPrice;
 	private String payMethod;
 	private String payCancel;
@@ -16,11 +16,11 @@ public class Payment {
 		
 	}
 
-	public Payment(int payNum, int resNum, int payPrice, String payMethod, String payCancel, Date payDate,
+	public Payment(int payNum, int reservNum, int payPrice, String payMethod, String payCancel, Date payDate,
 			Date payCancelDate) {
 		super();
 		this.payNum = payNum;
-		this.resNum = resNum;
+		this.reservNum = reservNum;
 		this.payPrice = payPrice;
 		this.payMethod = payMethod;
 		this.payCancel = payCancel;
@@ -36,12 +36,12 @@ public class Payment {
 		this.payNum = payNum;
 	}
 
-	public int getResNum() {
-		return resNum;
+	public int getReservNum() {
+		return reservNum;
 	}
 
-	public void setResNum(int resNum) {
-		this.resNum = resNum;
+	public void setReservNum(int reservNum) {
+		this.reservNum = reservNum;
 	}
 
 	public int getPayPrice() {
@@ -86,12 +86,10 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [payNum=" + payNum + ", resNum=" + resNum + ", payPrice=" + payPrice + ", payMethod="
+		return "Payment [payNum=" + payNum + ", reservNum=" + reservNum + ", payPrice=" + payPrice + ", payMethod="
 				+ payMethod + ", payCancel=" + payCancel + ", payDate=" + payDate + ", payCancelDate=" + payCancelDate
 				+ "]";
 	}
 
-	
-	
 	
 }

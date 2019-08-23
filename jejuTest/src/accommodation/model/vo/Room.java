@@ -9,6 +9,7 @@ public class Room {
 	private int roomPax;			// 정원
 	private String roomType;		// 방 종류 (s:싱글 / d:더블 / t:트리플(트윈) / o:도미토리)
 	private String roomDescript;	// 방 설명
+	private String roomSmoke;		// 흡연 가능 방
 	
 	
 	public Room() {
@@ -17,7 +18,7 @@ public class Room {
 
 
 	public Room(int roomNum, int acmNum, String roomName, int roomPrice, int roomPax, String roomType,
-			String roomDescript) {
+			String roomDescript, String roomSmoke) {
 		super();
 		this.roomNum = roomNum;
 		this.acmNum = acmNum;
@@ -26,6 +27,7 @@ public class Room {
 		this.roomPax = roomPax;
 		this.roomType = roomType;
 		this.roomDescript = roomDescript;
+		this.roomSmoke = roomSmoke;
 	}
 
 
@@ -99,11 +101,24 @@ public class Room {
 	}
 
 
+	public String getRoomSmoke() {
+		return roomSmoke;
+	}
+
+
+	public void setRoomSmoke(String roomSmoke) {
+		this.roomSmoke = roomSmoke;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Room [roomNum=" + roomNum + ", acmNum=" + acmNum + ", roomName=" + roomName + ", roomPrice=" + roomPrice
-				+ ", roomPax=" + roomPax + ", roomType=" + roomType + ", roomDescript=" + roomDescript + "]";
+				+ ", roomPax=" + roomPax + ", roomType=" + roomType + ", roomDescript=" + roomDescript + ", roomSmoke="
+				+ roomSmoke + "]";
 	}
+
+	
 	
 	
 	
