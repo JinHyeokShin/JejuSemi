@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
+<!-- <style>
   ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
     background: #fd7e14;
     color: #fff;
@@ -17,17 +17,7 @@
     transition: all 0.3s ease;
     cursor: pointer;
 }
-ul.sidebar-menu li ul.sub li.active a {
-    color: #fd7e14;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    display: block;
-    cursor: pointer;
-}
-  </style>
+  </style>-->
   <!-- 아이콘 -->
   <link href="<%= request.getContextPath() %>/resources/adminowner/img/favicon.png" rel="icon">
   <link href="<%= request.getContextPath() %>/resources/adminowner/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -261,39 +251,53 @@ ul.sidebar-menu li ul.sub li.active a {
             <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
             <h5 class="centered">Sam Soffes</h5>
             <li>
-              <a class="active1" onclick="moveDashBoard();">
+              <a class="active1" onclick="">
                 <i class="fa fa-dashboard"></i>
                 <span>Dashboard</span>
                </a>
             </li>
             <li>
-            <a class="active2" onclick="moveManagement();">
+            <a class="active2" onclick="">
                 <i class="fa fa-calendar"></i>
-                <span>숙소 예약 관리</span>
+                <span>공지사항</span>
             </a>
             </li>
             <li>
-            <a class="active3" onclick="movepsManagement();">
+            <a class="active3" onclick="">
                 <i class="fa fa-comment-o"></i>
-                <span>숙소 후기 관리</span>
+                <span>숙소 조회</span>
             </a>
             <li>
-            <a class="active4" onclick="moveChartManagement();">
+            <a class="active4" onclick="">
                 <i class="fa fa-users"></i>
-                <span>숙소 통계 관리</span>
+                <span>회원 조회</span>
             </a>
             </li>
             <li>
-                <a class="active5" onclick="movePowerMoney();">
+                <a class="active5" onclick="">
                   <i class="fa fa-bolt"></i>
-                  <span>파워 등록 !</span>
+                  <span>리뷰 조회</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
             <li>
-                <a class="active6" onclick="moveInquiry();">
+                <a class="active6" onclick="">
                   <i class="fa fa-envelope"></i>
-                  <span>문의하기</span>
+                  <span>예약 및 결제 조회</span>
+                  <!-- <span class="label label-theme pull-right mail-info">2</span> -->
+                  </a>
+            </li>
+            <li>
+                <a class="active7 onclick="">
+                  <i class="fa fa-envelope"></i>
+                  <span>통계 조회</span>
+                  <!-- <span class="label label-theme pull-right mail-info">2</span> -->
+                  </a>
+            </li>
+            <li>
+                <a class="active8 onclick="">
+                  <i class="fa fa-envelope"></i>
+                  <span>파워 등록 관리</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
