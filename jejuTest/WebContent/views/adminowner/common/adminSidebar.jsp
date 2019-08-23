@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- <style>
+<style>
   ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
     background: #fd7e14;
     color: #fff;
@@ -17,7 +17,7 @@
     transition: all 0.3s ease;
     cursor: pointer;
 }
-  </style>-->
+  </style>
   <!-- 아이콘 -->
   <link href="<%= request.getContextPath() %>/resources/adminowner/img/favicon.png" rel="icon">
   <link href="<%= request.getContextPath() %>/resources/adminowner/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -301,6 +301,7 @@
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
+
           </ul>
           <!-- sidebar menu end-->
         </div>
