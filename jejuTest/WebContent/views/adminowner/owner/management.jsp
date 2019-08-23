@@ -19,12 +19,6 @@
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/jquery.min.js'></script>
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.js'></script>
 	
-	
-	<link href='../fullcalendar.min.css' rel='stylesheet' />
-	<link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
-	<script src='../lib/moment.min.js'></script>
-	<script src='../lib/jquery.min.js'></script>
-	<script src='../fullcalendar.min.js'></script>
 	<script>
 
 	$(document).ready(function() {
