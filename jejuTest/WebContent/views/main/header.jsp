@@ -112,7 +112,7 @@
                   <a data-toggle="modal" href="header.jsp#myModal"> Forgot Password?</a>
                   </span>
                   <!-- </label> -->
-                <button class="btn btn-theme btn-block" type="submit"><a href="#">SIGN IN</a></button>
+                <button class="btn btn-theme btn-block" type="submit">SIGN IN</button>
                 <hr>
                 <div class="login-social-link centered">
                   <p>or you can sign in via your social network</p>

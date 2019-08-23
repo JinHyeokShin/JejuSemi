@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 			
-		} else {
+		} else if(loginUser.getMemType() == "U"){
 			HttpSession session = request.getSession();
 			
 //			session.setMaxInactiveInterval(600);	// 10분(600초)뒤 자동 로그아웃
@@ -54,6 +54,26 @@ public class LoginServlet extends HttpServlet {
 			
 			// 로그인 완료 후 다시 메인 페이지로 
 			response.sendRedirect(request.getContextPath());
+		} else if(loginUser.getMemType() == "A"){
+			HttpSession session = request.getSession();
+			
+//			session.setMaxInactiveInterval(600);	// 10분(600초)뒤 자동 로그아웃
+			
+			session.setAttribute("loginUser", loginUser);
+			
+			
+			// 로그인 완료 후 다시 메인 페이지로 
+			response.sendRedirect("/views/adminowner/owner/adminIndex.jsp");
+		} else if(loginUser.getMemType() == "O"){
+			HttpSession session = request.getSession();
+			
+//			session.setMaxInactiveInterval(600);	// 10분(600초)뒤 자동 로그아웃
+			
+			session.setAttribute("loginUser", loginUser);
+			
+			
+			// 로그인 완료 후 다시 메인 페이지로 
+			response.sendRedirect("/views/adminowner/owner/ownerIndex.jsp");
 		}
 	
 	
