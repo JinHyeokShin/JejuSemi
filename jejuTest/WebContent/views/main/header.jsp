@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member"%>
 <%
+	Member loginUser = (Member)session.getAttribute("loginUser");
 	
+	// 세션에 담겨있는 메세지 받기
+	String msg = (String)session.getAttribute("msg");
+	
+	String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -106,16 +111,16 @@
               <h2 class="form-login-heading">sign in now</h2>
               <div class="login-wrap">
                   <span class="close" style="margin-left:auto;">&times;</span>
-                <input type="text" name="userId" class="form-control" placeholder="User ID" id="userId" autofocus>
+                <input type="text" class="form-control" placeholder="User ID" id="userId" autofocus>
                 <br>
-                <input type="password" name="userPwd"class="form-control" placeholder="Password" id="userPwd">
+                <input type="password" class="form-control" placeholder="Password" id="userPwd">
                 <!-- <label class="checkbox"> -->
                   <input type="checkbox" value="remember-me"> 기억하기
                   <span class="pull-right">
                   <a data-toggle="modal" href="header.jsp#myModal"> Forgot Password?</a>
                   </span>
                   <!-- </label> -->
-                <button class="btn btn-theme btn-block" type="submit">SIGN IN</button>
+                <button class="btn btn-theme btn-block" type="submit"><a href="#">SIGN IN</a></button>
                 <hr>
                 <div class="login-social-link centered">
                   <p>or you can sign in via your social network</p>
@@ -193,8 +198,7 @@
             // 모달창 x 버튼 누르면 창 꺼지기
             $(".close").click(function(){
               // console.log("sss");
-              $(this).parents(".popModal")
-              .css("display", "none");
+              $(this).parents(".popModal").css("display", "none");
             });
           });
           

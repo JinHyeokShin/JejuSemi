@@ -100,10 +100,12 @@
 				
 				<b>예약자 이름<span style="color:#fd7e14">*</span></b><br>
 				<b style="font-size:10px;">숙박업소에서 체크인 시 제시할 신분증에 나와 있는 대로  이름을 입력해주세요.</b><br>
-				<input type="text" size="30" value=""><br><br>				
+				<input type="text" size="30" value=""><br><br>	
+							
 				<b>이메일 주소<span style="color:#fd7e14">*</span></b><br>
 				<b style="font-size:10px;">이 주소로 확인 메일을 보내드립니다.</b><br>
 				<input type="email" size="30" value=""><br><br>
+				
 				<b>휴대폰 번호<span style="color:#fd7e14">*</span></b><br>
 				<b style="font-size:10px;">비상시에만 이 번호로 연락드립니다.</b><br>
 				<input type="text" size="30" value=""><br><br>
@@ -169,7 +171,10 @@
 				
 				<br><br>
 				<b style="font-weight:bold">예약 약관</b><br><br>
-				
+				<p>
+				“1박 예약하기” 버튼을 클릭하면 이용약관 및 개인정보 보호정책 을 읽었고 이에 동의하시는 것으로 간주됩니다.
+				이 결제는 스페인에서 처리됩니다. 여행 공급업체(항공사/호텔/기차 등)가 고객님의 결제를 처리하는 경우에는 이 사항은 적용되지 않습니다.
+				</p>
 				
 				
 				<div style="width:80px;">
@@ -198,6 +203,12 @@
 			</form>
 			<div class="acmInfo test aa dd">체크인 및 가격 정보
 				<div class="acmPicture test aa">이미지 들어갈 div</div>
+				<div class="test aa" style="line-height: initial;">
+					<br>
+					<b style="font-weight:bold">testHotel</b><br>
+					<b style="font-size:10px">호텔 주소</b>
+				
+				</div>
 			
 			</div>
 		</div>

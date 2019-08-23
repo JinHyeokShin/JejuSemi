@@ -148,4 +148,13 @@ public class Member implements Serializable{
 		this.noShow = noShow;
 	}
 
+	@Override
+	public String toString() {
+		return "Member [memNum=" + memNum + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
+				+ ", memGender=" + memGender + ", memPhone=" + memPhone + ", nationCode=" + nationCode + ", memPoint="
+				+ memPoint + ", memType=" + memType + ", memStatus=" + memStatus + ", enrollDate=" + enrollDate
+				+ ", outDate=" + outDate + ", noShow=" + noShow + "]";
+	}
+
+	
 }
