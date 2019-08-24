@@ -3,6 +3,7 @@
     
 <%
 	ArrayList<Acm> acmList = (ArrayList<Acm>)request.getAttribute("acmList");
+	ArrayList<AcmImg> acmThumbnailImgList = (ArrayList<AcmImg>)request.getAttribute("acmThumbnailImgList");
 	String checkIn = (String)request.getAttribute("checkIn");
 	String checkOut = (String)request.getAttribute("checkOut");
 	int adult = Integer.parseInt(request.getParameter("adult"));
@@ -49,25 +50,13 @@
           border: 1px solid lightgray;
           width: 300px;
           height: 200px;
-         }
-         .test{
-          border: 1px solid lightgray;
-         }
-         
-         
+         }         
          li{
             list-style-type: none;
-        }
-        .test{
-            border: 1px solid lightgray;
-        }
-        .aa{
-            box-sizing: border-box;
         }
         .resultWrap{
             width: 100%;
             height: 250px;
-            
         }
         .d1{
             width: 75%;
@@ -102,14 +91,17 @@
         }
         .imgDiv{
             /* width: 300px; */
-            height: 170px;
+            height: 175px;
             margin:auto;
+            margin-top: 10px;
         }
         .dd{
             float: left;
         }
         .title{
-        	text-indent: 25px;
+        	text-indent: 20px;
+        	line-height: initial;
+        	padding-top: 7px;
         }
         .detailBtn{
         	margin:auto;
@@ -217,10 +209,17 @@
 									<div class="test d1 dd aa">
 										<div class="test d3 aa title">
 											<a href="#" style="font-weight: bold; font-size: 1.5em;"><%=acm.getAcmName()%></a><br>
+											<label style="font-size:10px;"><%=acm.getAcmAddress()%></label>
 										</div>
 										<div class="test d4 aa">
 											<div class="test dd d5 aa">
-												<div class="test imgDiv aa">썸네일</div>
+												<%for(AcmImg acmImg : acmThumbnailImgList){ %>
+													<%if(acm.getAcmNum() == acmImg.getAcmNum()){ %>
+														<div class="test imgDiv aa"><img src="<%=acmImg.getImgPath()%>" style="width:100%; height: 100%;"></div>														
+													<%} %>		
+												
+												<%} %>
+											
 											</div>
 											<div class="test dd d6">설명</div>
 										</div>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import accommodation.model.service.AcmService;
 import accommodation.model.vo.Acm;
+import accommodation.model.vo.AcmImg;
 import accommodation.model.vo.Search;
 
 /**
@@ -69,6 +70,9 @@ public class SearchAcmServlet extends HttpServlet {
 		
 		ArrayList<Acm> acmList = new AcmService().searchAcm(search);
 		
+		ArrayList<AcmImg> acmThumbnailImgList = new AcmService().acmThumbnailListView();
+		request.setAttribute("acmThumbnailImgList", acmThumbnailImgList);
+				
 		if(acmList != null) {
 			request.setAttribute("acmList", acmList);
 			request.getRequestDispatcher("views/searchResult/searchResult.jsp").forward(request, response);

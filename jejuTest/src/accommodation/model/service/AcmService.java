@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import accommodation.model.dao.AcmDao;
 import accommodation.model.vo.Acm;
+import accommodation.model.vo.AcmImg;
 import accommodation.model.vo.Search;
 import static common.JDBCTemplate.*;
 
@@ -23,7 +24,19 @@ public class AcmService {
 	}
 	
 	
-	
+	/**
+	 * 모든 숙소 이미지를 불러 
+	 * @return
+	 */
+	public ArrayList<AcmImg> acmThumbnailListView(){
+		Connection conn = getConnection();
+		
+		ArrayList<AcmImg> list = new AcmDao().acmThumbnailListView(conn);
+		
+		close(conn);
+		
+		return list;
+	}
 	
 	
 	

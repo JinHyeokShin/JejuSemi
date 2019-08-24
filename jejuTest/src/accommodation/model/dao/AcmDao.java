@@ -1,17 +1,20 @@
 package accommodation.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import accommodation.model.vo.Acm;
+import accommodation.model.vo.AcmImg;
 import accommodation.model.vo.Search;
-import static common.JDBCTemplate.*;
 
 public class AcmDao {
 	
@@ -80,5 +83,34 @@ public class AcmDao {
 		return list;
 	}
 	
+	
+	
+	public ArrayList<AcmImg> acmThumbnailListView(Connection conn){
+		ArrayList<AcmImg> list = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("acmThumbnailListView");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				list.add(new AcmImg(rset.getInt("img_num"),
+						            rset.getString("img_path"),
+						            rset.getInt("acm_num"),
+						            rset.getInt("status")));				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return list;
+		
+		
+		
+	}
 
 }
