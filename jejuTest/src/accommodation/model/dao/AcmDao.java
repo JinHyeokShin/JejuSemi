@@ -45,8 +45,31 @@ public class AcmDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search.getSearchCheckInDate());
+			pstmt.setString(2, search.getSearchCheckOutDate());
+			pstmt.setInt(3, search.getAdult()+search.getChild());
 			
+			rset = pstmt.executeQuery();
 			
+			while(rset.next()) {
+				Acm acm = new Acm();
+				acm.setAcmNum(rset.getInt("acm_num"));
+				acm.setAcmName(rset.getString("acm_name"));
+				acm.setAcmPhone(rset.getString("acm_phone"));
+				acm.setAcmAddress(rset.getString("acm_address"));
+				acm.setAcmType(rset.getString("acm_type"));
+				acm.setAcmGrade(rset.getInt("acm_grade"));
+				acm.setAcmDescriptA(rset.getString("acm_descript_a"));
+				acm.setAcmDescriptB(rset.getString("acm_descript_b"));
+				acm.setAcmCoordX(rset.getString("acm_coord_x"));
+				acm.setAcmCoordY(rset.getString("acm_coord_y"));
+				acm.setAcmDistrict(rset.getString("acm_district"));
+				acm.setAcmPower(rset.getString("acm_power"));
+				acm.setStatus(rset.getString("acm_status"));
+				acm.setMinPrice(rset.getInt("minprice"));
+				
+				list.add(acm);
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

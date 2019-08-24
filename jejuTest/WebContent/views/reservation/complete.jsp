@@ -54,12 +54,19 @@
     				<b>예약번호 : </b><label>12345678</label>
     			</p>
     			<br>
-    			<button class="detailBtn btn btn-primary btn-block text-white" style="width:30%;">예약내역 확인</button>
+    			<button class="detailBtn btn btn-primary btn-block text-white" style="width:30%;" id="myReservCheck">예약내역 확인</button>
     			
     		</div>
     	</div>
     </section>
-
+	
+	<!-- <script>
+		$("#myReservCheck").click(function() {
+			alertify.alert().set('message', '내용').show(); 
+		});
+	
+	
+	</script> -->
 
 
 

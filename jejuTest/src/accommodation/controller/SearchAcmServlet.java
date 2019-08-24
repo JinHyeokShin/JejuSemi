@@ -57,6 +57,9 @@ public class SearchAcmServlet extends HttpServlet {
 		int adult = Integer.parseInt(request.getParameter("adult"));
 		int child = Integer.parseInt(request.getParameter("child"));
 		
+		request.setAttribute("checkIn", checkIn);
+		request.setAttribute("checkOut", checkOut);
+		
 		System.out.println(checkIn);
 		System.out.println(checkOut);
 		System.out.println(adult);
@@ -66,7 +69,13 @@ public class SearchAcmServlet extends HttpServlet {
 		
 		ArrayList<Acm> acmList = new AcmService().searchAcm(search);
 		
-		
+		if(acmList != null) {
+			request.setAttribute("acmList", acmList);
+			request.getRequestDispatcher("views/searchResult/searchResult.jsp").forward(request, response);
+			
+		} else {
+			
+		}
 		
 		
 		

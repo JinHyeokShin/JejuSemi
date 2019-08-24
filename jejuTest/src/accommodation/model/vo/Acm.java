@@ -17,17 +17,32 @@ public class Acm {
 	private String acmDescriptB;
 	private String acmCoordX;		
 	private String acmCoordY;		
-	private String acmDescript;		
+	private String acmDistrict;		
 	private String acmPower;		
-	private String status;			
+	private String status;
+	private int minPrice;		// 사용자가 숙소 검색할때 보여줄 해당숙소의 가장 싼 방의 가격
 	
 	public Acm() {
 		
 	}
+	
+	
+
+	public int getMinPrice() {
+		return minPrice;
+	}
+
+
+
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
+	}
+
+
 
 	public Acm(int acmNum, String acmName, String memNum, String acmPhone, String acmAddress, String acmType,
 			int acmGrade, String acmDescriptA, String acmDescriptB, String acmCoordX, String acmCoordY,
-			String acmDescript, String acmPower, String status) {
+			String acmDistrict, String acmPower, String status, int minPrice) {
 		super();
 		this.acmNum = acmNum;
 		this.acmName = acmName;
@@ -40,7 +55,30 @@ public class Acm {
 		this.acmDescriptB = acmDescriptB;
 		this.acmCoordX = acmCoordX;
 		this.acmCoordY = acmCoordY;
-		this.acmDescript = acmDescript;
+		this.acmDistrict = acmDistrict;
+		this.acmPower = acmPower;
+		this.status = status;
+		this.minPrice = minPrice;
+	}
+
+
+
+	public Acm(int acmNum, String acmName, String memNum, String acmPhone, String acmAddress, String acmType,
+			int acmGrade, String acmDescriptA, String acmDescriptB, String acmCoordX, String acmCoordY,
+			String acmDistrict, String acmPower, String status) {
+		super();
+		this.acmNum = acmNum;
+		this.acmName = acmName;
+		this.memNum = memNum;
+		this.acmPhone = acmPhone;
+		this.acmAddress = acmAddress;
+		this.acmType = acmType;
+		this.acmGrade = acmGrade;
+		this.acmDescriptA = acmDescriptA;
+		this.acmDescriptB = acmDescriptB;
+		this.acmCoordX = acmCoordX;
+		this.acmCoordY = acmCoordY;
+		this.acmDistrict = acmDistrict;
 		this.acmPower = acmPower;
 		this.status = status;
 	}
@@ -133,12 +171,12 @@ public class Acm {
 		this.acmCoordY = acmCoordY;
 	}
 
-	public String getAcmDescript() {
-		return acmDescript;
+	public String getAcmDistrict() {
+		return acmDistrict;
 	}
 
-	public void setAcmDescript(String acmDescript) {
-		this.acmDescript = acmDescript;
+	public void setAcmDistrict(String acmDistrict) {
+		this.acmDistrict = acmDistrict;
 	}
 
 	public String getAcmPower() {
@@ -162,7 +200,7 @@ public class Acm {
 		return "Acm [acmNum=" + acmNum + ", acmName=" + acmName + ", memNum=" + memNum + ", acmPhone=" + acmPhone
 				+ ", acmAddress=" + acmAddress + ", acmType=" + acmType + ", acmGrade=" + acmGrade + ", acmDescriptA="
 				+ acmDescriptA + ", acmDescriptB=" + acmDescriptB + ", acmCoordX=" + acmCoordX + ", acmCoordY="
-				+ acmCoordY + ", acmDescript=" + acmDescript + ", acmPower=" + acmPower + ", status=" + status + "]";
+				+ acmCoordY + ", acmDistrict=" + acmDistrict + ", acmPower=" + acmPower + ", status=" + status + "]";
 	}
 
 	

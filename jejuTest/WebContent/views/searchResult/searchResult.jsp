@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, accommodation.model.vo.*"%>
+    
+<%
+	ArrayList<Acm> acmList = (ArrayList<Acm>)request.getAttribute("acmList");
+	String checkIn = (String)request.getAttribute("checkIn");
+	String checkOut = (String)request.getAttribute("checkOut");
+	int adult = Integer.parseInt(request.getParameter("adult"));
+	int child = Integer.parseInt(request.getParameter("child"));
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +67,7 @@
         .resultWrap{
             width: 100%;
             height: 250px;
+            
         }
         .d1{
             width: 75%;
@@ -91,7 +101,7 @@
         	text-align:center;
         }
         .imgDiv{
-            width: 300px;
+            /* width: 300px; */
             height: 170px;
             margin:auto;
         }
@@ -107,7 +117,9 @@
         .resultSection{
         	height:1400px;
         }
-         
+        #resultAcmDiv{
+        	background:#f2f4fb;
+        }
          
 </style>
 </head>
@@ -193,101 +205,44 @@
             <!-- </div> -->
 
 				<ul class="resultWrap">
-					2019/00/00 ~ 2019/00/00 검색 결과
-					<li>
-						<div class="test resultWrap aa">
-							<div class="test d1 dd aa">							
-								<div class="test d3 aa title">
-									<a href="#" style="font-weight:bold; font-size:1.5em;">testHotel</a><br>
-								</div>
-								<div class="test d4 aa">
-									<div class="test dd d5 aa">
-										<div class="test imgDiv aa">썸네일</div>
-									</div>
-									<div class="test dd d6">설명</div>
-								</div>
-							</div>
+					<label><%=checkIn %> ~ <%=checkOut %>&nbsp;&nbsp;&nbsp;성인 : <%=adult %>&nbsp;&nbsp;어린이/청소년 : <%=child %>&nbsp;&nbsp;검색 결과</label>
+					<%if(acmList == null) {%>
+						<div align="center"><b style="font-size: 3em">예약 가능한 숙박업소가 없습니다.</b></div>
+					<%} else {%>
+					
+						<%for(Acm acm : acmList) {%>
 
-							<div class="test d2 dd aa">
-								<div class="test d7 aa">가격</div>
-								<div class="test d8 aa">
-									<button class="detailBtn btn btn-primary btn-block text-white" style="width:70%;">상세보기</button>
-								</div>							
-							</div>
-						</div>
-					</li><br>
-					
-					
-					<li>
-						<div class="test resultWrap aa">
-							<div class="test d1 dd aa">							
-								<div class="test d3 aa title">
-									<a href="#" style="font-weight:bold; font-size:1.5em;">testHotel</a><br>
-								</div>
-								<div class="test d4 aa">
-									<div class="test dd d5 aa">
-										<div class="test imgDiv aa">썸네일</div>
+							<li>
+								<div class="test resultWrap aa" id="resultAcmDiv">
+									<div class="test d1 dd aa">
+										<div class="test d3 aa title">
+											<a href="#" style="font-weight: bold; font-size: 1.5em;"><%=acm.getAcmName()%></a><br>
+										</div>
+										<div class="test d4 aa">
+											<div class="test dd d5 aa">
+												<div class="test imgDiv aa">썸네일</div>
+											</div>
+											<div class="test dd d6">설명</div>
+										</div>
 									</div>
-									<div class="test dd d6">설명</div>
-								</div>
-							</div>
-
-							<div class="test d2 dd aa">
-								<div class="test d7 aa">가격</div>
-								<div class="test d8 aa">
-									<button class="detailBtn btn btn-primary btn-block text-white" style="width:70%;">상세보기</button>
-								</div>							
-							</div>
-						</div>
-					</li><br>
-					
-					
-					<li>
-						<div class="test resultWrap aa">
-							<div class="test d1 dd aa">							
-								<div class="test d3 aa title">
-									<a href="#" style="font-weight:bold; font-size:1.5em;">testHotel</a><br>
-								</div>
-								<div class="test d4 aa">
-									<div class="test dd d5 aa">
-										<div class="test imgDiv aa">썸네일</div>
+		
+									<div class="test d2 dd aa">
+										<div class="test d7 aa">1박 : <%=acm.getMinPrice()%>원</div>
+										<div class="test d8 aa">
+											<button class="detailBtn btn btn-primary btn-block text-white"
+												style="width: 70%;">상세보기</button>
+										</div>
 									</div>
-									<div class="test dd d6">설명</div>
 								</div>
-							</div>
-
-							<div class="test d2 dd aa">
-								<div class="test d7 aa">가격</div>
-								<div class="test d8 aa">
-									<button class="detailBtn btn btn-primary btn-block text-white" style="width:70%;">상세보기</button>
-								</div>							
-							</div>
-						</div>
-					</li><br>
+							</li>
+							<br>
+						<%}	%>
 					
 					
-					<li>
-						<div class="test resultWrap aa">
-							<div class="test d1 dd aa">							
-								<div class="test d3 aa title">
-									<a href="#" style="font-weight:bold; font-size:1.5em;">testHotel</a><br>
-								</div>
-								<div class="test d4 aa">
-									<div class="test dd d5 aa">
-										<div class="test imgDiv aa">썸네일</div>
-									</div>
-									<div class="test dd d6">설명</div>
-								</div>
-							</div>
-
-							<div class="test d2 dd aa">
-								<div class="test d7 aa">가격</div>
-								<div class="test d8 aa">
-									<button class="detailBtn btn btn-primary btn-block text-white" style="width:70%;">상세보기</button>
-								</div>							
-							</div>
-						</div>
-					</li><br>
+					
+						
+					<%} %>
+					
 					
 					
 				</ul>
