@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Search {	// 검색 값 넘길 때 사용할 객체
 	
-	private Date searchCheckInDate;		// 체크인
-	private Date searchCheckOutDate;	// 체크아웃
+	private String searchCheckInDate;		// 체크인
+	private String searchCheckOutDate;	// 체크아웃
 	private int adult;					// 성인 인원수
 	private int child;					// 어린이 인원수
 	
@@ -13,7 +13,7 @@ public class Search {	// 검색 값 넘길 때 사용할 객체
 		
 	}
 
-	public Search(Date searchCheckInDate, Date searchCheckOutDate, int adult, int child) {
+	public Search(String searchCheckInDate, String searchCheckOutDate, int adult, int child) {
 		super();
 		this.searchCheckInDate = searchCheckInDate;
 		this.searchCheckOutDate = searchCheckOutDate;
@@ -21,19 +21,19 @@ public class Search {	// 검색 값 넘길 때 사용할 객체
 		this.child = child;
 	}
 
-	public Date getSearchCheckInDate() {
+	public String getSearchCheckInDate() {
 		return searchCheckInDate;
 	}
 
-	public void setSearchCheckInDate(Date searchCheckInDate) {
+	public void setSearchCheckInDate(String searchCheckInDate) {
 		this.searchCheckInDate = searchCheckInDate;
 	}
 
-	public Date getSearchCheckOutDate() {
+	public String getSearchCheckOutDate() {
 		return searchCheckOutDate;
 	}
 
-	public void setSearchCheckOutDate(Date searchCheckOutDate) {
+	public void setSearchCheckOutDate(String searchCheckOutDate) {
 		this.searchCheckOutDate = searchCheckOutDate;
 	}
 
