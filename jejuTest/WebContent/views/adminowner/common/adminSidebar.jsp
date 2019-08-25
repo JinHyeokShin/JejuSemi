@@ -251,30 +251,30 @@
             <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
             <h5 class="centered">Sam Soffes</h5>
             <li>
-              <a class="active1" onclick="">
+              <a class="active1" onclick="moveDashBoard();">
                 <i class="fa fa-dashboard"></i>
                 <span>Dashboard</span>
                </a>
             </li>
             <li>
-            <a class="active2" onclick="">
+            <a class="active2" onclick="moveNotice();">
                 <i class="fa fa-calendar"></i>
                 <span>공지사항</span>
             </a>
             </li>
             <li>
-            <a class="active3" onclick="">
+            <a class="active3" onclick="moveSearchAcm();">
                 <i class="fa fa-comment-o"></i>
                 <span>숙소 조회</span>
             </a>
             <li>
-            <a class="active4" onclick="">
+            <a class="active4" onclick="moveSearchMember();">
                 <i class="fa fa-users"></i>
                 <span>회원 조회</span>
             </a>
             </li>
             <li>
-                <a class="active5" onclick="">
+                <a class="active5" onclick="moveSearchReview();">
                   <i class="fa fa-bolt"></i>
                   <span>리뷰 조회</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
@@ -326,22 +326,22 @@
 
   <script>
   	function moveDashBoard(){
-  		location.href = "../owner/ownerIndex.jsp";
+  		location.href = "../admin/adminIndex.jsp";
   	}
-  	function moveManagement(){
-  		location.href ="../owner/management.jsp"
+  	function moveNotice(){
+  		location.href ="../admin/notice.jsp"
   	}
-  	function movepsManagement(){
-  		location.href ="../owner/psManagement.jsp"
+  	function moveSearchAcm(){
+  		location.href ="../admin/searchAcm.jsp"
   	}
-  	function moveChartManagement(){
-  		location.href ="../owner/chartManagement.jsp"
+  	function moveSearchMember(){
+  		location.href ="../admin/searchMember.jsp"
   	}
-  	function movePowerMoney(){
-  		location.href ="../owner/powerMoney.jsp"
+  	function moveSearchReview(){
+  		location.href ="../admin/searchReview.jsp"
   	}
   	function moveInquiry(){
-  		location.href ="../owner/inquiry.jsp"
+  		location.href ="../admin/inquiry.jsp"
   	}
   </script>
 </body>
