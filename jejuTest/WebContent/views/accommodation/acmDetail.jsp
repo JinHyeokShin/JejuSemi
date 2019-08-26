@@ -1,5 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="accommodation.model.vo.*, java.text.SimpleDateFormat, java.util.*, java.text.ParseException"%>
+    
+<%
+	Acm acm = (Acm)request.getAttribute("acm");
+	String checkIn = request.getParameter("checkIn");
+	String checkOut = request.getParameter("checkOut");
+	int adult = Integer.parseInt(request.getParameter("adult"));
+	int child = Integer.parseInt(request.getParameter("child"));
+	
+	System.out.println(checkIn);		// 콘솔 확인용 출력
+	System.out.println(checkOut);
+		
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
+	
+	Date checkInDate = null;
+	Date checkOutDate = null;
+	
+	try{
+		checkInDate = sdf.parse(checkIn);
+		checkOutDate = sdf.parse(checkOut);
+	}catch(ParseException e){
+        e.printStackTrace();
+    }
+	
+	System.out.println(checkInDate);		// 콘솔 확인용 출력
+	System.out.println(checkOutDate);
+	
+
+	
+ %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +39,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9baefdf8cbf2ee252bc9b7dc403ad63d"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css">
 
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
@@ -22,24 +55,68 @@
 <!-- Theme Style -->
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
 
+
+ 
+
+
 <!-- T-MAP API header 시작 -->
 
-<script
-	src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=1e17b2f2-a4b7-4aae-ad14-3908433f0815"></script>
+<script	src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=1e17b2f2-a4b7-4aae-ad14-3908433f0815"></script>
+
+
+
+<script type='text/javascript'>
+    $(function(){
+        $('.input-group.date').datepicker({
+            calendarWeeks: false,
+            todayHighlight: true,
+            autoclose: true,
+            format: "yyyy/mm/dd",
+            language: "kr"
+        });
+    });
+    
+    
+    /* $('.datepicker').datepicker({
+        language: 'kr'
+    }); */
+    </script>
+
+
+
 <!-- 발급받은 인증키를 위에 넣는다 -->
 <script type="text/javascript">
+	var jejuAirportX = 33.506179;
+	var jejuAirportY = 126.493615;
+	var jejuPortX = 33.525254;
+	var jejuPortY = 126.543845;
+	
+	startX = jejuAirportY;
+	startY = jejuAirportX;
+	
+	var m = null;
+	
+	
+	
 	function initTmap() {
-		var map = new Tmap.Map({
-			div : 'map_div', // 결과 지도를 표시할 곳
-			width : "700px", // 가로와 세로 사이즈는 픽셀로 적을 수도 있고
-			height : "400px", // 퍼센트로 적을 수도 있다. 홈페이지 예제는 픽셀로 되어 있음.
-		});
+		
 		// 경로 탐색 출발지점과 도착 지점의 좌표
 		// 구글 지도에서 나오는 좌표의 x, y를 바꾸면 된다.
-		var startX = 126.493615;
-		var startY = 33.506179;
-		var endX = 126.578727;
-		var endY = 33.245299;
+		console.log(m);
+		
+		if(m != ""){
+			console.log("ggg");
+				map = new Tmap.Map({
+				div : 'map_div', // 결과 지도를 표시할 곳
+				width : "700px", // 가로와 세로 사이즈는 픽셀로 적을 수도 있고
+				height : "400px", // 퍼센트로 적을 수도 있다. 홈페이지 예제는 픽셀로 되어 있음.
+			});
+		}
+		
+		m="";
+		
+		var endX = <%=acm.getAcmCoordY()%>;
+		var endY = <%=acm.getAcmCoordX()%>;
 		var passList = null;
 		var prtcl;
 		var headers = {};
@@ -114,6 +191,7 @@
 </script>
 
 
+
 <!-- T-MAP API header 끝 -->
 
 <style>
@@ -175,7 +253,7 @@
         	margin:auto;
         }
         .resultSection{
-        	height:1400px;
+        	height:auto;
         }
         .headDiv{
             height: 130px;
@@ -330,7 +408,8 @@
 </style>
 
 </head>
-<body data-spy="scroll" data-target="#templateux-navbar" data-offset="200" onload="initTmap()">
+<body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
+
 
 	<%-- 헤더,메뉴바 --%>
     <%@ include file="../main/header.jsp" %>
@@ -356,8 +435,8 @@
     <section class="detailSection" style="text-align:center">
     	<div class="detailWrap test aa container">
             <div class="headDiv test aa" align="left">			<!-- header div -->
-            <label style="font-weight:bold; font-size:3em; color:#fd7e14;" >testHotel</label><br>
-            <label>호텔주소</label>
+            <label style="font-weight:bold; font-size:3em; color:#fd7e14;"><%=acm.getAcmName()%></label><br>
+            <label><%=acm.getAcmAddress()%></label>
             </div>		
             <div class="bodyDiv test aa">
                 <div class="body_1_Div test aa">	<!-- 사진들어갈 div -->
@@ -409,13 +488,13 @@
 							var container = document.getElementById('map');
 														
 							var options = {
-								center : new kakao.maps.LatLng(33.506768, 126.493103),	/* 지도 중심 좌표 */
+								center : new kakao.maps.LatLng(<%=acm.getAcmCoordX()%>,<%=acm.getAcmCoordY() %>),	/* 지도 중심 좌표 */
 								level : 3
 							};
 
 							var map = new kakao.maps.Map(container, options); /* 지도 생성 */
 														
-							var markerPosition  = new kakao.maps.LatLng(33.506768, 126.493103)	/* 마커 표시될 위치 */
+							var markerPosition  = new kakao.maps.LatLng(<%=acm.getAcmCoordX()%>,<%=acm.getAcmCoordY() %>)	/* 마커 표시될 위치 */
 							
 							var marker = new kakao.maps.Marker({	/* 마커 생성 */
 							    position: markerPosition
@@ -430,10 +509,10 @@
 						<div class="test aa dd route">
 							<div class="test dd route1">	<!-- 라디오버튼 div -->
 								<div class="test aa dd" id="radioRoute">
-									<input type="radio" id="radioRouteBtn" name="route" value="car" onclick="showOn();"><label for="radioRouteBtn"><img src="../../resources/images/car.png"></label>
+									<input type="radio" id="radioRouteBtn" name="route" value="car" onclick="showOn();"><label for="radioRouteBtn"><img src="<%=contextPath%>/resources/images/car.png"></label>
 								</div>
 								<div class="test aa dd" id="radioBus">
-									<input type="radio" id="radioBusBtn" name="route" value="bus" onclick="showOff();"><label for="radioBusBtn">&nbsp;<img src="../../resources/images/bus.png"></label>
+									<input type="radio" id="radioBusBtn" name="route" value="bus" onclick="showOff();"><label for="radioBusBtn">&nbsp;<img src="<%=contextPath%>/resources/images/bus.png"></label>
 								</div>
 							</div>
 							
@@ -469,7 +548,11 @@
 											<b>출발지 :</b>
 										</div>
 										<div class="test aa dd route0_1">
-											&nbsp;<select></select>
+											&nbsp;
+											<select id="selectSpot">
+												<option value="jeju1">제주 공항</option>
+												<option value="jeju2">제주항</option>
+											</select>
 										</div>
 									</div>
 									<div class="test aa dd routeEnd">	<!-- 도착장소 = 해당 숙소 -->
@@ -478,12 +561,12 @@
 											<b>도착지 :</b>
 										</div>
 										<div class="test aa dd route0_2">
-											&nbsp;<label>해당 숙소</label>
+											&nbsp;<label><%=acm.getAcmName()%></label>
 										</div>
 									</div>
 								</div>
 								<div class="test aa dd reverseBtnDiv">
-									<img src="../../resources/images/swap.png" onclick="reverse();" style="cursor:pointer;">
+									<img src="<%=contextPath%>/resources/images/swap.png" onclick="reverse();" style="cursor:pointer;">
 								</div>
 								<script>
 									function reverse() {
@@ -494,6 +577,23 @@
 										route0_1.html(route0_2.html());
 										route0_2.html(temp);
 									}
+									
+									$("#selectSpot").on('change',function(){
+										
+										$.each($(this).children(), function(index, value){
+											if(value.selected){
+												if(value.value == "jeju1"){
+													startX = jejuAirportY;
+													startY = jejuAirportX;
+												} if(value.value == "jeju2"){
+													startX = jejuPortY;
+													startY = jejuPortX;
+												}
+											}
+										})
+										
+									});
+									
 								</script>
 								
 							</div>	
@@ -512,14 +612,14 @@
                 			
 	                			<div class="test aa dd research1" style="text-align:left; padding:20px;">
 	                			<b>목적지 또는 숙박시설</b><br>
-	                			<input type="text" class="reText form-control" style="height:30px;" value="">
+	                			<input type="text" class="reText form-control" style="height:30px;" value="<%=acm.getAcmName()%>">
 	                			</div>
 	                			
 	                			<div class="test aa dd research2" style="padding:10px; padding-top:18px;">
 	                				<div class="test aa dd recheck" style="text-align:left;">
 	                				
 										<b>체크인</b><br>
-										<input type="text" class="form-control" id="checkin_date" style="height:30px;">									
+										<input type="text" class="form-control dal" id="checkin_date" style="height:30px;" value="<%=checkIn%>">									
 										<label class="checkin_day" style="font-size:13px;">월요일</label>
 										
 									</div>
@@ -527,12 +627,12 @@
 	                				<div class="test aa dd recheck" style="text-align:left;">
 	                				
 										<b>체크아웃</b><br>
-										<input type="text" class="form-control" id="checkout_date" style="height:30px;">										
+										<input type="text" class="form-control dal" id="checkout_date" style="height:30px;" value="<%=checkOut%>">										
 										<label class="checkout_day" style="font-size:13px;">금요일</label>               				
 	                				
 	                				</div>
 	                				<div class="test aa dd night">
-	                					<span class="widget-query-nights" id="rnrq-nights"><span><span class="widget-query-num-nights">4</span> </span> <span class="widget-query-nights-label">박</span></span>
+	                					<span class="widget-query-nights" id="rnrq-nights"><span>4<span class="widget-query-num-nights"></span> </span> <span class="widget-query-nights-label">박</span></span>
 	                				</div>
 	                			</div>
 	                			<div class="test aa dd research3" style="text-align: justify; ">
@@ -543,7 +643,7 @@
 
 	                				</div>
 	                				<div class="test aa dd div3_2"></div>
-	                				<div class="widget-query-adults aa dd div3_3" style="padding-top:7%;"><b>성인</b><br><select name="q-room-0-adults" id="rnrq-room-0-adults">Desktop<option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select><br><span style="font-size:13px;">만 18세 이상</span></div>
+	                				<div class="widget-query-adults aa dd div3_3" style="padding-top:7%;"><b>성인</b><br><select name="q-room-0-adults" id="rnrq-room-0-adults"><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select><br><span style="font-size:13px;">만 18세 이상</span></div>
 	                				<div class="test aa dd div3_2"></div>
 	                				<div class="widget-query-children aa dd div3_4" style="padding-top:7%;"><b>어린이/청소년</b><br><select name="q-room-0-children" id="rnrq-room-0-children"><option value="0" selected="selected">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><br><span style="font-size:13px;">만 17세 이하</span></div>
 	                					
@@ -651,7 +751,7 @@
     
     var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
 	    mapOption = { 
-	        center: new kakao.maps.LatLng(33.506768, 126.493103), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(<%=acm.getAcmCoordX()%>,<%=acm.getAcmCoordY() %>), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨
 	    };  
 	
@@ -685,8 +785,7 @@
 	
 	
 	
-	var markerPosition = new kakao.maps.LatLng(33.506768,
-			126.493103) /* 마커 표시될 위치 */
+	var markerPosition = new kakao.maps.LatLng(<%=acm.getAcmCoordX()%>,<%=acm.getAcmCoordY() %>) /* 마커 표시될 위치 */
 
 	var marker = new kakao.maps.Marker({ /* 마커 생성 */
 		position : markerPosition
@@ -705,6 +804,7 @@
 	
 	    // When the user clicks on the button, open the modal 
 	    routeBtn.onclick = function() {
+	    	initTmap();
 	    	routeModal.style.display = "block";
 	    } 
 	    
@@ -718,7 +818,7 @@
 	    bigMapBtn.onclick = function() {
 	    	bigMapModal.style.display = "block";	
 	    	map2.relayout();
-	    	map2.setCenter(new kakao.maps.LatLng(33.506768, 126.493103));
+	    	map2.setCenter(new kakao.maps.LatLng(<%=acm.getAcmCoordX()%>,<%=acm.getAcmCoordY() %>));
 	    	
 	    } 
 	 	
@@ -731,6 +831,7 @@
     <%-- 풋터 --%>
     <%@ include file="../main/footer.jsp" %>
 
+<!-- <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> -->
 <script src="<%= request.getContextPath() %>/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
@@ -738,8 +839,9 @@
 <script src="<%= request.getContextPath() %>/resources/js/jquery.stellar.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/jquery.fancybox.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/jquery.easing.1.3.js"></script>     
-<script src="<%= request.getContextPath() %>/resources/js/aos.js"></script>      
-<script src="<%= request.getContextPath() %>/resources/js/bootstrap-datepicker.js"></script> 
+<script src="<%= request.getContextPath() %>/resources/js/aos.js"></script>  
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap-datepicker.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>   
 <script src="<%= request.getContextPath() %>/resources/js/jquery.timepicker.min.js"></script> 
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 

@@ -41,7 +41,20 @@ public class AcmService {
 	
 	
 	
-	
+	/**
+	 * 검색 결과에서 선택한 숙소 정보를 호출하는 서비스
+	 * @param acmNum
+	 * @return
+	 */
+	public Acm selectAcm(int acmNum) {
+		Connection conn = getConnection();
+		
+		Acm acm = new AcmDao().selectAcm(conn, acmNum);
+		
+		close(conn);
+		
+		return acm;
+	}
 	
 	
 	
