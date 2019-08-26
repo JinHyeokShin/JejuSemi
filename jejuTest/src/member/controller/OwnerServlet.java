@@ -31,7 +31,7 @@ public class OwnerServlet extends HttpServlet {
 		
 		
 		
-		request.getRequestDispatcher("views/adminowner/admin/ownerIndex.jsp").forward(request, response);
+		request.getRequestDispatcher("views/adminowner/owner/ownerIndex.jsp").forward(request, response);
 	}
 
 	/**

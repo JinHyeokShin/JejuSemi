@@ -107,6 +107,7 @@
                 <li class="nav-item"><a class="nav-link" href="#section-contact" id="nav8">ContactUs</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#section-apply" id="nav9">ApplyFor</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link" href="#" id="join">Join</a></li> -->
+
                 <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="loginBtn" target="_blank"><span class="pb_rounded-4 px-4 rounded">Login</span></a></li>
                 <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="logoutBtn" onclick="logout();"><span class="pb_rounded-4 px-4 rounded" >Logout</span></a></li>
               </ul>
