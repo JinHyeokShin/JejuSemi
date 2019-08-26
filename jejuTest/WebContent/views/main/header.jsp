@@ -13,16 +13,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- <script src="<%=contextPath%>/resources/js/alertify.min.js"></script> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.rtl.min.css"> -->
-
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.rtl.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.rtl.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> -->
-
 <style>
 /* The Modal (background) */
           .popModal {
@@ -107,9 +97,9 @@
                 <li class="nav-item"><a class="nav-link" href="#section-contact" id="nav8">ContactUs</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#section-apply" id="nav9">ApplyFor</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link" href="#" id="join">Join</a></li> -->
-
                 <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="loginBtn" target="_blank"><span class="pb_rounded-4 px-4 rounded">Login</span></a></li>
                 <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="logoutBtn" onclick="logout();"><span class="pb_rounded-4 px-4 rounded" >Logout</span></a></li>
+           
               </ul>
             </div>
           </div>
@@ -122,9 +112,9 @@
               <h2 class="form-login-heading">sign in now</h2>
               <div class="login-wrap">
                   <span class="close" style="margin-left:auto;">&times;</span>
-                <input type="text" name="userId" class="form-control" placeholder="User ID" id="userId" autofocus>
+                <input type="text" class="form-control" placeholder="User ID" id="userId" autofocus name="userId">
                 <br>
-                <input type="password" name="userPwd" class="form-control" placeholder="Password" id="userPwd">
+                <input type="password" class="form-control" placeholder="Password" id="userPwd" name="userPwd">
                 <!-- <label class="checkbox"> -->
                   <input type="checkbox" value="remember-me"> 기억하기
                   <span class="pull-right">
@@ -140,9 +130,10 @@
                 </div>
                 <div class="registration">
                   Don't have an account yet?<br/>
-                  <a class="" href="#">
-                    Create an account
-                    </a>
+                  
+                  <!-- 회원가입 버튼 클릭 -->
+                  <button class="btn btn-theme btn-block" type="submit"> <a href="#" id="memberJoinBtn" onclick="memberJoin()">Create an account</a></button>
+
                 <!-- </div> -->
               </div>
               <!-- Modal -->
@@ -225,8 +216,9 @@
   				$("#userPwd").focus();
   				return false;				
   			}
-  				$("#loginBtn").css('display','none');
-  				$("#logoutBtn").css('display','block');
+  			
+			$("#loginBtn").css('display','none');
+			$("#logoutBtn").css('display','block');
   				
   				return true;
   			}
@@ -234,8 +226,11 @@
           	function logout() {
   				location.href="<%= request.getContextPath() %>/logout.me";			
   			}
-          
-
+          	
+          	function memberJoin(){
+    			location.href = "<%= request.getContextPath()%>/joinForm.me";
+    		}
+          	
       </script> 
 
     
