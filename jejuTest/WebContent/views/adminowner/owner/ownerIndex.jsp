@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,6 +33,9 @@ ul.sidebar-menu li ul.sub li.active a {
     display: block;
     cursor: pointer;
 }
+.logout{
+    cursor: pointer;
+}
   </style>
 </head>
 
@@ -58,8 +62,8 @@ ul.sidebar-menu li ul.sub li.active a {
                   </div>
                   <!-- /col-md-4 -->
                   <div class="col-md-4 profile-text">
-                    <h3>Sam Soffes</h3>
-                    <h6>Main Administrator</h6>
+                    <h3><%= loginUser.getMemId() %></h3>
+                    <h6><%= loginUser.getMemType() %></h6>
                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
                     <br>
                     <p><button class="btn btn-theme"><i class="fa fa-envelope"></i> Send Message</button></p>

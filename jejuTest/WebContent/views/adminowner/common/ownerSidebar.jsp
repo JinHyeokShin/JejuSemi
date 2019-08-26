@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="member.model.vo.Member"%>
+<%  Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +27,9 @@ ul.sidebar-menu li ul.sub li.active a {
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
     display: block;
+    cursor: pointer;
+}
+a{
     cursor: pointer;
 }
   </style>
@@ -245,7 +250,7 @@ ul.sidebar-menu li ul.sub li.active a {
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="<%= request.getContextPath() %>">Logout</a></li>
+          <li><a class="logout" onclick="logout();">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -259,7 +264,7 @@ ul.sidebar-menu li ul.sub li.active a {
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
             <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-            <h5 class="centered">Sam Soffes</h5>
+            <h5 class="centered"><%= loginUser.getMemId() %></h5>
             <li>
               <a class="active1" onclick="moveDashBoard();">
                 <i class="fa fa-dashboard"></i>
@@ -338,6 +343,9 @@ ul.sidebar-menu li ul.sub li.active a {
   	function moveInquiry(){
   		location.href ="../owner/inquiry.jsp"
   	}
+  	function logout() {
+			location.href="<%= request.getContextPath() %>/logout.me";			
+		}
   </script>
 </body>
 </html>

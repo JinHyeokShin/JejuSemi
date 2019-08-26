@@ -235,7 +235,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="<%= request.getContextPath() %>">Logout</a></li>
+          <li><a class="logout" onclick="logout();">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -251,30 +251,30 @@
             <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
             <h5 class="centered">Sam Soffes</h5>
             <li>
-              <a class="active1" onclick="moveDashBoard();">
+              <a class="active1" onclick="goDashBoard();">
                 <i class="fa fa-dashboard"></i>
                 <span>Dashboard</span>
                </a>
             </li>
             <li>
-            <a class="active2" onclick="moveNotice();">
+            <a class="active2" onclick="goNotice();">
                 <i class="fa fa-calendar"></i>
                 <span>공지사항</span>
             </a>
             </li>
             <li>
-            <a class="active3" onclick="moveSearchAcm();">
+            <a class="active3" onclick="goSearchAcm();">
                 <i class="fa fa-comment-o"></i>
                 <span>숙소 조회</span>
             </a>
             <li>
-            <a class="active4" onclick="moveSearchMember();">
+            <a class="active4" onclick="goSearchMember();">
                 <i class="fa fa-users"></i>
                 <span>회원 조회</span>
             </a>
             </li>
             <li>
-                <a class="active5" onclick="moveSearchReview();">
+                <a class="active5" onclick="goSearchReview();">
                   <i class="fa fa-bolt"></i>
                   <span>리뷰 조회</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
@@ -325,24 +325,27 @@
   <script type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/gritter-conf.js"></script>
 
   <script>
-  	function moveDashBoard(){
+  	function goDashBoard(){
   		location.href = "../admin/adminIndex.jsp";
   	}
-  	function moveNotice(){
+  	function goNotice(){
   		location.href ="../admin/notice.jsp"
   	}
-  	function moveSearchAcm(){
+  	function goSearchAcm(){
   		location.href ="../admin/searchAcm.jsp"
   	}
-  	function moveSearchMember(){
+  	function goSearchMember(){
   		location.href ="../admin/searchMember.jsp"
   	}
-  	function moveSearchReview(){
+  	function goSearchReview(){
   		location.href ="../admin/searchReview.jsp"
   	}
-  	function moveInquiry(){
+  	function goInquiry(){
   		location.href ="../admin/inquiry.jsp"
   	}
+  	function logout() {
+		location.href="<%= request.getContextPath() %>/logout.me";			
+	}
   </script>
 </body>
 </html>
