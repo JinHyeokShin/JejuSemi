@@ -46,36 +46,33 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 
-		} else if ((loginUser.getMemType()).equals("U")) {
-			System.out.println(loginUser.getMemType());
+		}else {
 			HttpSession session = request.getSession();
 
 			// session.setMaxInactiveInterval(600); // 10분(600초)뒤 자동 로그아웃
 
 			session.setAttribute("loginUser", loginUser);
+			
+			if ((loginUser.getMemType()).equals("U")) {
+				System.out.println(loginUser.getMemType());
 
-			// 로그인 완료 후 다시 메인 페이지로
-			response.sendRedirect(request.getContextPath());
-		} else if ((loginUser.getMemType()).equals("A")) {
-			HttpSession session = request.getSession();
+				// 로그인 완료 후 다시 메인 페이지로
+				response.sendRedirect(request.getContextPath());
+			} else if ((loginUser.getMemType()).equals("A")) {
 
-			// session.setMaxInactiveInterval(600); // 10분(600초)뒤 자동 로그아웃
+				// 로그인 완료 후 다시 메인 페이지로
+				response.sendRedirect("page.ad");
+				
+				
+			} else if (loginUser.getMemType().equals("O")) {
 
-			session.setAttribute("loginUser", loginUser);
+				// 로그인 완료 후 다시 메인 페이지로
+				response.sendRedirect("views/adminowner/owner/ownerIndex.jsp");
+			}
 
-			// 로그인 완료 후 다시 메인 페이지로
-			response.sendRedirect("views/adminowner/admin/adminIndex.jsp");
-		} else if (loginUser.getMemType().equals("O")) {
-			HttpSession session = request.getSession();
-
-			// session.setMaxInactiveInterval(600); // 10분(600초)뒤 자동 로그아웃
-
-			session.setAttribute("loginUser", loginUser);
-
-			// 로그인 완료 후 다시 메인 페이지로
-			response.sendRedirect("views/adminowner/owner/ownerIndex.jsp");
 		}
-
+		
+		
 	}
 
 	/**
