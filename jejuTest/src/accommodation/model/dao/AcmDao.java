@@ -108,9 +108,54 @@ public class AcmDao {
 			close(stmt);
 		}
 		return list;
-		
-		
-		
 	}
 
+	
+	
+	
+	public Acm selectAcm(Connection conn, int acmNum) {
+		
+		Acm acm = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAcm");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				acm = new Acm(rset.getInt("acm_num"),
+						      rset.getString("acm_name"),
+						      rset.getString("acm_phone"),
+						      rset.getString("acm_address"),
+						      rset.getString("acm_type"),
+						      rset.getInt("acm_grade"),
+						      rset.getString("acm_descript_a"),
+						      rset.getString("acm_descript_b"),
+						      rset.getString("acm_coord_x"),
+						      rset.getString("acm_coord_y"),
+						      rset.getString("acm_district"),
+						      rset.getString("acm_power"),
+						      rset.getString("acm_status"));				
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return acm;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

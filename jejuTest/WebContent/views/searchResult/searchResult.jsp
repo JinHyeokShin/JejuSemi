@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, accommodation.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, accommodation.model.vo.*, java.util.Date"%>
     
 <%
 	ArrayList<Acm> acmList = (ArrayList<Acm>)request.getAttribute("acmList");
@@ -7,7 +7,7 @@
 	String checkIn = (String)request.getAttribute("checkIn");
 	String checkOut = (String)request.getAttribute("checkOut");
 	int adult = Integer.parseInt(request.getParameter("adult"));
-	int child = Integer.parseInt(request.getParameter("child"));
+	int child = Integer.parseInt(request.getParameter("child"));	
 %>
     
 <!DOCTYPE html>
@@ -122,8 +122,6 @@
     
     
     
-    
-    
     <section class="section resultSection" id="searchResult">
         <div class="container">
           <aside>
@@ -183,9 +181,6 @@
 
 
 
-
-
-
           </aside>
           <div class="row justify-content-center mb-5">
              
@@ -208,7 +203,8 @@
 								<div class="test resultWrap aa" id="resultAcmDiv">
 									<div class="test d1 dd aa">
 										<div class="test d3 aa title">
-											<a href="#" style="font-weight: bold; font-size: 1.5em;"><%=acm.getAcmName()%></a><br>
+											<a href="#" style="font-weight: bold; font-size: 1.5em;"><%=acm.getAcmName()%></a>
+											<br>
 											<label style="font-size:10px;"><%=acm.getAcmAddress()%></label>
 										</div>
 										<div class="test d4 aa">
@@ -216,8 +212,7 @@
 												<%for(AcmImg acmImg : acmThumbnailImgList){ %>
 													<%if(acm.getAcmNum() == acmImg.getAcmNum()){ %>
 														<div class="test imgDiv aa"><img src="<%=acmImg.getImgPath()%>" style="width:100%; height: 100%;"></div>														
-													<%} %>		
-												
+													<%} %>												
 												<%} %>
 											
 											</div>
@@ -228,23 +223,25 @@
 									<div class="test d2 dd aa">
 										<div class="test d7 aa">1박 : <%=acm.getMinPrice()%>원</div>
 										<div class="test d8 aa">
+											<input type="hidden" value="<%=acm.getAcmNum()%>">
 											<button class="detailBtn btn btn-primary btn-block text-white"
-												style="width: 70%;">상세보기</button>
+												style="width:70%;">상세보기</button>
 										</div>
 									</div>
 								</div>
 							</li>
 							<br>
 						<%}	%>
-					
-					
-					
-						
 					<%} %>
-					
-					
-					
 				</ul>
+				
+				<script>
+					$(".detailBtn").click(function() {						
+						location.href="<%=contextPath%>/detail.ac?acmNum="+$(this).prev().val()+"&checkIn=<%=checkIn%>&checkOut=<%=checkOut%>&adult=<%=adult%>&child=<%=child%>";
+					});
+					
+				</script>
+				
 				
 
 			</div>          

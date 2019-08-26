@@ -38,39 +38,26 @@ public class SearchAcmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		SimpleDateFormat changeDate = new SimpleDateFormat("dd MMMM, yyyy", new Locale("en","US"));
 		
-		Date temp1 = null;
-		Date temp2 = null;
+		String checkIn = request.getParameter("checkInDate");		// 검색위젯에서 받아온 체크인 날짜
+		String checkOut = request.getParameter("checkOutDate");		// 검색위젯에서 받아온 체크아웃 날짜
 		
-		try {
-			temp1 = changeDate.parse(request.getParameter("checkInDate"));
-			temp2 = changeDate.parse(request.getParameter("checkOutDate"));
-			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}		
+		int adult = Integer.parseInt(request.getParameter("adult"));	// 검색위젯에서 받아온 성인 인원수
+		int child = Integer.parseInt(request.getParameter("child"));	// 검색위젯에서 받아온 언린이 인원수
 		
-		SimpleDateFormat realDate = new SimpleDateFormat("yyyy-MM-dd");
+		request.setAttribute("checkIn", checkIn);		// 체크인 날짜 리퀘스트에 실어줌
+		request.setAttribute("checkOut", checkOut);		// 체크아웃 날짜 리퀘스트에 실어줌
 		
-		String checkIn = realDate.format(temp1);
-		String checkOut = realDate.format(temp2);
-		int adult = Integer.parseInt(request.getParameter("adult"));
-		int child = Integer.parseInt(request.getParameter("child"));
-		
-		request.setAttribute("checkIn", checkIn);
-		request.setAttribute("checkOut", checkOut);
-		
-		System.out.println(checkIn);
+		System.out.println(checkIn);		// 콘솔 확인용 출력
 		System.out.println(checkOut);
 		System.out.println(adult);
 		System.out.println(child);
 		
-		Search search = new Search(checkIn, checkOut, adult, child);
+		Search search = new Search(checkIn, checkOut, adult, child);	// search 객체로 묶어서 넘겨줄거임
 		
-		ArrayList<Acm> acmList = new AcmService().searchAcm(search);
+		ArrayList<Acm> acmList = new AcmService().searchAcm(search);	// 검색 조건에 해당하는 숙소들 호출
 		
-		ArrayList<AcmImg> acmThumbnailImgList = new AcmService().acmThumbnailListView();
+		ArrayList<AcmImg> acmThumbnailImgList = new AcmService().acmThumbnailListView();	// 숙소 이미지 테이블에서 썸네일 이미지들만 모두 호출
 		request.setAttribute("acmThumbnailImgList", acmThumbnailImgList);
 				
 		if(acmList != null) {
