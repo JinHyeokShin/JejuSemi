@@ -131,6 +131,7 @@
                   <a data-toggle="modal" href="header.jsp#myModal"> Forgot Password?</a>
                   </span>
                   <!-- 회원가입 버튼 클릭 -->
+                  <button class="btn btn-theme btn-block" type="submit"> <a href="#" id="memberJoinBtn" onclick="memberJoin()">Create an account</a></button>
                 <hr>
                 <div class="login-social-link centered">
                   <p>or you can sign in via your social network</p>
