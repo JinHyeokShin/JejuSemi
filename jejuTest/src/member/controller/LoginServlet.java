@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 			} else if (loginUser.getMemType().equals("O")) {
 
 				// 로그인 완료 후 다시 메인 페이지로
-				response.sendRedirect("views/adminowner/owner/ownerIndex.jsp");
+				response.sendRedirect("page.ow");
 			}
 
 		}
