@@ -115,23 +115,23 @@
           </div>
         </nav>
 
-    <!-- Login Modal -->
+     <!-- Login Modal -->
     <div id="loginModal" class="popModal">
           <div class="container">
             <form class="form-login" action="<%= request.getContextPath() %>/login.me" method="post" onsubmit="return validate();">
               <h2 class="form-login-heading">sign in now</h2>
               <div class="login-wrap">
                   <span class="close" style="margin-left:auto;">&times;</span>
-                <input type="text" name="userId" class="form-control" placeholder="User ID" id="userId" autofocus>
+                <input type="text" class="form-control" placeholder="User ID" id="userId" autofocus name="userId">
                 <br>
-                <input type="password" name="userPwd" class="form-control" placeholder="Password" id="userPwd">
+                <input type="password" class="form-control" placeholder="Password" id="userPwd" name="userPwd">
                 <!-- <label class="checkbox"> -->
                   <input type="checkbox" value="remember-me"> 기억하기
                   <span class="pull-right">
                   <a data-toggle="modal" href="header.jsp#myModal"> Forgot Password?</a>
                   </span>
-                  <!-- 회원가입 버튼 클릭 -->
-                  <button class="btn btn-theme btn-block" type="submit"> <a href="#" id="memberJoinBtn" onclick="memberJoin()">Create an account</a></button>
+                  <!-- </label> -->
+                <button class="btn btn-theme btn-block" type="submit"><a href="#">SIGN IN</a></button>
                 <hr>
                 <div class="login-social-link centered">
                   <p>or you can sign in via your social network</p>
@@ -140,12 +140,14 @@
                 </div>
                 <div class="registration">
                   Don't have an account yet?<br/>
-                  <a class="" href="#">
-                    Create an account
-                    </a>
+                  
+                  <!-- 회원가입 버튼 클릭 -->
+                  <button class="btn btn-theme btn-block" type="submit"> <a href="#" id="memberJoinBtn" onclick="memberJoin()">Create an account</a></button>
+
                 <!-- </div> -->
               </div>
               <!-- Modal -->
+
               <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
                 <div class="modal-dialog">
                   <div class="modal-content">

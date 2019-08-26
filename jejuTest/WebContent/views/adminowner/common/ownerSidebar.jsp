@@ -61,7 +61,7 @@ a{
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="확대 / 축소"></div>
       </div>
       <!--logo start-->
-      <a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp" class="logo"><b>Come To<span> Jeju</span></b></a>
+      <a href="<%= request.getContextPath() %>/ownerIndex.ow" class="logo"><b>Come To<span> Jeju</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -266,37 +266,37 @@ a{
             <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
             <h5 class="centered"><%= loginUser.getMemId() %></h5>
             <li>
-              <a class="active1" onclick="moveDashBoard();">
+              <a class="active1" onclick="goDashBoard();">
                 <i class="fa fa-dashboard"></i>
                 <span>Dashboard</span>
                </a>
             </li>
             <li>
-            <a class="active2" onclick="moveManagement();">
+            <a class="active2" onclick="goManagement();">
                 <i class="fa fa-calendar"></i>
                 <span>숙소 예약 관리</span>
             </a>
             </li>
             <li>
-            <a class="active3" onclick="movepsManagement();">
+            <a class="active3" onclick="goPsManagement();">
                 <i class="fa fa-comment-o"></i>
                 <span>숙소 후기 관리</span>
             </a>
             <li>
-            <a class="active4" onclick="moveChartManagement();">
+            <a class="active4" onclick="goChartManagement();">
                 <i class="fa fa-users"></i>
                 <span>숙소 통계 관리</span>
             </a>
             </li>
             <li>
-                <a class="active5" onclick="movePowerMoney();">
+                <a class="active5" onclick="goPowerMoney();">
                   <i class="fa fa-bolt"></i>
                   <span>파워 등록 !</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
             <li>
-                <a class="active6" onclick="moveInquiry();">
+                <a class="active6" onclick="goInquiry();">
                   <i class="fa fa-envelope"></i>
                   <span>문의하기</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
@@ -325,23 +325,23 @@ a{
   <script type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/gritter-conf.js"></script>
 
   <script>
-  	function moveDashBoard(){
-  		location.href = "../owner/ownerIndex.jsp";
+  	function goDashBoard(){
+  		location.href = "<%= request.getContextPath() %>/ownerIndex.ow";
   	}
-  	function moveManagement(){
-  		location.href ="../owner/management.jsp"
+  	function goManagement(){
+  		location.href ="<%= request.getContextPath() %>/management.ow";
   	}
-  	function movepsManagement(){
-  		location.href ="../owner/psManagement.jsp"
+  	function goPsManagement(){
+  		location.href ="<%= request.getContextPath() %>/psManagement.ow";
   	}
-  	function moveChartManagement(){
-  		location.href ="../owner/chartManagement.jsp"
+  	function goChartManagement(){
+  		location.href ="<%= request.getContextPath() %>/chartManagement.ow";
   	}
-  	function movePowerMoney(){
-  		location.href ="../owner/powerMoney.jsp"
+  	function goPowerMoney(){
+  		location.href ="<%= request.getContextPath() %>/powerMoney.ow";
   	}
-  	function moveInquiry(){
-  		location.href ="../owner/inquiry.jsp"
+  	function goInquiry(){
+  		location.href ="<%= request.getContextPath() %>/inquiry.ow";
   	}
   	function logout() {
 			location.href="<%= request.getContextPath() %>/logout.me";			
