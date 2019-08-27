@@ -799,7 +799,7 @@ INSERT INTO ACCOMMODATION (ACM_NUM, ACM_NAME, MEM_NUM, ACM_PHONE, ACM_ADDRESS, A
 VALUES (1.0, '제주 신라호텔', 2.0, '0647355114', '제주특별자치도 서귀포시 중문관광로72번길 75', 'H', 5.0, '카지노+실내 수영장 및 2개의 야외 수영장+프리미엄 뷔페 조식+무료 공항 셔틀+헬스클럽+스파 서비스+컨퍼런스 룸+키즈 클럽+무료WiFi+무료 주차', '24시간 리셉션+룸 서비스+외국어 구사 직원+세탁 서비스,환전+유아용 식탁 의자', '33.247636', '126.407962', '서귀포', 'N', 'Y');
 
 INSERT INTO ACCOMMODATION (ACM_NUM, ACM_NAME, MEM_NUM, ACM_PHONE, ACM_ADDRESS, ACM_TYPE, ACM_GRADE, ACM_DESCRIPT_A, ACM_DESCRIPT_B, ACM_COORD_X, ACM_COORD_Y, ACM_DISTRICT, ACM_POWER, ACM_STATUS) 
-VALUES (2.0, '베스트웨스턴 제주호텔', 6.0, '0647976000?', '제주특별자치도 제주시 도령로 27', 'H', 4.0, '컨퍼런스 센터+아침 식사 가능+콘시어지 서비스+다국어 구사 가능 직원+무료 신문+매일 하우스키핑+무료 WiFi+무료 주차', '냉장고+무료 세면용품+무료 커피 제공+세탁 서비스', '33.487903', '126.481906', '제주', 'N', 'Y');
+VALUES (2.0, '베스트웨스턴 제주호텔', 6.0, '0647976000', '제주특별자치도 제주시 도령로 27', 'H', 4.0, '컨퍼런스 센터+아침 식사 가능+콘시어지 서비스+다국어 구사 가능 직원+무료 신문+매일 하우스키핑+무료 WiFi+무료 주차', '냉장고+무료 세면용품+무료 커피 제공+세탁 서비스', '33.487903', '126.481906', '제주', 'N', 'Y');
 
 INSERT INTO ACCOMMODATION (ACM_NUM, ACM_NAME, MEM_NUM, ACM_PHONE, ACM_ADDRESS, ACM_TYPE, ACM_GRADE, ACM_DESCRIPT_A, ACM_DESCRIPT_B, ACM_COORD_X, ACM_COORD_Y, ACM_DISTRICT, ACM_POWER, ACM_STATUS) 
 VALUES (3.0, '히든 클리프 호텔네이쳐', 5.0, '0647527777', '제주특별자치도 서귀포시 예래해안로 542', 'H', 5.0, '야외 수영장 및 유수풀+3개 레스토랑+무료 키즈 클럽+아침 식사 가능+헬스 클럽+비즈니스 센터+정원+무료 WiFi+무료 주차', '24시간 리셉션+룸 서비스+시설 내 놀이터+전용 욕실+프리미엄 TV 채널+매일 하우스 키핑', '33.25515', '126.402353', '서귀포', 'N', 'Y');
@@ -808,7 +808,7 @@ INSERT INTO ACCOMMODATION (ACM_NUM, ACM_NAME, MEM_NUM, ACM_PHONE, ACM_ADDRESS, A
 VALUES (4.0, '호텔 리젠트 마린', 7.0, '027775080', '제주특별자치도 제주시 서부두 2길 20', 'H', 4.0, '레스토랑+야외 수영장+아침 식사 가능+24시간 운영 프런트 데스크+매일 하우스키핑+편의점+다국어 구사 가능 직원+무료 WiFi+무료 주차', '어린이 수영장+냉장고+전용 욕실+무료 세면용품', '33.517717', '126.526809', '제주', 'N', 'Y');
 
 INSERT INTO ACCOMMODATION (ACM_NUM, ACM_NAME, MEM_NUM, ACM_PHONE, ACM_ADDRESS, ACM_TYPE, ACM_GRADE, ACM_DESCRIPT_A, ACM_DESCRIPT_B, ACM_COORD_X, ACM_COORD_Y, ACM_DISTRICT, ACM_POWER, ACM_STATUS) 
-VALUES (5.0, '엠스테이 호텔 제주', 8.0, '0648006000?', '제주특별자치도 서귀포시 서귀동 829-5', 'H', 4.0, '레스토랑+야외 수영장+아침 식사 가능+피트니스 센터+매일 하우스키핑+편의점+정원+ATM/은행 서비스+회의실+무료 WiFi+무료 주차', '냉장고+전용 욕실+정원+케이블 TV 서비스', '33.247083', '126.56089', '서귀포', 'N', 'Y');
+VALUES (5.0, '엠스테이 호텔 제주', 8.0, '0648006000', '제주특별자치도 서귀포시 서귀동 829-5', 'H', 4.0, '레스토랑+야외 수영장+아침 식사 가능+피트니스 센터+매일 하우스키핑+편의점+정원+ATM/은행 서비스+회의실+무료 WiFi+무료 주차', '냉장고+전용 욕실+정원+케이블 TV 서비스', '33.247083', '126.56089', '서귀포', 'N', 'Y');
 
 INSERT INTO ACCOMMODATION (ACM_NUM, ACM_NAME, MEM_NUM, ACM_PHONE, ACM_ADDRESS, ACM_TYPE, ACM_GRADE, ACM_DESCRIPT_A, ACM_DESCRIPT_B, ACM_COORD_X, ACM_COORD_Y, ACM_DISTRICT, ACM_POWER, ACM_STATUS) 
 VALUES (6.0, '골든튤립 제주성산호텔', 9.0, '0647447500', '제주특별자치도 서귀포시 성산읍 고성리 329-1', 'H', 4.0, '레스토랑+수영장 바+야외 수영장+아침 식사 가능+24시간 운영 프런트 데스크+매일 하우스키핑+무료 WiFi+무료 주차', '냉장고+전용 욕실+무료 세면용품+매일 하우스키핑+욕조+샤워 부스', '33.448163', '126.916212', '서귀포', 'N', 'Y');
