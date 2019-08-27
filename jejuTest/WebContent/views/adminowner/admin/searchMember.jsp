@@ -42,7 +42,32 @@ ul.sidebar-menu li ul.sub li.active a {
 	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script>
 	jQuery(function($) {
-		$("#myTable").DataTable();
+		$("#myTable").DataTable({
+			processing:true,
+			serverSide:false,
+			ajax : {
+				url:"searchMem.ad",
+				type:"post",
+				data: 
+					function(list){
+					console.log(list);
+				
+					}
+				},
+				columns:[
+					{data:"memNum"},
+					{data:"memId"},
+					{data:"memName"},
+					{data:"memGender"},
+					{data:"memPhone"},
+					{data:"nationCode"},
+					{data:"memPoint"},
+					{data:"memType"},
+					{data:"memStatus"},
+					{data:"enrollDate"},
+					{data:"noShow"}
+				]
+		});
 	});
 </script>
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
@@ -73,7 +98,7 @@ ul.sidebar-menu li ul.sub li.active a {
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<!-- <tr>
 								<td>1</td>
 								<td>user1</td>
 								<td>name</td>
@@ -85,12 +110,11 @@ ul.sidebar-menu li ul.sub li.active a {
 								<td>status</td>
 								<td>enrolldate</td>
 								<td>noshow</td>
-							</tr>
+							</tr> -->
 						</tbody>
 					</table>
 				</div>
 			</div>
-
 		</section>
 	</section>
 	<%@ include file="../../../views/adminowner/common/footer.jsp"%>
