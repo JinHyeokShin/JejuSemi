@@ -820,7 +820,7 @@ INSERT INTO ACCOMMODATION (ACM_NUM, ACM_NAME, MEM_NUM, ACM_PHONE, ACM_ADDRESS, A
 VALUES (8.0, '호텔난타', 11.0, '0647271800', '제주특별자치도 제주시 선돌목동길 56-26', 'H', 4.0, '24시간 운영 프런트 데스크+아침 식사 가능+피트니스 센터+컨퍼런스 센터+매일 하우스키핑+편의점+다국어 구사 가능 직원+무료 WiFi+무료 주차', '냉장고+전용 욕실+무료 세면용품+매일 하우스키핑+암막커튼', '33.445729', '126.547792', '제주', 'N', 'Y');
 
 INSERT INTO ACCOMMODATION (ACM_NUM, ACM_NAME, MEM_NUM, ACM_PHONE, ACM_ADDRESS, ACM_TYPE, ACM_GRADE, ACM_DESCRIPT_A, ACM_DESCRIPT_B, ACM_COORD_X, ACM_COORD_Y, ACM_DISTRICT, ACM_POWER, ACM_STATUS) 
-VALUES (45.0, '효리네 민박', 17.0, '0647891234', '제주특별자치도 제주시 애월읍 소길남길 34-37', 'M', 1.0, '무료 WiFi,무료 주차,무료 커피', '노천 히노끼탕,가정식 공동주방,각종 고양이 강아지', '33.429763', '126.375445', '제주', 'N', 'Y');
+VALUES (45.0, '효리네 민박', 17.0, '0647891234', '제주특별자치도 제주시 애월읍 소길남길 34-37', 'M', 1.0, '무료 WiFi+무료 주차+무료 커피', '노천 히노끼탕+가정식 공동주방+각종 고양이 강아지', '33.429763', '126.375445', '제주', 'N', 'Y');
 
 --------------------------------------------------------------------------------------
 
@@ -945,13 +945,13 @@ INSERT INTO ACMIMG (IMG_NUM, IMG_PATH, ACM_NUM, STATUS)
 VALUES (ACMIMG_SEQ.NEXTVAL, 'https://edge.media.datahc.com/HI367874539.jpg', 8.0, 1.0);
 
 INSERT INTO ACMIMG (IMG_NUM, IMG_PATH, ACM_NUM, STATUS) 
-VALUES (ACMIMG_SEQ.NEXTVAL, '<%=contextPath%>/resources/images/hyori.png', 45.0, 0.0);
+VALUES (ACMIMG_SEQ.NEXTVAL, 'https://img.insight.co.kr/static/2017/08/18/700/8s9rf750lke520ywpe3h.jpg', 45.0, 0.0);
 
 INSERT INTO ACMIMG (IMG_NUM, IMG_PATH, ACM_NUM, STATUS) 
 VALUES (ACMIMG_SEQ.NEXTVAL, 'https://mblogthumb-phinf.pstatic.net/MjAxODAyMTFfMjQ3/MDAxNTE4MzI1OTEwMjM1.SRpFz0M3xyYbWtvO1HDGkT_nBqSWNkYPeciqKGg5PHEg.v1n5XhMxlHrN_EmQ1lX0pvE1eReTDXhTtG5W4F2VL1sg.JPEG.phjphk12/%ED%9A%A8%EB%A6%AC%EB%84%A4%EB%AF%BC%EB%B0%952_%EB%85%B8%EC%B2%9C%ED%83%954.jpg?type=w800', 45.0, 1.0);
 
 INSERT INTO ACMIMG (IMG_NUM, IMG_PATH, ACM_NUM, STATUS) 
-VALUES (ACMIMG_SEQ.NEXTVAL, 'https://img.insight.co.kr/static/2017/08/18/700/8s9rf750lke520ywpe3h.jpg', 45.0, 1.0);
+VALUES (ACMIMG_SEQ.NEXTVAL, 'http://www.cbiz.kr/news/photo/201808/14483_17454_5339.jpg', 45.0, 1.0);
 
 --------------------------------------------------------------------------------------
 
@@ -1396,7 +1396,7 @@ INSERT INTO RESERVATION (RESERV_NUM, MEM_NUM, ROOM_NUM, RESERV_PAX, CHECKIN_DATE
 VALUES (RESERVATION_SEQ.NEXTVAL, 3, 24, 2, SYSDATE+8, SYSDATE+11, 170000, 'N', SYSDATE, NULL, '빼애애애애애앰!!', 'N', 'Y');
 
 INSERT INTO RESERVATION (RESERV_NUM, MEM_NUM, ROOM_NUM, RESERV_PAX, CHECKIN_DATE, CHECKOUT_DATE, RESERV_PRICE, RESERV_CANCEL, RESERV_DATE, CANCEL_DATE, RESERV_REQUIRE, NOSHOW, STATUS) 
-VALUES (RESERVATION_SEQ.NEXTVAL, 10, 25, 2, SYSDATE+1, SYSDATE+12, 170000, 'N', SYSDATE, NULL, '빼애애애애애앰!!', 'N', 'Y');
+VALUES (RESERVATION_SEQ.NEXTVAL, 10, 25, 2, SYSDATE+1, SYSDATE+3, 170000, 'N', SYSDATE, NULL, '빼애애애애애앰!!', 'N', 'Y');
 
 
 
