@@ -28,6 +28,9 @@ select{
 	background:#ced4da;
 	border: 1px solid #ced4da;
 }
+#idCheck:hover, #joinBtn:hover, #goMain:hover{
+	cursor:pointer;
+}
 
 </style>
 
@@ -67,7 +70,8 @@ select{
                    </div>
                    
                    <div class="form-group">
-                       <label for="InputEmail">이메일 주소</label>
+                       <label for="InputEmail">이메일 주소</label>&nbsp;&nbsp;&nbsp;
+					   <label id="idCheck" style="color:#fd7e14"><b>중복확인</b></label>                    
                        <input type="email" class="form-control" id="InputEmail" name="memId" placeholder="이메일 주소를 입력해주세요" required>
                    </div>
                    <div class="form-group">
@@ -108,10 +112,10 @@ select{
                    </div>
 
                    <div class="form-group text-center" style="margin-top:30px;">
-                       <button type="submit" id="join-submit" class="btn btn-primary">회원가입<i class="fa fa-check spaceLeft"></i>
+                       <button type="submit" id="join-submit" class="btn btn-primary" disabled>회원가입<i class="fa fa-check spaceLeft"></i>
                        </button>
                        &nbsp;
-                       <button type="button" class="btn btn-warning" onclick="history.go(-1);" style="">가입취소<i class="fa fa-times spaceLeft"></i>
+                       <button type="button" class="btn btn-warning" onclick="history.go(-1);">가입취소<i class="fa fa-times spaceLeft"></i>
                        </button>
                    </div>
                </form>
@@ -173,6 +177,48 @@ select{
 		return true;
 
 	}
+	
+	$(function(){
+		
+		var isUsable = false;
+		
+		$("#idCheck").click(function(){
+			
+			var userId = $("#joinForm input[name=memId]");
+			
+			$.ajax({
+				url:"idCheck.me",
+				type:"post",
+				data:{userId:userId.val()},
+				success:function(result){
+					
+					if(result == "fail"){ // 사용불가
+						alert("사용할 수 없는 아이디입니다");
+						userId.focus();
+					}else{ // 사용가능
+						
+						if(confirm("사용 가능한 아이디입니다. 사용하시겠습니까?")){
+							userId.attr("readonly", "true"); // 더 이상 바꿀 수 없도록
+							isUsable = true;
+						}else{
+							userId.focus();
+						}
+					}
+					
+					if(isUsable){
+						$("#join-submit").removeAttr("disabled");
+					}
+					
+				},
+				error:function(){
+					console.log("서버 통신 안됨");
+				}
+			});
+			
+		});
+	});
+	
+	
 	</script>
 
 
