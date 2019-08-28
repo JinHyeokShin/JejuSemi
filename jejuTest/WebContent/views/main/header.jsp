@@ -108,7 +108,7 @@
                 <% if(loginUser == null){ %>
                 <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="loginBtn" target=""><span class="pb_rounded-4 px-4 rounded">Login</span></a></li>
                 <%}else{ %>
-                <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="" onclick="logout();"><span class="pb_rounded-4 px-4 rounded" >Logout</span></a></li>
+                <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="logoutBtn" onclick="logout();"><span class="pb_rounded-4 px-4 rounded" >Logout</span></a></li>
               	<%} %>
               </ul>
             </div>
@@ -194,10 +194,10 @@
    
           // flightModal
           var flightModal = document.getElementById('flightModal');
-          var flight = document.getElementById("nav2");
+          var flight = document.getElementById('nav2');
    
           // Get the <span> element that closes the modal
-          var span = document.getElementsByClassName("close");                                          
+          var span = document.getElementsByClassName('close');                                          
    
           // When the user clicks on the button, open the modal 
           loginBtn.onclick = function() {

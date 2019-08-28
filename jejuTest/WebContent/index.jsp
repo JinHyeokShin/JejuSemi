@@ -63,9 +63,7 @@
          .nav-item{
            cursor: pointer;
          }
-         #logoutBtn{
-         	display: none;
-         }
+         
        </style>
 
 

@@ -667,73 +667,73 @@ CREATE SEQUENCE NOTICE_SEQ;
 -- NATION --------------------------------------------------------------------------
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (1.0, 'KOR', '<%=contextPath%>/resources/images/nation/kr.png');
+VALUES (1.0, 'KOR', 'resources/images/nation/kr.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (2.0, 'MEX', '<%=contextPath%>/resources/images/nation/mx.png');
+VALUES (2.0, 'MEX', 'resources/images/nation/mx.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (3.0, 'DNK', '<%=contextPath%>/resources/images/nation/dk.png');
+VALUES (3.0, 'DNK', 'resources/images/nation/dk.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (4.0, 'USA', '<%=contextPath%>/resources/images/nation/us.png');
+VALUES (4.0, 'USA', 'resources/images/nation/us.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (5.0, 'RUS', '<%=contextPath%>/resources/images/nation/ru.png');
+VALUES (5.0, 'RUS', 'resources/images/nation/ru.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (6.0, 'BRA', '<%=contextPath%>/resources/images/nation/br.png');
+VALUES (6.0, 'BRA', 'resources/images/nation/br.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (7.0, 'CHN', '<%=contextPath%>/resources/images/nation/cn.png');
+VALUES (7.0, 'CHN', 'resources/images/nation/cn.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (8.0, 'JPN', '<%=contextPath%>/resources/images/nation/jp.png');
+VALUES (8.0, 'JPN', 'resources/images/nation/jp.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (9.0, 'GER', '<%=contextPath%>/resources/images/nation/de.png');
+VALUES (9.0, 'GER', 'resources/images/nation/de.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (10.0, 'ESP', '<%=contextPath%>/resources/images/nation/es.png');
+VALUES (10.0, 'ESP', 'resources/images/nation/es.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (11.0, 'FRA', '<%=contextPath%>/resources/images/nation/fr.png');
+VALUES (11.0, 'FRA', 'resources/images/nation/fr.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (12.0, 'UK', '<%=contextPath%>/resources/images/nation/gb.png');
+VALUES (12.0, 'UK', 'resources/images/nation/gb.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (13.0, 'BEG', '<%=contextPath%>/resources/images/nation/be.png');
+VALUES (13.0, 'BEG', 'resources/images/nation/be.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (14.0, 'ARG', '<%=contextPath%>/resources/images/nation/ar.png');
+VALUES (14.0, 'ARG', 'resources/images/nation/ar.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (15.0, 'CAN', '<%=contextPath%>/resources/images/nation/ca.png');
+VALUES (15.0, 'CAN', 'resources/images/nation/ca.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (16.0, 'HNK', '<%=contextPath%>/resources/images/nation/hk.png');
+VALUES (16.0, 'HNK', 'resources/images/nation/hk.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (17.0, 'AUS', '<%=contextPath%>/resources/images/nation/au.png');
+VALUES (17.0, 'AUS', 'resources/images/nation/au.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (18.0, 'ITA', '<%=contextPath%>/resources/images/nation/it.png');
+VALUES (18.0, 'ITA', 'resources/images/nation/it.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (19.0, 'POR', '<%=contextPath%>/resources/images/nation/pt.png');
+VALUES (19.0, 'POR', 'resources/images/nation/pt.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (20.0, 'VET', '<%=contextPath%>/resources/images/nation/vn.png');
+VALUES (20.0, 'VET', 'resources/images/nation/vn.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (21.0, 'TIW', '<%=contextPath%>/resources/images/nation/tw.png');
+VALUES (21.0, 'TIW', 'resources/images/nation/tw.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (22.0, 'NED', '<%=contextPath%>/resources/images/nation/nl.png');
+VALUES (22.0, 'NED', 'resources/images/nation/nl.png');
 
 INSERT INTO NATION (NATION_CODE, NATION_NAME, IMG_PATH) 
-VALUES (23.0, 'NOR', '<%=contextPath%>/resources/images/nation/no.png');
+VALUES (23.0, 'NOR', 'resources/images/nation/no.png');
 
 -------------------------------------------------------------------------------------
 

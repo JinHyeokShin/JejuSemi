@@ -369,10 +369,20 @@
         	width: 300px;
             height: 170px;
         }
-        .map, .route{
+        .map{
         	width: 100%;
         	height: 50%;
         }
+        .xxx{
+        	width: 100%;
+        	height: 4%;
+        }
+        .route{
+        	width: 100%;
+        	height: 46%;
+        	border-radius: 10px;
+        }
+               
         .route1{
         	width: 100%;
         	height:20%;
@@ -395,7 +405,7 @@
         	margin:auto;
         }
         #radioRouteBtn, #radioBusBtn{
-        	margin-top: 17px;
+        	margin-top: 20px;
         }
         .totalRoute{
         	width:85%;
@@ -483,14 +493,14 @@
     
     
     <section class="detailSection" style="text-align:center; height: 280vh;">
-    	<div class="detailWrap test aa container">
-            <div class="headDiv test aa" align="left">			<!-- header div -->
+    	<div class="detailWrap aa container">
+            <div class="headDiv aa" align="left">			<!-- header div -->
             <label style="font-weight:bold; font-size:3em; color:#fd7e14;"><%=acm.getAcmName()%></label><br>
             <label><%=acm.getAcmAddress()%></label>
             </div>		
             <div class="bodyDiv test aa">
-                <div class="body_1_Div test aa">	<!-- 사진들어갈 div -->
-					<div class="slideImgDiv test aa dd">
+                <div class="body_1_Div aa">	<!-- 사진들어갈 div -->
+					<div class="slideImgDiv aa dd">
 
 						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
@@ -534,11 +544,11 @@
 
 					</div> <!-- 슬라이드로 사진들어갈 div -->
 					
-					<div class="test aa dd space"></div>
+					<div class="aa dd space"></div>
 					
-					<div class="mapDiv test aa dd">	  <!-- 지도/경로 버튼 들어갈 div -->
+					<div class="mapDiv aa dd">	  <!-- 지도/경로 버튼 들어갈 div -->
 					
-						<div class="test aa dd map" id="map"></div>	<!-- 지도 들어가는 div -->						
+						<div class="aa dd map" id="map"></div>	<!-- 지도 들어가는 div -->						
 						
 						
 						<script>
@@ -560,13 +570,13 @@
 							marker.setMap(map);	/* 마커 표시 */													
 							
 						</script>
-
+						<div class="xxx dd"></div>
 						<div class="test aa dd route">
-							<div class="test dd route1">	<!-- 라디오버튼 div -->
-								<div class="test aa dd" id="radioRoute">
+							<div class="dd route1">	<!-- 라디오버튼 div -->
+								<div class="aa dd" id="radioRoute">
 									<input type="radio" id="radioRouteBtn" name="route" value="car" onclick="showOn();"><label for="radioRouteBtn"><img src="<%=contextPath%>/resources/images/car.png"></label>
 								</div>
-								<div class="test aa dd" id="radioBus">
+								<div class="aa dd" id="radioBus">
 									<input type="radio" id="radioBusBtn" name="route" value="bus" onclick="showOff();"><label for="radioBusBtn">&nbsp;<img src="<%=contextPath%>/resources/images/bus.png"></label>
 								</div>
 							</div>
@@ -581,33 +591,33 @@
 								}
 							</script>
 							
-							<div class="test dd route2">
+							<div class="dd route2">
 							
-							<div class="test dd route2_1" style="display:none;">
+							<div class="dd route2_1" style="display:none;">
 							
-								<div class="test aa dd totalRoute">
-									<div class="test aa dd routeStart">	<!-- 출발장소 -->
+								<div class="aa dd totalRoute">
+									<div class="aa dd routeStart">	<!-- 출발장소 -->
 										<!-- <b>출발지 : </b><select></select> -->
-										<div class="test aa dd route0">
+										<div class="aa dd route0">
 											<b>출발지  :&nbsp;</b>
 										</div>
-										<div class="test aa dd route0_1">
+										<div class="aa dd route0_1">
 											<select id="selectSpot">
 												<option value="jeju1">제주 공항</option>
 												<option value="jeju2">제주항</option>
 											</select>
 										</div>
 									</div>
-									<div class="test aa dd routeEnd">	<!-- 도착장소 = 해당 숙소 -->
-										<div class="test aa dd route0">
+									<div class="aa dd routeEnd">	<!-- 도착장소 = 해당 숙소 -->
+										<div class="aa dd route0">
 											<b>도착지  :&nbsp;</b>
 										</div>
-										<div class="test aa dd route0_2">
+										<div class="aa dd route0_2">
 										<label><%=acm.getAcmName()%></label>
 										</div>
 									</div>
 								</div>
-								<div class="test aa dd reverseBtnDiv">
+								<div class="aa dd reverseBtnDiv">
 									<img src="<%=contextPath%>/resources/images/swap.png" id="reverseBtn" style="cursor:pointer;">
 								</div>
 								<script>
@@ -682,7 +692,7 @@
 								
 							</div>	
 							</div>
-							<div class="test dd route3" style="display:fixed;">	<!-- 경로보기 버튼 div -->
+							<div class="dd route3" style="display:fixed;">	<!-- 경로보기 버튼 div -->
 								<button class="detailBtn btn btn-primary btn-block text-white" id="routeBtn" style="width:70%; height:50%; line-height: 1px; margin-top: 15px;">경로보기</button>
 							</div>
 						</div>					
@@ -758,7 +768,7 @@
 	                					
 	                			</div>
 	                			<div class="test aa dd research4" style="padding-top: 3%;">
-	                				<button class="reSearchBtn btn btn-primary btn-block text-white" style="width:70%; height:50%; line-height: 1px;">검색</button>
+	                				<button class="reSearchBtn btn btn-primary btn-block text-white" style="width:70%; height:50%; line-height: 1px; margin-left: auto; margin-right: auto;">검색</button>
 	                			</div>
 	                			</div>
                 			</div>                		
@@ -785,7 +795,7 @@
                 			
                 			<%ArrayList<RoomImg> roomImgList = new AcmService().roomImgListView(r.getRoomNum());%>
 
-							<div class="test resultWrap aa">
+							<div class="test resultWrap aa bg-light">
 								<div class="test d1 dd aa">
 									<div class="test d3 aa title">
 										<a href="#"
@@ -876,36 +886,13 @@
 
 						<script>
 							$(".reservBtn").click(function(){
-								location.href="<%=contextPath%>/reserv.ac?roomNum="+$(this).prev().val()+"&acmNum=<%=acm.getAcmNum()%>";
+								location.href="<%=contextPath%>/reserv.ac?roomNum="+$(this).prev().val()+
+										      "&acmNum=<%=acm.getAcmNum()%>&checkIn=<%=checkIn%>&checkOut=<%=checkOut%>";
 							});
 						
 						
 						</script>
                 		
-						
-						<!--  -->
-						
-						<!-- <div class="test resultWrap aa">
-							<div class="test d1 dd aa">							
-								<div class="test d3 aa title">
-									<a href="#" style="font-weight:bold; font-size:1.5em; align:left;">스탠다드 더블룸</a><br>
-								</div>
-								<div class="test d4 aa">
-									<div class="test dd d5 aa">
-										<div class="test imgDiv aa">썸네일</div>
-									</div>
-									<div class="test dd d6">설명1</div>
-									<div class="test dd d9">설명2</div>
-								</div>
-							</div>
-
-							<div class="test d2 dd aa">
-								<div class="test d7 aa">가격</div>
-								<div class="test d8 aa">
-									<button class="detailBtn btn btn-primary btn-block text-white" style="width:70%;">예약하기</button>
-								</div>							
-							</div>
-						</div><br> -->
 						
 						<!--  -->
                 		
@@ -921,7 +908,7 @@
     
     <div id="routeModal" class="popModal">
     	<div class="modal-content">
-    		<span class="close">&times;</span>
+    		<span class="close" style="margin-left:auto;">&times;</span>
     		<div id="map_div"></div>
       		<p id="result">결과 표시</p>
     	</div>    
@@ -1006,7 +993,12 @@
 	    routeBtn.onclick = function() {
 	    	initTmap();
 	    	routeModal.style.display = "block";
-	    } 
+	    }
+	    
+	    $(".close").click(function(){
+            // console.log("sss");
+            $(this).parents(".popModal").css("display", "none");
+          });
 	    
 	    /*  */
 	    

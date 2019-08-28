@@ -5,6 +5,19 @@
 	Acm acm = (Acm)request.getAttribute("acm");
 	Room room = (Room)request.getAttribute("room");
 	ArrayList<AcmImg> acmImgList = (ArrayList<AcmImg>)request.getAttribute("acmImgList");
+	
+	
+	/* Member loginUser = (Member)session.getAttribute("loginUser"); */
+	/* Member m = null;
+	if(loginUser != null){
+		m = (Member)session.getAttribute("loginUser");
+	} else{
+		m = new Member();
+	} */
+	
+	
+	String checkIn = request.getParameter("checkIn");
+	String checkOut = request.getParameter("checkOut");
 
 %>   
 <!DOCTYPE html>
@@ -84,8 +97,21 @@
 	}
 	.acmPicture{
 		width:100%;
-		height: 200px;
+		height: 180px;
 	}
+	.imgSize{
+		width:100%;
+		height:180px;
+	}
+	.sumDiv1{
+		width:100%;
+		height:100%; 
+		background:white; 
+		padding:15px;
+		border-radius: 10px;
+	}
+	
+	
 	
 </style>
 
@@ -105,17 +131,33 @@
 				
 				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >예약자 정보</label><hr>
 				
-				<b>예약자 이름<span style="color:#fd7e14">*</span></b><br>
-				<b style="font-size:10px;">숙박업소에서 체크인 시 제시할 신분증에 나와 있는 대로  이름을 입력해주세요.</b><br>
-				<input type="text" size="30" value=""><br><br>	
-							
-				<b>이메일 주소<span style="color:#fd7e14">*</span></b><br>
-				<b style="font-size:10px;">이 주소로 확인 메일을 보내드립니다.</b><br>
-				<input type="email" size="30" value=""><br><br>
+				<%if(loginUser != null){ %>
+					<b>예약자 이름<span style="color:#fd7e14">*</span></b><br>
+					<b style="font-size:10px;">숙박업소에서 체크인 시 제시할 신분증에 나와 있는 대로  이름을 입력해주세요.</b><br>
+					<input type="text" size="30" name="reservName" value="<%=loginUser.getMemName() %>"><br><br>	
+								
+					<b>이메일 주소<span style="color:#fd7e14">*</span></b><br>
+					<b style="font-size:10px;">이 주소로 확인 메일을 보내드립니다.</b><br>
+					<input type="email" size="30" name="reservEmail" value="<%=loginUser.getMemId() %>"><br><br>
+					
+					<b>휴대폰 번호<span style="color:#fd7e14">*</span></b><br>
+					<b style="font-size:10px;">비상시에만 이 번호로 연락드립니다.</b><br>
+					<input type="text" size="30" name="reservPhone" value="<%=loginUser.getMemPhone() %>"><br><br>
+				<%}else{ %>
+					<b>예약자 이름<span style="color:#fd7e14">*</span></b><br>
+					<b style="font-size:10px;">숙박업소에서 체크인 시 제시할 신분증에 나와 있는 대로  이름을 입력해주세요.</b><br>
+					<input type="text" size="30" name="reservName"><br><br>	
+								
+					<b>이메일 주소<span style="color:#fd7e14">*</span></b><br>
+					<b style="font-size:10px;">이 주소로 확인 메일을 보내드립니다.</b><br>
+					<input type="email" size="30" name="reservEmail"><br><br>
+					
+					<b>휴대폰 번호<span style="color:#fd7e14">*</span></b><br>
+					<b style="font-size:10px;">비상시에만 이 번호로 연락드립니다.</b><br>
+					<input type="text" size="30" name="reservPhone"><br><br>
+				<%} %>
 				
-				<b>휴대폰 번호<span style="color:#fd7e14">*</span></b><br>
-				<b style="font-size:10px;">비상시에만 이 번호로 연락드립니다.</b><br>
-				<input type="text" size="30" value=""><br><br>
+				
 				
 				</div>
 				<div class="roomInfo section pp">
@@ -125,8 +167,8 @@
 				<label>객실명 : <%=room.getRoomName() %></label>
 				<br><br>
 				<b>고객 요청 사항</b><br>
-				<b style="font-size:10px;">ex) 간이침대, 늦은 체크인</b><br>
-				<textarea rows="6" cols="40"></textarea>
+				<b style="font-size:10px;">ex) 엑스트라 베드, 늦은 체크인</b><br>
+				<textarea rows="6" cols="40" name="reserv_require"></textarea>
 				
 				</div>
 				<div class="paymentInfo bg-light section pp">
@@ -208,7 +250,7 @@
 				</div>
 			</div>
 			</form>
-			<div class="acmInfo test aa dd">체크인 및 가격 정보
+			<div class="acmInfo test aa dd">
 				<div class="acmPicture test aa">
 				
 					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -237,16 +279,57 @@
 										</div>
 									<%} %>									
 								<%} %>							
-							</div>			
-				
+						</div>		
+					</div>			
 				</div>
-				<div class="test aa" style="line-height: initial;">
-					<b style="font-weight:bold"><%=acm.getAcmName() %></b><br>
-					<b style="font-size:10px"><%=acm.getAcmAddress() %></b>
 				
-				</div>
-			
-			</div>
+				<div style="width:100%; height:15px;"></div> <!-- 간격 -->
+					<div class="aa bg-light" style="border-radius: 10px;">
+						<div class="aa" style="width:100%; height:60px; line-height: initial; padding:15px;">
+							<b style="font-size:18px; font-weight:bold; color:#fd7e14;"><%=acm.getAcmName() %></b><br>
+							<b style="font-size:11px"><%=acm.getAcmAddress() %></b>				
+						</div>
+						<div class="aa" style="width:100%; height: 200px; padding:15px;">
+							
+							<div class="aa sumDiv1">
+								<table class="aa" style="width:100%; height:100%;">
+									<tr>
+										<td><b>체크인</b></td>
+										<td align="right"><b><%=checkIn %></b></td>
+									</tr>
+									<tr>
+										<td><b>체크아웃</b></td>
+										<td align="right"><b><%=checkOut %></b></td>
+									</tr>
+									<tr>
+										<td id="nTd" colspan="2" align="right"><b></b></td>								
+									</tr>
+									
+									<script>
+										$(function(){
+											var cIn = "<%=checkIn %>";
+											var cOut = "<%=checkOut %>";
+											
+											var arr1 = cIn.split('-');
+									 		var arr2 = cOut.split('-');
+									 		
+									 		var dat1 = new Date(arr1[0], arr1[1]-1, arr1[2]);
+									 		var dat2 = new Date(arr2[0], arr2[1]-1, arr2[2]);
+									 		
+									 		var diff = dat2.getTime() - dat1.getTime();
+									 	    var result = Math.floor(diff/1000/60/60/24);
+									 		
+									 		$("#nTd").text(result+"박");
+										});
+									
+									</script>
+									
+									
+								</table>
+							</div>
+						</div>
+					</div>
+				
 		</div>
 		<br clear="both">
 	</section>
