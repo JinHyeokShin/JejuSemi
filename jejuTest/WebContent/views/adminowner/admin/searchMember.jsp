@@ -7,6 +7,7 @@
 
 <title>Insert 옘병 here</title>
 <style>
+/* //fd7e14 */
 ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
 	{
 	background: #fd7e14;
@@ -40,35 +41,39 @@ ul.sidebar-menu li ul.sub li.active a {
 	href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
 <script
 	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-<script>
-	jQuery(function($) {
-		$("#myTable").DataTable({
-			processing:true,
-			serverSide:false,
-			ajax : {
-				url:"searchMem.ad",
-				type:"post",
-				data: 
-					function(list){
-					console.log(list);
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script>	
+	$(function(){
+		$.ajax({
+			url : "<%=request.getContextPath()%>/searchMem.ad",
+			dataType : "json",
+			type : "get",
+			
+			success:function(data){
+				console.log("suc");
+			},
+			
+			error:function(){
+				console.log("error");
 				
-					}
-				},
-				columns:[
-					{data:"memNum"},
-					{data:"memId"},
-					{data:"memName"},
-					{data:"memGender"},
-					{data:"memPhone"},
-					{data:"nationCode"},
-					{data:"memPoint"},
-					{data:"memType"},
-					{data:"memStatus"},
-					{data:"enrollDate"},
-					{data:"noShow"}
-				]
+			}
+			
 		});
+		
 	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 </script>
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
 </head>
@@ -98,19 +103,19 @@ ul.sidebar-menu li ul.sub li.active a {
 							</tr>
 						</thead>
 						<tbody>
-							<!-- <tr>
-								<td>1</td>
-								<td>user1</td>
-								<td>name</td>
-								<td>gender</td>
-								<td>phone</td>
-								<td>nation</td>
-								<td>point</td>
-								<td>type</td>
-								<td>status</td>
-								<td>enrolldate</td>
-								<td>noshow</td>
-							</tr> -->
+							<tr>
+								<td>memNum</td>
+								<td>memId</td>
+								<td>memName</td>
+								<td>memGender</td>
+								<td>memPhone</td>
+								<td>nationCode</td>
+								<td>memPoint</td>
+								<td>memType</td>
+								<td>memStatus</td>
+								<td>enrollDate</td>
+								<td>noShow</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
