@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList, management.model.vo.*"%>
+    <% 
+    ArrayList<Management> list = (ArrayList<Management>)request.getAttribute("list");
+    
+    System.out.println(list);
+	/* PageInfo pi = (PageInfo)request.getAttribute("pi"); */
+	
+/* 	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage(); */
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<%@ include file="../../../views/adminowner/common/ownerSidebar.jsp" %>
-
+	<%@ include file="../../../views/adminowner/common/ownerSidebar.jsp"%>
  	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
 	<link href='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<link href="<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
@@ -20,86 +32,11 @@
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.js'></script>
 	
 	
-	<link href='../fullcalendar.min.css' rel='stylesheet' />
+<!-- 	<link href='../fullcalendar.min.css' rel='stylesheet' />
 	<link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
 	<script src='../lib/moment.min.js'></script>
 	<script src='../lib/jquery.min.js'></script>
-	<script src='../fullcalendar.min.js'></script>
-	<script>
-
-	$(document).ready(function() {
-		
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,basicWeek,basicDay'
-			},
-/* 			defaultDate: '2019-08-20', */
-			navLinks: true, // can click day/week names to navigate views
-			editable: false,
-			eventLimit: true, // allow "more" link when too many events
-			events: [
-				{
-					title: 'All Day Event',
-					start: '2019-08-01'
-				},
-				{
-					title: '신진혁, 010-7316-0813',
-					start: '2019-08-24',
-					end: '2019-08-25'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2017-04-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2017-04-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2017-04-11',
-					end: '2017-04-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2017-04-12T10:30:00',
-					end: '2017-04-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2017-04-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2017-04-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2017-04-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2017-04-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2017-04-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2017-04-28'
-				}
-			]
-		});
-		
-	});
-
-</script>
+	<script src='../fullcalendar.min.js'></script> -->
 <style>
 
 	body {
@@ -152,7 +89,6 @@ ul.sidebar-menu li ul.sub li.active a {
          </div>
         </section>
     </section>
-    
     <section id="main-content">
       <section class="wrapper">
        <h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
@@ -161,38 +97,39 @@ ul.sidebar-menu li ul.sub li.active a {
               <div class="panel-body">
               	<table class="table">
               		<tr>
-              			<td>1</td>
-              			<td>2</td>
-              		</tr>
-              		<tr>
-              			<td>1</td>
-              			<td>2</td>
-              		</tr>
-              		<tr>
-              			<td>1</td>
-              			<td>2</td>
-              		</tr>
-              		<tr>
-              			<td>1</td>
-              			<td>2</td>
-              		</tr>
-              		<tr>
-              			<td>1</td>
-              			<td>2</td>
-              		</tr>
-              		<tr>
-              			<td>1</td>
-              			<td>2</td>
-              		</tr>
-              		<tr>
-              			<td>1</td>
-              			<td>2</td>
-              		</tr>
-              		<tr>
-              			<td>1</td>
-              			<td>2</td>
+              			<th>Rownum</th>
+              			<th>ROOM_NAME</th>
+              			<th>RESERV_PAX</th>
+              			<th>CHECKINDATE</th>
+              			<th>CHECKOUTDATE</th>
+              			<th>예약날짜</th>
+              			<th>이름</th>
+              			<th>전화번호</th>
+              			<th>예약 가격</th>
+
               		</tr>
               		
+              		
+					<% if(list.isEmpty()){ %>
+					<tr>
+						<td colspan="9" align="center">조회된 리스트가 없습니다.</td>
+					</tr>
+					<%}else{ 
+						int i=1;%>
+						<%for(Management manage : list) {%>
+						 <tr>
+							<td><%= i++ %></td>
+							<td><%= manage.getRoomName() %></td>
+							<td><%= manage.getReservPax() %></td>
+							<td><%= manage.getCheckInDate()%></td>
+							<td><%= manage.getCheckOutDate()%></td>
+							<td><%= manage.getReservDate()%></td>
+							<td><%= manage.getMemName()%></td>
+							<td><%= manage.getMemPhone()%></td>
+							<td><%= manage.getReservPrice()%></td> 
+						</tr>
+						<%} %>
+					<%} %>
               	</table>
               </div>
             </section>
@@ -200,5 +137,41 @@ ul.sidebar-menu li ul.sub li.active a {
       </section>
       </section>
         <%@ include file="../../../views/adminowner/common/footer.jsp" %>
+        	<script>
+        	
+        	function Event(title, start, end){
+        		this.title = title;
+        		this.start = start;
+        		this.end = end;
+        	}
+
+	$(document).ready(function() {
+		
+		var arr = [];
+		
+		<%for(Management manage : list){%>
+		arr.push(new Event(
+				
+							" <%=manage.getMemName()%>, " + "<%=manage.getMemPhone()%>",
+							"<%= manage.getCheckInDate()%>T15:00:00", 
+							"<%= manage.getCheckOutDate() %>T13:00:00"));
+		<%} %>
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+/* 			defaultDate: '2019-08-20', */
+			navLinks: true, // can click day/week names to navigate views
+			editable: false,
+			eventLimit: true, // allow "more" link when too many events
+			events: arr
+		});
+		
+	});
+
+</script>
 </body>
 </html>
