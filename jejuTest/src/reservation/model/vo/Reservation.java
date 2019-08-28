@@ -5,7 +5,7 @@ import java.util.Date;
 public class Reservation {
 
 	private int reservNum;			// 예약 번호
-	private int memNum;				// 회원 번호
+	private int memNum;				// 예약한 회원 번호
 	private int roomNum;			// 방 번호
 	private int reservPax;			// 예약 인원
 	private Date checkInDate;		// 체크인 

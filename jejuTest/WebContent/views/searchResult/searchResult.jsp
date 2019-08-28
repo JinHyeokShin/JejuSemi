@@ -83,7 +83,10 @@
             height: 100%;
         }
         .d7{
-        	height:70%
+        	height:70%;
+        	text-align: right;
+        	padding:15px;
+        	line-height: initial;
         }
         .d8{
         	height: 30%;
@@ -112,6 +115,11 @@
         #resultAcmDiv{
         	background:#f2f4fb;
         }
+        .pricePerNight{
+        	font-size: 30px;
+        	font-weight: bold;
+        	color:#4492b8;
+        }
          
 </style>
 </head>
@@ -121,8 +129,9 @@
     <%@ include file="../main/header.jsp" %>
     
     
-    
-    <section class="section resultSection" id="searchResult">
+    <div style="height:250vh">
+    <div style="height:85%">
+    <section class="section resultSection" id="searchResult"">
         <div class="container">
           <aside>
             <hr>
@@ -192,7 +201,7 @@
             <!-- </div> -->
 
 				<ul class="resultWrap">
-					<label><%=checkIn %> ~ <%=checkOut %>&nbsp;&nbsp;&nbsp;성인 : <%=adult %>&nbsp;&nbsp;어린이/청소년 : <%=child %>&nbsp;&nbsp;검색 결과</label>
+					<label style="font-size:18px"><%=checkIn %> ~ <%=checkOut %>&nbsp;&nbsp;&nbsp;성인 : <%=adult %>&nbsp;&nbsp;어린이/청소년 : <%=child %>&nbsp;&nbsp;검색 결과</label>
 					<%if(acmList == null) {%>
 						<div align="center"><b style="font-size: 3em">예약 가능한 숙박업소가 없습니다.</b></div>
 					<%} else {%>
@@ -221,7 +230,7 @@
 									</div>
 		
 									<div class="test d2 dd aa">
-										<div class="test d7 aa">1박 : <%=acm.getMinPrice()%>원</div>
+										<div class="test d7 aa">1박 가격 <br><span class="pricePerNight">&#8361;<%=acm.getMinPrice()%>원</span></div>
 										<div class="test d8 aa">
 											<input type="hidden" value="<%=acm.getAcmNum()%>">
 											<button class="detailBtn btn btn-primary btn-block text-white"
@@ -233,6 +242,7 @@
 							<br>
 						<%}	%>
 					<%} %>
+					
 				</ul>
 				
 				<script>
@@ -246,11 +256,18 @@
 
 			</div>          
         </div>
-      </section>
-      
+    
+    </section>
+    </div>
+    <div style="height:15%">
+    <%-- 풋터 --%>
+    <%@ include file="../main/footer.jsp" %>
+    </div>
+    </div>
+      <br clear="both">
      
 
-	<section class="section bg-image overlay" style="background-image: url('<%= request.getContextPath() %>/resources/images/hero_4.jpg');" id="section-apply">
+	<%-- <section class="section bg-image overlay" style="background-image: url('<%= request.getContextPath() %>/resources/images/hero_4.jpg');" id="section-apply">
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
@@ -262,11 +279,10 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> --%>
+	
 
-
-	<%-- 풋터 --%>
-    <%@ include file="../main/footer.jsp" %>
+	
 
 <script src="<%= request.getContextPath() %>/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>

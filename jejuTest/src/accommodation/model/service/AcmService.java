@@ -1,5 +1,6 @@
 package accommodation.model.service;
 
+import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -8,11 +9,17 @@ import java.util.ArrayList;
 import accommodation.model.dao.AcmDao;
 import accommodation.model.vo.Acm;
 import accommodation.model.vo.AcmImg;
+import accommodation.model.vo.Room;
+import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
-import static common.JDBCTemplate.*;
 
 public class AcmService {
 	
+	/**
+	 * 사용자가 검색한 조건으로 조건에 맞는 숙소를 호출 하는 서비스
+	 * @param search
+	 * @return
+	 */
 	public ArrayList<Acm> searchAcm(Search search) {		
 		Connection conn = getConnection();
 		
@@ -25,7 +32,7 @@ public class AcmService {
 	
 	
 	/**
-	 * 모든 숙소 이미지를 불러 
+	 * 모든 숙소의 대표 이미지들 호출하는 서비스 
 	 * @return
 	 */
 	public ArrayList<AcmImg> acmThumbnailListView(){
@@ -57,6 +64,69 @@ public class AcmService {
 	}
 	
 	
+	/**
+	 * 숙소 상세 페이지에서 보여줄 해당 숙소의 모든 이미지 호출
+	 * @param acmNum
+	 * @return
+	 */
+	public ArrayList<AcmImg> acmImgListView(int acmNum){
+		Connection conn = getConnection();
+		
+		ArrayList<AcmImg> list = new AcmDao().acmImgListView(conn, acmNum);
+		
+		close(conn);
+		
+		return list;
+	}
 	
+	
+	/**
+	 * 숙소 상세 페이지에서 예약 가능한 룸들만 호출하는 서비스
+	 * @param acmNum
+	 * @param checkIn
+	 * @param checkOut
+	 * @return
+	 */
+	public ArrayList<Room> selectRoomList(int acmNum,String checkIn,String checkOut){
+		Connection conn = getConnection();
+		
+		ArrayList<Room> list = new AcmDao().selectRoomList(conn,acmNum,checkIn,checkOut);
+		
+		close(conn);
+		
+		return list;	
+	}
+	
+	
+	/**
+	 * 숙소 상세 페이지에서 예약 가능한 룸의 이미지들을 불러오는 서비스
+	 * @param roomNum
+	 * @return
+	 */
+	public ArrayList<RoomImg> roomImgListView(int roomNum){
+		Connection conn = getConnection();
+		
+		ArrayList<RoomImg> list = new AcmDao().roomImgListView(conn, roomNum);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	
+	/**
+	 * 예약할 룸 선택하고 예약화면으로 넘어갈때 해당 룸 정보 호출하는 서비스 
+	 * @param roomNum
+	 * @return
+	 */
+	public Room selectRoom(int roomNum) {
+		Connection conn = getConnection();
+		
+		Room room = new AcmDao().selectRoom(conn, roomNum);
+		
+		close(conn);
+		
+		return room;		
+	}
 
 }

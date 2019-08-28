@@ -14,6 +14,8 @@ import java.util.Properties;
 
 import accommodation.model.vo.Acm;
 import accommodation.model.vo.AcmImg;
+import accommodation.model.vo.Room;
+import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
 
 public class AcmDao {
@@ -151,8 +153,126 @@ public class AcmDao {
 	
 	
 	
+	public ArrayList<AcmImg> acmImgListView(Connection conn, int acmNum){
+		ArrayList<AcmImg> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("acmImgListView");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new AcmImg(rset.getInt("img_num"),
+						            rset.getString("img_path"),
+						            rset.getInt("acm_num"),
+						            rset.getInt("status")));				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	
+	
+	public ArrayList<Room> selectRoomList(Connection conn,int acmNum,String checkIn,String checkOut){
+		ArrayList<Room> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectRoomList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkIn);
+			pstmt.setString(2, checkOut);
+			pstmt.setInt(3, acmNum);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Room(rset.getInt("room_num"),
+								  rset.getInt("acm_num"),
+								  rset.getString("room_name"),
+								  rset.getInt("room_price"),
+								  rset.getInt("room_pax"),
+								  rset.getString("room_descript_a"),
+								  rset.getString("room_descript_b"),
+								  rset.getString("room_smoke")));
+			}			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	
+	public ArrayList<RoomImg> roomImgListView(Connection conn, int roomNum){
+		ArrayList<RoomImg> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("roomImgListView");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, roomNum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				RoomImg roomImg = new RoomImg();
+				roomImg.setImgPath(rset.getString("img_path"));
+				
+				list.add(roomImg);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	
+	public Room selectRoom(Connection conn, int roomNum) {
+		Room room = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectRoom");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, roomNum);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				room = new Room(rset.getInt("room_num"),
+						        rset.getInt("acm_num"),
+						        rset.getString("room_name"),
+						        rset.getInt("room_price"),
+						        rset.getInt("room_pax"),
+						        rset.getString("room_descript_a"),
+						        rset.getString("room_descript_b"),
+						        rset.getString("room_smoke"));
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return room;
+	}
 	
 	
 	

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="accommodation.model.vo.*, java.text.SimpleDateFormat, java.util.*, java.text.ParseException"%>
+    pageEncoding="UTF-8" import="accommodation.model.vo.*, java.text.SimpleDateFormat, java.util.*, accommodation.model.service.*"%>
     
 <%
 	Acm acm = (Acm)request.getAttribute("acm");
@@ -10,24 +10,18 @@
 	
 	System.out.println(checkIn);		// 콘솔 확인용 출력
 	System.out.println(checkOut);
+	
+	ArrayList<AcmImg> acmImgList = (ArrayList<AcmImg>)request.getAttribute("acmImgList");
+	
+	String[] desArr1 = acm.getAcmDescriptA().split("\\+");
+	String[] desArr2 = acm.getAcmDescriptB().split("\\+");
+	
+	ArrayList<Room> roomList = (ArrayList<Room>)request.getAttribute("roomList");
+	
+	/* for(Room room: roomList){
+		System.out.println(room);		
+	} */
 		
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
-	
-	Date checkInDate = null;
-	Date checkOutDate = null;
-	
-	try{
-		checkInDate = sdf.parse(checkIn);
-		checkOutDate = sdf.parse(checkOut);
-	}catch(ParseException e){
-        e.printStackTrace();
-    }
-	
-	System.out.println(checkInDate);		// 콘솔 확인용 출력
-	System.out.println(checkOutDate);
-	
-
-	
  %>
     
     
@@ -64,28 +58,43 @@
 <script	src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=1e17b2f2-a4b7-4aae-ad14-3908433f0815"></script>
 
 
-
-<script type='text/javascript'>
-    $(function(){
-        $('.input-group.date').datepicker({
-            calendarWeeks: false,
-            todayHighlight: true,
-            autoclose: true,
-            format: "yyyy/mm/dd",
-            language: "kr"
-        });
-    });
-    
-    
-    /* $('.datepicker').datepicker({
-        language: 'kr'
-    }); */
-    </script>
-
-
-
 <!-- 발급받은 인증키를 위에 넣는다 -->
 <script type="text/javascript">
+
+	function nights() {
+		var strDate1 = "<%=checkIn%>";
+ 		var strDate2 = "<%=checkOut%>";
+ 		var arr1 = strDate1.split('-');
+ 		var arr2 = strDate2.split('-');
+ 		var dat1 = new Date(arr1[0], arr1[1], arr1[2]);
+ 		var dat2 = new Date(arr2[0], arr2[1], arr2[2]);
+
+ 	
+ 	    // 날짜 차이 알아 내기
+ 	    var diff = dat2 - dat1;
+ 	    var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+ 	    var currMonth = currDay * 30;// 월 만듬
+ 	    var currYear = currMonth * 12; // 년 만듬 
+ 	    
+ 		$("#numNight").text(parseInt(diff/currDay)+'박');
+ 	    
+ 		var week = ['일', '월', '화', '수', '목', '금', '토'];
+		var checkInDay = week[new Date(strDate1).getDay()];
+		var checkOutDay = week[new Date(strDate2).getDay()];
+		
+		$(".checkin_day").text(checkInDay+'요일');
+		$(".checkout_day").text(checkOutDay+'요일');
+		
+		$("#rnrq-room-0-adults").val(<%=adult%>).prop("selected", true);
+		$("#rnrq-room-0-children").val(<%=child%>).prop("selected", true);
+	}
+
+	
+	
+	
+	
+	
+
 	var jejuAirportX = 33.506179;
 	var jejuAirportY = 126.493615;
 	var jejuPortX = 33.525254;
@@ -94,29 +103,34 @@
 	startX = jejuAirportY;
 	startY = jejuAirportX;
 	
+	var endX = <%=acm.getAcmCoordY()%>;
+	var endY = <%=acm.getAcmCoordX()%>;
+	
 	var m = null;
-	
-	
-	
+		
 	function initTmap() {
+		
+		
 		
 		// 경로 탐색 출발지점과 도착 지점의 좌표
 		// 구글 지도에서 나오는 좌표의 x, y를 바꾸면 된다.
 		console.log(m);
 		
-		if(m != ""){
+		if(m != "a"){
 			console.log("ggg");
-				map = new Tmap.Map({
-				div : 'map_div', // 결과 지도를 표시할 곳
-				width : "700px", // 가로와 세로 사이즈는 픽셀로 적을 수도 있고
-				height : "400px", // 퍼센트로 적을 수도 있다. 홈페이지 예제는 픽셀로 되어 있음.
+			map = new Tmap.Map({
+			div : 'map_div', // 결과 지도를 표시할 곳
+			width : "700px", // 가로와 세로 사이즈는 픽셀로 적을 수도 있고
+			height : "400px" // 퍼센트로 적을 수도 있다. 홈페이지 예제는 픽셀로 되어 있음.
 			});
+		} else{
+			routeLayer.removeAllFeatures();
 		}
 		
-		m="";
+		m="a";
 		
-		var endX = <%=acm.getAcmCoordY()%>;
-		var endY = <%=acm.getAcmCoordX()%>;
+		<%-- var endX = <%=acm.getAcmCoordY()%>;
+		var endY = <%=acm.getAcmCoordX()%>; --%>
 		var passList = null;
 		var prtcl;
 		var headers = {};
@@ -140,10 +154,12 @@
 						searchOption : "0",
 						trafficInfo : "Y" //교통정보 표출 옵션입니다.
 					},
-
+					
+					
+					
 					success : function(response) { //API가 제대로 작동할 경우 실행될 코드
 						prtcl = response;
-
+					
 						// 결과 출력 부분 - 여기는 잘 모르겠음.
 						var innerHtml = "";
 						var prtclString = new XMLSerializer()
@@ -161,6 +177,8 @@
 								+ $intRate[0].getElementsByTagName("tmap:taxiFare")[0].childNodes[0].nodeValue + "원";
 
 						$("#result").text(tDistance + tTime + tFare + taxiFare);
+						
+						
 
 						// 실시간 교통정보 추가
 						var trafficColors = {
@@ -189,8 +207,6 @@
 				});
 		}
 </script>
-
-
 
 <!-- T-MAP API header 끝 -->
 
@@ -234,7 +250,10 @@
         	height: 100%;
         }
         .d7{
-        	height:70%
+        	height:70%;
+        	text-align: right;
+        	padding:15px;
+        	line-height: initial;
         }
         .d8{
         	height: 30%;
@@ -270,7 +289,8 @@
         	margin-top: 20px;
         }        
         .body_2_Div{
-        	height: 350px;
+        	height: 300px;
+        	align:left;
         }
         .slideImgDiv{
         	width:67%;
@@ -322,6 +342,7 @@
         .night{
         	width:7%;
         	height:100%;
+        	padding-top:28px;
         }
         .div3_1{
         	width:25%;
@@ -343,6 +364,10 @@
         }
         .imgSize{
         	height:500px;
+        }
+        .imgSize2{
+        	width: 300px;
+            height: 170px;
         }
         .map, .route{
         	width: 100%;
@@ -403,12 +428,37 @@
         #map2{
         	width:100%;
         	height:100%;
-        }        
+        }
+        .des1{
+        	width:35%;
+        	height:100%;
+        }
+        .des2{
+        	width:35%;
+        	height:100%;
+        }
+        .des3{
+        	width:30%;
+        	height:100%;
+        }
+        .des1, .des2{
+        	padding-top:12px;
+        	line-height: initial;
+        }
+        .des3{
+        	line-height: initial;
+        }
+        .pricePerNight{
+        	font-size: 30px;
+        	font-weight: bold;
+        	color:#4492b8;
+        }
+        
         
 </style>
 
 </head>
-<body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
+<body data-spy="scroll" data-target="#templateux-navbar" data-offset="200" onload="nights()">
 
 
 	<%-- 헤더,메뉴바 --%>
@@ -432,7 +482,7 @@
     
     
     
-    <section class="detailSection" style="text-align:center">
+    <section class="detailSection" style="text-align:center; height: 280vh;">
     	<div class="detailWrap test aa container">
             <div class="headDiv test aa" align="left">			<!-- header div -->
             <label style="font-weight:bold; font-size:3em; color:#fd7e14;"><%=acm.getAcmName()%></label><br>
@@ -442,28 +492,35 @@
                 <div class="body_1_Div test aa">	<!-- 사진들어갈 div -->
 					<div class="slideImgDiv test aa dd">
 
-						<div id="carouselExampleIndicators" class="carousel slide"
-							data-ride="carousel">
+						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
-								<li data-target="#carouselExampleIndicators" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-								<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+								
+								<%for(int i = 0; i < acmImgList.size(); i++){ %>
+									<%if(i == 0){ %>
+										<li data-target="#carouselExampleIndicators" data-slide-to="0"class="active"></li>
+									<%} else {%>
+										<li data-target="#carouselExampleIndicators" data-slide-to="<%=i%>"></li>
+									<%} %>
+								<%} %>
+								
+								
 							</ol>
 							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img class="d-block w-100 imgSize"
-										src="<%= request.getContextPath() %>/resources/images/img_4.jpg">
-								</div>
-								<div class="carousel-item">
-									<img class="d-block w-100 imgSize"
-										src="<%= request.getContextPath() %>/resources/images/img_5.jpg">
-								</div>
-								<div class="carousel-item">
-									<img class="d-block w-100 imgSize"
-										src="<%= request.getContextPath() %>/resources/images/img_3.jpg">
-								</div>
+								
+								<%for(int i = 0; i < acmImgList.size(); i++){ %>
+									<%if(i == 0){ %>
+										<div class="carousel-item active">
+											<img class="d-block w-100 imgSize" src="<%=acmImgList.get(i).getImgPath() %>">
+										</div>									
+									<%} else {%>
+										<div class="carousel-item">
+											<img class="d-block w-100 imgSize" src="<%=acmImgList.get(i).getImgPath() %>">
+										</div>
+									<%} %>									
+								<%} %>							
 							</div>
+							
+							
 							<a class="carousel-control-prev"
 								href="#carouselExampleIndicators" role="button"
 								data-slide="prev"> <span class="carousel-control-prev-icon"
@@ -500,11 +557,9 @@
 							    position: markerPosition
 							});
 							
-							marker.setMap(map);	/* 마커 표시 */
-														
+							marker.setMap(map);	/* 마커 표시 */													
 							
 						</script>
-
 
 						<div class="test aa dd route">
 							<div class="test dd route1">	<!-- 라디오버튼 div -->
@@ -516,18 +571,7 @@
 								</div>
 							</div>
 							
-							<script>
-								/* $(function(){
-									$("input[type=radio]").on("change", function(){
-										
-										console.log($("input[type=radio]:checked").val());
-										if($("input:checked").val() == "car"){
-											$(".route2").css('display','block');
-										}else{
-											$(".route2").css('display','none');
-										}
-									});
-								}); */
+							<script>								
 								
 								function showOn() {
 									$(".route2_1").css('display','block');									
@@ -545,10 +589,9 @@
 									<div class="test aa dd routeStart">	<!-- 출발장소 -->
 										<!-- <b>출발지 : </b><select></select> -->
 										<div class="test aa dd route0">
-											<b>출발지 :</b>
+											<b>출발지  :&nbsp;</b>
 										</div>
 										<div class="test aa dd route0_1">
-											&nbsp;
 											<select id="selectSpot">
 												<option value="jeju1">제주 공항</option>
 												<option value="jeju2">제주항</option>
@@ -556,31 +599,42 @@
 										</div>
 									</div>
 									<div class="test aa dd routeEnd">	<!-- 도착장소 = 해당 숙소 -->
-										<!-- <b>도착지 :</b><label>해당숙소</label> -->
 										<div class="test aa dd route0">
-											<b>도착지 :</b>
+											<b>도착지  :&nbsp;</b>
 										</div>
 										<div class="test aa dd route0_2">
-											&nbsp;<label><%=acm.getAcmName()%></label>
+										<label><%=acm.getAcmName()%></label>
 										</div>
 									</div>
 								</div>
 								<div class="test aa dd reverseBtnDiv">
-									<img src="<%=contextPath%>/resources/images/swap.png" onclick="reverse();" style="cursor:pointer;">
+									<img src="<%=contextPath%>/resources/images/swap.png" id="reverseBtn" style="cursor:pointer;">
 								</div>
 								<script>
-									function reverse() {
+									$("#reverseBtn").click(function(){
+										
 										var route0_1 = $(".route0_1");
 										var route0_2 = $(".route0_2");
 										var temp = route0_1.html();
 																					
 										route0_1.html(route0_2.html());
 										route0_2.html(temp);
-									}
-									
-									$("#selectSpot").on('change',function(){
 										
-										$.each($(this).children(), function(index, value){
+										var tempX = startX;
+										var tempY = startY;
+										
+										startX = endX;
+										startY = endY;
+										
+										endX = tempX;
+										endY = tempY;
+										
+									});
+									
+									
+									$("#selectSpot").change(function(){
+										
+										/* $.each($(this).children(), function(index, value){
 											if(value.selected){
 												if(value.value == "jeju1"){
 													startX = jejuAirportY;
@@ -590,7 +644,37 @@
 													startY = jejuPortX;
 												}
 											}
-										})
+										}) */
+										/* if($("#selectSpot option:selected").val() == "jeju1"){
+											startX = jejuAirportY;
+											startY = jejuAirportX;
+										} else {
+											startX = jejuPortY;
+											startY = jejuPortX;
+										} */
+
+										
+										if($("#selectSpot").parent().html()==($(".route0_1").html())){
+											console.log("1");
+											if($("#selectSpot option:selected").val() == "jeju1"){
+												startX = jejuAirportY;
+												startY = jejuAirportX;
+											} else {
+												startX = jejuPortY;
+												startY = jejuPortX;
+											}
+										}else if($("#selectSpot").parent().html()==($(".route0_2").html())){
+											console.log("2");
+											if($("#selectSpot option:selected").val() == "jeju1"){
+												endX = jejuAirportY;
+												endY = jejuAirportX;
+											} else {
+												endX = jejuPortY;
+												endY = jejuPortX;
+											}
+										}
+										
+										/* console.log($("#selectSpot").parent().text()); */
 										
 									});
 									
@@ -604,22 +688,47 @@
 						</div>					
 					</div>	
                 </div>
-                <div class="body_2_Div test aa">숙소 설명</div>		<!-- 설명들어갈 div -->
-                <div class="body_3_Div test aa">
-                	<div class="reSearchWrap test aa">
-                		<form class="reSearchForm aa">
+                <div class="body_2_Div test aa">
+                	<div class="des1 test aa dd" align="left" style="text-indent:120px;">
+                		<b style="font-weight:bold">주요 편의 시설</b>
+                		<ul align="left" style="text-indent:120px;">
+                			<%for(String a : desArr1) {%>
+                				<li style="font-size:13px"><span style="color:yellowgreen">✔ </span><%=a %></li>
+                			<%} %>
+                		</ul>
+                	</div>               		
+                		
+                	<div class="des2 test aa dd" align="left" style="text-indent:120px;">
+                		<b style="font-weight:bold">추가 편의 시설/서비스</b>
+                		<ul align="left" style="text-indent:120px;">
+                			<%for(String a : desArr2) {%>
+                				<li style="font-size:13px"><span style="color:yellowgreen">✔ </span> <%=a %></li>
+                			<%} %>
+                		</ul>
+                	</div>
+                		
+                	<div class="des3 test aa dd"></div>
+                	
+                </div>		<!-- 설명들어갈 div -->
+                
+                
+                <!-- 다시 검색하는 위젯 -->
+                
+                <div class="body_3_Div test aa">                	
+                	<form class="reSearchForm aa" action="<%= request.getContextPath() %>/detail.ac?acmNum=<%=acm.getAcmNum() %>" method="post" id="searchForm">
+                		<div class="reSearchWrap test aa">
                 			<div class="reSearchBar test aa">
                 			
 	                			<div class="test aa dd research1" style="text-align:left; padding:20px;">
 	                			<b>목적지 또는 숙박시설</b><br>
-	                			<input type="text" class="reText form-control" style="height:30px;" value="<%=acm.getAcmName()%>">
+	                			<input type="text" class="reText form-control" style="height:30px;" value="<%=acm.getAcmName()%>" readonly>
 	                			</div>
 	                			
 	                			<div class="test aa dd research2" style="padding:10px; padding-top:18px;">
 	                				<div class="test aa dd recheck" style="text-align:left;">
 	                				
 										<b>체크인</b><br>
-										<input type="text" class="form-control dal" id="checkin_date" style="height:30px;" value="<%=checkIn%>">									
+										<input type="text" class="form-control dal reDate" id="checkin_date" style="height:30px;" name="checkIn" value="<%=checkIn%>">									
 										<label class="checkin_day" style="font-size:13px;">월요일</label>
 										
 									</div>
@@ -627,12 +736,12 @@
 	                				<div class="test aa dd recheck" style="text-align:left;">
 	                				
 										<b>체크아웃</b><br>
-										<input type="text" class="form-control dal" id="checkout_date" style="height:30px;" value="<%=checkOut%>">										
+										<input type="text" class="form-control dal reDate" id="checkout_date" style="height:30px;" name="checkOut" value="<%=checkOut%>">										
 										<label class="checkout_day" style="font-size:13px;">금요일</label>               				
 	                				
 	                				</div>
 	                				<div class="test aa dd night">
-	                					<span class="widget-query-nights" id="rnrq-nights"><span>4<span class="widget-query-num-nights"></span> </span> <span class="widget-query-nights-label">박</span></span>
+	                					<span class="widget-query-nights" id="numNight"></span>
 	                				</div>
 	                			</div>
 	                			<div class="test aa dd research3" style="text-align: justify; ">
@@ -643,49 +752,140 @@
 
 	                				</div>
 	                				<div class="test aa dd div3_2"></div>
-	                				<div class="widget-query-adults aa dd div3_3" style="padding-top:7%;"><b>성인</b><br><select name="q-room-0-adults" id="rnrq-room-0-adults"><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select><br><span style="font-size:13px;">만 18세 이상</span></div>
+	                				<div class="widget-query-adults aa dd div3_3" style="padding-top:7%;"><b>성인</b><br><select name="adult" id="rnrq-room-0-adults"><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select><br><span style="font-size:13px;">만 18세 이상</span></div>
 	                				<div class="test aa dd div3_2"></div>
-	                				<div class="widget-query-children aa dd div3_4" style="padding-top:7%;"><b>어린이/청소년</b><br><select name="q-room-0-children" id="rnrq-room-0-children"><option value="0" selected="selected">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><br><span style="font-size:13px;">만 17세 이하</span></div>
+	                				<div class="widget-query-children aa dd div3_4" style="padding-top:7%;"><b>어린이/청소년</b><br><select name="child" id="rnrq-room-0-children"><option value="0" selected="selected">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><br><span style="font-size:13px;">만 17세 이하</span></div>
 	                					
 	                			</div>
 	                			<div class="test aa dd research4" style="padding-top: 3%;">
-	                				<button class="detailBtn btn btn-primary btn-block text-white" style="width:70%; height:50%; line-height: 1px;">검색</button>
+	                				<button class="reSearchBtn btn btn-primary btn-block text-white" style="width:70%; height:50%; line-height: 1px;">검색</button>
 	                			</div>
 	                			</div>
                 			</div>                		
                 		</form>
-                	</div>	<!-- 다시 검색창 div -->
+                	</div>	
+                	
+                	<script>
+                		$(".reSearchBtn").click(function(){
+                			$("#searchForm").submit();
+                		});
+                	
+                	</script>
+                	
+                	<!-- 다시 검색창 div -->
+                
+                	
+                	
                 </div>
                 <div class="body_4_Div test aa">
                 	<div class="roomDiv test aa">	<!-- 룸 정보 div -->
                 		
                 		<!--  -->
-                		
-                		<div class="test resultWrap aa">
-							<div class="test d1 dd aa">							
-								<div class="test d3 aa title">
-									<a href="#" style="font-weight:bold; font-size:1.5em; align:left;">스탠다드 더블룸</a><br>
-								</div>
-								<div class="test d4 aa">
-									<div class="test dd d5 aa">
-										<div class="test imgDiv aa">썸네일</div>
-									</div>
-									<div class="test dd d6">설명1</div>
-									<div class="test dd d9">설명2</div>
-								</div>
-							</div>
+                		<%for(Room r : roomList){ %>
+                			
+                			<%ArrayList<RoomImg> roomImgList = new AcmService().roomImgListView(r.getRoomNum());%>
 
-							<div class="test d2 dd aa">
-								<div class="test d7 aa">가격</div>
-								<div class="test d8 aa">
-									<button class="detailBtn btn btn-primary btn-block text-white" style="width:70%;">예약하기</button>
-								</div>							
+							<div class="test resultWrap aa">
+								<div class="test d1 dd aa">
+									<div class="test d3 aa title">
+										<a href="#"
+											style="font-weight: bold; font-size: 1.5em; align: left;"><%=r.getRoomName() %></a><br>
+									</div>
+									
+									
+									
+									<div class="test d4 aa">
+										<div class="test dd d5 aa">
+											<div class="test imgDiv aa">
+											
+												<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+													<ol class="carousel-indicators">
+														
+														<%for(int i = 0; i < roomImgList.size(); i++){ %>
+															<%if(i == 0){ %>
+																<li data-target="#carouselExampleIndicators" data-slide-to="0"class="active"></li>
+															<%} else {%>
+																<li data-target="#carouselExampleIndicators" data-slide-to="<%=i%>"></li>
+															<%} %>
+														<%} %>
+														
+														
+													</ol>
+													<div class="carousel-inner">
+														
+														<%for(int i = 0; i < roomImgList.size(); i++){ %>
+															<%if(i == 0){ %>
+																<div class="carousel-item active">
+																	<img class="d-block w-100 imgSize2" src="<%=roomImgList.get(i).getImgPath() %>">
+																</div>									
+															<%} else {%>
+																<div class="carousel-item">
+																	<img class="d-block w-100 imgSize2" src="<%=roomImgList.get(i).getImgPath() %>">
+																</div>
+															<%} %>									
+														<%} %>
+													
+														
+													</div>
+													<a class="carousel-control-prev"
+														href="#carouselExampleIndicators" role="button"
+														data-slide="prev"> <span class="carousel-control-prev-icon"
+														aria-hidden="true"></span> <span class="sr-only">Previous</span>
+													</a> <a class="carousel-control-next"
+														href="#carouselExampleIndicators" role="button"
+														data-slide="next"> <span class="carousel-control-next-icon"
+														aria-hidden="true"></span> <span class="sr-only">Next</span>
+													</a>
+												</div>
+											
+											
+											</div>
+										</div>
+										<div class="test dd d6 des3" align="left" style="text-indent:10px;">
+											<b style="font-weight:bold">기본사항</b>
+						                		<ul align="left" style="text-indent:10px;">
+						                			<%String[] arr1 = r.getRoomDescriptA().split("\\+"); %>
+						                			<%for(String a : arr1) {%>
+						                				<li style="font-size:13px"><span style="color:yellowgreen">✔ </span><%=a %></li>
+						                			<%} %>
+						                		</ul>
+										</div>
+										<div class="test dd d9 des3" align="left" style="text-indent:10px;">
+											<b style="font-weight:bold">세부정보</b>
+						                		<ul align="left" style="text-indent:10px;">
+						                			<%String[] arr2 = r.getRoomDescriptB().split("\\+"); %>
+						                			<%for(String a : arr2) {%>
+						                				<li style="font-size:13px"><span style="color:yellowgreen">✔ </span><%=a %></li>
+						                			<%} %>
+						                		</ul>
+										</div>
+									</div>
+								</div>
+		
+								<div class="test d2 dd aa">
+									<div class="test d7 aa">1박 가격 <br><span class="pricePerNight">&#8361;<%=r.getRoomPrice() %>원</span></div>
+									<div class="test d8 aa">
+										<input type="hidden" name="roomNum" value="<%=r.getRoomNum()%>">
+										<button class="reservBtn detailBtn btn btn-primary btn-block text-white"
+											style="width: 70%;">예약하기</button>
+									</div>
+								</div>
 							</div>
-						</div><br>
+							<br>
+						<%} %>
+
+						<script>
+							$(".reservBtn").click(function(){
+								location.href="<%=contextPath%>/reserv.ac?roomNum="+$(this).prev().val()+"&acmNum=<%=acm.getAcmNum()%>";
+							});
+						
+						
+						</script>
+                		
 						
 						<!--  -->
 						
-						<div class="test resultWrap aa">
+						<!-- <div class="test resultWrap aa">
 							<div class="test d1 dd aa">							
 								<div class="test d3 aa title">
 									<a href="#" style="font-weight:bold; font-size:1.5em; align:left;">스탠다드 더블룸</a><br>
@@ -705,7 +905,7 @@
 									<button class="detailBtn btn btn-primary btn-block text-white" style="width:70%;">예약하기</button>
 								</div>							
 							</div>
-						</div><br>
+						</div><br> -->
 						
 						<!--  -->
                 		
@@ -824,6 +1024,67 @@
 	 	
 	 	/*  */
 	 	
+	 	
+	 	$(".reDate").change(function(){
+	 			 		
+	 		var strDate1 = $("#checkin_date").val();
+	 		var strDate2 = $("#checkout_date").val();
+	 		var arr1 = strDate1.split('-');
+	 		var arr2 = strDate2.split('-');
+	 		
+	 		/* console.log(arr1);
+	 		console.log(arr2); */
+	 		
+	 		var dat1 = new Date(arr1[0], arr1[1]-1, arr1[2]);
+	 		var dat2 = new Date(arr2[0], arr2[1]-1, arr2[2]);
+	 	
+	 		/* console.log(dat2);	 */
+	 		
+	 	    // 날짜 차이 알아 내기
+	 	    var diff = dat2.getTime() - dat1.getTime();
+	 	    var result = Math.floor(diff/1000/60/60/24);
+	 	    
+	 	    
+	 	    if(diff <= 0){
+	 	    	
+	 	    	dat2.setDate(dat1.getDate()+1);
+	 	    	
+	 	    	var year = dat2.getFullYear();
+	 	    	var month = dat2.getMonth()+1;
+	 	    	var day = dat2.getDate();
+	 	    		 	    	
+		 	    var month1 = month;
+		 	    var day1 = day;
+		 	    
+		 	    	if(month1 < 10){
+		 	    		month1 = "0"+month1;
+		 	    	}
+		 	    	if(day1 < 10){
+		 	    		day1 = "0"+day1;
+		 	    	}
+		 	    	
+	 	    	var dat2_2 = (year + "-" + month1 + "-" + day1);
+	 	    	$("#checkout_date").val(dat2_2); // 하루 밀린 날짜 출력(string)
+	 	    	
+	 	    	//var dat2_3 = new Date(dat1.getFullYear(),month1,day1); // 실제 날짜로 만들어서 계산
+	 	    	
+	 	    	diff = dat2.getTime() - dat1.getTime();
+	 	    	result = Math.floor(diff/1000/60/60/24);
+	 	    	$("#numNight").text(result+'박');
+	 	    } else{
+		 		$("#numNight").text(result+'박');
+	 	    }
+	 	    
+	 	    
+	 	    
+	 	    /* 요일 나타내기 */
+			var week = ['일', '월', '화', '수', '목', '금', '토'];
+			var checkInDay = week[new Date(strDate1).getDay()];
+			var checkOutDay = week[new Date(strDate2).getDay()];
+			
+			$(".checkin_day").text(checkInDay+'요일');
+			$(".checkout_day").text(checkOutDay+'요일');
+	 	});
 					
 	</script>
     

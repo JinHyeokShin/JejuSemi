@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="accommodation.model.vo.*, java.util.*"%>
+
+<%
+	Acm acm = (Acm)request.getAttribute("acm");
+	Room room = (Room)request.getAttribute("room");
+	ArrayList<AcmImg> acmImgList = (ArrayList<AcmImg>)request.getAttribute("acmImgList");
+
+%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,9 +120,9 @@
 				</div>
 				<div class="roomInfo section pp">
 				
-				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >객실 정보</label><hr>
+				<label style="font-weight:bold; font-size:2em; color:#fd7e14;">객실 정보</label><hr>
 				
-				<label>객실 정보 ex) 더블베드1, 금연룸</label>
+				<label>객실명 : <%=room.getRoomName() %></label>
 				<br><br>
 				<b>고객 요청 사항</b><br>
 				<b style="font-size:10px;">ex) 간이침대, 늦은 체크인</b><br>
@@ -202,11 +209,40 @@
 			</div>
 			</form>
 			<div class="acmInfo test aa dd">체크인 및 가격 정보
-				<div class="acmPicture test aa">이미지 들어갈 div</div>
+				<div class="acmPicture test aa">
+				
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								
+								<%for(int i = 0; i < acmImgList.size(); i++){ %>
+									<%if(i == 0){ %>
+										<li data-target="#carouselExampleIndicators" data-slide-to="0"class="active"></li>
+									<%} else {%>
+										<li data-target="#carouselExampleIndicators" data-slide-to="<%=i%>"></li>
+									<%} %>
+								<%} %>
+								
+								
+							</ol>
+							<div class="carousel-inner">
+								
+								<%for(int i = 0; i < acmImgList.size(); i++){ %>
+									<%if(i == 0){ %>
+										<div class="carousel-item active">
+											<img class="d-block w-100 imgSize" src="<%=acmImgList.get(i).getImgPath() %>">
+										</div>									
+									<%} else {%>
+										<div class="carousel-item">
+											<img class="d-block w-100 imgSize" src="<%=acmImgList.get(i).getImgPath() %>">
+										</div>
+									<%} %>									
+								<%} %>							
+							</div>			
+				
+				</div>
 				<div class="test aa" style="line-height: initial;">
-					<br>
-					<b style="font-weight:bold">testHotel</b><br>
-					<b style="font-size:10px">호텔 주소</b>
+					<b style="font-weight:bold"><%=acm.getAcmName() %></b><br>
+					<b style="font-size:10px"><%=acm.getAcmAddress() %></b>
 				
 				</div>
 			

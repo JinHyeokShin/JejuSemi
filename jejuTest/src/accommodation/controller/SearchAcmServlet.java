@@ -57,11 +57,10 @@ public class SearchAcmServlet extends HttpServlet {
 		
 		ArrayList<Acm> acmList = new AcmService().searchAcm(search);	// 검색 조건에 해당하는 숙소들 호출
 		
-		ArrayList<AcmImg> acmThumbnailImgList = new AcmService().acmThumbnailListView();	// 숙소 이미지 테이블에서 썸네일 이미지들만 모두 호출
-		request.setAttribute("acmThumbnailImgList", acmThumbnailImgList);
-				
 		if(acmList != null) {
 			request.setAttribute("acmList", acmList);
+			ArrayList<AcmImg> acmThumbnailImgList = new AcmService().acmThumbnailListView();	// 숙소 이미지 테이블에서 썸네일 이미지들만 모두 호출
+			request.setAttribute("acmThumbnailImgList", acmThumbnailImgList);
 			request.getRequestDispatcher("views/searchResult/searchResult.jsp").forward(request, response);
 			
 		} else {

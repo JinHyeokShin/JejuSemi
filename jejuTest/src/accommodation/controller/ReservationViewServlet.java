@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 
 import accommodation.model.service.AcmService;
 import accommodation.model.vo.Acm;
@@ -16,16 +15,16 @@ import accommodation.model.vo.AcmImg;
 import accommodation.model.vo.Room;
 
 /**
- * Servlet implementation class DetailAcmServlet
+ * Servlet implementation class ReservationViewServlet
  */
-@WebServlet("/detail.ac")
-public class DetailAcmServlet extends HttpServlet {
+@WebServlet("/reserv.ac")
+public class ReservationViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailAcmServlet() {
+    public ReservationViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,29 +34,19 @@ public class DetailAcmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		int acmNum = Integer.parseInt(request.getParameter("acmNum"));
-				
+		int roomNum = Integer.parseInt(request.getParameter("roomNum"));
+		
 		Acm acm = new AcmService().selectAcm(acmNum);
-		String checkIn = request.getParameter("checkIn");
-		String checkOut = request.getParameter("checkOut");
+		request.setAttribute("acm", acm);
 		
-				
-		if(acm != null) {
-			request.setAttribute("acm", acm);
-			ArrayList<AcmImg> acmImgList = new AcmService().acmImgListView(acmNum);			
-			request.setAttribute("acmImgList", acmImgList);
-			ArrayList<Room> roomList = new AcmService().selectRoomList(acmNum,checkIn,checkOut);
-			request.setAttribute("roomList", roomList);
-			
-			request.getRequestDispatcher("views/accommodation/acmDetail.jsp").forward(request, response);			
-		} else {
-			
-		}
+		Room room = new AcmService().selectRoom(roomNum);
+		request.setAttribute("room", room);
 		
+		ArrayList<AcmImg> acmImgList = new AcmService().acmImgListView(acmNum);			
+		request.setAttribute("acmImgList", acmImgList);
 		
-		
-		
+		request.getRequestDispatcher("views/reservation/reservation.jsp").forward(request, response);
 		
 	}
 

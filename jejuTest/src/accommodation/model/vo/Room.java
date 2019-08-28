@@ -7,8 +7,8 @@ public class Room {
 	private String roomName;		// 방 이름
 	private int roomPrice;			// 가격(1박당)
 	private int roomPax;			// 정원
-	private String roomType;		// 방 종류 (s:싱글 / d:더블 / t:트리플(트윈) / o:도미토리)
-	private String roomDescript;	// 방 설명
+	private String roomDescriptA;	// 방 설명A
+	private String roomDescriptB;	// 방 설명B
 	private String roomSmoke;		// 흡연 가능 방
 	
 	
@@ -17,16 +17,16 @@ public class Room {
 	}
 
 
-	public Room(int roomNum, int acmNum, String roomName, int roomPrice, int roomPax, String roomType,
-			String roomDescript, String roomSmoke) {
+	public Room(int roomNum, int acmNum, String roomName, int roomPrice, int roomPax, String roomDescriptA,
+			String roomDescriptB, String roomSmoke) {
 		super();
 		this.roomNum = roomNum;
 		this.acmNum = acmNum;
 		this.roomName = roomName;
 		this.roomPrice = roomPrice;
 		this.roomPax = roomPax;
-		this.roomType = roomType;
-		this.roomDescript = roomDescript;
+		this.roomDescriptA = roomDescriptA;
+		this.roomDescriptB = roomDescriptB;
 		this.roomSmoke = roomSmoke;
 	}
 
@@ -81,23 +81,23 @@ public class Room {
 	}
 
 
-	public String getRoomType() {
-		return roomType;
+	public String getRoomDescriptA() {
+		return roomDescriptA;
 	}
 
 
-	public void setRoomType(String roomType) {
-		this.roomType = roomType;
+	public void setRoomDescriptA(String roomDescriptA) {
+		this.roomDescriptA = roomDescriptA;
 	}
 
 
-	public String getRoomDescript() {
-		return roomDescript;
+	public String getRoomDescriptB() {
+		return roomDescriptB;
 	}
 
 
-	public void setRoomDescript(String roomDescript) {
-		this.roomDescript = roomDescript;
+	public void setRoomDescriptB(String roomDescriptB) {
+		this.roomDescriptB = roomDescriptB;
 	}
 
 
@@ -114,12 +114,11 @@ public class Room {
 	@Override
 	public String toString() {
 		return "Room [roomNum=" + roomNum + ", acmNum=" + acmNum + ", roomName=" + roomName + ", roomPrice=" + roomPrice
-				+ ", roomPax=" + roomPax + ", roomType=" + roomType + ", roomDescript=" + roomDescript + ", roomSmoke="
-				+ roomSmoke + "]";
+				+ ", roomPax=" + roomPax + ", roomDescriptA=" + roomDescriptA + ", roomDescriptB=" + roomDescriptB
+				+ ", roomSmoke=" + roomSmoke + "]";
 	}
 
-	
-	
+
 	
 	
 
