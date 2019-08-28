@@ -10,7 +10,6 @@ public class AdminService {
 		Connection conn = getConnection();
 		ArrayList<Member> list = new AdminDao().searchMember(conn);
 		close(conn);
-		System.out.println("service List : "+list);
 		return list;
 	}
 

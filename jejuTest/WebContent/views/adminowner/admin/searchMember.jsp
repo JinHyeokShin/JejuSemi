@@ -20,7 +20,6 @@ ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:f
 	transition: all 0.3s ease;
 	cursor: pointer;
 }
-
 ul.sidebar-menu li ul.sub li.active a {
 	color: #fd7e14;
 	-webkit-transition: all 0.3s ease;
@@ -36,45 +35,74 @@ ul.sidebar-menu li ul.sub li.active a {
 	background: #fd7e14;
 	color: #fd7e14;
 }
-</style>
+.content-panel{
+	padding: 10px;
+}
+	</style>
+
 <link rel="stylesheet"
-	href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
+	href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css">
 <script
 	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <script>	
-	$(function(){
-		$.ajax({
-			url : "<%=request.getContextPath()%>/searchMem.ad",
-			dataType : "json",
-			type : "get",
-			
-			success:function(data){
-				console.log("suc");
-			},
-			
-			error:function(){
-				console.log("error");
-				
-			}
-			
-		});
-		
-	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+ 	var data2;
 
-</script>
+ 	$(document).ready(function(){
+ 		
+ 			$.ajax({
+ 				url:"MemSearchTable.ad",
+//  				dataType:"JSON",
+ 				type:"post",
+ 				success:function(data1){
+ 					$("#h1").val(data1);
+ 					data2 ="data:"+ $("#h1").val();
+ 					console.log("data2 11 "+data2);
+ 				},
+ 			});
+ 			
+ 			$('#myTable').DataTable({
+ 				data : data2,
+ 				columns: [
+ 					{data:'memNum'},
+ 					{data:'memId'},
+ 					{data:'memName'},
+ 					{data:'memGender'},
+ 					{data:'memPhone'},
+ 					{data:'nationCode'},
+ 					{data:'memPoint'},
+ 					{data:'memType'},
+ 					{data:'memStatus'},
+ 					{data:'enrollDate'},
+ 					{data:'noShow'}
+ 			    ]
+ 				
+				});
+ 			
+//  			var table = $('#myTable').DataTable({
+//  			     ajax: {
+//  			        'url':'MemSearchTable.ad', 
+//  			        //'type': 'POST',
+// //  			        'dataSrc':
+// 					'data':data2
+//  			     },
+//  			    columns: [
+// 					{data:'memNum'},
+// 					{data:'memId'},
+// 					{data:'memName'},
+// 					{data:'memGender'},
+// 					{data:'memPhone'},
+// 					{data:'nationCode'},
+// 					{data:'memPoint'},
+// 					{data:'memType'},
+// 					{data:'memStatus'},
+// 					{data:'enrollDate'},
+// 					{data:'noShow'}
+// 			    ]
+//  			});
+ 	});
+	</script>
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
 </head>
 <body>
@@ -86,6 +114,7 @@ ul.sidebar-menu li ul.sub li.active a {
 			<br>
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
+					<input type="hidden" id ="h1">
 					<table id="myTable" class="table table-bordered">
 						<thead>
 							<tr>
@@ -103,7 +132,7 @@ ul.sidebar-menu li ul.sub li.active a {
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+						<tr>
 								<td>memNum</td>
 								<td>memId</td>
 								<td>memName</td>
