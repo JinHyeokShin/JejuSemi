@@ -1,4 +1,4 @@
-package adminowner.admin;
+package adminowner.admin.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 
 import adminowner.admin.model.service.AdminService;
 import member.model.vo.Member;
+
 
 /**
  * Servlet implementation class goSearchMember
@@ -32,12 +33,12 @@ public class goSearchMember extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("test");
 		ArrayList<Member> list = new AdminService().searchMember();
 		JSONArray jArr = new JSONArray();
 		
-		for(Member m :list) {
+		for(Member m :list) {	
 			JSONObject jsonMember = new JSONObject();
 			jsonMember.put("memNum",m.getMemNum());
 			jsonMember.put("memId",m.getMemId());
@@ -52,7 +53,8 @@ public class goSearchMember extends HttpServlet {
 			jsonMember.put("noShow",m.getOutDate());
 			jArr.add(jsonMember);
 		}
-		response.setContentType("application/json; charset=utf-8");
+//		response.setContentType("application/json; charset=utf-8");
+		response.setCharacterEncoding("utf-8");
 		response.getWriter().print(jArr);
 	}
 
