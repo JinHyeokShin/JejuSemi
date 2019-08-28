@@ -1,17 +1,17 @@
 package tourSpot.model.vo;
 
-public class tourSpotImg {
+public class TourSpotImg {
 	
 	private int imgNum;
 	private String imgPath;
 	private int spotNum;
 	private int status;
 	
-	public tourSpotImg() {
+	public TourSpotImg() {
 		
 	}
 
-	public tourSpotImg(int imgNum, String imgPath, int spotNum, int status) {
+	public TourSpotImg(int imgNum, String imgPath, int spotNum, int status) {
 		super();
 		this.imgNum = imgNum;
 		this.imgPath = imgPath;
