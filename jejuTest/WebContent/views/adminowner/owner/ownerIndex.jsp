@@ -63,7 +63,7 @@ ul.sidebar-menu li ul.sub li.active a {
                   <!-- /col-md-4 -->
                   <div class="col-md-4 profile-text">
                     <h3><%= loginUser.getMemId() %></h3>
-                    <h6><%= loginUser.getMemType() %></h6>
+                    <h6><%= loginUser.getMemName() %>님 환영합니다</h6>
                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
                     <br>
                     <p><button class="btn btn-theme"><i class="fa fa-envelope"></i> Send Message</button></p>
