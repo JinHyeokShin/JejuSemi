@@ -1,11 +1,16 @@
 package adminowner.owner;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import member.model.vo.Member;
+import power.model.service.PowerService;
+import power.model.vo.Power;
 
 /**
  * Servlet implementation class GoPayment
@@ -26,6 +31,19 @@ public class GoPayment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
+		
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		int ownerNum = loginUser.getMemNum(); 
+		Power p = new Power();
+		p.setOwnerNum(ownerNum);
+		
+		int result = new PowerService().ownerInsertPower(p ,ownerNum);
+		
+		if(result > 0) {
+			response.sendRedirect("page.ow");
+		}
 		request.getRequestDispatcher("views/adminowner/owner/payment.jsp").forward(request, response);
 	}
 

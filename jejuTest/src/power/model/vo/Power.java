@@ -5,13 +5,13 @@ import java.util.Date;
 public class Power {
 	
 	private int powerNum;		// 파워등록 번호
-	private int acmNum;			// 숙소 이름
+	private int acmNum;			// 숙소 번호
 	private int payNum;			// 결제 번호
 	private Date startDate;		// 파워등록 시작일
 	private Date endDate;		// 파워등록 종료일
-	private String powerStatus;		// 파워등록 상태(y/n)
-	
-	
+	private String powerStatus;	// 파워등록 상태(y/n)
+	private String acmName;		// 숙소 이름
+	private int ownerNum;
 	public Power() {
 		
 	}
@@ -24,6 +24,22 @@ public class Power {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.powerStatus = powerStatus;
+	}
+
+	public int getOwnerNum() {
+		return ownerNum;
+	}
+
+	public void setOwnerNum(int ownerNum) {
+		this.ownerNum = ownerNum;
+	}
+
+	public String getAcmName() {
+		return acmName;
+	}
+
+	public void setAcmName(String acmName) {
+		this.acmName = acmName;
 	}
 
 	public int getPowerNum() {
