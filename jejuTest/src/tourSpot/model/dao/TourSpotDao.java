@@ -53,7 +53,10 @@ public class TourSpotDao {
 									  rset.getString("spot_Coord_X"),
 									  rset.getString("spot_coord_y"),
 									  rset.getString("spot_address"),
-									  rset.getString("spot_descript")));
+									  rset.getString("spot_descript"),
+									  rset.getString("spot_homepage"),
+									  rset.getString("spot_phone"),
+									  rset.getString("spot_content")));
 			}
 
 		} catch (SQLException e) {
