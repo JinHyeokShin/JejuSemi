@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import adminowner.admin.model.dao.AdminDao;
+import adminowner.admin.model.vo.Notice;
 import member.model.vo.Member;
 public class AdminService {
 	public ArrayList<Member> searchMember() {
@@ -12,5 +13,51 @@ public class AdminService {
 		close(conn);
 		return list;
 	}
-
+	/**
+	 * 공지 리스트.
+	 * @return
+	 */
+	public ArrayList<Notice> selectNList(){
+		Connection conn = getConnection();
+		ArrayList<Notice> nList= new AdminDao().selectNList(conn);
+		close(conn);
+		return nList;
+	}
+	public int insertNotice(Notice n) {
+		Connection conn = getConnection();
+		int result = new AdminDao().insertNotice(conn, n);
+		close(conn);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	public Notice selectNotice(int nNum) {
+		Connection conn = getConnection();
+		Notice n = new AdminDao().selectNotice(conn, nNum);
+		close(conn);
+		return n;
+	}
+	public int updateNotice(Notice n) {
+		Connection conn = getConnection();
+		int result = new AdminDao().updateNotice(conn, n);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	public int deleteNotice(int nNum) {
+		Connection conn = getConnection();
+		int result = new AdminDao().deleteNotice(conn, nNum);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 }

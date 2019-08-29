@@ -2,14 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@page import="adminowner.admin.model.vo.Notice , java.util.*"%>
 <%
-ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
-System.out.println(nList);
-
 Notice nD = (Notice)request.getAttribute("n");
-
-%>
-<!DOCTYPE html>
-<html lang="ko">
+ %>
+<!DOCTYPE html >
+<html>
 <head>
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
 <meta charset="utf-8">
@@ -49,95 +45,59 @@ ul.sidebar-menu li ul.sub li.active a {
 }
 </style>
 </head>
-
 <body>
-	<section id="container">
-		<!-- **********************************************************************************************************************************************************
-        MAIN CONTENT
-        *********************************************************************************************************************************************************** -->
-		<!-- main content start-->
-		<section id="main-content">
+
+<section id="main-content">
 			<section class="wrapper site-min-height">
 				<div class="row mt">
 					<h3>>>공지사항</h3>
 					<!-- /col-lg-12 -->
 					<div class="col-lg-12 mt">
 						<div class="row content-panel">
+							
 							<div class="panel-heading">
 								<ul class="nav nav-tabs nav-justified">
-									<li class="active"><a data-toggle="tab" href="#noticeList"
-										class="contact-map">공지사항 조회</a></li>
-									<li><a data-toggle="tab" href="#noticeWrite">공지사항 작성</a></li>
+									<li ><a  href="<%= request.getContextPath() %>/adminNotice.ad"
+										>공지사항 조회</a></li>
+									<li><a  href="<%= request.getContextPath() %>/adminNotice.ad">공지사항 작성</a></li>
+<!-- 									<li class="activ	e"><a data-toggle="tab" href="#noticeDetail">dss</a></li> -->
 								</ul>
 
 							</div>
 							<!-- /panel-heading -->
-							<div class="panel-body">
+							
+							
+							<div class="panel-body" >
 								<div class="tab-content">
-									<div id="noticeList" class="tab-pane active">
-										<div class="col-md-12 mt">
-											<div class="content-panel">
-												<table class="table table-hover">
-													<thead>
-														<tr>
-															<th width="50px">#</th>
-															<th width="250px">공지 제목</th>
-															<th width="50px">공지 수정일</th>
-															<th width="50px">공지 작성일</th>
-															<th width="1px"></th>
-
-														</tr>
-													</thead>
-													<tbody>
-														<%if(nList.isEmpty()){ %>
-															<td colspan="4" align="center">공지내역이없습니다!
-															</td>
-														<%}else{ %> <%int i=0; %> 
-															<%for (Notice n : nList){ %> <%i++; %>
-																<tr id="noticeList">
-																	<td><%=i %></td>
-																	<td id="nTitle"><%=n.getnTitle() %></td>
-																	<td id="nMDate"><%=n.getnModifyDate() %></td>
-																	<td id ="nDate"><%=n.getnDate() %></td> 
-																	<input type="hidden" id ="nNum" value="<%=n.getnNum() %>">
-<%-- 																	<td id ="nNum"><%=n.getnNum() %></td> --%>
-																	
-																</tr>
-															<%}; %>
-														<%}; %>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-									<!-- /tab-pane -->
-<!-- 									공지사항작성 -->
-									<div id="noticeWrite" class="tab-pane">
+<!-- 									공지사항디테일-->
+									<div id="noticeDetail"      >
 										<div class="row">
 											<div class="col-lg-8 col-lg-offset-2 detailed">
-												<h4 class="mb">공지 사항 작성</h4>
+												<h4 class="mb">공지 사항 조회</h4>
 
-												<form role="form" class="form-horizontal" method="post"
-													action="<%= request.getContextPath() %>/insertNotice.ad">
-
+												<form role="form" class="form-horizontal" method="post" id="form1"
+													action="<%= request.getContextPath() %>/noticeUpdate.ad">
+													<input type="hidden" id ="nNum" name ="nNum" value="<%=nD.getnNum() %>">
 													<div class="form-group">
 														<label class="col-lg-2 control-label">공지제목</label>
 														<div class="col-lg-10">
-															<input type="text" placeholder="" id="nTitle"
-																class="form-control" name="nTitle">
+															<input type="text" id="nTitle" name="nTitle"
+																class="form-control" value="<%=nD.getnTitle() %>" readonly>
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="col-lg-2 control-label">공지내용</label>
 														<div class="col-lg-10">
 															<textarea rows="10" cols="30" class="form-control"
-																id="ta1" name="nContent"></textarea>
+															 id="nContent" name="nContent" readonly><%=nD.getnContent() %></textarea>
 														</div>
+														
 													</div>
 													<div class="form-group">
 														<div class="col-lg-offset-2 col-lg-10">
-															<button class="btn btn-theme04" type="reset">Cancel</button>
-															<button class="btn btn-theme" type="submit"
+															<button class="btn btn-theme04" id="bt1" type="button" onclick="fn1();">수정하기</button>
+															<button class="btn btn-theme03" id="bt2" type="button" onclick="fn2();">삭제하기</button>
+															<button class="btn btn-theme" id="submitBtn" type="submit" disabled
 																style="width: 80px;">Save</button>
 														</div>
 													</div>
@@ -180,18 +140,20 @@ ul.sidebar-menu li ul.sub li.active a {
       </div>
     </footer>
     footer end-->
-	</section>
+		
 	<script>
-	$(function(){
-		$("#noticeList td").click(function(){
-			var nNum = $(this).parent().children().eq(4).val();
-			location.href ="<%= request.getContextPath() %>/noticeDetail.ad?nNum=" +nNum;
-<%--  			href="<%= request.getContextPath() %>/NoticeDetail.ad" --%>
-				
-		})
-	})
+	function fn1(){
+		$('#nTitle').removeAttr('readonly');
+		$('#nContent').removeAttr('readonly');
+		$('#submitBtn').removeAttr('disabled');
+	}
+	function fn2(){
+<%-- 		location.href ="<%= request.getContextPath() %>/adminNotice.ad" --%>
+	$('#form1').attr('action','<%= request.getContextPath() %>/noticeDelete.ad');
+	$('#form1').submit();
+	
 
-
+	}
 	</script>
 
 </body>
