@@ -33,15 +33,4 @@ public class TourSpotService {
 		
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

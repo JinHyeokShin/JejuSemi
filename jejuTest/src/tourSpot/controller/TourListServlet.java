@@ -37,20 +37,6 @@ public class TourListServlet extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
-		
-		
-//		int spotNum = Integer.parseInt(request.getParameter("spotNum"));
-//		
-//		TourSpot tour = new TourSpotService().selectTour(spotNum);
-//		
-//		if(tour != null) {
-//			request.setAttribute("tour", tour);
-//			request.getRequestDispatcher("views/tourSpot/tourListView.jsp").forward(request, response);
-//		}else {
-//			request.setAttribute("msg", "관광지 조회 실패");
-//			request.getRequestDispatcher("views/common/errorPage.jsp");
-//		}
-
 		RequestDispatcher view = request.getRequestDispatcher("views/tourSpot/tourList.jsp");
 		view.forward(request, response);
 	}

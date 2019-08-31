@@ -1425,10 +1425,10 @@ textarea.form-control {
   text-transform: uppercase;
   font-weight: 300;
 }
-/* .tour-wrap { */
-/*   padding: 20px; */
-/*   height: 500px; */
-/* } */
+.tour-wrap {
+  padding: 20px;
+  height: 500px;
+}
 
 .tour-menu-tabs {
 text-align: center; }
