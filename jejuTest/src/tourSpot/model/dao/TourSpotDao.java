@@ -99,12 +99,9 @@ public class TourSpotDao {
 			close(pstmt);
 		}
 	    return tourImgView;
-		
-		
+
 	}
-	
-	
-	
+
 	
 	
 	

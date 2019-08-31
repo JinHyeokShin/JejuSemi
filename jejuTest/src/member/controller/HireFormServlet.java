@@ -1,7 +1,6 @@
-package tourSpot.controller;
+package member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tourSpot.model.service.TourSpotService;
-import tourSpot.model.vo.TourSpot;
-
 /**
- * Servlet implementation class TourForm
+ * Servlet implementation class HireFormServlet
  */
-@WebServlet("/tourList.to")
-public class TourListServlet extends HttpServlet {
+@WebServlet("/hireForm.hi")
+public class HireFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TourListServlet() {
+    public HireFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +28,8 @@ public class TourListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ArrayList<TourSpot> list = new TourSpotService().selectList();
 		
-		request.setAttribute("list", list);
-		
-		
-		
-//		int spotNum = Integer.parseInt(request.getParameter("spotNum"));
-//		
-//		TourSpot tour = new TourSpotService().selectTour(spotNum);
-//		
-//		if(tour != null) {
-//			request.setAttribute("tour", tour);
-//			request.getRequestDispatcher("views/tourSpot/tourListView.jsp").forward(request, response);
-//		}else {
-//			request.setAttribute("msg", "관광지 조회 실패");
-//			request.getRequestDispatcher("views/common/errorPage.jsp");
-//		}
-
-		RequestDispatcher view = request.getRequestDispatcher("views/tourSpot/tourList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/hire/hire.jsp"); 
 		view.forward(request, response);
 	}
 

@@ -63,7 +63,9 @@
          .nav-item{
            cursor: pointer;
          }
-         
+         #logoutBtn{
+         	display: none;
+         }
        </style>
 
 
@@ -511,7 +513,8 @@
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
               <!-- Extra large modal -->
-              <a href="#" class="btn btn-outline-white-primary py-3 text-white px-5" data-toggle="modal" data-target="#reservation-form">지금 지원하기</a>
+              <a href="" class="btn btn-outline-white-primary py-3 text-white px-5" 
+              data-toggle="modal" data-target="#reservation-form" onclick="location.href = '<%= request.getContextPath() %>/hireForm.hi'">지금 지원하기</a>
             </div>
           </div>
         </div>
