@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import management.model.vo.Management;
-import reservation.model.vo.Reservation;
 
 public class ManagementDao {
 private Properties prop = new Properties();

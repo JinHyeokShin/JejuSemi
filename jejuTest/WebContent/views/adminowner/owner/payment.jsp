@@ -38,7 +38,7 @@
             <div class="col-lg-10 col-lg-offset-1">
               <div class="invoice-body">
                 <div class="pull-left">
-                  <h1>DASHIO</h1>
+                  <h1>COMETO JEJU</h1>
                   <address>
                 <strong>Admin Theme, Inc.</strong><br>
                 795 Asome Ave, Suite 850<br>
@@ -48,7 +48,7 @@
                 </div>
                 <!-- /pull-left -->
                 <div class="pull-right">
-                  <h2>결제하기</h2>
+                  <h2>30일 / 60일 / 90일</h2>
                 </div>
                 <!-- /pull-right -->
                 <div class="clearfix"></div>
@@ -57,14 +57,13 @@
                 <br>
                 <div class="row">
                   <div class="col-md-9">
-                    <h4>Paul Smith</h4>
-                    <address>
-                  <strong>Enterprise Corp.</strong><br>
-                  234 Great Ave, Suite 600<br>
-                  San Francisco, CA 94107<br>
-                  <abbr title="Phone">P:</abbr> (123) 456-7890
+                    <h4><%= loginUser.getMemName() %></h4>
+                <address>
+                  <strong>숙소이름</strong><br>
+                  		숙소주소<br>
+                  <%= loginUser.getMemPhone() %>
                 </address>
-                  </div>
+                     </div>
                   <!-- /col-md-9 -->
                   <div class="col-md-3">
                     <br>
@@ -113,7 +112,7 @@
                       <td class="text-right">$600.00</td>
                     </tr>
                     <tr>
-                      <td colspan="2" rowspan="4">
+                      <td colspan="2" rowspan="5">
                         <h4>Terms and Conditions</h4>
                         <p>Thank you for your business. We do expect payment within 21 days, so please process this invoice within that time. There will be a 1.5% interest charge per month on late invoices.</p>
                         <td class="text-right"><strong>Subtotal</strong></td>
@@ -133,6 +132,12 @@
                       </td>
                       <td class="text-right"><strong>$1029.00</strong></td>
                     </tr>
+                    <tr>
+                    	<td class="text-right no-border" colspan="2">
+                    		<div class="well well-small green" align="center"><strong>결제하기</strong></div>
+                    	</td>
+                   	</tr>
+                  
                   </tbody>
                 </table>
                 <br>

@@ -52,29 +52,29 @@ ul.sidebar-menu li ul.sub li.active a {
                 <div class="row content-panel">
                   <div class="col-md-4 profile-text mt mb centered">
                     <div class="right-divider hidden-sm hidden-xs">
-                      <h4>1922</h4>
-                      <h6>FOLLOWERS</h6>
-                      <h4>290</h4>
-                      <h6>FOLLOWING</h6>
-                      <h4>$ 13,980</h4>
-                      <h6>MONTHLY EARNINGS</h6>
+                      <h4><%= loginUser.getMemId() %></h4>
+                      <h6>ID</h6>
+                      <h4><%= loginUser.getMemName()%></h4>
+                      <h6>NAME</h6>
+                      <h4><%= loginUser.getMemPhone() %></h4>
+                      <h6>PHONE</h6>
                     </div>
                   </div>
                   <!-- /col-md-4 -->
                   <div class="col-md-4 profile-text">
-                    <h3><%= loginUser.getMemId() %></h3>
+                    <h3><%= acmName %></h3>
                     <h6><%= loginUser.getMemName() %>님 환영합니다</h6>
-                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
+                    <p>COME TO JEJU를 이용해주셔서 감사합니다.<br>사용하시다가 불편한 점이나 개선할 점을<br> 문의해주시면 최대한 빠르게 조치하겠습니다.</p>
                     <br>
-                    <p><button class="btn btn-theme"><i class="fa fa-envelope"></i> Send Message</button></p>
+                    <p><button class="btn btn-theme" onclick="goInquiry();"><i class="fa fa-envelope"></i> 문의하기</button></p>
                   </div>
                   <!-- /col-md-4 -->
                   <div class="col-md-4 centered">
                     <div class="profile-pic">
                       <p><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle"></p>
                       <p>
-                        <button class="btn btn-theme"><i class="fa fa-check"></i> Follow</button>
-                        <button class="btn btn-theme02">Add</button>
+<!--                         <button class="btn btn-theme"><i class="fa fa-check"></i> Follow</button>
+                        <button class="btn btn-theme02">Add</button> -->
                       </p>
                     </div>
                   </div>

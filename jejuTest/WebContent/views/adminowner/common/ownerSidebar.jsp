@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@page import="member.model.vo.Member"%>
 <%  Member loginUser = (Member)session.getAttribute("loginUser"); %>
+<% String acmName = (String)session.getAttribute("AcmName");%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -264,7 +266,7 @@ a{
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
             <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-            <h5 class="centered"><%= loginUser.getMemId() %></h5>
+            <h5 class="centered"><%= acmName %></h5>
             <li>
               <a class="active1" onclick="goDashBoard();">
                 <i class="fa fa-dashboard"></i>

@@ -134,6 +134,36 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	public String getAcmName(Connection conn, int memNum) {
+		String acmName = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getAcmName");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				acmName = rset.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return acmName;
+		
+		
+	}
    
    
    

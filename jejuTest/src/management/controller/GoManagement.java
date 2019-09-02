@@ -13,7 +13,6 @@ import management.model.service.ManagementService;
 import management.model.vo.Management;
 import management.model.vo.PageInfo;
 import member.model.vo.Member;
-import reservation.model.service.ReservationService;
 
 /**
  * Servlet implementation class goManagement

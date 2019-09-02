@@ -42,11 +42,11 @@
                   <hr>
                 </div>
                 <div class="icn-main-container">
-                  <span class="icn-container">$25</span>
+                  <span class="icn-container">300,000</span>
                 </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+                <p>30일</p>
                 <ul class="pricing">
-                  <li>150 Mb Storage</li>
+                  <li>숙소 목록 상단 노출</li>
                   <li>1 Domain</li>
                   <li>2 Sub Domains</li>
                   <li>3 MySQL DBs</li>
@@ -66,11 +66,11 @@
                   <hr>
                 </div>
                 <div class="icn-main-container">
-                  <span class="icn-container">$55</span>
+                  <span class="icn-container">550,000</span>
                 </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+                <p>60일</p>
                 <ul class="pricing">
-                  <li>150 Mb Storage</li>
+                  <li>숙소 목록 상단 노출</li>
                   <li>1 Domain</li>
                   <li>2 Sub Domains</li>
                   <li>3 MySQL DBs</li>
@@ -90,11 +90,11 @@
                   <hr>
                 </div>
                 <div class="icn-main-container">
-                  <span class="icn-container">$98</span>
+                  <span class="icn-container">800,000</span>
                 </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+                <p>90일</p>
                 <ul class="pricing">
-                  <li>150 Mb Storage</li>
+                  <li>숙소 목록 상단 노출</li>
                   <li>1 Domain</li>
                   <li>2 Sub Domains</li>
                   <li>3 MySQL DBs</li>

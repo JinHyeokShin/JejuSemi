@@ -37,7 +37,10 @@ public class LoginServlet extends HttpServlet {
 
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
+		
 		System.out.println(userId + " " + userPwd);
+		
+		
 
 		Member loginUser = new MemberService().loginMember(userId, userPwd);
 		if (loginUser == null) { // 로그인 실패
@@ -54,7 +57,6 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("loginUser", loginUser);
 			
 			if ((loginUser.getMemType()).equals("U")) {
-				System.out.println(loginUser.getMemType());
 
 				// 로그인 완료 후 다시 메인 페이지로
 				response.sendRedirect(request.getContextPath());
@@ -65,7 +67,11 @@ public class LoginServlet extends HttpServlet {
 				
 				
 			} else if (loginUser.getMemType().equals("O")) {
-
+				int memNum = loginUser.getMemNum();
+				
+				String AcmName = new MemberService().getAcmName(memNum);
+				
+				session.setAttribute("AcmName", AcmName);
 				// 로그인 완료 후 다시 메인 페이지로
 				response.sendRedirect("page.ow");
 			}

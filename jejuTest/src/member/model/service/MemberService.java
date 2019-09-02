@@ -46,6 +46,13 @@ public class MemberService {
 		return result;
 	}
    
+   public String getAcmName(int memNum) {
+	   Connection conn = getConnection();
+	   
+	   String acmName = new MemberDao().getAcmName(conn, memNum);
+	   
+	   return acmName;
+   }
    
    
 
