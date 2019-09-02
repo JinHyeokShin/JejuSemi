@@ -126,7 +126,7 @@
               <h2 class="form-login-heading">sign in now</h2>
               <div class="login-wrap">
                   <span class="close" style="margin-left:auto;">&times;</span>
-                <input type="text" class="form-control" placeholder="User ID" id="userId" autofocus name="userId">
+                <input type="text" class="form-control" placeholder="ID" id="userId" autofocus name="userId">
                 <br>
                 <input type="password" class="form-control" placeholder="Password" id="userPwd" name="userPwd">
                 <!-- <label class="checkbox"> -->
@@ -138,6 +138,14 @@
                 <button class="btn btn-theme btn-block" type="submit"><a href="#">SIGN IN</a></button>
                 <hr>
                 <div class="login-social-link centered">
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 	<!-- 카카오 로그인 -->
                 
@@ -153,15 +161,10 @@
 					    
 					    
 					    
-					    
-					    
-					    
-					    
 					    function loginWithKakao() {
 					      // 로그인 창을 띄웁니다.
 					      Kakao.Auth.login({
-					    	  success: function(authObj) {
-					    		  
+					    	  success: function(authObj) {					    		  
 					    		  
 					    		  var accessToken = authObj.access_token;
 						          var refreshToken = authObj.refresh_token;
@@ -175,6 +178,10 @@
 							          url: '/v2/user/me',
 							          success: function(res) {
 							            alert(JSON.stringify(res));
+							            
+							            /* 이런식으로 id같은 정보를 쿼리스트링으로 보내주면서 페이지 이동 */
+							            /* location.href='/api/kakao_login/kakao_login.php?id='+res.id+'&nickname='+res.properties['nickname']; */
+							            
 							          },
 							          fail: function(error) {
 							            alert(JSON.stringify(error));
@@ -197,6 +204,14 @@
 					</script>
 					
 					<!-- 카카오 로그인 -->
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 
                   <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
