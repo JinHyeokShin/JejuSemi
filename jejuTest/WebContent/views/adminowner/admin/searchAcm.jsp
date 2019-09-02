@@ -38,10 +38,8 @@ ul.sidebar-menu li ul.sub li.active a {
 	color: #fd7e14;
 }
 </style>
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
-<script
-	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 // 	jQuery(function($) {
 // 		$("#myTable").DataTable();
@@ -71,6 +69,7 @@ ul.sidebar-menu li ul.sub li.active a {
 								<th>파워 등록</th>
 								<th>숙소 상태</th>
 								<th>숙소 주소</th>
+								<th>숙소 정지</th>
 							</tr>
 						</thead>
 						<tbody>
