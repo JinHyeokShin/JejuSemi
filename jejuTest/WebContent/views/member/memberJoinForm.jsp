@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- <%@ page import="java.util.ArrayList, nation.model.vo.Nation" %> --%>
+<%-- <% --%>
+<!--  	ArrayList<Nation> list = (ArrayList<Nation>)request.getAttribute("list"); -->
+<%-- %> --%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,11 +32,16 @@ select{
 	background:#ced4da;
 	border: 1px solid #ced4da;
 }
-#idCheck:hover, #joinBtn:hover, #goMain:hover{
+#idCheck:hover, #joinBtn:hover, #goMain:hover, #emailCheck:hover{
 	cursor:pointer;
 }
 
 </style>
+
+    <!-- 플러그인 참조 -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script src="http://cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -70,10 +79,20 @@ select{
                    </div>
                    
                    <div class="form-group">
-                       <label for="InputEmail">이메일 주소</label>&nbsp;&nbsp;&nbsp;
-					   <label id="idCheck" style="color:#fd7e14"><b>중복확인</b></label>                    
+                       <label for="InputEmail">이메일 주소</label>&nbsp;&nbsp;
+					   <label id="idCheck" style="color:#fd7e14"><b>중복확인</b></label>                   
                        <input type="email" class="form-control" id="InputEmail" name="memId" placeholder="이메일 주소를 입력해주세요" required>
                    </div>
+                  
+                   <div class="form-group">
+                       <label for="InputEmail">인증번호</label>&nbsp;&nbsp;&nbsp;
+					   <label id="emailCheck" name="emailConfirm" style="color:#fd7e14">
+					   		<a href="javascript:go_join()"><b>인증번호 요청</b></a>
+					   </label>               
+                       <input type="text" class="form-control" id="InputEmail" name="memId" placeholder="인증번호를 입력해주세요" required>
+                  </div>
+            
+
                    <div class="form-group">
                        <label for="inputPassword">비밀번호</label>
                        <input type="password" class="form-control" id="inputPassword" name="memPwd" placeholder="비밀번호를 입력해주세요" required>
@@ -84,14 +103,14 @@ select{
                        <input type="password" class="form-control" id="inputPasswordCheck" name="memPwd2" placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요" required>
                    </div>
                    <div class="form-group">
-                       <label for="inputMobile">휴대폰 번호(-제외)</label>
+                       <label for="inputMobile">휴대폰 번호</label>
                        <input type="tel" class="form-control" id="inputMobile" name="memPhone" placeholder="휴대폰번호를 입력해 주세요" required>
                    </div>
                    
                    <div class="form-group">
                        <label for="inputGender">성별</label>
                        <select name="memGender" required>
-                       	<option value="">-----</option>
+                       	<option value="">-------</option>
                        	<option value="M">MAN</option>
                        	<option value="F">WOMAN</option>
                        </select>
@@ -99,15 +118,31 @@ select{
                        &nbsp; &nbsp;
                        
                        <label for="inputNation">국적</label>
-                       <select name="nationCode">
-                       	<option value="">-----</option>
+                       <select name="nationCode" style="width:90px">
+                       	<option value="">-------</option>
                        	<option value="1">KOR</option>
                        	<option value="2">MEX</option>
                        	<option value="3">DNK</option>
                        	<option value="4">USA</option>
                        	<option value="5">RUS</option>
                        	<option value="6">CHE</option>
-                       	<option value="7">CHN</option>
+                       	<option value="8">CHN</option>
+                       	<option value="9">GER</option>
+                       	<option value="10">ESP</option>
+                       	<option value="11">FRA</option>
+                       	<option value="12">UK</option>
+                       	<option value="13">BEG</option>
+                       	<option value="14">ARG</option>
+                       	<option value="15">CAN</option>
+                       	<option value="16">HNK</option>
+                       	<option value="17">AUS</option>
+                       	<option value="18">ITA</option>
+                       	<option value="19">POR</option>
+                       	<option value="20">VET</option>
+                       	<option value="21">TIW</option>
+                       	<option value="22">NED</option>
+                       	<option value="23">NOR</option>
+                       	
                        </select>
                    </div>
 
@@ -138,8 +173,7 @@ select{
         if(email == ''){
             alert('이메일을 입력하세요');
             $("#InputEmail").focus();
-            return false;
-            
+            return false;   
         } else {
             var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             if (!emailRegex.test(email)) {
@@ -148,6 +182,8 @@ select{
                 return false;
             }
         }
+        var url="emailCheck.jsp?memId="+memId;
+		open(url,"emailwindow", "statusbar=no, scrollbar=no, menubar=no, width=400, height=200" );
 
         if($("#inputPassword").val() ==''){
             alert('비밀번호를 입력하세요');
@@ -168,57 +204,65 @@ select{
             return false;
         }
         
-        if($("#inputMobile").val() ==''){
+        var mobile = $('#joinForm input[name=memPhone]').val();
+        if(mobile == ''){
             alert('휴대폰 번호를 입력하세요');
             $("#inputMobile").focus();
-            return false;
-        }
-     
+            return false;       
+        } else {
+        	var mobileRegex = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g;
+            if (!mobileRegex.test(mobile)) {
+                alert('휴대전화 번호가 유효하지 않습니다. ex)01012341234');
+                $("#inputEmail").focus();
+                return false;
+            }
+        }   
 		return true;
 
 	}
-	
-	$(function(){
-		
-		var isUsable = false;
-		
-		$("#idCheck").click(function(){
-			
-			var userId = $("#joinForm input[name=memId]");
-			
-			$.ajax({
-				url:"idCheck.me",
-				type:"post",
-				data:{userId:userId.val()},
-				success:function(result){
-					
-					if(result == "fail"){ // 사용불가
-						alert("사용할 수 없는 아이디입니다");
-						userId.focus();
-					}else{ // 사용가능
-						
-						if(confirm("사용 가능한 아이디입니다. 사용하시겠습니까?")){
-							userId.attr("readonly", "true"); // 더 이상 바꿀 수 없도록
-							isUsable = true;
-						}else{
+		// 아이디 중복체크
+		$(function() {
+
+			var isUsable = false;
+
+			$("#idCheck").click(function() {
+
+				var userId = $("#joinForm input[name=memId]");
+
+				$.ajax({
+					url : "idCheck.me",
+					type : "post",
+					data : {
+						userId : userId.val()
+					},
+					success : function(result) {
+
+						if (result == "fail") { // 사용불가
+							alert("사용할 수 없는 아이디입니다");
 							userId.focus();
+						} else { // 사용가능
+
+							if (confirm("사용 가능한 아이디입니다. 사용하시겠습니까?")) {
+								userId.attr("readonly", "true"); // 더 이상 바꿀 수 없도록
+								isUsable = true;
+							} else {
+								userId.focus();
+							}
 						}
+
+						if (isUsable) {
+							$("#join-submit").removeAttr("disabled");
+						}
+
+					},
+					error : function() {
+						console.log("서버 통신 안됨");
 					}
-					
-					if(isUsable){
-						$("#join-submit").removeAttr("disabled");
-					}
-					
-				},
-				error:function(){
-					console.log("서버 통신 안됨");
-				}
+				});
+
 			});
-			
 		});
-	});
-	
-	
+
 	</script>
 
 
