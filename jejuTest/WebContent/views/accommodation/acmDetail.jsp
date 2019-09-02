@@ -232,6 +232,8 @@
         .d2{
             width: 25%;
             height: 100%;
+            background: #f8f9fa;
+            border-left: 1px solid lightgray;
         }        
         .d3{
             height: 20%;
@@ -243,7 +245,7 @@
             width: 40%;
             height: 100%;
             padding: 15px;
-            padding-top: 0px;
+            padding-top: 10px;
         }
         .d6{
             width: 30%;
@@ -277,6 +279,7 @@
         }
         .resultSection{
         	height:auto;
+        	
         }
         .headDiv{
             height: 130px;
@@ -314,6 +317,7 @@
         .reSearchBar{
         	width: 100%;
         	height:100%;
+        	background: #f8f9fa;
         }
         .research1{
         	width:27%;
@@ -451,8 +455,7 @@
         	line-height: initial;
         }
         .pricePerNight{
-        	font-size: 30px;
-        	font-weight: bold;
+        	font-size: 40px;
         	color:#4492b8;
         }
        .payRadio1{		
@@ -504,13 +507,13 @@
     
     
     
-    <section class="detailSection" style="text-align:center; height: 280vh;">
+    <section class="detailSection" style="text-align:center;">
     	<div class="detailWrap aa container">
             <div class="headDiv aa" align="left">			<!-- header div -->
             <label style="font-weight:bold; font-size:3em; color:#fd7e14;"><%=acm.getAcmName()%></label><br>
             <label><%=acm.getAcmAddress()%></label>
             </div>		
-            <div class="bodyDiv test aa">
+            <div class="bodyDiv aa">
                 <div class="body_1_Div aa">	<!-- 사진들어갈 div -->
 					<div class="slideImgDiv aa dd">
 
@@ -711,76 +714,71 @@
 					</div>	
                 </div>
                 
-                <div class="body_2_Div test aa">
-                	<div class="des1 test aa dd" align="left" style="text-indent:120px;">
-                		<b style="font-weight:bold">주요 편의 시설</b>
+                <div class="body_2_Div aa">
+                	<div class="des1 aa dd" align="left" style="text-indent:120px;">
+                		<b style="font-weight:bold; font-size:20px;">주요 편의 시설</b>
                 		<ul align="left" style="text-indent:120px;">
                 			<%for(String a : desArr1) {%>
-                				<li style="font-size:13px"><span style="color:yellowgreen">✔ </span><%=a %></li>
+                				<li style="font-size:15px"><span style="color:yellowgreen">✔ </span><%=a %></li>
                 			<%} %>
                 		</ul>
                 	</div>               		
                 		
-                	<div class="des2 test aa dd" align="left" style="text-indent:120px;">
-                		<b style="font-weight:bold">추가 편의 시설/서비스</b>
+                	<div class="des2 aa dd" align="left" style="text-indent:120px;">
+                		<b style="font-weight:bold; font-size:20px;">추가 편의 시설/서비스</b>
                 		<ul align="left" style="text-indent:120px;">
                 			<%for(String a : desArr2) {%>
-                				<li style="font-size:13px"><span style="color:yellowgreen">✔ </span> <%=a %></li>
+                				<li style="font-size:15px"><span style="color:yellowgreen">✔ </span> <%=a %></li>
                 			<%} %>
                 		</ul>
                 	</div>
                 		
-                	<div class="des3 test aa dd"></div>
+                	<div class="des3 aa dd"></div>
                 	
                 </div>		<!-- 설명들어갈 div -->
                 
                 
                 <!-- 다시 검색하는 위젯 -->
                 
-                <div class="body_3_Div test aa">                	
+                <div class="body_3_Div aa">                	
                 	<form class="reSearchForm aa" action="<%= request.getContextPath() %>/detail.ac?acmNum=<%=acm.getAcmNum() %>" method="post" id="searchForm">
                 		<div class="reSearchWrap test aa">
                 			<div class="reSearchBar test aa">
                 			
-	                			<div class="test aa dd research1" style="text-align:left; padding:20px;">
+	                			<div class="aa dd research1" style="text-align:left; padding:20px;">
 	                			<b>목적지 또는 숙박시설</b><br>
 	                			<input type="text" class="reText form-control" style="height:30px;" value="<%=acm.getAcmName()%>" readonly>
 	                			</div>
 	                			
-	                			<div class="test aa dd research2" style="padding:10px; padding-top:18px;">
-	                				<div class="test aa dd recheck" style="text-align:left;">
+	                			<div class="aa dd research2" style="padding:10px; padding-top:18px;">
+	                				<div class="aa dd recheck" style="text-align:left;">
 	                				
 										<b>체크인</b><br>
 										<input type="text" class="form-control dal reDate" id="checkin_date" style="height:30px;" name="checkIn" value="<%=checkIn%>">									
 										<label class="checkin_day" style="font-size:13px;">월요일</label>
 										
 									</div>
-									<div class="test aa dd space"></div>
-	                				<div class="test aa dd recheck" style="text-align:left;">
+									<div class="aa dd space"></div>
+	                				<div class="aa dd recheck" style="text-align:left;">
 	                				
 										<b>체크아웃</b><br>
 										<input type="text" class="form-control dal reDate" id="checkout_date" style="height:30px;" name="checkOut" value="<%=checkOut%>">										
 										<label class="checkout_day" style="font-size:13px;">금요일</label>               				
 	                				
 	                				</div>
-	                				<div class="test aa dd night">
+	                				<div class="aa dd night" style="text-align:right;">
 	                					<span class="widget-query-nights" id="numNight"></span>
 	                				</div>
 	                			</div>
-	                			<div class="test aa dd research3" style="text-align: justify; ">
-	                				<!-- <div class="test aa dd div3_1" style="padding-top: 7%; padding-left: 3%;">
-
-	                					<b>객실</b><br>
-	                					<select name="q-rooms" class="query-rooms" id="rnrq-rooms"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9+</option></select>
-
-	                				</div> -->
-	                				<div class="test aa dd div3_2"></div>
+	                			<div class="aa dd research3" style="text-align: justify; ">
+	                				
+	                				<div class="aa dd div3_2"></div>
 	                				<div class="widget-query-adults aa dd div3_3" style="padding-top:7%;"><b>성인</b><br><select name="adult" id="rnrq-room-0-adults" value="<%=adult%>"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select><br><span style="font-size:13px;">만 18세 이상</span></div>
-	                				<div class="test aa dd div3_2"></div>
+	                				<div class="aa dd div3_2"></div>
 	                				<div class="widget-query-children aa dd div3_4" style="padding-top:7%;"><b>어린이/청소년</b><br><select name="child" id="rnrq-room-0-children" value="<%=child%>"><option value="0" selected="selected">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><br><span style="font-size:13px;">만 17세 이하</span></div>
 	                					
 	                			</div>
-	                			<div class="test aa dd research4" style="padding-top: 3%;">
+	                			<div class="aa dd research4" style="padding-top: 3%;">
 	                				<button class="reSearchBtn btn btn-primary btn-block text-white" style="width:70%; height:50%; line-height: 1px; margin-left: auto; margin-right: auto;">검색</button>
 	                			</div>
 	                			</div>
@@ -800,8 +798,8 @@
                 	
                 	
                 </div>
-                <div class="body_4_Div test aa">
-                	<div class="roomDiv test aa">	<!-- 룸 정보 div -->
+                <div class="body_4_Div aa">
+                	<div class="roomDiv aa">	<!-- 룸 정보 div -->
                 		
                 		<!--  -->
                 		<%for(Room r : roomList){ %>
@@ -809,17 +807,17 @@
                 			<%ArrayList<RoomImg> roomImgList = new AcmService().roomImgListView(r.getRoomNum());%>
 
 							<div class="test resultWrap aa bg-light">
-								<div class="test d1 dd aa">
-									<div class="test d3 aa title">
+								<div class="d1 dd aa">
+									<div class="d3 aa title">
 										<a href="#"
-											style="font-weight: bold; font-size: 1.5em; align: left;"><%=r.getRoomName() %></a><br>
+											style="font-weight:bold; font-size:1.5em; align:left; line-height:2.5;"><%=r.getRoomName() %></a><br>
 									</div>
 									
 									
 									
-									<div class="test d4 aa">
-										<div class="test dd d5 aa">
-											<div class="test imgDiv aa">
+									<div class="d4 aa">
+										<div class="dd d5 aa">
+											<div class="imgDiv aa">
 											
 												<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 													<ol class="carousel-indicators">
@@ -864,16 +862,16 @@
 											
 											</div>
 										</div>
-										<div class="test dd d6 des3" align="left" style="text-indent:10px;">
+										<div class="dd d6 des3" align="left" style="text-indent:50px;">
 											<b style="font-weight:bold">기본사항</b>
-						                		<ul align="left" style="text-indent:10px;">
+						                		<ul align="left" style="text-indent:50px;">
 						                			<%String[] arr1 = r.getRoomDescriptA().split("\\+"); %>
 						                			<%for(String a : arr1) {%>
 						                				<li style="font-size:13px"><span style="color:yellowgreen">✔ </span><%=a %></li>
 						                			<%} %>
 						                		</ul>
 										</div>
-										<div class="test dd d9 des3" align="left" style="text-indent:10px;">
+										<div class="dd d9 des3" align="left" style="text-indent:10px;">
 											<b style="font-weight:bold">세부정보</b>
 						                		<ul align="left" style="text-indent:10px;">
 						                			<%String[] arr2 = r.getRoomDescriptB().split("\\+"); %>
@@ -885,9 +883,9 @@
 									</div>
 								</div>
 		
-								<div class="test d2 dd aa">
-									<div class="test d7 aa">1박 가격 <br><span class="pricePerNight">&#8361;<%=r.getRoomPrice() %></span></div>
-									<div class="test d8 aa">
+								<div class="d2 dd aa">
+									<div class="d7 aa"><b style="font-weight:bold; font-size:20px;">1박 가격</b> <br><span class="pricePerNight">&#8361;<%=r.getRoomPrice() %></span></div>
+									<div class="d8 aa">
 										<input type="hidden" name="roomNum" value="<%=r.getRoomNum()%>">
 										<button class="reservBtn detailBtn btn btn-primary btn-block text-white"
 											style="width: 70%;">예약하기</button>

@@ -23,6 +23,10 @@
 <!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css"> -->
 <!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> -->
 
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
 <style>
 /* The Modal (background) */
           .popModal {
@@ -134,8 +138,67 @@
                 <button class="btn btn-theme btn-block" type="submit"><a href="#">SIGN IN</a></button>
                 <hr>
                 <div class="login-social-link centered">
-                  <p>or you can sign in via your social network</p>
-                  <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
+                
+                	<!-- 카카오 로그인 -->
+                
+                	<a id="custom-login-btn" href="javascript:loginWithKakao()">
+					<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="290"/>
+					</a>
+					<script type='text/javascript'>
+					  //<![CDATA[
+					    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+					    Kakao.init('9baefdf8cbf2ee252bc9b7dc403ad63d');
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    function loginWithKakao() {
+					      // 로그인 창을 띄웁니다.
+					      Kakao.Auth.login({
+					    	  success: function(authObj) {
+					    		  
+					    		  
+					    		  var accessToken = authObj.access_token;
+						          var refreshToken = authObj.refresh_token;
+						          
+						          console.log('accessToken : '+accessToken);
+						          console.log('refreshToken : '+refreshToken);
+					    		  
+					    		  
+							        // 로그인 성공시, API를 호출합니다.
+							        Kakao.API.request({
+							          url: '/v2/user/me',
+							          success: function(res) {
+							            alert(JSON.stringify(res));
+							          },
+							          fail: function(error) {
+							            alert(JSON.stringify(error));
+							          }
+							        });
+							      },
+							      fail: function(err) {
+							        alert(JSON.stringify(err));
+							      }
+					      });
+					    };
+					     
+					    
+					    
+					    
+					    
+					    
+					    
+					  //]]>
+					</script>
+					
+					<!-- 카카오 로그인 -->
+                
+                
                   <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
                 </div>
                 <div class="registration">

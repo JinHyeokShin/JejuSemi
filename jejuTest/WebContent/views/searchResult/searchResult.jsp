@@ -66,6 +66,8 @@
         .d2{
             width: 25%;
             height: 100%;
+            background: #f8f9fa;
+            border-left: 1px solid lightgray;
         }        
         .d3{
             height: 20%;
@@ -112,14 +114,14 @@
         	margin:auto;
         }
         .resultSection{
-        	/* height:100%; */
+        	padding-bottom: 0;
+        	min-height: 1000px;
         }
         #resultAcmDiv{
         	background:#f2f4fb;
         }
         .pricePerNight{
-        	font-size: 30px;
-        	font-weight: bold;
+        	font-size: 40px;
         	color:#4492b8;
         }
         .etc{
@@ -335,20 +337,20 @@
 				    							
 								    			str += '<li>'+
 															'<div class="test resultWrap aa" id="resultAcmDiv">'+
-															'<div class="test d1 dd aa">'+
-																'<div class="test d3 aa title">'+
+															'<div class="d1 dd aa">'+
+																'<div class="d3 aa title">'+
 																	'<a href="#" style="font-weight: bold; font-size: 1.5em;">'+value.acmName +'</a>'+'<br>'+
 																	'<label style="font-size:10px;">'+value.acmAddress+'</label>'+
 																'</div>'+
-																'<div class="test d4 aa">'+
-																	'<div class="test dd d5 aa">';
+																'<div class="d4 aa">'+
+																	'<div class="dd d5 aa">';
 																		$.each(result["imgList"],function(index2, value2){
 																			if(value.acmNum == value2.acmNum){
 																			str +='<div class="test imgDiv aa"><img src="'+value2.imgPath+'" style="width:100%; height: 100%;"></div>';
 																			}
 																		});															
 															str +='</div>'+
-																			'<div class="test dd d6">설명'+
+																			'<div class="dd d6">설명'+
 																				'<ul class="etc">'+
 																					'<li>'+value.acmGrade+'성급</li>'+
 																					'<li>'+value.acmDistrict+'시</li>'+
@@ -356,9 +358,9 @@
 																			'</div>'+
 																		'</div>'+
 																	'</div>'+							
-																	'<div class="test d2 dd aa">'+
-																		'<div class="test d7 aa">1박 가격 <br><span class="pricePerNight">&#8361;'+value.minPrice+'원</span></div>'+
-																		'<div class="test d8 aa">'+
+																	'<div class="d2 dd aa">'+
+																		'<div class="d7 aa"><b style="font-weight:bold; font-size:20px;">최소 1박 가격</b> <br><span class="pricePerNight">&#8361;'+value.minPrice+'</span></div>'+
+																		'<div class="d8 aa">'+
 																			'<input type="hidden" value="'+value.acmNum+'">'+
 																			'<button class="asdf btn btn-primary btn-block text-white"	style="width:70%;">상세보기</button>'+
 																		'</div>'+'</div>'+'</div>'+'</li>'+'<br>';
@@ -406,7 +408,7 @@
 			<div align="left" style="width:100%; padding-left:40px;">
 				<label style="font-size:18px"><%=checkIn %> ~ <%=checkOut %>&nbsp;&nbsp;&nbsp;성인 : <%=adult %>&nbsp;&nbsp;어린이/청소년 : <%=child %>&nbsp;&nbsp;검색 결과</label>
 			</div>
-			
+			<div class="" >
 				<ul class="resultWrap" id="resultWrap">
 					<%if(acmList == null) {%>
 						<div align="center"><b style="font-size: 3em">예약 가능한 숙박업소가 없습니다.</b></div>
@@ -416,22 +418,22 @@
 
 							<li>
 								<div class="test resultWrap aa" id="resultAcmDiv">
-									<div class="test d1 dd aa">
-										<div class="test d3 aa title">
+									<div class="d1 dd aa">
+										<div class="d3 aa title">
 											<a href="#" style="font-weight: bold; font-size: 1.5em;"><%=acm.getAcmName()%></a>
 											<br>
 											<label style="font-size:10px;"><%=acm.getAcmAddress()%></label>
 										</div>
-										<div class="test d4 aa">
-											<div class="test dd d5 aa">
+										<div class="d4 aa">
+											<div class="dd d5 aa">
 												<%for(AcmImg acmImg : acmThumbnailImgList){ %>
 													<%if(acm.getAcmNum() == acmImg.getAcmNum()){ %>
-														<div class="test imgDiv aa"><img src="<%=acmImg.getImgPath()%>" style="width:100%; height: 100%;"></div>														
+														<div class="imgDiv aa"><img src="<%=acmImg.getImgPath()%>" style="width:100%; height: 100%;"></div>														
 													<%} %>												
 												<%} %>
 											
 											</div>
-											<div class="test dd d6">
+											<div class="dd d6">
 												<ul class="etc">
 													<li><%=acm.getAcmGrade() %>성급</li>
 													<li><%=acm.getAcmDistrict() %>시</li>
@@ -440,9 +442,9 @@
 										</div>
 									</div>
 		
-									<div class="test d2 dd aa">
-										<div class="test d7 aa">1박 가격 <br><span class="pricePerNight">&#8361;<%=acm.getMinPrice()%>원</span></div>
-										<div class="test d8 aa">
+									<div class="d2 dd aa">
+										<div class="d7 aa"><b style="font-weight:bold; font-size:20px;">최소 1박 가격</b> <br><span class="pricePerNight">&#8361;<%=acm.getMinPrice()%></span></div>
+										<div class="d8 aa">
 											<input type="hidden" value="<%=acm.getAcmNum()%>">
 											<button class="detailBtn btn btn-primary btn-block text-white"
 												style="width:70%;">상세보기</button>
@@ -455,6 +457,11 @@
 					<%} %>
 					
 				</ul>
+				</div>
+				<br clear="both">
+				<br>
+				
+			    
 				
 				<script>
 						
@@ -492,17 +499,21 @@
 					});
 					
 				</script>
+				
 
 			</div>          
-       
+       		
     
     </section>
-    
+    		<!-- <div class="test aa footerDiv" style="width:100%; height:500px;">
+			    
+			    </div> -->
 
-   
-      <br clear="both">
-     <%-- 풋터 --%>
-    <%@ include file="../main/footer.jsp" %>
+   			
+    		<%-- 풋터 --%>
+    		<%@ include file="../main/footer.jsp" %>
+				
+    
 
 	<%-- <section class="section bg-image overlay" style="background-image: url('<%= request.getContextPath() %>/resources/images/hero_4.jpg');" id="section-apply">
         <div class="container" >
