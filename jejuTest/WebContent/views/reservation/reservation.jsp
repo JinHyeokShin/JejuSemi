@@ -181,7 +181,7 @@
 				</div>
 				<div class="paymentInfo bg-light section pp">
 				
-				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >결제 정보</label><hr>
+				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >결제 방법</label><hr>
 				
 				
 				
@@ -247,16 +247,17 @@
 			            $(".agreement").on('click',function(){
 			                if($("#checkAgree").css('display') == 'none'){
 			                    $("#checkAgree").css('display','block');
+			                    $("#payBtn").attr('disabled',false);
 			                } else{
 			                    $("#checkAgree").css('display','none');
+			                    $("#payBtn").attr('disabled',true);
 			                }
 			            });
-			        });
-				
+			        });				
 				</script>
 				<hr>
-				<input type="hidden" name="methodFlag" id="mFlag">
-				<button type="button" id="payBtn" style="float:right;">예약하기</button>
+				<input type="hidden" name="methodFlag" id="mFlag" value="0">
+				<button type="button" id="payBtn" style="float:right;" disabled>예약하기</button>
 				
 				
 				
@@ -289,12 +290,17 @@
 				 		
 				 		
 				 		
+				 		
+				 		
+				 		/* 결제방법 선택에 따른 결제모듈 선택 */
 				 		$("#payBtn").click(function(){	
 							
 							if($("#mFlag").val() == 1){
 								inicis();
 							} else if($("#mFlag").val() == 2){
-								
+								kakao();
+							} else if($("#mFlag").val() == 0){
+								alert('결제 방법을 선택해 주세요.');
 							}
 						});
 				 		
@@ -303,9 +309,7 @@
 				 		
 				 		
 					});
-				
-					
-					
+							
 				
 				function inicis() {
 					<!-- 결제  -->
@@ -315,7 +319,7 @@
 				    	    pg : 'html5_inicis',	/* 결제PG사 */
 				    	    pay_method : 'card',/* 결제방법 */
 				    	    merchant_uid : 'R' + new Date().getTime(),	/* 주문번호 */
-				    	    name : '주문명:결제테스트',	/* 주문이름 */
+				    	    name : '<%=acm.getAcmName()%>'+' 예약 결제',	/* 주문이름 */
 				    	    amount : 100,		/* 결제 가격 */
 				    	    buyer_email : $("input[name=reservEmail]").val(),	/* 구매자 이멜 */
 				    	    buyer_name : $("input[name=reservName]").val(),				/* 구매자 이름 */
@@ -331,7 +335,7 @@
 				    				  reservName:$("input[name=reservName]").val(),
 				    				  reservEmail:$("input[name=reservEmail]").val(),
 				    				  reservPhone:$("input[name=reservPhone]").val(),
-				    				  reservRequire:$("input[name=reservRequire]").val(),
+				    				  reservRequire:$("textarea[name=reservRequire]").val(),
 				    				  payMethod:$("input[name=payMethod]").val(),
 				    				  reservPrice:reservPrice,
 				    				  reservPax:<%=adult%>+<%=child%>,
@@ -351,8 +355,64 @@
 				    	});		/* function(rsp) close */
 				    
 				    
-				    <!--     -->
-				}
+				    
+				}	<!--  이니시스 결제 close   -->
+				
+				
+				
+				
+				function kakao() {
+					<!-- 결제  -->
+				    	IMP.init('imp80836035');
+				    
+				    	IMP.request_pay({
+				    	    pg : 'kakaopay',	/* 결제PG사 */
+				    	    pay_method : 'card',/* 결제방법 */
+				    	    merchant_uid : 'R' + new Date().getTime(),	/* 주문번호 */
+				    	    name : '<%=acm.getAcmName()%>'+' 예약 결제',	/* 주문이름 */
+				    	    amount : 100,		/* 결제 가격 */
+				    	    buyer_email : $("input[name=reservEmail]").val(),	/* 구매자 이멜 */
+				    	    buyer_name : $("input[name=reservName]").val(),				/* 구매자 이름 */
+				    	    buyer_tel : $("input[name=reservPhone]").val(),		/* 구매자 전화번호(필수) '010-1234-5678' */
+				    	}, function(rsp) {
+				    		
+				    		console.log(rsp.apply_num);
+				    		
+				    		$.ajax({
+				    			url:"payment.py",
+				    			type:"post",
+				    			data:{payNum:rsp.imp_uid,
+				    				  reservNum:rsp.merchant_uid,
+				    				  payPrice:rsp.paid_amount,
+				    				  confirmNum:rsp.apply_num,
+				    				  reservName:$("input[name=reservName]").val(),
+				    				  reservEmail:$("input[name=reservEmail]").val(),
+				    				  reservPhone:$("input[name=reservPhone]").val(),
+				    				  reservRequire:$("textarea[name=reservRequire]").val(),
+				    				  payMethod:$("input[name=payMethod]").val(),
+				    				  reservPrice:reservPrice,
+				    				  reservPax:<%=adult%>+<%=child%>,
+				    				  checkIn:"<%=checkIn%>",
+				    				  checkOut:"<%=checkOut%>",
+				    				  roomNum:<%=room.getRoomNum()%>
+				    				 },
+				    			success:function(data){
+				    				console.log(rsp.apply_num);
+				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
+				    			},
+				    			error:function(){
+				    				alert("결제 실패");
+				    			}			    			
+				    			
+				    		});	/* ajax close */
+				    	});		/* function(rsp) close */
+				    
+				    
+				    
+				}	<!--  카카오 결제 close   -->
+				
+				
+				
 				
 				
 				

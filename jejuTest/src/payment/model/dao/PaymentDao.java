@@ -33,15 +33,19 @@ public class PaymentDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertPayment");
+		
+		System.out.println("ConfirmNum : "+pay.getConfirmNum());
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pay.getPayNum());
 			pstmt.setString(2, pay.getReservNum());
 			pstmt.setInt(3, pay.getPayPrice());
-			pstmt.setInt(4, pay.getConfirmNum());
+			pstmt.setString(4, pay.getConfirmNum());
 			pstmt.setString(5, pay.getPayMethod());
 			
 			result = pstmt.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

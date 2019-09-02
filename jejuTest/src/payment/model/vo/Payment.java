@@ -7,7 +7,7 @@ public class Payment {	// 추후 결제 모듈 연동시 변경될 확률 높음
 	private String payNum;				// 결제 번호
 	private String reservNum;				// 예약 번호	
 	private int payPrice;			// 결제 금액
-	private int confirmNum;			// 카드 승인 번호
+	private String confirmNum;			// 카드 승인 번호
 	private String payMethod;		// 결제 방법
 	private String payCancel;		// 결제 취소 여부(y/n)
 	private Date payDate;			// 결제일
@@ -19,7 +19,7 @@ public class Payment {	// 추후 결제 모듈 연동시 변경될 확률 높음
 	
 	
 	
-	public Payment(String payNum, String reservNum, int payPrice, int confirmNum, String payMethod) {
+	public Payment(String payNum, String reservNum, int payPrice, String confirmNum, String payMethod) {
 		super();
 		this.payNum = payNum;
 		this.reservNum = reservNum;
@@ -30,7 +30,7 @@ public class Payment {	// 추후 결제 모듈 연동시 변경될 확률 높음
 
 
 
-	public Payment(String payNum, String reservNum, int payPrice, int confirmNum, String payMethod, String payCancel,
+	public Payment(String payNum, String reservNum, int payPrice, String confirmNum, String payMethod, String payCancel,
 			Date payDate, Date cancelDate) {
 		super();
 		this.payNum = payNum;
@@ -67,11 +67,11 @@ public class Payment {	// 추후 결제 모듈 연동시 변경될 확률 높음
 		this.payPrice = payPrice;
 	}
 
-	public int getConfirmNum() {
+	public String getConfirmNum() {
 		return confirmNum;
 	}
 
-	public void setConfirmNum(int confirmNum) {
+	public void setConfirmNum(String confirmNum) {
 		this.confirmNum = confirmNum;
 	}
 

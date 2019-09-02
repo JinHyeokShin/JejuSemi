@@ -37,7 +37,7 @@ public class PaymentServlet extends HttpServlet {
 		String payNum = request.getParameter("payNum");
 		String reservNum = request.getParameter("reservNum");
 		int payPrice = Integer.parseInt(request.getParameter("payPrice"));
-		int confirmNum = Integer.parseInt(request.getParameter("confirmNum"));
+		String confirmNum = request.getParameter("confirmNum");
 		
 		String reservName = request.getParameter("reservName");
 		String reservEmail = request.getParameter("reservEmail");
@@ -52,6 +52,7 @@ public class PaymentServlet extends HttpServlet {
 		
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
+		System.out.println(confirmNum);
 		
 		Payment pay = new Payment(payNum, reservNum, payPrice, confirmNum, payMethod);
 		Reservation reserv = new Reservation(reservNum, loginUser.getMemNum(), roomNum, reservPax, checkIn, checkOut, reservPrice, reservRequire);
@@ -59,25 +60,8 @@ public class PaymentServlet extends HttpServlet {
 		int result = new PaymentService().insertPayment(pay, reserv);
 		
 		if(result > 0) {
-			response.getWriter().print(reservNum);
-			
+			response.getWriter().print(reservNum);			
 		}
-		
-		/*
-		if(result > 0) {			
-			request.setAttribute("reservNum", reservNum);
-			request.getRequestDispatcher("views/reservation/complete.jsp").forward(request, response);
-		} else {
-			
-		}*/
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	/**
