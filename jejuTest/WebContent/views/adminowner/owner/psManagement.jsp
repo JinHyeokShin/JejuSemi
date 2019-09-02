@@ -33,7 +33,7 @@
 <body>
 	<section id="main-content">
       <section class="wrapper">
-       <h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
+       <h3><i class="fa fa-angle-right"></i><%= acm.getAcmName() %> 후기 관리 게시판</h3>
         <div class="col-lg-12 mt">
         	<section class="panel">
               <div class="panel-body">

@@ -1,8 +1,10 @@
 package member.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import accommodation.model.vo.Acm;
+import accommodation.model.vo.AcmImg;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
 import static common.JDBCTemplate.*;
@@ -57,6 +59,15 @@ public class MemberService {
 	   return acm;
    }
    
+   public ArrayList<AcmImg> acmImgListView(int acmNum){
+		Connection conn = getConnection();
+		
+		ArrayList<AcmImg> list = new MemberDao().acmImgListView(conn, acmNum);
+		
+		close(conn);
+		
+		return list;
+	}
    
 
 }

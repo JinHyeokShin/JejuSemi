@@ -6,9 +6,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import accommodation.model.vo.Acm;
+import accommodation.model.vo.AcmImg;
 import member.model.vo.Member;
 import static common.JDBCTemplate.*;
 
@@ -175,6 +177,32 @@ public class MemberDao {
 		return acm;
 		
 		
+	}
+	
+	public ArrayList<AcmImg> acmImgListView(Connection conn, int acmNum){
+		ArrayList<AcmImg> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("acmImgView");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new AcmImg(rset.getInt("img_num"),
+						            rset.getString("img_path"),
+						            rset.getInt("acm_num"),
+						            rset.getInt("status")));				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
    
    

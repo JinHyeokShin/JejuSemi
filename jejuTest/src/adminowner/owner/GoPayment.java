@@ -31,7 +31,7 @@ public class GoPayment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		/*request.setCharacterEncoding("utf-8");
 		
 		
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
@@ -43,7 +43,7 @@ public class GoPayment extends HttpServlet {
 		
 		if(result > 0) {
 			response.sendRedirect("page.ow");
-		}
+		}*/
 		request.getRequestDispatcher("views/adminowner/owner/payment.jsp").forward(request, response);
 	}
 

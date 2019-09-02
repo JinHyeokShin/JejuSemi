@@ -78,7 +78,7 @@ ul.sidebar-menu li ul.sub li.active a {
 <body>
   <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> <%-- <%= acm.getAcmName() %>  --%>예약 내역 확인</h3>
+        <h3><i class="fa fa-angle-right"></i> <%= acm.getAcmName() %> 예약 내역 확인</h3>
         <!-- page start-->
         <div class="row mt">
           <aside class="col-lg-12 mt">

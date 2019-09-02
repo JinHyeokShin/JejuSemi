@@ -36,6 +36,13 @@ ul.sidebar-menu li ul.sub li.active a {
 .logout{
     cursor: pointer;
 }
+
+.profile-pic img {
+    width: 60%;
+    height: 50%;
+    border: 10px solid #f1f2f7;
+    margin-top: 20px;
+}
   </style>
 </head>
 
@@ -71,7 +78,7 @@ ul.sidebar-menu li ul.sub li.active a {
                   <!-- /col-md-4 -->
                   <div class="col-md-4 centered">
                     <div class="profile-pic">
-                      <p><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle"></p>
+                      <p><img src="<%= acmImgList.get(0).getImgPath()%>"></p>
                       <p>
 <!--                         <button class="btn btn-theme"><i class="fa fa-check"></i> Follow</button>
                         <button class="btn btn-theme02">Add</button> -->

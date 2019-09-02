@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="member.model.vo.Member"%>
 <%@page import="accommodation.model.vo.Acm"%>
+<%@page import="accommodation.model.vo.AcmImg"%>
 
-<%  Member loginUser = (Member)session.getAttribute("loginUser"); %>
-<%  Acm acm = (Acm)session.getAttribute("acm"); %>
+<%  Member loginUser = (Member)session.getAttribute("loginUser");
+	ArrayList<AcmImg> acmImgList = (ArrayList<AcmImg>)session.getAttribute("acmImgList");
+	 Acm acm = (Acm)session.getAttribute("acm");
+%>
+
 	
 <!DOCTYPE html>
 <html>
@@ -267,7 +272,7 @@ a{
         <div id="sidebar" class="nav-collapse ">
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="<%= request.getContextPath() %>/page.ow"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+            <p class="centered"><a href="<%= request.getContextPath() %>/page.ow"><img src="<%=acmImgList.get(0).getImgPath()%>" width="100%"></a></p>
             <h5 class="centered">  <%= acm.getAcmName() %></h5>
             <li>
               <a class="active1" onclick="goDashBoard();">
