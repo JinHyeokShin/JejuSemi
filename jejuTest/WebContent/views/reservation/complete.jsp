@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String reservNum = request.getParameter("reservNum");
+
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,7 +56,7 @@
     		  			
     			<p>
     				<b style="font-size:3em;">예약이 완료 되었습니다.</b><br>
-    				<b>예약번호 : </b><label>12345678</label>
+    				<b style="font-size: 2em">예약번호 : </b><label style="font-size: 2em"><%=reservNum %></label>
     			</p>
     			<br>
     			<button class="detailBtn btn btn-primary btn-block text-white" style="width:30%;" id="myReservCheck">예약내역 확인</button>
@@ -60,25 +65,7 @@
     	</div>
     </section>
 	
-	<!-- <script>
-		$("#myReservCheck").click(function() {
-			alertify.alert().set('message', '내용').show(); 
-		});
 	
-	
-	</script> -->
-
-
-
-
-
-
-
-
-
-
-
-
 	<%-- 풋터 --%>
     <%@ include file="../main/footer.jsp" %>
 

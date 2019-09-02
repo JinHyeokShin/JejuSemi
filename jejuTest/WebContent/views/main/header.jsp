@@ -188,24 +188,33 @@
     </div>
   
       <script>
-          // loginModal
-          var loginModal = document.getElementById('loginModal');
-          var loginBtn = document.getElementById("loginBtn");
-   
           // flightModal
           var flightModal = document.getElementById('flightModal');
           var flight = document.getElementById('nav2');
    
-          // Get the <span> element that closes the modal
-          var span = document.getElementsByClassName('close');                                          
+          /* // loginModal
+          var loginModal = document.getElementById('loginModal');
+          var loginBtn = document.getElementById("loginBtn"); */
    
           // When the user clicks on the button, open the modal 
-          loginBtn.onclick = function() {
+          /* loginBtn.onclick = function() {
             loginModal.style.display = "block";
-          } 
-          flight.onclick = function() {
+          } */ 
+          
+          $("#loginBtn").click(function() {
+			$("#loginBtn").css('display','block');
+		  });
+          
+          $("#nav2").click(function() {
+        	  $("#flightModal").css('display','block');
+		})
+          
+          /* flight.onclick = function() {
             flightModal.style.display = "block";
-          } 
+          }  */
+          
+       // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName('close');    
 
           $(function(){
             // 모달창 x 버튼 누르면 창 꺼지기

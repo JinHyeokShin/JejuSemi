@@ -84,6 +84,7 @@
                     </div>
                   </div>
                   <div class="col-md-6 col-lg-3 align-self-end">
+                  	<input type="hidden" name="page" value="1">
                     <button class="btn btn-primary btn-block text-white" id="searchBtn">Check Availabilty</button>
                   </div>
                 </div>

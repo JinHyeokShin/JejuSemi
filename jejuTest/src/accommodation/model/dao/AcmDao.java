@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import accommodation.model.vo.Acm;
 import accommodation.model.vo.AcmImg;
+import accommodation.model.vo.Option;
 import accommodation.model.vo.Room;
 import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
@@ -53,6 +54,8 @@ public class AcmDao {
 			pstmt.setString(1, search.getSearchCheckInDate());
 			pstmt.setString(2, search.getSearchCheckOutDate());
 			pstmt.setInt(3, search.getAdult()+search.getChild());
+			pstmt.setInt(4, (search.getPage()*5)-4);
+			pstmt.setInt(5, search.getPage()*5);
 			
 			rset = pstmt.executeQuery();
 			
@@ -84,6 +87,127 @@ public class AcmDao {
 		}
 		return list;
 	}
+	
+	
+	
+	public ArrayList<Acm> searchAcmOption(Connection conn, Search search, Option option){
+		ArrayList<Acm> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String[] arr1 = option.getArrType();
+		String[] arr2 = option.getArrDist();
+		String[] arr3 = option.getArrStar();
+		String[] arr4 = option.getArrPrice();
+		
+		String str1 = "SELECT * FROM (SELECT ROWNUM AS RNUM, SEARCH.* FROM (SELECT ACM_NUM, ACM_NAME, ACM_PHONE, ACM_ADDRESS, ACM_TYPE, ACM_GRADE, ACM_DESCRIPT_A, ACM_DESCRIPT_B, ACM_COORD_X, ACM_COORD_Y, ACM_DISTRICT, ACM_POWER, ACM_STATUS, MIN(ROOM_PRICE) MINPRICE FROM ACCOMMODATION JOIN ROOM USING(ACM_NUM) WHERE ROOM_NUM  NOT IN (SELECT ROOM_NUM FROM RESERVATION WHERE CHECKIN_DATE >= ? AND CHECKOUT_DATE < ?) AND ACM_STATUS='Y' AND ROOM_PAX>=? ";
+		String str2 = "";
+		String str3 = "";
+		String str4 = "";
+		String str5 = " GROUP BY ACM_NUM, ACM_NAME, ACM_PHONE, ACM_ADDRESS, ACM_TYPE, ACM_GRADE, ACM_DESCRIPT_A, ACM_DESCRIPT_B, ACM_COORD_X, ACM_COORD_Y, ACM_DISTRICT, ACM_POWER, ACM_STATUS ";
+		String str6 = "";
+		String str7 = " ORDER BY ACM_NUM) SEARCH) WHERE RNUM BETWEEN ? AND ?";
+		
+		
+		
+		if(arr1.length == 1 || arr1.length == 6) {	// type 필터에 체크가 하나도 없거나 모두 있으면		
+			str2 = "";
+		}
+		if(arr1.length == 2) {	// 체크가 1개면
+			str2 = " AND " + arr1[0] +" "+ arr1[1];	// AND ACM_TYPE IN 'H'
+		}
+		if(arr1.length == 3) {	// 체크가 2개면
+			str2 = " AND " + arr1[0] +"("+arr1[1]+","+arr1[2]+")";	// AND ACM_TYPE IN('H','R')
+		}
+		if(arr1.length == 4) {	// 체크가 3개면
+			str2 = " AND " + arr1[0] +"("+arr1[1]+","+arr1[2]+","+arr1[3]+")";	// AND ACM_TYPE IN('H','R','C')
+		}
+		if(arr1.length == 5) {	// 체크가 4개면
+			str2 = " AND " + arr1[0] +"("+arr1[1]+","+arr1[2]+","+arr1[3]+","+arr1[4]+")";	// AND ACM_TYPE IN('H','R','C','G')
+		}
+				
+		
+		if(arr2.length == 1 || arr2.length == 3) {	// district 필터에 체크가 없거나 모두 있으면
+			str3 = "";			
+		}
+		if(arr2.length == 2) {	// 체크가 1개면
+			str3 = " AND "+arr2[0]+arr2[1];
+		}
+		
+		if(arr3.length == 1 || arr3.length == 6) {	// star 필터에 체크가 없거나 모두 있으면
+			str4 = "";
+		}
+		if(arr3.length == 2) {	// 체크가 1개면
+			str4 = " AND " + arr3[0] +" "+ arr3[1];	// AND ACM_GRADE IN 1
+		}
+		if(arr3.length == 3) {	// 체크가 2개면
+			str4 = " AND " + arr3[0] +"("+arr3[1]+","+arr3[2]+")";	// AND ACM_GRADE IN(1,2)
+		}
+		if(arr3.length == 4) {	// 체크가 3개면
+			str4 = " AND " + arr3[0] +"("+arr3[1]+","+arr3[2]+","+arr3[3]+")";	// AND ACM_GRADE IN(1,2,3)
+		}
+		if(arr3.length == 5) {	// 체크가 4개면
+			str4 = " AND " + arr3[0] +"("+arr3[1]+","+arr3[2]+","+arr3[3]+","+arr3[4]+")";	// AND ACM_GRADE IN(1,2,3,4)
+		}
+		
+		
+		if(Integer.parseInt(arr4[1]) == 0) {	// min=0 / max=값
+			str6 = arr4[0]+"<"+arr4[2];
+		}
+		if(Integer.parseInt(arr4[2]) == 0) {	// min=값 / max=0
+			str6 = arr4[0]+">"+arr4[1];
+		}
+		if(Integer.parseInt(arr4[1]) == 0 && Integer.parseInt(arr4[2]) == 0) {	// min=0 / max=0 이면 
+			str6 = "";
+		}
+		if(Integer.parseInt(arr4[1]) != 0 && Integer.parseInt(arr4[2]) != 0) {	// min=값 / max=값
+			str6 = arr4[0]+" BETWEEN "+arr4[1]+" AND "+arr4[2];
+		}
+		
+		
+		String sql = str1+str2+str3+str4+str5+str6+str7;
+		
+		System.out.println(sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search.getSearchCheckInDate());
+			pstmt.setString(2, search.getSearchCheckOutDate());
+			pstmt.setInt(3, search.getAdult()+search.getChild());
+			pstmt.setInt(4, (search.getPage()*5)-4);
+			pstmt.setInt(5, search.getPage()*5);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Acm acm = new Acm();
+				acm.setAcmNum(rset.getInt("acm_num"));
+				acm.setAcmName(rset.getString("acm_name"));
+				acm.setAcmPhone(rset.getString("acm_phone"));
+				acm.setAcmAddress(rset.getString("acm_address"));
+				acm.setAcmType(rset.getString("acm_type"));
+				acm.setAcmGrade(rset.getInt("acm_grade"));
+				acm.setAcmDescriptA(rset.getString("acm_descript_a"));
+				acm.setAcmDescriptB(rset.getString("acm_descript_b"));
+				acm.setAcmCoordX(rset.getString("acm_coord_x"));
+				acm.setAcmCoordY(rset.getString("acm_coord_y"));
+				acm.setAcmDistrict(rset.getString("acm_district"));
+				acm.setAcmPower(rset.getString("acm_power"));
+				acm.setStatus(rset.getString("acm_status"));
+				acm.setMinPrice(rset.getInt("minprice"));
+				
+				list.add(acm);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
 	
 	
 	

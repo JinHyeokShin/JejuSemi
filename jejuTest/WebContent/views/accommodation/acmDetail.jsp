@@ -57,8 +57,10 @@
 
 <script	src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=1e17b2f2-a4b7-4aae-ad14-3908433f0815"></script>
 
-
 <!-- 발급받은 인증키를 위에 넣는다 -->
+
+
+
 <script type="text/javascript">
 
 	function nights() {
@@ -211,7 +213,9 @@
 <!-- T-MAP API header 끝 -->
 
 <style>
-
+		body.modal-open{
+			overflow:hidden;
+		}
                 
          li{
             list-style-type: none;
@@ -312,15 +316,15 @@
         	height:100%;
         }
         .research1{
-        	width: 25%;
+        	width:27%;
         	height:100%;
         }
         .research2{
-        	width: 38%;
+        	width: 40%;
         	height:100%;
         }
         .research3{
-        	width: 25%;
+        	width: 21%;
         	height:100%;
         }
         .research4{
@@ -332,7 +336,7 @@
         	height:100%;
         }
         .recheck{
-        	width:45%;
+        	width:42%;
         	height:100%;
         }
         .space{
@@ -340,25 +344,25 @@
         	height:100%;
         }
         .night{
-        	width:7%;
+        	width:10%;
         	height:100%;
         	padding-top:28px;
         }
-        .div3_1{
-        	width:25%;
+        /* .div3_1{
+        	width:0%;
         	height:100%;
-        }
+        } */
         .div3_2{
         	width:4%;
         	height:100%;
         }
         .div3_3{
-        	width:30%;
+        	width:38%;
         	height:100%;
         	text-align:right;
         }
         .div3_4{
-        	width:37%;
+        	width:54%;
         	height:100%;
         	text-align:right;
         }
@@ -380,33 +384,21 @@
         .route{
         	width: 100%;
         	height: 46%;
-        	border-radius: 10px;
+        	border-radius: 15px;
         }
                
         .route1{
         	width: 100%;
-        	height:20%;
+        	height:25%;
         }
         .route2{
         	width: 100%;
-        	height:50%;
+        	height:75%;
+        	padding:13px;
         }
-        .route2_1{
-        	width: 100%;
-        	height:100%;
-        }
-        .route3{
-        	width: 100%;
-        	height:30%;
-        }
-        #radioRoute, #radioBus{
-        	width: 50%;
-        	height:100%;
-        	margin:auto;
-        }
-        #radioRouteBtn, #radioBusBtn{
-        	margin-top: 20px;
-        }
+        
+        
+        
         .totalRoute{
         	width:85%;
         	height:100%;
@@ -463,7 +455,27 @@
         	font-weight: bold;
         	color:#4492b8;
         }
-        
+       .payRadio1{		
+		position: absolute;
+	    display:none;
+		}
+		.payLabel{
+			display: inline-block;
+		    height: 28px;
+		    margin: 0;
+		    padding-left: 27px;
+		    background: url("<%= request.getContextPath() %>/resources/images/sprite_chk.png") 0 -32px no-repeat;
+		    font-weight: bold;
+		    line-height: 28px;
+		    cursor: pointer;
+		}
+		.paypay{
+			background-position: 0 0; 
+		}
+		.hideTable{
+		display:none
+		}
+		
         
 </style>
 
@@ -571,133 +583,134 @@
 							
 						</script>
 						<div class="xxx dd"></div>
-						<div class="test aa dd route">
-							<div class="dd route1">	<!-- 라디오버튼 div -->
-								<div class="aa dd" id="radioRoute">
-									<input type="radio" id="radioRouteBtn" name="route" value="car" onclick="showOn();"><label for="radioRouteBtn"><img src="<%=contextPath%>/resources/images/car.png"></label>
-								</div>
-								<div class="aa dd" id="radioBus">
-									<input type="radio" id="radioBusBtn" name="route" value="bus" onclick="showOff();"><label for="radioBusBtn">&nbsp;<img src="<%=contextPath%>/resources/images/bus.png"></label>
+						<div class="aa dd route bg-light">
+							
+							<div class="aa route1">
+								<b style="font-weight: bold; font-size: 1.5em; color: #fd7e14; line-height: 70px;">경로안내</b>
+							</div>
+							<div class="aa route2">
+								<div class="aa route2_1" style="width:100%; height:100%;">
+								
+									<table class="routeTable" id="table1" style="width:100%; height:100%; border-radius: 15px; background:white;">
+										<tr style="height:25%">
+											<td style="width:25%">출발지 :</td>
+											<td colspan="3" style="width:55%; text-align:left;">
+												<input type="radio" class="payRadio1" name="payRadio1" id="payRadio1_1">
+												<label for="payRadio1_1" class="payLabel label1" value="jeju1">제주공항</label>
+											</td>
+										</tr>
+										<tr style="height:25%">
+											<td style="width:25%"></td>
+											<td colspan="2" style="width:55%; text-align:left;">
+												<input type="radio" class="payRadio1" name="payRadio1" id="payRadio1_2">
+												<label for="payRadio1_2" class="payLabel label2" value="jeju2">제주여객터미널</label>
+											</td>
+											<td style="width:20%"><img src="<%=contextPath %>/resources/images/swap.png" id="swap"></td>
+										</tr>
+										<tr style="height:25%">
+											<td style="width:25%">도착지 :</td>
+											<td colspan="3" style="width:55%; text-align:left; font-weight: bold;"><%=acm.getAcmName() %></td>
+										</tr>
+										<tr style="height:25%">
+											<td colspan="4"><button class="detailBtn btn btn-primary btn-block text-white" id="routeBtn" style="width:70%; height:70%; line-height: 1px; padding-bottom: 10px;">경로보기</button></td>
+										</tr>								
+									</table>
+									
+									
+									<table class="routeTable hideTable" id="table2" style="width:100%; height:100%; border-radius: 15px; background:white;">
+										<tr style="height:25%">
+											<td style="width:25%">출발지 :</td>
+											<td colspan="3" style="width:55%; text-align:left; font-weight: bold;"><%=acm.getAcmName() %></td>
+											
+											
+										</tr>
+										<tr style="height:25%">
+											<td style="width:25%">도착지 :</td>
+											<td colspan="2" style="width:55%; text-align:left;">
+												<input type="radio" class="payRadio1" name="payRadio1" id="payRadio1_1">
+												<label for="payRadio1_1" class="payLabel label1" value="jeju1">제주공항</label>
+											</td>
+											
+											
+											<td style="width:20%"><img src="<%=contextPath %>/resources/images/swap.png" id="swap" class="swap"></td>
+										</tr>
+										<tr style="height:25%">
+											<td style="width:25%"></td>
+											<td colspan="3" style="width:55%; text-align:left;">
+												<input type="radio" class="payRadio1" name="payRadio1" id="payRadio1_2">
+												<label for="payRadio1_2" class="payLabel label2" value="jeju2">제주여객터미널</label>
+											</td>
+											
+										</tr>
+										
+										<tr style="height:25%">
+											<td colspan="4"><button class="detailBtn btn btn-primary btn-block text-white" id="routeBtn" style="width:70%; height:70%; line-height: 1px; padding-bottom: 10px;">경로보기</button></td>
+										</tr>								
+									</table>
+									
 								</div>
 							</div>
 							
-							<script>								
+							<script>
+								var tableFlag = 0;
+							
+								/* 라디오버튼 이미지 메소드 */
+								$(document).on('click',".label1",function(){
+									$(".label1").addClass("paypay");
+									$(".label2").removeClass("paypay");
+									if(tableFlag == 0){
+										startX = jejuAirportY;
+										startY = jejuAirportX;
+									} else if(tableFlag == 1){
+										endX = jejuAirportY;
+										endY = jejuAirportX;
+									}
+																	
+								});
+								$(document).on('click',".label2",function(){
+									$(".label2").addClass("paypay");
+									$(".label1").removeClass("paypay");
+									if(tableFlag == 0){
+										startX = jejuPortY;
+										startY = jejuPortX;
+									} else if(tableFlag == 1){
+										endX = jejuPortY;
+										endY = jejuPortX;
+									}									
+								});
 								
-								function showOn() {
-									$(".route2_1").css('display','block');									
-								}
-								function showOff() {
-									$(".route2_1").css('display','none');									
-								}
+								
+								/* swap 버튼 작동 메소드 */
+								
+								$(document).on('click','#swap',function(){
+									$("#table1").addClass("hideTable");
+									$("#table2").removeClass("hideTable");
+									tableFlag = 1;
+									startX = <%=acm.getAcmCoordY()%>;
+									startY = <%=acm.getAcmCoordX()%>;
+									$('.label1').click();
+								});
+								
+								$(document).on('click','.swap',function(){
+									$("#table2").addClass("hideTable");
+									$("#table1").removeClass("hideTable");
+									tableFlag = 0;
+									endX = <%=acm.getAcmCoordY()%>;
+									endY = <%=acm.getAcmCoordX()%>;
+									$('.label1').click();
+								});
+								
+								
+								
+								
+								
 							</script>
 							
-							<div class="dd route2">
 							
-							<div class="dd route2_1" style="display:none;">
-							
-								<div class="aa dd totalRoute">
-									<div class="aa dd routeStart">	<!-- 출발장소 -->
-										<!-- <b>출발지 : </b><select></select> -->
-										<div class="aa dd route0">
-											<b>출발지  :&nbsp;</b>
-										</div>
-										<div class="aa dd route0_1">
-											<select id="selectSpot">
-												<option value="jeju1">제주 공항</option>
-												<option value="jeju2">제주항</option>
-											</select>
-										</div>
-									</div>
-									<div class="aa dd routeEnd">	<!-- 도착장소 = 해당 숙소 -->
-										<div class="aa dd route0">
-											<b>도착지  :&nbsp;</b>
-										</div>
-										<div class="aa dd route0_2">
-										<label><%=acm.getAcmName()%></label>
-										</div>
-									</div>
-								</div>
-								<div class="aa dd reverseBtnDiv">
-									<img src="<%=contextPath%>/resources/images/swap.png" id="reverseBtn" style="cursor:pointer;">
-								</div>
-								<script>
-									$("#reverseBtn").click(function(){
-										
-										var route0_1 = $(".route0_1");
-										var route0_2 = $(".route0_2");
-										var temp = route0_1.html();
-																					
-										route0_1.html(route0_2.html());
-										route0_2.html(temp);
-										
-										var tempX = startX;
-										var tempY = startY;
-										
-										startX = endX;
-										startY = endY;
-										
-										endX = tempX;
-										endY = tempY;
-										
-									});
-									
-									
-									$("#selectSpot").change(function(){
-										
-										/* $.each($(this).children(), function(index, value){
-											if(value.selected){
-												if(value.value == "jeju1"){
-													startX = jejuAirportY;
-													startY = jejuAirportX;
-												} if(value.value == "jeju2"){
-													startX = jejuPortY;
-													startY = jejuPortX;
-												}
-											}
-										}) */
-										/* if($("#selectSpot option:selected").val() == "jeju1"){
-											startX = jejuAirportY;
-											startY = jejuAirportX;
-										} else {
-											startX = jejuPortY;
-											startY = jejuPortX;
-										} */
-
-										
-										if($("#selectSpot").parent().html()==($(".route0_1").html())){
-											console.log("1");
-											if($("#selectSpot option:selected").val() == "jeju1"){
-												startX = jejuAirportY;
-												startY = jejuAirportX;
-											} else {
-												startX = jejuPortY;
-												startY = jejuPortX;
-											}
-										}else if($("#selectSpot").parent().html()==($(".route0_2").html())){
-											console.log("2");
-											if($("#selectSpot option:selected").val() == "jeju1"){
-												endX = jejuAirportY;
-												endY = jejuAirportX;
-											} else {
-												endX = jejuPortY;
-												endY = jejuPortX;
-											}
-										}
-										
-										/* console.log($("#selectSpot").parent().text()); */
-										
-									});
-									
-								</script>
-								
-							</div>	
-							</div>
-							<div class="dd route3" style="display:fixed;">	<!-- 경로보기 버튼 div -->
-								<button class="detailBtn btn btn-primary btn-block text-white" id="routeBtn" style="width:70%; height:50%; line-height: 1px; margin-top: 15px;">경로보기</button>
-							</div>
 						</div>					
 					</div>	
                 </div>
+                
                 <div class="body_2_Div test aa">
                 	<div class="des1 test aa dd" align="left" style="text-indent:120px;">
                 		<b style="font-weight:bold">주요 편의 시설</b>
@@ -755,16 +768,16 @@
 	                				</div>
 	                			</div>
 	                			<div class="test aa dd research3" style="text-align: justify; ">
-	                				<div class="test aa dd div3_1" style="padding-top: 7%; padding-left: 3%;">
+	                				<!-- <div class="test aa dd div3_1" style="padding-top: 7%; padding-left: 3%;">
 
 	                					<b>객실</b><br>
 	                					<select name="q-rooms" class="query-rooms" id="rnrq-rooms"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9+</option></select>
 
-	                				</div>
+	                				</div> -->
 	                				<div class="test aa dd div3_2"></div>
-	                				<div class="widget-query-adults aa dd div3_3" style="padding-top:7%;"><b>성인</b><br><select name="adult" id="rnrq-room-0-adults"><option value="1">1</option><option value="2" selected="selected">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select><br><span style="font-size:13px;">만 18세 이상</span></div>
+	                				<div class="widget-query-adults aa dd div3_3" style="padding-top:7%;"><b>성인</b><br><select name="adult" id="rnrq-room-0-adults" value="<%=adult%>"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option></select><br><span style="font-size:13px;">만 18세 이상</span></div>
 	                				<div class="test aa dd div3_2"></div>
-	                				<div class="widget-query-children aa dd div3_4" style="padding-top:7%;"><b>어린이/청소년</b><br><select name="child" id="rnrq-room-0-children"><option value="0" selected="selected">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><br><span style="font-size:13px;">만 17세 이하</span></div>
+	                				<div class="widget-query-children aa dd div3_4" style="padding-top:7%;"><b>어린이/청소년</b><br><select name="child" id="rnrq-room-0-children" value="<%=child%>"><option value="0" selected="selected">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select><br><span style="font-size:13px;">만 17세 이하</span></div>
 	                					
 	                			</div>
 	                			<div class="test aa dd research4" style="padding-top: 3%;">
@@ -873,7 +886,7 @@
 								</div>
 		
 								<div class="test d2 dd aa">
-									<div class="test d7 aa">1박 가격 <br><span class="pricePerNight">&#8361;<%=r.getRoomPrice() %>원</span></div>
+									<div class="test d7 aa">1박 가격 <br><span class="pricePerNight">&#8361;<%=r.getRoomPrice() %></span></div>
 									<div class="test d8 aa">
 										<input type="hidden" name="roomNum" value="<%=r.getRoomNum()%>">
 										<button class="reservBtn detailBtn btn btn-primary btn-block text-white"
@@ -887,7 +900,7 @@
 						<script>
 							$(".reservBtn").click(function(){
 								location.href="<%=contextPath%>/reserv.ac?roomNum="+$(this).prev().val()+
-										      "&acmNum=<%=acm.getAcmNum()%>&checkIn=<%=checkIn%>&checkOut=<%=checkOut%>";
+										      "&acmNum=<%=acm.getAcmNum()%>&checkIn=<%=checkIn%>&checkOut=<%=checkOut%>&adult=<%=adult%>&child=<%=child%>";
 							});
 						
 						
@@ -981,6 +994,7 @@
 	marker.setMap(map2); /* 마커 표시 */
 	
 	
+		/* 티맵 띄우는 메소드 */	
 	
 	 	// routeModal
 	    var routeModal = document.getElementById('routeModal');
@@ -990,15 +1004,21 @@
 	    var span = document.getElementsByClassName("close");                                          
 	
 	    // When the user clicks on the button, open the modal 
-	    routeBtn.onclick = function() {
+	    $(document).on('click','#routeBtn',function(){
 	    	initTmap();
 	    	routeModal.style.display = "block";
-	    }
+	    	$('body').addClass("modal-open");
+	    });
+	    
 	    
 	    $(".close").click(function(){
             // console.log("sss");
             $(this).parents(".popModal").css("display", "none");
+            $('body').removeClass("modal-open");
           });
+	    
+	    
+	    
 	    
 	    /*  */
 	    
@@ -1077,7 +1097,11 @@
 			$(".checkin_day").text(checkInDay+'요일');
 			$(".checkout_day").text(checkOutDay+'요일');
 	 	});
-					
+		
+	 	
+	 	
+	 	
+	 	
 	</script>
     
     
