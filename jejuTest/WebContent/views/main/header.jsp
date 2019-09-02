@@ -202,7 +202,8 @@
           } */ 
           
           $("#loginBtn").click(function() {
-			$("#loginBtn").css('display','block');
+        	  $("#loginModal").css('display','block');
+			  $("#loginBtn").css('display','block');
 		  });
           
           $("#nav2").click(function() {
