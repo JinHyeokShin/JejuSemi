@@ -2,6 +2,7 @@ package member.model.service;
 
 import java.sql.Connection;
 
+import accommodation.model.vo.Acm;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
 import static common.JDBCTemplate.*;
@@ -46,12 +47,14 @@ public class MemberService {
 		return result;
 	}
    
-   public String getAcmName(int memNum) {
+   public Acm getAcm(int memNum) {
 	   Connection conn = getConnection();
 	   
-	   String acmName = new MemberDao().getAcmName(conn, memNum);
+	   Acm acm = new MemberDao().getAcm(conn, memNum);
 	   
-	   return acmName;
+	   close(conn);
+	   
+	   return acm;
    }
    
    

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import accommodation.model.vo.Acm;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
@@ -53,7 +54,12 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			// session.setMaxInactiveInterval(600); // 10분(600초)뒤 자동 로그아웃
-
+			int memNum = loginUser.getMemNum();
+			
+			Acm acm = new MemberService().getAcm(memNum);
+			
+			System.out.println(acm);
+			
 			session.setAttribute("loginUser", loginUser);
 			
 			if ((loginUser.getMemType()).equals("U")) {
@@ -67,11 +73,9 @@ public class LoginServlet extends HttpServlet {
 				
 				
 			} else if (loginUser.getMemType().equals("O")) {
-				int memNum = loginUser.getMemNum();
 				
-				String AcmName = new MemberService().getAcmName(memNum);
-				
-				session.setAttribute("AcmName", AcmName);
+				System.out.println(acm);
+				session.setAttribute("acm", acm);
 				// 로그인 완료 후 다시 메인 페이지로
 				response.sendRedirect("page.ow");
 			}

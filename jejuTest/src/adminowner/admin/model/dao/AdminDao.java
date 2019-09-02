@@ -192,7 +192,7 @@ public class AdminDao {
 				
 				list.add(new Acm(rset.getInt(1),
 						rset.getString(2),
-						rset.getString(3),
+						rset.getInt(3),
 						rset.getString(4),
 						rset.getString(5),
 						rset.getInt(6),

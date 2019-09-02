@@ -40,10 +40,9 @@
                 <div class="pull-left">
                   <h1>COMETO JEJU</h1>
                   <address>
-                <strong>Admin Theme, Inc.</strong><br>
-                795 Asome Ave, Suite 850<br>
-                New York, 94447<br>
-                <abbr title="Phone">P:</abbr> (123) 456-7890
+                <strong>KH정보교육원 '조장이누구조'.Inc.</strong><br>
+                	       서울특별시 강남구 테헤란로 14길 6 남도빌딩 3F<br>
+                	       (T: 1544-9970 / F: 02-562-2378)<br>
               </address>
                 </div>
                 <!-- /pull-left -->
@@ -59,9 +58,9 @@
                   <div class="col-md-9">
                     <h4><%= loginUser.getMemName() %></h4>
                 <address>
-                  <strong>숙소이름</strong><br>
-                  		숙소주소<br>
-                  <%= loginUser.getMemPhone() %>
+                  <strong><%= acm.getAcmName() %></strong><br>
+                  		<%= acm.getAcmAddress() %><br>	
+            		    <%= acm.getAcmPhone() %>
                 </address>
                      </div>
                   <!-- /col-md-9 -->

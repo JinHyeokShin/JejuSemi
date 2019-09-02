@@ -45,7 +45,7 @@ textarea {
             <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
 
               <div class="form-group">
-                <input type="name" name="name" class="form-control" id="contact-name" value="<%= acmName %>" data-rule="minlen:4" data-msg="Please enter at least 4 chars" disabled>
+                <input type="name" name="name" class="form-control" id="contact-name" value="<%= acm.getAcmName() %>" data-rule="minlen:4" data-msg="Please enter at least 4 chars" disabled>
                 <div class="validate"></div>
               </div>
               <div class="form-group">

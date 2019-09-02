@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="member.model.vo.Member"%>
+<%@page import="accommodation.model.vo.Acm"%>
+
 <%  Member loginUser = (Member)session.getAttribute("loginUser"); %>
-<% String acmName = (String)session.getAttribute("AcmName");%>
+<%  Acm acm = (Acm)session.getAttribute("acm"); %>
 	
 <!DOCTYPE html>
 <html>
@@ -265,8 +267,8 @@ a{
         <div id="sidebar" class="nav-collapse ">
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-            <h5 class="centered"><%= acmName %></h5>
+            <p class="centered"><a href="<%= request.getContextPath() %>/page.ow"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+            <h5 class="centered">  <%= acm.getAcmName() %></h5>
             <li>
               <a class="active1" onclick="goDashBoard();">
                 <i class="fa fa-dashboard"></i>

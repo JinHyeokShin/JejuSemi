@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import accommodation.model.vo.Acm;
 import member.model.vo.Member;
 import static common.JDBCTemplate.*;
 
@@ -135,12 +136,12 @@ public class MemberDao {
 		return result;
 	}
 	
-	public String getAcmName(Connection conn, int memNum) {
-		String acmName = null;
+	public Acm getAcm(Connection conn, int memNum) {
+		Acm acm = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("getAcmName");
+		String sql = prop.getProperty("getAcm");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -150,7 +151,18 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				acmName = rset.getString(1);
+				acm = new Acm(rset.getInt("acm_num"),
+							  rset.getString("acm_name"),
+							  rset.getInt("owner_num"),
+							  rset.getString("acm_phone"),
+							  rset.getString("acm_address"),
+							  rset.getString("acm_type"),
+							  rset.getInt("acm_grade"),
+							  rset.getString("acm_descript_a"),
+							  rset.getString("acm_descript_b"),
+							  rset.getString("acm_power"),
+							  rset.getString("acm_status"));
+											  
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -160,7 +172,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		return acmName;
+		return acm;
 		
 		
 	}

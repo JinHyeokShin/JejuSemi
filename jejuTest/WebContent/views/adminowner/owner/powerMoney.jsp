@@ -42,7 +42,7 @@
                   <hr>
                 </div>
                 <div class="icn-main-container">
-                  <span class="icn-container">300,000</span>
+                  <span class="icn-container">&#8361;300,000</span>
                 </div>
                 <p>30일</p>
                 <ul class="pricing">
@@ -66,7 +66,7 @@
                   <hr>
                 </div>
                 <div class="icn-main-container">
-                  <span class="icn-container">550,000</span>
+                  <span class="icn-container">&#8361;550,000</span>
                 </div>
                 <p>60일</p>
                 <ul class="pricing">
@@ -90,7 +90,7 @@
                   <hr>
                 </div>
                 <div class="icn-main-container">
-                  <span class="icn-container">800,000</span>
+                  <span class="icn-container">&#8361;800,000</span>
                 </div>
                 <p>90일</p>
                 <ul class="pricing">

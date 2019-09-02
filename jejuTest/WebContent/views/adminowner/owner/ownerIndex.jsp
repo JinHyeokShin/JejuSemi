@@ -62,7 +62,7 @@ ul.sidebar-menu li ul.sub li.active a {
                   </div>
                   <!-- /col-md-4 -->
                   <div class="col-md-4 profile-text">
-                    <h3><%= acmName %></h3>
+                    <h3><%= acm.getAcmName() %></h3>
                     <h6><%= loginUser.getMemName() %>님 환영합니다</h6>
                     <p>COME TO JEJU를 이용해주셔서 감사합니다.<br>사용하시다가 불편한 점이나 개선할 점을<br> 문의해주시면 최대한 빠르게 조치하겠습니다.</p>
                     <br>

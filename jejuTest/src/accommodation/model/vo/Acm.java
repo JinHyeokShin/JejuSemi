@@ -8,7 +8,7 @@ public class Acm {
 	
 	private int acmNum;				
 	private String acmName;			
-	private String memNum;		// 사장님, 관리자쪽에서 조회할때 조인받아온 사장님 이름을 컬럼 추가 없이 여기에 넣어도 되요(string이라)
+	private int memNum;		// 사장님, 관리자쪽에서 조회할때 조인받아온 사장님 이름을 컬럼 추가 없이 여기에 넣어도 되요(string이라)
 	private String acmPhone;		
 	private String acmAddress;		
 	private String acmType;			
@@ -61,7 +61,7 @@ public class Acm {
 
 
 
-	public Acm(int acmNum, String acmName, String memNum, String acmPhone, String acmAddress, String acmType,
+	public Acm(int acmNum, String acmName, int memNum, String acmPhone, String acmAddress, String acmType,
 			int acmGrade, String acmDescriptA, String acmDescriptB, String acmCoordX, String acmCoordY,
 			String acmDistrict, String acmPower, String status, int minPrice) {
 		super();
@@ -81,10 +81,27 @@ public class Acm {
 		this.status = status;
 		this.minPrice = minPrice;
 	}
+	
+	// 오너 
+	public Acm(int acmNum, String acmName, int memNum, String acmPhone, String acmAddress, String acmType,
+			int acmGrade, String acmDescriptA, String acmDescriptB, String acmPower, String status) {
+		super();
+		this.acmNum = acmNum;
+		this.acmName = acmName;
+		this.memNum = memNum;
+		this.acmPhone = acmPhone;
+		this.acmAddress = acmAddress;
+		this.acmType = acmType;
+		this.acmGrade = acmGrade;
+		this.acmDescriptA = acmDescriptA;
+		this.acmDescriptB = acmDescriptB;
+		this.acmPower = acmPower;
+		this.status = status;
+	}
 
 
 
-	public Acm(int acmNum, String acmName, String memNum, String acmPhone, String acmAddress, String acmType,
+	public Acm(int acmNum, String acmName, int memNum, String acmPhone, String acmAddress, String acmType,
 			int acmGrade, String acmDescriptA, String acmDescriptB, String acmCoordX, String acmCoordY,
 			String acmDistrict, String acmPower, String status) {
 		super();
@@ -105,7 +122,7 @@ public class Acm {
 	}
 	
 
-	public Acm(int acmNum, String acmName, String memNum, String acmPhone, String acmType,
+	public Acm(int acmNum, String acmName, int memNum, String acmPhone, String acmType,
 			int acmGrade, String acmPower, String status, String acmAddress) {
 		super();
 		this.acmNum = acmNum;
@@ -137,11 +154,11 @@ public class Acm {
 		this.acmName = acmName;
 	}
 
-	public String getMemNum() {
+	public int getMemNum() {
 		return memNum;
 	}
 
-	public void setMemNum(String memNum) {
+	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
