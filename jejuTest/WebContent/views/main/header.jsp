@@ -182,6 +182,8 @@
 							            /* 이런식으로 id같은 정보를 쿼리스트링으로 보내주면서 페이지 이동 */
 							            /* location.href='/api/kakao_login/kakao_login.php?id='+res.id+'&nickname='+res.properties['nickname']; */
 							            
+							            location.href='<%=contextPath%>/joinForm.me?memId='+res.kakao_account["email"];
+							            
 							          },
 							          fail: function(error) {
 							            alert(JSON.stringify(error));
@@ -220,7 +222,7 @@
                   Don't have an account yet?<br/>
                   
                   <!-- 회원가입 버튼 클릭 -->
-                  <button class="btn btn-theme btn-block" type="submit"> <a href="#" id="memberJoinBtn" onclick="memberJoin()">Create an account</a></button>
+                  <button class="btn btn-theme btn-block" type="button" onclick="memberJoin();"> <a href="#" id="memberJoinBtn" onclick="memberJoin();">Create an account</a></button>
 
                 <!-- </div> -->
               </div>
