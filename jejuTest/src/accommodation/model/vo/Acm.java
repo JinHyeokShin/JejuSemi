@@ -103,6 +103,23 @@ public class Acm {
 		this.acmPower = acmPower;
 		this.status = status;
 	}
+	
+
+	public Acm(int acmNum, String acmName, String memNum, String acmPhone, String acmType,
+			int acmGrade, String acmPower, String status, String acmAddress) {
+		super();
+		this.acmNum = acmNum;
+		this.acmName = acmName;
+		this.memNum = memNum;
+		this.acmPhone = acmPhone;
+		this.acmType = acmType;
+		this.acmGrade = acmGrade;
+		this.acmPower = acmPower;
+		this.status = status;
+		this.acmAddress = acmAddress;
+	}
+
+
 
 	public int getAcmNum() {
 		return acmNum;

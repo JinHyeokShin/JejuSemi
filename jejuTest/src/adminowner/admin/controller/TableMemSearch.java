@@ -18,7 +18,7 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class MemSearchTable
  */
-@WebServlet("/MemSearchTable.ad")
+@WebServlet("/notUsed.ad")
 public class TableMemSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,29 +36,37 @@ public class TableMemSearch extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Member> list = new AdminService().searchMember();
+		
 		JSONArray jArr = new JSONArray();
-//		System.out.println("으아ㅏㅏㅏㅏㅏㅏㅏㅏ");
+		JSONObject jobj = new JSONObject();
+		
 		for (Member m : list) {
 			JSONObject jsonMember = new JSONObject();
-			jsonMember.put("memNum", m.getMemNum());
-			jsonMember.put("memId", m.getMemId());
-			jsonMember.put("memName", m.getMemName());
-			jsonMember.put("memGender", m.getMemGender());
-			jsonMember.put("memPhone", m.getMemPhone());
-			jsonMember.put("nationCode", m.getNationCode());
-			jsonMember.put("memPoint", m.getMemPoint());
-			jsonMember.put("memType", m.getMemType());
-			jsonMember.put("memStatus", m.getMemStatus());
-			jsonMember.put("enrollDate", m.getEnrollDate());
-			jsonMember.put("noShow", m.getOutDate());
+			jsonMember.put("memNum", String.valueOf(m.getMemNum()));
+			jsonMember.put("memId", String.valueOf(m.getMemNum()));
+			jsonMember.put("memName", String.valueOf(m.getMemName()));
+			jsonMember.put("memGender", String.valueOf(m.getMemGender()));
+			jsonMember.put("memPhone", String.valueOf(m.getMemPhone()));
+			jsonMember.put("nationCode", String.valueOf(m.getNationCode()));
+			jsonMember.put("memPoint", String.valueOf(m.getMemPoint()));
+			jsonMember.put("memType", String.valueOf(m.getMemType()));
+			jsonMember.put("memStatus", String.valueOf(m.getMemStatus()));
+			jsonMember.put("enrollDate",String.valueOf(m.getEnrollDate()) );
+			jsonMember.put("noShow",String.valueOf( m.getNoShow()));
 			jArr.add(jsonMember);
 		}
-//		 response.setContentType("application/json; charset=utf-8");
-		response.setCharacterEncoding("utf-8");
-		response.getWriter().print(jArr);
+		jobj.put("data", jArr);
+		System.out.println(jobj);
+		
+//		response.setCharacterEncoding("utf-8");
+//		response.getWriter().print(list);
 //		System.out.println(jArr);
 		
-	
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(jobj);
+		
+		request.setAttribute("jobj",jobj);
+		request.getRequestDispatcher("views/adminowner/admin/searchMemberTest.jsp").forward(request, response);
 	}
 
 	/**

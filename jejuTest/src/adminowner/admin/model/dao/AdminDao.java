@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import accommodation.model.vo.Acm;
 import adminowner.admin.model.vo.Notice;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
@@ -161,7 +162,53 @@ public class AdminDao {
 			close(pstmt);
 		}
 		return result;
-	
 	}
-
+	public int memberSuspend(Connection conn, int mNum) {
+		int result=0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("memberSuspend");
+		System.out.println("DAO : "+mNum);
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, mNum);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public ArrayList<Acm> selectAcm(Connection conn){
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Acm> list = new ArrayList<>();
+		String sql = prop.getProperty("selectAcm");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset =pstmt.executeQuery();
+			while(rset.next()) {
+				
+				list.add(new Acm(rset.getInt(1),
+						rset.getString(2),
+						rset.getString(3),
+						rset.getString(4),
+						rset.getString(5),
+						rset.getInt(6),
+						rset.getString(7),
+						rset.getString(8),
+						rset.getString(9)
+						));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, accommodation.model.vo.Acm"%>
+<%
+	ArrayList<Acm> list = (ArrayList<Acm>) request.getAttribute("acmList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,9 +43,9 @@ ul.sidebar-menu li ul.sub li.active a {
 <script
 	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script>
-	jQuery(function($) {
-		$("#myTable").DataTable();
-	});
+// 	jQuery(function($) {
+// 		$("#myTable").DataTable();
+// 	});
 </script>
 </head>
 <body>
@@ -53,35 +56,45 @@ ul.sidebar-menu li ul.sub li.active a {
 				<i class="fa fa-angle-right"></i> 숙소 조회
 			</h3>
 			<br>
-			<table id="myTable" class="table table-bordered">
-				<thead>
-					<tr>
-						<th>숙소 번호</th>
-						<th>숙소 이름</th>
-						<th>오너 이름</th>
-						<th>숙소 전화번호</th>
-						<th>숙소 주소</th>
-						<th>숙소 타입</th>
-						<th>숙소 구역</th>
-						<th>파워 등록</th>
-						<th>숙소 상태</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>acm1</td>
-						<td>acm_name</td>
-						<td>owner_name</td>
-						<td>acm_phone</td>
-						<td>acm_address</td>
-						<td>acm_type</td>
-						<td>acm_power</td>
-						<td>acm_status</td>
-					</tr>
-				</tbody>
-			</table>
-
+			<div class="col-lg-12 mt">
+				<div class="row content-panel">
+				 total : <%=list.size() %>
+					<table id="myTable" class="table table-bordered">
+						<thead>
+							<tr>
+								<th>숙소 번호</th>
+								<th>숙소 이름</th>
+								<th>오너 이름</th>
+								<th>숙소 전화번호</th>
+								<th>숙소 타입</th>
+								<th>숙소 등급</th>
+								<th>파워 등록</th>
+								<th>숙소 상태</th>
+								<th>숙소 주소</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								for (Acm i : list) {
+							%>
+							<tr>
+								<td><%=i.getAcmNum()%></td>
+								<td><%=i.getAcmName()%></td>
+								<td><%=i.getMemNum()%></td>
+								<td><%=i.getAcmPhone()%></td>
+								<td><%=i.getAcmType()%></td>
+								<td><%=i.getAcmGrade()%></td>
+								<td><%=i.getAcmPower()%></td>
+								<td><%=i.getStatus()%></td>
+								<td><%=i.getAcmAddress()%></td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</section>
 	</section>
 	<%@ include file="../../../views/adminowner/common/footer.jsp"%>

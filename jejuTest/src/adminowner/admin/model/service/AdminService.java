@@ -1,8 +1,13 @@
 package adminowner.admin.model.service;
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import accommodation.model.vo.Acm;
 import adminowner.admin.model.dao.AdminDao;
 import adminowner.admin.model.vo.Notice;
 import member.model.vo.Member;
@@ -59,5 +64,20 @@ public class AdminService {
 			rollback(conn);
 		}
 		return result;
+	}
+	public int memberSuspend(int mNum) {
+		Connection conn = getConnection();
+		int result = new AdminDao().memberSuspend(conn,mNum);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	public ArrayList<Acm> selectAcm() {
+		Connection conn = getConnection();
+		ArrayList<Acm> list = new AdminDao().selectAcm(conn);
+		return list;
 	}
 }

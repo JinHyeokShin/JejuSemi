@@ -3,9 +3,9 @@
 <%@page import="adminowner.admin.model.vo.Notice , java.util.*"%>
 <%
 ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
-System.out.println(nList);
+// System.out.println(nList);
 
-Notice nD = (Notice)request.getAttribute("n");
+// Notice nD = (Notice)request.getAttribute("n");
 
 %>
 <!DOCTYPE html>
