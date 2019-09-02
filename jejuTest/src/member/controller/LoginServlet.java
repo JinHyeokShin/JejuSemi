@@ -59,8 +59,6 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("loginUser", loginUser);
 			
 			
-			
-			
 			if ((loginUser.getMemType()).equals("U")) {
 
 				// 로그인 완료 후 다시 메인 페이지로
