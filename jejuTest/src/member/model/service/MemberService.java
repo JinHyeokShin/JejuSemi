@@ -59,10 +59,10 @@ public class MemberService {
 	   return acm;
    }
    
-   public ArrayList<AcmImg> acmImgListView(int acmNum){
+   public ArrayList<AcmImg> acmImgList(int acmNum){
 		Connection conn = getConnection();
 		
-		ArrayList<AcmImg> list = new MemberDao().acmImgListView(conn, acmNum);
+		ArrayList<AcmImg> list = new MemberDao().acmImgList(conn, acmNum);
 		
 		close(conn);
 		

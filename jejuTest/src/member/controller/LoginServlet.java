@@ -76,7 +76,7 @@ public class LoginServlet extends HttpServlet {
 				
 				int acmNum = acm.getAcmNum();
 				
-				ArrayList<AcmImg> acmImgList = new MemberService().acmImgListView(acmNum);
+				ArrayList<AcmImg> acmImgList = new MemberService().acmImgList(acmNum);
 				
 				session.setAttribute("acmImgList", acmImgList);
 				session.setAttribute("acm", acm);

@@ -1,10 +1,17 @@
 package accommodation.model.vo;
 
+import java.io.Serializable;
+
 /**
  * @author Sangyoon Kim
  *
  */
-public class Acm {
+public class Acm implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2223610554768132052L;
 	
 	private int acmNum;				
 	private String acmName;			

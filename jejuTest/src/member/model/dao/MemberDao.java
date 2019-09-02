@@ -179,7 +179,7 @@ public class MemberDao {
 		
 	}
 	
-	public ArrayList<AcmImg> acmImgListView(Connection conn, int acmNum){
+	public ArrayList<AcmImg> acmImgList(Connection conn, int acmNum){
 		ArrayList<AcmImg> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
