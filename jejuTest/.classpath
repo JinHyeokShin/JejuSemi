@@ -13,5 +13,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/dev/apache-tomcat-8.5.43/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/dev/apache-tomcat-8.5.43/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
