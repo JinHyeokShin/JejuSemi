@@ -1,7 +1,6 @@
 package accommodation.model.service;
 
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,9 +8,11 @@ import java.util.ArrayList;
 import accommodation.model.dao.AcmDao;
 import accommodation.model.vo.Acm;
 import accommodation.model.vo.AcmImg;
+import accommodation.model.vo.Option;
 import accommodation.model.vo.Room;
 import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
+import payment.model.vo.Payment;
 
 public class AcmService {
 	
@@ -28,6 +29,22 @@ public class AcmService {
 		close(conn);
 		
 		return list;	
+	}
+	
+	/**
+	 * 검색결과에서 검색필터 옵션들 적용하는 서비스
+	 * @param search
+	 * @param option
+	 * @return
+	 */
+	public ArrayList<Acm> searchAcmOption(Search search, Option option){
+		Connection conn = getConnection();
+		
+		ArrayList<Acm> list = new AcmDao().searchAcmOption(conn, search, option);
+		
+		close(conn);
+		
+		return list;
 	}
 	
 	
@@ -128,5 +145,15 @@ public class AcmService {
 		
 		return room;		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

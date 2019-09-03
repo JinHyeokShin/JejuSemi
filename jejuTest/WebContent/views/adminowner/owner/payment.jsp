@@ -38,17 +38,16 @@
             <div class="col-lg-10 col-lg-offset-1">
               <div class="invoice-body">
                 <div class="pull-left">
-                  <h1>DASHIO</h1>
+                  <h1>COMETO JEJU</h1>
                   <address>
-                <strong>Admin Theme, Inc.</strong><br>
-                795 Asome Ave, Suite 850<br>
-                New York, 94447<br>
-                <abbr title="Phone">P:</abbr> (123) 456-7890
+                <strong>KH정보교육원 '조장이누구조'.Inc.</strong><br>
+                	       서울특별시 강남구 테헤란로 14길 6 남도빌딩 3F<br>
+                	       (T: 1544-9970 / F: 02-562-2378)<br>
               </address>
                 </div>
                 <!-- /pull-left -->
                 <div class="pull-right">
-                  <h2>결제하기</h2>
+                  <h2>30일 / 60일 / 90일</h2>
                 </div>
                 <!-- /pull-right -->
                 <div class="clearfix"></div>
@@ -57,46 +56,25 @@
                 <br>
                 <div class="row">
                   <div class="col-md-9">
-                    <h4>Paul Smith</h4>
-                    <address>
-                  <strong>Enterprise Corp.</strong><br>
-                  234 Great Ave, Suite 600<br>
-                  San Francisco, CA 94107<br>
-                  <abbr title="Phone">P:</abbr> (123) 456-7890
+                    <h4><%= loginUser.getMemName() %></h4>
+                <address>
+                  <strong><%= acm.getAcmName() %></strong><br>
+                  		<%= acm.getAcmAddress() %><br>	
+            		    <%= acm.getAcmPhone() %>
                 </address>
-                  </div>
+                     </div>
                   <!-- /col-md-9 -->
                   <div class="col-md-3">
                     <br>
-                    <div>
-                      <div class="pull-left"> INVOICE NO : </div>
-                      <div class="pull-right"> 000283 </div>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div>
-                      <!-- /col-md-3 -->
-                      <div class="pull-left"> INVOICE DATE : </div>
-                      <div class="pull-right"> 15/03/14 </div>
-                      <div class="clearfix"></div>
-                    </div>
-                    <!-- /row -->
-                    <br>
-                    <div class="well well-small green">
-                      <div class="pull-left"> Total Due : </div>
-                      <div class="pull-right"> 8,000 USD </div>
-                      <div class="clearfix"></div>
-                    </div>
-                  </div>
-                  <!-- /invoice-body -->
+
                 </div>
                 <!-- /col-lg-10 -->
                 <table class="table">
                   <thead>
                     <tr>
-                      <th style="width:60px" class="text-center">QTY</th>
-                      <th class="text-left">DESCRIPTION</th>
-                      <th style="width:140px" class="text-right">UNIT PRICE</th>
-                      <th style="width:90px" class="text-right">TOTAL</th>
+                      <th style="width:60px" class="text-center">(rownum?)</th>
+                      <th class="text-left">Standard 30일 패키지/ Mega Pack 60일 패키지/ UltraPack 90일 패키지</th>
+                      <th style="width:230px" class="text-right">가격</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -104,35 +82,38 @@
                       <td class="text-center">1</td>
                       <td>Flat Pack Heritage</td>
                       <td class="text-right">$429.00</td>
-                      <td class="text-right">$429.00</td>
                     </tr>
                     <tr>
                       <td class="text-center">2</td>
                       <td>Carry On Suitcase</td>
                       <td class="text-right">$300.00</td>
-                      <td class="text-right">$600.00</td>
                     </tr>
                     <tr>
-                      <td colspan="2" rowspan="4">
+                      <td colspan="2" rowspan="6">
                         <h4>Terms and Conditions</h4>
                         <p>Thank you for your business. We do expect payment within 21 days, so please process this invoice within that time. There will be a 1.5% interest charge per month on late invoices.</p>
-                        <td class="text-right"><strong>Subtotal</strong></td>
-                        <td class="text-right">$1029.00</td>
                     </tr>
                     <tr>
-                      <td class="text-right no-border"><strong>Shipping</strong></td>
-                      <td class="text-right">$0.00</td>
                     </tr>
                     <tr>
-                      <td class="text-right no-border"><strong>VAT Included in Total</strong></td>
-                      <td class="text-right">$0.00</td>
                     </tr>
                     <tr>
-                      <td class="text-right no-border">
+                      <td class="text-center no-border">
                         <div class="well well-small green"><strong>Total</strong></div>
-                      </td>
-                      <td class="text-right"><strong>$1029.00</strong></td>
+         			  </td>
+         			  <td>
+         			   총 가격
+         			  </td>
                     </tr>
+                    <tr>
+                    	<td class="text-right no-border">
+                    		<div class="well well-small green" align="center"><strong>결제하기</strong></div>
+                    	</td>
+                    	<td class="text-right no-border">
+                    		<div class="well well-small green" align="center"><strong>카카오 결제하기</strong></div>
+                    	</td>
+                   	</tr>
+                  
                   </tbody>
                 </table>
                 <br>

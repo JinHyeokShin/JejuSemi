@@ -13,16 +13,16 @@ import adminowner.admin.model.service.AdminService;
 import review.model.vo.Review;
 
 /**
- * Servlet implementation class GoAdminSearchReview
+ * Servlet implementation class ReviewAjax
  */
-@WebServlet("/adminSearchReview.ad")
-public class GoAdminSearchReview extends HttpServlet {
+@WebServlet("/reviewAjax.ad")
+public class ReviewAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GoAdminSearchReview() {
+    public ReviewAjax() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +31,10 @@ public class GoAdminSearchReview extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int count = new AdminService().reviewCount();
-//		ArrayList<Review> list = new AdminService().reviewList();
-//		
-//		request.setCharacterEncoding("utf-8");
-//
-//		request.setAttribute("rList", list);
-//		request.setAttribute("rCount", count);
-		
-		request.getRequestDispatcher("views/adminowner/admin/searchReview.jsp").forward(request, response);
-	
+		ArrayList<Review> list = new AdminService().reviewList();
+		System.out.println("ajax성공");
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(list);
 	}
 
 	/**

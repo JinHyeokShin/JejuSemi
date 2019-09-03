@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<footer class="section footer-section">
+<footer class="section footer-section" style="width:100%">
         <div class="container">
           <div class="row mb-4">
             <div class="col-md-3 mb-5">

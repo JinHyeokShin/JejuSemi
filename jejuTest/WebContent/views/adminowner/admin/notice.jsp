@@ -93,7 +93,8 @@ ul.sidebar-menu li ul.sub li.active a {
 															<td colspan="4" align="center">공지내역이없습니다!
 															</td>
 														<%}else{ %> <%int i=0; %> 
-															<%for (Notice n : nList){ %> <%i++; %>
+															<%for (Notice n : nList){ %> 
+																<%i++; %>
 																<tr id="noticeList">
 																	<td><%=i %></td>
 																	<td id="nTitle"><%=n.getnTitle() %></td>

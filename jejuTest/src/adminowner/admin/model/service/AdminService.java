@@ -11,6 +11,7 @@ import accommodation.model.vo.Acm;
 import adminowner.admin.model.dao.AdminDao;
 import adminowner.admin.model.vo.Notice;
 import member.model.vo.Member;
+import review.model.vo.Review;
 public class AdminService {
 	public ArrayList<Member> searchMember() {
 		Connection conn = getConnection();
@@ -80,4 +81,15 @@ public class AdminService {
 		ArrayList<Acm> list = new AdminDao().selectAcm(conn);
 		return list;
 	}
+	public int reviewCount() {
+		Connection conn = getConnection();
+		int result = new AdminDao().reviewCount(conn);
+		return result;
+	}
+	public ArrayList<Review> reviewList(){
+		Connection conn = getConnection();
+		ArrayList<Review> list = new AdminDao().reviewList(conn);
+		return list;
+	}
+	
 }

@@ -82,23 +82,10 @@
 	<%-- 메인페이지 내용 --%>
 	<section class="py-5 bg-light" id="section-about">
         <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5" data-aos="fade-up">
-              <img src="resources/images/hero_4.jpg" alt="Image" class="img-fluid rounded">
-            </div>
-            <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
-              <h2 class="heading mb-4">제주도 ㄱㄱ</h2>
-              <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-              <p><a href="https://player.vimeo.com/video/249341677"  data-fancybox class="btn btn-primary text-white py-2 mr-3 text-uppercase letter-spacing-1">Watch the video</a></p>
-            </div>
-            
-          </div>
-        </div>
-      </section>
-
-      <div class="container section" id="section-team">
-
-      <div class="row justify-content-center text-center mb-5">
+        
+        
+        
+          <div class="row justify-content-center text-center mb-5">
         <div class="col-md-7 mb-5">
           <h2 class="heading" data-aos="fade-up">추천/베스트 숙소</h2>
         </div>
@@ -257,7 +244,13 @@
         </div>
 
       </div>
-    </div>
+          
+          
+          
+        </div>
+      </section>
+  
+    
     <!-- END .block-2 -->
 
       <section class="section" id="section-rooms">

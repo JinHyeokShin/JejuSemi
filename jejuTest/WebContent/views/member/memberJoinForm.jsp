@@ -4,6 +4,13 @@
 <%-- <% --%>
 <!--  	ArrayList<Nation> list = (ArrayList<Nation>)request.getAttribute("list"); -->
 <%-- %> --%>
+
+<%
+	String snsId = (String)request.getAttribute("snsId");
+	/* System.out.println(kakaoEmail); */
+	
+
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -83,6 +90,19 @@ select{
 					   <label id="idCheck" style="color:#fd7e14"><b>중복확인</b></label>                   
                        <input type="email" class="form-control" id="InputEmail" name="memId" placeholder="이메일 주소를 입력해주세요" required>
                    </div>
+                  
+                  
+                  <!-- 카카오 로그인으로 넘어오면 카카오 아이디(이메일)를 그대로 적용 -->                  
+                   <script>
+                   		var userId = "<%=snsId%>";
+                   		
+                   		if(userId != "null"){
+                   			$("#InputEmail").val(userId);
+                   		} 
+                   </script>
+                  
+                  
+                  
                   
                    <div class="form-group">
                        <label for="InputEmail">인증번호</label>&nbsp;&nbsp;&nbsp;

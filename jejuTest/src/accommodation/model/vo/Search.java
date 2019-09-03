@@ -8,17 +8,19 @@ public class Search {	// 검색 값 넘길 때 사용할 객체
 	private String searchCheckOutDate;	// 체크아웃
 	private int adult;					// 성인 인원수
 	private int child;					// 어린이 인원수
+	private int page;					// 검색 결과 페이징용 
 	
 	public Search() {
 		
 	}
 
-	public Search(String searchCheckInDate, String searchCheckOutDate, int adult, int child) {
+	public Search(String searchCheckInDate, String searchCheckOutDate, int adult, int child, int page) {
 		super();
 		this.searchCheckInDate = searchCheckInDate;
 		this.searchCheckOutDate = searchCheckOutDate;
 		this.adult = adult;
 		this.child = child;
+		this.page = page;
 	}
 
 	public String getSearchCheckInDate() {
@@ -53,11 +55,20 @@ public class Search {	// 검색 값 넘길 때 사용할 객체
 		this.child = child;
 	}
 
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
 	@Override
 	public String toString() {
 		return "Search [searchCheckInDate=" + searchCheckInDate + ", searchCheckOutDate=" + searchCheckOutDate
-				+ ", adult=" + adult + ", child=" + child + "]";
+				+ ", adult=" + adult + ", child=" + child + ", page=" + page + "]";
 	}
+
 	
 
 }

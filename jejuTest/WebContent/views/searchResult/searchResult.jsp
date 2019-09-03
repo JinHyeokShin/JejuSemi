@@ -36,7 +36,8 @@
          }
          .star{
            color:gold;
-           font-size: 20px;
+           font-size: 22px;
+           line-height: initial;
          }
          .searchForm{
            border: 1px solid lightgray;
@@ -65,6 +66,8 @@
         .d2{
             width: 25%;
             height: 100%;
+            background: #f8f9fa;
+            border-left: 1px solid lightgray;
         }        
         .d3{
             height: 20%;
@@ -81,6 +84,7 @@
         .d6{
             width: 50%;
             height: 100%;
+            padding: 15px;
         }
         .d7{
         	height:70%;
@@ -110,52 +114,76 @@
         	margin:auto;
         }
         .resultSection{
-        	height:1400px;
+        	padding-bottom: 0;
+        	min-height: 1000px;
         }
         #resultAcmDiv{
         	background:#f2f4fb;
         }
         .pricePerNight{
-        	font-size: 30px;
-        	font-weight: bold;
+        	font-size: 40px;
         	color:#4492b8;
         }
-         
+        .etc{
+        	padding-left:0;
+        }
+        .wrap-loading{		
+		    position: fixed;
+		    left:0;
+		    right:0;
+		    top:0;
+		    bottom:0;
+		    background: rgba(0,0,0,0.2);
+		}
+		.wrap-loading div{
+			position: fixed;
+	        top:50%;
+	        left:50%;
+	        margin-left: auto;
+	        margin-right: auto;
+	        margin-top: -21px;
+	    }	
+	    .display-none{
+	        display:none;
+	        timeToHide:2000;
+	    }
 </style>
 </head>
 <body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
 
 	<%-- 헤더,메뉴바 --%>
     <%@ include file="../main/header.jsp" %>
+	    
     
-    
-    <div style="height:250vh">
-    <div style="height:85%">
-    <section class="section resultSection" id="searchResult"">
-        <div class="container">
+    <section class="section resultSection container" id="searchResult"">
+        
+		<div class="wrap-loading display-none">
+		    <div><img src="<%=contextPath%>/resources/images/loading.gif"></div>
+		</div>
+		
           <aside>
             <hr>
               <label style="font-weight:bold">숙소유형</label><br>
-              <input type="checkbox" id="hotel"><label for="hotel">호텔</label><br> 
-              <input type="checkbox" id="resort"><label for="resort">리조트</label><br> 
-              <input type="checkbox" id="condo"><label for="condo">콘도</label><br> 
-              <input type="checkbox" id="hostel"><label for="hostel">호스텔</label><br> 
-              <input type="checkbox" id="minbak"><label for="minbak">민박</label><br> 
+              <input type="checkbox" id="hotel" class="sFilter acmType" value="'H'"><label for="hotel">&nbsp;호텔</label><br> 
+              <input type="checkbox" id="resort" class="sFilter acmType" value="'R'"><label for="resort">&nbsp;리조트</label><br> 
+              <input type="checkbox" id="condo" class="sFilter acmType" value="'C'"><label for="condo">&nbsp;콘도</label><br> 
+              <input type="checkbox" id="hostel" class="sFilter acmType" value="'G'"><label for="hostel">&nbsp;호스텔</label><br> 
+              <input type="checkbox" id="minbak" class="sFilter acmType" value="'M'"><label for="minbak">&nbsp;민박</label><br> 
               
               <hr>
               
               <label style="font-weight:bold">구역</label><br>
-              <input type="checkbox" id="jeju"><label for="jeju">제주시</label><br>
-              <input type="checkbox" id="seoguipo"><label for="seoguipo">서귀포시</label><br>
+              <input type="checkbox" id="jeju" class="sFilter dist" value="'제주'"><label for="jeju">&nbsp;제주시</label><br>
+              <input type="checkbox" id="seoguipo" class="sFilter dist" value="'서귀포'"><label for="seoguipo">&nbsp;서귀포시</label><br>
               
               <hr>
               
               <label style="font-weight:bold">1박요금</label><br>
               <font size=2 id="minPrice_view">최소가격 : &#8361;0</font><br>
-              <input oninput='ShowSliderValueMin(this.value)' class="slide" id="maxPrice" type="range" min='1' max='100' value='1' step="1">
+              <input oninput='ShowSliderValueMin(this.value)' class="sFilter price" id="minPrice" type="range" min='1' max='100' value='1' step="1">
               <br>
               <font size=2 id="maxPrice_view">최대가격 : &#8361;0</font><br>
-              <input oninput='ShowSliderValueMax(this.value)' class="slide" id="maxPrice" type="range" min='1' max='100' value='1' step="1">
+              <input oninput='ShowSliderValueMax(this.value)' class="sFilter price" id="maxPrice" type="range" min='1' max='100' value='1' step="1">
 
               <script>
                   function ShowSliderValueMin(sVal){
@@ -180,28 +208,208 @@
               <br>
               <hr>
               <label style="font-weight:bold">등급</label><br>
-              <input type="checkbox" name="avgStar" value="1"><span class="star"> ★★★★★</span><br>
-              <input type="checkbox" name="avgStar" value="2"><span class="star"> ★★★★</span><br>
-              <input type="checkbox" name="avgStar" value="3"><span class="star"> ★★★</span><br>
-              <input type="checkbox" name="avgStar" value="4"><span class="star"> ★★</span><br>
-              <input type="checkbox" name="avgStar" value="5"><span class="star"> ★</span><br>
+              <input type="checkbox" name="avgStar" value="5" class="sFilter starr" id="5star"><label for="5star"><span class="star">&nbsp;★★★★★</span></label><br>
+              <input type="checkbox" name="avgStar" value="4" class="sFilter starr" id="4star"><label for="4star"><span class="star">&nbsp;★★★★</span></label><br>
+              <input type="checkbox" name="avgStar" value="3" class="sFilter starr" id="3star"><label for="3star"><span class="star">&nbsp;★★★</span></label><br>
+              <input type="checkbox" name="avgStar" value="2" class="sFilter starr" id="2star"><label for="2star"><span class="star">&nbsp;★★</span></label><br>
+              <input type="checkbox" name="avgStar" value="1" class="sFilter starr" id="1star"><label for="1star"><span class="star">&nbsp;★</span></label><br>
               <hr>
 
-
+			<script>
+				var page = 1;	/* 페이지 변수 */				
+				
+				$(".sFilter").change(function(){
+					page = 1;
+					listReload();			
+					$('html, body').animate( { scrollTop : 750 }, 400 );	/* 필터 클릭시 스크롤 위로 올려줌 */
+				});					
+				
+				
+				function listReload() {		/* 필터 선택 or 스크롤 페이징 시 ajax실행 메소드 */	
+					
+					/* 숙소 타입 필터 */
+					var arrType = new Array("ACM_TYPE IN");
+					var arrDist = new Array("ACM_DISTRICT=");
+					var arrStar = new Array("ACM_GRADE IN");
+					var arrPrice = new Array("HAVING MIN(ROOM_PRICE)");
+			
+					var arr1 = document.getElementsByClassName("acmType");
+					
+					for(var i in arr1){						
+						if(arr1[i].checked){
+							arrType.push(arr1[i].value);
+							console.log(arr1[i].value);
+							
+						}else{
+							for(var j in arrType){
+								if(arrType[j] == arr1[i].value){
+									arrType.splice(arrType.indexOf(arr1[i].value),1);									
+								}
+							}
+						}
+					}
+					console.log(arrType);
+										
+					/* 숙소 구역 필터 */
+					var arr2 = document.getElementsByClassName("dist");
+					
+					for(var i in arr2){
+						if(arr2[i].checked){
+							arrDist.push(arr2[i].value);
+						}else{
+							for(var j in arrDist){
+								if(arrDist[j] == arr2[i].value){
+									arrDist.splice(arrType.indexOf(arr2[i].value),1);									
+								}
+							}
+						}
+					}
+					console.log(arrDist);
+					
+					/* 숙소 등급 필터 */
+					var arr3 = document.getElementsByClassName("starr");
+					
+					for(var i in arr3){
+						if(arr3[i].checked){
+							arrStar.push(arr3[i].value);
+						}else{
+							for(var j in arrStar){
+								if(arrStar[j] == arr3[i].value){
+									arrStar.splice(arrType.indexOf(arr3[i].value),1);									
+								}
+							}
+						}
+					}
+					console.log(arrStar);
+					
+					/* 숙소 가격 필터 */
+					var minPrice = 0;
+					var maxPrice = 0;
+					
+					var minP = document.getElementById("minPrice");
+					var maxP = document.getElementById("maxPrice");
+										
+					if(maxP.value != 1 && minP.value >= maxP.value){
+						alert("최대 가격이 최소 가격 보다 커야합니다.");
+					}else if(minP.value == 1 && maxP.value != 1){
+						maxPrice = (maxP.value)*10000;
+					}else if(minP.value != 1 && maxP.value == 1){
+						minPrice = (minP.value)*10000;
+					}else if(minP.value == 1 && maxP.value == 1){
+						minPrice = 0;
+						maxPrice = 0;
+					}else{
+						minPrice = (minP.value)*10000;
+						maxPrice = (maxP.value)*10000;
+					}
+					arrPrice.push(minPrice);
+					arrPrice.push(maxPrice);
+					console.log(arrPrice);
+					
+						
+					
+					/* ajax 통신  */
+					
+					$.ajax({
+						url:"option.ac",
+			    		type:"get",
+			    		data:{checkIn:"<%=checkIn%>",
+			    			  checkOut:"<%=checkOut%>",
+			    			  adult:<%=adult%>,
+			    			  child:<%=child%>,
+			    			  page:page,
+			    			  arrType:arrType,
+			    			  arrDist:arrDist,
+			    			  arrStar:arrStar,
+			    			  arrPrice:arrPrice
+			    			 },
+			    		success:function(result){
+			    				  
+					    			if(page == 1){
+					    				$("#resultWrap").html("");
+					    			}
+					    				
+					    				if(result != null){
+					    										    					
+					    					var str = "";
+					    					
+					    					$.each(result["acmList"], function(index, value){
+				    							
+								    			str += '<li>'+
+															'<div class="test resultWrap aa" id="resultAcmDiv">'+
+															'<div class="d1 dd aa">'+
+																'<div class="d3 aa title">'+
+																	'<a href="#" style="font-weight: bold; font-size: 1.5em;">'+value.acmName +'</a>'+'<br>'+
+																	'<label style="font-size:10px;">'+value.acmAddress+'</label>'+
+																'</div>'+
+																'<div class="d4 aa">'+
+																	'<div class="dd d5 aa">';
+																		$.each(result["imgList"],function(index2, value2){
+																			if(value.acmNum == value2.acmNum){
+																			str +='<div class="test imgDiv aa"><img src="'+value2.imgPath+'" style="width:100%; height: 100%;"></div>';
+																			}
+																		});															
+															str +='</div>'+
+																			'<div class="dd d6">설명'+
+																				'<ul class="etc">'+
+																					'<li>'+value.acmGrade+'성급</li>'+
+																					'<li>'+value.acmDistrict+'시</li>'+
+																				'</ul>'+							
+																			'</div>'+
+																		'</div>'+
+																	'</div>'+							
+																	'<div class="d2 dd aa">'+
+																		'<div class="d7 aa"><b style="font-weight:bold; font-size:20px;">최소 1박 가격</b> <br><span class="pricePerNight">&#8361;'+value.minPrice+'</span></div>'+
+																		'<div class="d8 aa">'+
+																			'<input type="hidden" value="'+value.acmNum+'">'+
+																			'<button class="asdf btn btn-primary btn-block text-white"	style="width:70%;">상세보기</button>'+
+																		'</div>'+'</div>'+'</div>'+'</li>'+'<br>';
+					    						});		/* $.each close */
+						    											    				
+						    					$("#resultWrap").append(str);
+						    					
+						    					$(".asdf").addClass('detailBtn');
+					    					
+						    				}else{
+						    					page--;
+						    				}
+							},	/* success close */
+				    		error:function(){
+				    			alert("검색하신 조건에 맞는 숙소가 없습니다.");
+				    			/*console.log("통신실패");*/
+				    		},	/* error close */
+				    		beforeSend:function(){
+				    			$('.wrap-loading').removeClass('display-none');
+				    			window.setTimeout(function(){
+			    					  $('.wrap-loading').addClass('display-none');
+			    				  },800);
+				    		},
+				    		complete:function(){
+				    			
+				    			
+				    		}
+							
+						});		/* ajax close */
+						
+					}	/* function close */
+				
+				
+				
+			
+			</script>
 
 
           </aside>
           <div class="row justify-content-center mb-5">
              
-            <!-- <div class="result" data-aos="fade-up">     -->          
-              <!-- <h2 class="heading" data-aos="fade-up">검색결과</h2> -->
-              <!-- <div data-aos="fade-up" data-aos-delay="100" class="searchForm" >검색된 숙소들 db에서 불러와서 여기에 뿌려주면 될듯?</div> -->
-              <!-- <a href="#" style="font-weight:bold; font-size: 1.5em;">testHotel</a><br> -->
-              
+             
+             
             <!-- </div> -->
-
-				<ul class="resultWrap">
-					<label style="font-size:18px"><%=checkIn %> ~ <%=checkOut %>&nbsp;&nbsp;&nbsp;성인 : <%=adult %>&nbsp;&nbsp;어린이/청소년 : <%=child %>&nbsp;&nbsp;검색 결과</label>
+			<div align="left" style="width:100%; padding-left:40px;">
+				<label style="font-size:18px"><%=checkIn %> ~ <%=checkOut %>&nbsp;&nbsp;&nbsp;성인 : <%=adult %>&nbsp;&nbsp;어린이/청소년 : <%=child %>&nbsp;&nbsp;검색 결과</label>
+			</div>
+			<div class="" >
+				<ul class="resultWrap" id="resultWrap">
 					<%if(acmList == null) {%>
 						<div align="center"><b style="font-size: 3em">예약 가능한 숙박업소가 없습니다.</b></div>
 					<%} else {%>
@@ -210,28 +418,33 @@
 
 							<li>
 								<div class="test resultWrap aa" id="resultAcmDiv">
-									<div class="test d1 dd aa">
-										<div class="test d3 aa title">
+									<div class="d1 dd aa">
+										<div class="d3 aa title">
 											<a href="#" style="font-weight: bold; font-size: 1.5em;"><%=acm.getAcmName()%></a>
 											<br>
 											<label style="font-size:10px;"><%=acm.getAcmAddress()%></label>
 										</div>
-										<div class="test d4 aa">
-											<div class="test dd d5 aa">
+										<div class="d4 aa">
+											<div class="dd d5 aa">
 												<%for(AcmImg acmImg : acmThumbnailImgList){ %>
 													<%if(acm.getAcmNum() == acmImg.getAcmNum()){ %>
-														<div class="test imgDiv aa"><img src="<%=acmImg.getImgPath()%>" style="width:100%; height: 100%;"></div>														
+														<div class="imgDiv aa"><img src="<%=acmImg.getImgPath()%>" style="width:100%; height: 100%;"></div>														
 													<%} %>												
 												<%} %>
 											
 											</div>
-											<div class="test dd d6">설명</div>
+											<div class="dd d6">
+												<ul class="etc">
+													<li><%=acm.getAcmGrade() %>성급</li>
+													<li><%=acm.getAcmDistrict() %>시</li>
+												</ul>										
+											</div>
 										</div>
 									</div>
 		
-									<div class="test d2 dd aa">
-										<div class="test d7 aa">1박 가격 <br><span class="pricePerNight">&#8361;<%=acm.getMinPrice()%>원</span></div>
-										<div class="test d8 aa">
+									<div class="d2 dd aa">
+										<div class="d7 aa"><b style="font-weight:bold; font-size:20px;">최소 1박 가격</b> <br><span class="pricePerNight">&#8361;<%=acm.getMinPrice()%></span></div>
+										<div class="d8 aa">
 											<input type="hidden" value="<%=acm.getAcmNum()%>">
 											<button class="detailBtn btn btn-primary btn-block text-white"
 												style="width:70%;">상세보기</button>
@@ -244,28 +457,63 @@
 					<%} %>
 					
 				</ul>
+				</div>
+				<br clear="both">
+				<br>
+				
+			    
 				
 				<script>
-					$(".detailBtn").click(function() {						
+						
+					
+					$(document).on('ready',function(){
+						
+						
+						$(window).on('scroll',function() {
+							console.log("page = "+page);
+							
+							var maxHeight = $(document).height();
+						    var currentScroll = $(window).scrollTop() + $(window).height();
+						    
+						    console.log(maxHeight);
+						    console.log(currentScroll);
+						    
+						    /* (currentScroll-1 <= maxHeight && maxHeight < currentScroll) */
+							
+						    if(maxHeight <= currentScroll+0.5){
+						    	
+						    	console.log("스크롤 페이징");
+						    	
+						    	page++;
+						    	
+						    	
+						    	listReload();
+							}
+						});
+					});
+					
+					
+					
+					$(document).on('click','.detailBtn',function() {						
 						location.href="<%=contextPath%>/detail.ac?acmNum="+$(this).prev().val()+"&checkIn=<%=checkIn%>&checkOut=<%=checkOut%>&adult=<%=adult%>&child=<%=child%>";
 					});
 					
 				</script>
 				
-				
 
 			</div>          
-        </div>
+       		
     
     </section>
-    </div>
-    <div style="height:15%">
-    <%-- 풋터 --%>
-    <%@ include file="../main/footer.jsp" %>
-    </div>
-    </div>
-      <br clear="both">
-     
+    		<!-- <div class="test aa footerDiv" style="width:100%; height:500px;">
+			    
+			    </div> -->
+
+   			
+    		<%-- 풋터 --%>
+    		<%@ include file="../main/footer.jsp" %>
+				
+    
 
 	<%-- <section class="section bg-image overlay" style="background-image: url('<%= request.getContextPath() %>/resources/images/hero_4.jpg');" id="section-apply">
         <div class="container" >

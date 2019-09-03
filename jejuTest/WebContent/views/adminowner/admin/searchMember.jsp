@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="org.json.simple.* , java.util.* ,member.model.vo.Member"%>
+	pageEncoding="UTF-8" import=" java.util.* ,member.model.vo.Member"%>
+<!-- 	org.json.simple.* , -->
  <%
 	ArrayList<Member> list =(ArrayList<Member>)request.getAttribute("list");
 

@@ -18,6 +18,8 @@
 	
 	String checkIn = request.getParameter("checkIn");
 	String checkOut = request.getParameter("checkOut");
+	int adult = Integer.parseInt(request.getParameter("adult"));
+	int child = Integer.parseInt(request.getParameter("child"));
 
 %>   
 <!DOCTYPE html>
@@ -26,7 +28,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/animate.css">
@@ -121,6 +123,10 @@
 	<%-- 헤더,메뉴바 --%>
     <%@ include file="../main/header.jsp" %>
     
+    
+    
+    
+    
 
 	<section class="reservationSection section">
 		<div class="reservationWrap container aa">
@@ -165,32 +171,36 @@
 				<label style="font-weight:bold; font-size:2em; color:#fd7e14;">객실 정보</label><hr>
 				
 				<label>객실명 : <%=room.getRoomName() %></label>
+				<br>
+				<label>성인 : <%=adult%>&nbsp;&nbsp;어린이/청소년 : <%=child%></label>
 				<br><br>
 				<b>고객 요청 사항</b><br>
 				<b style="font-size:10px;">ex) 엑스트라 베드, 늦은 체크인</b><br>
-				<textarea rows="6" cols="40" name="reserv_require"></textarea>
+				<textarea rows="6" cols="40" name="reservRequire"></textarea>
 				
 				</div>
 				<div class="paymentInfo bg-light section pp">
 				
-				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >결제 정보</label><hr>
+				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >결제 방법</label><hr>
 				
 				
 				
-				<input type="radio" class="payRadio1" name="payRadio1" id="payRadio1_1">
+				<input type="radio" class="payRadio1" name="payMethod" id="payRadio1_1" value="c">
 				<label for="payRadio1_1" class="payLabel label1">카드결제</label>
 				<br>
-				<input type="radio" class="payRadio1" name="payRadio1" id="payRadio1_2">
+				<input type="radio" class="payRadio1" name="payMethod" id="payRadio1_2" value="k">
 				<label for="payRadio1_2" class="payLabel label2">카카오페이</label>
 				
 				<script>
 					$(".label1").on('click',function(){
 						$(".label1").addClass("paypay");
 						$(".label2").removeClass("paypay");
+						$("#mFlag").val(1);
 					});
 					$(".label2").on('click',function(){
 						$(".label2").addClass("paypay");
 						$(".label1").removeClass("paypay");
+						$("#mFlag").val(2);
 					});
 				</script>
 				
@@ -237,15 +247,181 @@
 			            $(".agreement").on('click',function(){
 			                if($("#checkAgree").css('display') == 'none'){
 			                    $("#checkAgree").css('display','block');
+			                    $("#payBtn").attr('disabled',false);
 			                } else{
 			                    $("#checkAgree").css('display','none');
+			                    $("#payBtn").attr('disabled',true);
 			                }
 			            });
-			        });
-				
+			        });				
 				</script>
 				<hr>
-				<button type="submit" style="float:right;">예약하기</button>
+				<input type="hidden" name="methodFlag" id="mFlag" value="0">
+				<button type="button" id="payBtn" style="float:right;" disabled>예약하기</button>
+				
+				
+				
+				<script>
+					
+				
+					
+					var reservPrice = 0;
+					
+					$(function(){
+						var cIn = "<%=checkIn %>";
+						var cOut = "<%=checkOut %>";
+						
+						var arr1 = cIn.split('-');
+				 		var arr2 = cOut.split('-');
+				 		
+				 		var dat1 = new Date(arr1[0], arr1[1]-1, arr1[2]);
+				 		var dat2 = new Date(arr2[0], arr2[1]-1, arr2[2]);
+				 		
+				 		var diff = dat2.getTime() - dat1.getTime();
+				 	    var result = Math.floor(diff/1000/60/60/24);
+				 		
+				 		$("#nTd").text(result+"박");
+				 		
+				 		
+				 		var a = $("#pTd").text();
+				 		reservPrice = <%=room.getRoomPrice()%>*result;
+				 		
+				 		$("#pTd").text(a+reservPrice);	
+				 		
+				 		
+				 		
+				 		
+				 		
+				 		/* 결제방법 선택에 따른 결제모듈 선택 */
+				 		$("#payBtn").click(function(){	
+							
+							if($("#mFlag").val() == 1){
+								inicis();
+							} else if($("#mFlag").val() == 2){
+								kakao();
+							} else if($("#mFlag").val() == 0){
+								alert('결제 방법을 선택해 주세요.');
+							}
+						});
+				 		
+				 		
+				 		
+				 		
+				 		
+					});
+							
+				
+				function inicis() {
+					<!-- 결제  -->
+				    	IMP.init('imp80836035');
+				    
+				    	IMP.request_pay({
+				    	    pg : 'html5_inicis',	/* 결제PG사 */
+				    	    pay_method : 'card',/* 결제방법 */
+				    	    merchant_uid : 'R' + new Date().getTime(),	/* 주문번호 */
+				    	    name : '<%=acm.getAcmName()%>'+' 예약 결제',	/* 주문이름 */
+				    	    amount : 100,		/* 결제 가격 */
+				    	    buyer_email : $("input[name=reservEmail]").val(),	/* 구매자 이멜 */
+				    	    buyer_name : $("input[name=reservName]").val(),				/* 구매자 이름 */
+				    	    buyer_tel : $("input[name=reservPhone]").val(),		/* 구매자 전화번호(필수) '010-1234-5678' */
+				    	}, function(rsp) {
+				    		$.ajax({
+				    			url:"payment.py",
+				    			type:"post",
+				    			data:{payNum:rsp.imp_uid,
+				    				  reservNum:rsp.merchant_uid,
+				    				  payPrice:rsp.paid_amount,
+				    				  confirmNum:rsp.apply_num,
+				    				  reservName:$("input[name=reservName]").val(),
+				    				  reservEmail:$("input[name=reservEmail]").val(),
+				    				  reservPhone:$("input[name=reservPhone]").val(),
+				    				  reservRequire:$("textarea[name=reservRequire]").val(),
+				    				  payMethod:$("input[name=payMethod]").val(),
+				    				  reservPrice:reservPrice,
+				    				  reservPax:<%=adult%>+<%=child%>,
+				    				  checkIn:"<%=checkIn%>",
+				    				  checkOut:"<%=checkOut%>",
+				    				  roomNum:<%=room.getRoomNum()%>
+				    				 },
+				    			success:function(data){
+				    				
+				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
+				    			},
+				    			error:function(){
+				    				alert("결제 실패");
+				    			}			    			
+				    			
+				    		});	/* ajax close */
+				    	});		/* function(rsp) close */
+				    
+				    
+				    
+				}	<!--  이니시스 결제 close   -->
+				
+				
+				
+				
+				function kakao() {
+					<!-- 결제  -->
+				    	IMP.init('imp80836035');
+				    
+				    	IMP.request_pay({
+				    	    pg : 'kakaopay',	/* 결제PG사 */
+				    	    pay_method : 'card',/* 결제방법 */
+				    	    merchant_uid : 'R' + new Date().getTime(),	/* 주문번호 */
+				    	    name : '<%=acm.getAcmName()%>'+' 예약 결제',	/* 주문이름 */
+				    	    amount : 100,		/* 결제 가격 */
+				    	    buyer_email : $("input[name=reservEmail]").val(),	/* 구매자 이멜 */
+				    	    buyer_name : $("input[name=reservName]").val(),				/* 구매자 이름 */
+				    	    buyer_tel : $("input[name=reservPhone]").val(),		/* 구매자 전화번호(필수) '010-1234-5678' */
+				    	}, function(rsp) {
+				    		
+				    		console.log(rsp.apply_num);
+				    		
+				    		$.ajax({
+				    			url:"payment.py",
+				    			type:"post",
+				    			data:{payNum:rsp.imp_uid,
+				    				  reservNum:rsp.merchant_uid,
+				    				  payPrice:rsp.paid_amount,
+				    				  confirmNum:rsp.apply_num,
+				    				  reservName:$("input[name=reservName]").val(),
+				    				  reservEmail:$("input[name=reservEmail]").val(),
+				    				  reservPhone:$("input[name=reservPhone]").val(),
+				    				  reservRequire:$("textarea[name=reservRequire]").val(),
+				    				  payMethod:$("input[name=payMethod]").val(),
+				    				  reservPrice:reservPrice,
+				    				  reservPax:<%=adult%>+<%=child%>,
+				    				  checkIn:"<%=checkIn%>",
+				    				  checkOut:"<%=checkOut%>",
+				    				  roomNum:<%=room.getRoomNum()%>
+				    				 },
+				    			success:function(data){
+				    				console.log(rsp.apply_num);
+				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
+				    			},
+				    			error:function(){
+				    				alert("결제 실패");
+				    			}			    			
+				    			
+				    		});	/* ajax close */
+				    	});		/* function(rsp) close */
+				    
+				    
+				    
+				}	<!--  카카오 결제 close   -->
+				
+				
+				
+				
+				
+				
+				
+				</script>
+				
+				
+				
+				
 				
 				</div>
 			</div>
@@ -302,25 +478,14 @@
 										<td align="right"><b><%=checkOut %></b></td>
 									</tr>
 									<tr>
-										<td id="nTd" colspan="2" align="right"><b></b></td>								
+										<td id="nTd" colspan="2" align="right"></td>								
+									</tr>
+									<tr>
+										<td id="pTd" colspan="2" align="right">&#8361;</td>
 									</tr>
 									
 									<script>
-										$(function(){
-											var cIn = "<%=checkIn %>";
-											var cOut = "<%=checkOut %>";
-											
-											var arr1 = cIn.split('-');
-									 		var arr2 = cOut.split('-');
-									 		
-									 		var dat1 = new Date(arr1[0], arr1[1]-1, arr1[2]);
-									 		var dat2 = new Date(arr2[0], arr2[1]-1, arr2[2]);
-									 		
-									 		var diff = dat2.getTime() - dat1.getTime();
-									 	    var result = Math.floor(diff/1000/60/60/24);
-									 		
-									 		$("#nTd").text(result+"박");
-										});
+										
 									
 									</script>
 									

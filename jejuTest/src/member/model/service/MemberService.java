@@ -1,7 +1,10 @@
 package member.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
+import accommodation.model.vo.Acm;
+import accommodation.model.vo.AcmImg;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
 import static common.JDBCTemplate.*;
@@ -44,10 +47,38 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-		
-		
-		
 	}
+   
+   public Acm getAcm(int memNum) {
+	   Connection conn = getConnection();
+	   
+	   Acm acm = new MemberDao().getAcm(conn, memNum);
+	   
+	   close(conn);
+	   
+	   return acm;
+   }
+   
+   public ArrayList<AcmImg> acmImgList(int acmNum){
+		Connection conn = getConnection();
+		
+		ArrayList<AcmImg> list = new MemberDao().acmImgList(conn, acmNum);
+		
+		close(conn);
+		
+		return list;
+	}
+   
+   public Member snsLoginCheck(String memId) {
+	      
+	      Connection conn = getConnection();
+	      
+	      Member loginUser = new MemberDao().snsLoginCheck(conn, memId);
+	      
+	      close(conn);
+	      
+	      return loginUser;
+	   }
    
    
    

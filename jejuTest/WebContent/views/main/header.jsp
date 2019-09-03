@@ -23,6 +23,11 @@
 <!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css"> -->
 <!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> -->
 
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name = "google-signin-client_id"content = "229644816841-0i7t2jo0jdc09ch2vfpv81a7ig8gpa8s.apps.googleusercontent.com">
+
 <style>
 /* The Modal (background) */
           .popModal {
@@ -75,6 +80,9 @@
          .dd{
             float: left;
          }
+         /* .g-signin2>div{
+         	width: 100%;
+         } */
         
 
 
@@ -123,7 +131,7 @@
               <h2 class="form-login-heading">sign in now</h2>
               <div class="login-wrap">
                   <span class="close" style="margin-left:auto;">&times;</span>
-                <input type="text" class="form-control" placeholder="User ID" id="userId" autofocus name="userId">
+                <input type="text" class="form-control" placeholder="ID" id="userId" autofocus name="userId">
                 <br>
                 <input type="password" class="form-control" placeholder="Password" id="userPwd" name="userPwd">
                 <!-- <label class="checkbox"> -->
@@ -135,15 +143,115 @@
                 <button class="btn btn-theme btn-block" type="submit"><a href="#">SIGN IN</a></button>
                 <hr>
                 <div class="login-social-link centered">
-                  <p>or you can sign in via your social network</p>
-                  <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
-                  <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                	<!-- 카카오 로그인 -->
+                
+                	<a id="custom-login-btn" href="javascript:loginWithKakao()">
+					<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="290"/>
+					</a>
+					<script type='text/javascript'>
+					  //<![CDATA[
+					    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+					    Kakao.init('9baefdf8cbf2ee252bc9b7dc403ad63d');
+					    
+					    
+					    
+					    
+					    
+					    function loginWithKakao() {
+					      // 로그인 창을 띄웁니다.
+					      Kakao.Auth.login({
+					    	  success: function(authObj) {					    		  
+					    		  
+					    		  var accessToken = authObj.access_token;
+						          var refreshToken = authObj.refresh_token;
+						          
+						          console.log('accessToken : '+accessToken);
+						          console.log('refreshToken : '+refreshToken);
+					    		  
+					    		  
+							        // 로그인 성공시, API를 호출합니다.
+							        Kakao.API.request({
+							          url: '/v2/user/me',
+							          success: function(res) {
+							            /* alert(JSON.stringify(res)); */
+							            
+							            /* 이런식으로 id같은 정보를 쿼리스트링으로 보내주면서 페이지 이동 */
+							            /* location.href='/api/kakao_login/kakao_login.php?id='+res.id+'&nickname='+res.properties['nickname']; */
+							            
+							            location.href='<%=contextPath%>/snsLogin.me?snsId='+res.kakao_account["email"];
+							            
+							          },
+							          fail: function(error) {
+							            alert(JSON.stringify(error));
+							          }
+							        });
+							      },
+							      fail: function(err) {
+							        alert(JSON.stringify(err));
+							      }
+					      });
+					    };
+					     
+					    
+					    
+					    
+					    
+					    
+					    
+					  //]]>
+					</script>
+					
+					<!-- 카카오 로그인 -->
+                
+                
+                
+                
+                
+                
+                
+                <div style="width:100%; height:10px;"></div>
+                <!-- 구글 로그인 -->
+                  <div class="g-signin2" data-width="290" data-height="46" data-onsuccess="onSignIn"></div>
+                  
+                  <script>
+	                  function onSignIn(googleUser) {
+	                	  var profile = googleUser.getBasicProfile();
+	                	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	                	  console.log('Name: ' + profile.getName());
+	                	  console.log('Image URL: ' + profile.getImageUrl());
+	                	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	                	  
+	                	  location.href='<%=contextPath%>/snsLogin.me?snsId='+profile.getEmail();
+	                	  
+	                	  signOut();
+	                	}
+	                  
+	                  function signOut() {
+	                	    var auth2 = gapi.auth2.getAuthInstance();
+	                	    auth2.signOut().then(function () {
+	                	      console.log('User signed out.');
+	                	    });
+	                	  }
+                  
+                  </script>
+                  
+                  <!--  -->
+                  
                 </div>
                 <div class="registration">
                   Don't have an account yet?<br/>
                   
                   <!-- 회원가입 버튼 클릭 -->
-                  <button class="btn btn-theme btn-block" type="submit"> <a href="#" id="memberJoinBtn" onclick="memberJoin()">Create an account</a></button>
+                  <button class="btn btn-theme btn-block" type="button" onclick="memberJoin();"> <a href="#" id="memberJoinBtn" onclick="memberJoin();">Create an account</a></button>
 
                 <!-- </div> -->
               </div>
@@ -189,24 +297,34 @@
     </div>
   
       <script>
-          // loginModal
-          var loginModal = document.getElementById('loginModal');
-          var loginBtn = document.getElementById("loginBtn");
-   
           // flightModal
           var flightModal = document.getElementById('flightModal');
           var flight = document.getElementById('nav2');
    
-          // Get the <span> element that closes the modal
-          var span = document.getElementsByClassName('close');                                          
+          /* // loginModal
+          var loginModal = document.getElementById('loginModal');
+          var loginBtn = document.getElementById("loginBtn"); */
    
           // When the user clicks on the button, open the modal 
-          loginBtn.onclick = function() {
+          /* loginBtn.onclick = function() {
             loginModal.style.display = "block";
-          } 
-          flight.onclick = function() {
+          } */ 
+          
+          $("#loginBtn").click(function() {
+        	  $("#loginModal").css('display','block');
+			  $("#loginBtn").css('display','block');
+		  });
+          
+          $("#nav2").click(function() {
+        	  $("#flightModal").css('display','block');
+		})
+          
+          /* flight.onclick = function() {
             flightModal.style.display = "block";
-          } 
+          }  */
+          
+       // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName('close');    
 
           $(function(){
             // 모달창 x 버튼 누르면 창 꺼지기

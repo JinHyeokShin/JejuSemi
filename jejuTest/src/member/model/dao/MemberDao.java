@@ -6,8 +6,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import accommodation.model.vo.Acm;
+import accommodation.model.vo.AcmImg;
 import member.model.vo.Member;
 import static common.JDBCTemplate.*;
 
@@ -134,11 +137,115 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	public Acm getAcm(Connection conn, int memNum) {
+		Acm acm = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getAcm");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				acm = new Acm(rset.getInt("acm_num"),
+							  rset.getString("acm_name"),
+							  rset.getInt("owner_num"),
+							  rset.getString("acm_phone"),
+							  rset.getString("acm_address"),
+							  rset.getString("acm_type"),
+							  rset.getInt("acm_grade"),
+							  rset.getString("acm_descript_a"),
+							  rset.getString("acm_descript_b"),
+							  rset.getString("acm_power"),
+							  rset.getString("acm_status"));
+											  
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return acm;
+		
+		
+	}
+	
+	public ArrayList<AcmImg> acmImgList(Connection conn, int acmNum){
+		ArrayList<AcmImg> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("acmImgView");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new AcmImg(rset.getInt("img_num"),
+						            rset.getString("img_path"),
+						            rset.getInt("acm_num"),
+						            rset.getInt("status")));				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
    
    
    
-   
-   
+	
+	public Member snsLoginCheck(Connection conn, String memId) {
+		
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("kakaoLoginCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("mem_num"),
+						       rset.getString("mem_id"),
+						       rset.getString("mem_pwd"),
+						       rset.getString("mem_name"),
+						       rset.getString("mem_gender"),
+						       rset.getString("mem_phone"),
+						       rset.getInt("nation_code"),
+						       rset.getInt("mem_point"),
+						       rset.getString("mem_type"),
+						       rset.getString("mem_status"),
+						       rset.getDate("enroll_date"),
+						       rset.getDate("out_date"),
+						       rset.getInt("noshow"));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+	}
    
    
    

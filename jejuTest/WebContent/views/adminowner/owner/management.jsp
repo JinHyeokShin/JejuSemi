@@ -5,13 +5,13 @@
     ArrayList<Management> list = (ArrayList<Management>)request.getAttribute("list");
     
     System.out.println(list);
-	/* PageInfo pi = (PageInfo)request.getAttribute("pi"); */
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
-/* 	int listCount = pi.getListCount();
+ 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage(); */
+	int endPage = pi.getEndPage();
     %>
 <!DOCTYPE html>
 <html>
@@ -30,6 +30,7 @@
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/moment.min.js'></script>
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/jquery.min.js'></script>
 	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/fullcalendar.min.js'></script>
+	<script src='<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/ko.js'></script>
 	
 	
 <!-- 	<link href='../fullcalendar.min.css' rel='stylesheet' />
@@ -46,7 +47,7 @@
 	}
 
 	#calendar {
-		max-width: 900px;
+		max-width: 50%;
 		margin: 0 auto;
 	}
 ul.sidebar-menu li a.active2, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
@@ -71,12 +72,13 @@ ul.sidebar-menu li ul.sub li.active a {
     cursor: pointer;
 }
 
+
 </style>
 </head>
 <body>
   <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 예약 내역 확인</h3>
+        <h3><i class="fa fa-angle-right"></i> <%= acm.getAcmName() %> 예약 내역 확인</h3>
         <!-- page start-->
         <div class="row mt">
           <aside class="col-lg-12 mt">
@@ -87,11 +89,7 @@ ul.sidebar-menu li ul.sub li.active a {
             </section>
           </aside>
          </div>
-        </section>
-    </section>
-    <section id="main-content">
-      <section class="wrapper">
-       <h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
+                <h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
         <div class="col-lg-12 mt">
         	<section class="panel">
               <div class="panel-body">
@@ -126,16 +124,71 @@ ul.sidebar-menu li ul.sub li.active a {
 							<td><%= manage.getReservDate()%></td>
 							<td><%= manage.getMemName()%></td>
 							<td><%= manage.getMemPhone()%></td>
-							<td><%= manage.getReservPrice()%></td> 
+							<td><%= manage.getReservPrice()%>원</td> 
 						</tr>
 						<%} %>
 					<%} %>
               	</table>
+              			<div class="btn-group btn-group-justified" align="center">
+		
+			<!-- 맨처음으로 (<<) -->
+			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow?currentPage=1'"> &lt;&lt; </button>
+			
+			<!-- 이전페이지로(<) -->
+			<%if(currentPage == 1){ %>
+			<button class="btn btn-theme" disabled> &lt; </button>
+			<%}else{ %>
+			<button class="btn btn-theme" class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<%} %>
+			
+			
+			<!-- 10개의 페이지 목록 -->
+			<%for(int p=startPage; p<=endPage; p++){ %>
+				
+				<%if(p == currentPage){ %>
+				<button class="btn btn-theme" disabled> <%= p %> </button>
+				<%}else{ %>
+				<button class="btn btn-theme" onclick="location.href='<%=request.getContextPath() %>/management.ow?currentPage=<%= p %>'"> <%= p %> </button>
+				<%} %>
+				
+			<%} %>
+			
+			
+			<!-- 다음페이지로(>) -->
+			<%if(currentPage == maxPage){ %>
+			<button disabled> &gt; </button>
+			<%}else { %>
+			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<%} %>
+			
+			<!-- 맨끝으로(>>) -->
+			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
+			
+		</div>
+		</div>
+		</section>
+		
+		<div class="searchArea" align="center">
+			<select id="searchCondition" name="searchCondition">
+				<option>----</option>
+				<option value="category">카테고리</option>
+				<option value="writer">작성자</option>
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			</select>
+			<input type="search">
+			
+			<button class="btn btn-theme" type="submit">검색하기</button>
+			
+			<%if(loginUser != null){ %>
+			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/insertForm.bo'">작성하기</button>
+			<%} %>
+			
+		</div>
               </div>
-            </section>
-        </div>
-      </section>
-      </section>
+        </section>
+    </section>
+
         <%@ include file="../../../views/adminowner/common/footer.jsp" %>
         	<script>
         	
@@ -160,6 +213,7 @@ ul.sidebar-menu li ul.sub li.active a {
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
+				lang: 'ko',
 				center: 'title',
 				right: 'month,basicWeek,basicDay'
 			},
