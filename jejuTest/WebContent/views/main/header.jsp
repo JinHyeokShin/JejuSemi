@@ -15,13 +15,13 @@
 <title>Insert title here</title>
 <script src="<%=contextPath%>/resources/js/alertify.min.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.min.css">
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.rtl.min.css"> -->
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.rtl.min.css"> --%>
 
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.rtl.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.rtl.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> -->
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.rtl.min.css"> --%>
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.min.css"> --%>
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.rtl.min.css"> --%>
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css"> --%>
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> --%>
 
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
