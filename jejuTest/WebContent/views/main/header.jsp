@@ -13,15 +13,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- <script src="<%=contextPath%>/resources/js/alertify.min.js"></script> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.rtl.min.css"> -->
+<script src="<%=contextPath%>/resources/js/alertify.min.js"></script>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.min.css">
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.rtl.min.css"> --%>
 
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.rtl.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.rtl.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css"> -->
-<!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> -->
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.rtl.min.css"> --%>
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.min.css"> --%>
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.rtl.min.css"> --%>
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css"> --%>
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> --%>
 
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -106,8 +106,8 @@
                 <li class="nav-item"><a class="nav-link" href="#section-home" id="nav1">Home</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav2">Flight</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav3">RentCar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">AboutJeju</a></li>
-                <li class="nav-item"><a class="nav-link" href="#section-team" id="nav5">Recommand</a></li>              
+                <!-- <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">AboutJeju</a></li> -->
+                <li class="nav-item"><a class="nav-link" href="#section-about" id="nav5">Recommand</a></li>              
                 <li class="nav-item"><a class="nav-link" href="#section-menus" id="nav6">TourSpot</a></li>   
                 <li class="nav-item"><a class="nav-link" href="#section-events" id="nav7">JejuFestival</a></li>         
                 <li class="nav-item"><a class="nav-link" href="#section-contact" id="nav8">ContactUs</a></li>
