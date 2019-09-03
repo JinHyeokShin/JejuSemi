@@ -145,6 +145,12 @@
                 
                 
                 
+                
+                
+                
+                
+                
+                
                 	<!-- 카카오 로그인 -->
                 
                 	<a id="custom-login-btn" href="javascript:loginWithKakao()">
@@ -154,6 +160,8 @@
 					  //<![CDATA[
 					    // 사용할 앱의 JavaScript 키를 설정해 주세요.
 					    Kakao.init('9baefdf8cbf2ee252bc9b7dc403ad63d');
+					    
+					    
 					    
 					    
 					    
@@ -194,6 +202,10 @@
 					     
 					    
 					    
+					    
+					    
+					    
+					    
 					  //]]>
 					</script>
 					
@@ -201,9 +213,11 @@
                 
                 
                 
+                
+                
+                
+                
                 <div style="width:100%; height:10px;"></div>
-                
-                
                 <!-- 구글 로그인 -->
                   <div class="g-signin2" data-width="290" data-height="46" data-onsuccess="onSignIn"></div>
                   
