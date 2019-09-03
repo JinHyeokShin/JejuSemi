@@ -692,7 +692,6 @@ body.modal-open[style] {
 			+ '    <div class="info">'
 			+ '        <div class="title">'
 			+ '            <%= list.get(i).getSpotName()%>'
-// 			+ '            <div class="close" onclick="closeOverlay()" title="닫기">&times;</div>'
 			+ '        </div>'
 			+ '        <div class="body">'
 			+ '            <div class="img">'
@@ -710,17 +709,6 @@ body.modal-open[style] {
 			    map: map,
 			    position: marker.getPosition()       
 			});
-
-// 			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-// 			kakao.maps.event.addListener(marker, 'click', function() {
-// 				customOverlay.setMap(map);
-// 			});
-
-// 			// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-// 			function closeOverlay() {
-// 				customOverlay.setMap(null);
-// 			    console.log(customOverlay.setMap(null));
-// 			}
 			
 			// 모달창 지도 중심 맞추기
 			$("#myModal<%= i %>").on("shown.bs.modal", function () { 
