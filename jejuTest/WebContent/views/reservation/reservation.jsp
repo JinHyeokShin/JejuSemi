@@ -1,4 +1,3 @@
-@@ -1,534 +0,0 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="accommodation.model.vo.*, java.util.*"%>
 
@@ -64,6 +63,7 @@
 		width:30%;
 		height: 100%;
 		padding: 15px;
+		padding-top: 0;
 	}
 	.payRadio1{		
 		position: absolute;
@@ -133,7 +133,7 @@
 		<div class="reservationWrap container aa">
 			
 			<form action="" method="post">
-			<div class="reservationInfo test aa dd">
+			<div class="reservationInfo aa dd">
 				<div class="memberInfo bg-light pp">
 				
 				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >예약자 정보</label><hr>
@@ -213,7 +213,7 @@
 				
 				<label id="freeCancel1"><b>무료취소기한</b></label>
 				<p id="freeCancel2">
-				2019/00/00 이후에 예약을 변경하거나 취소하시는 경우 100%의 수수료가 부과됩니다.<br>
+				<span id="yesterday"></span> 이후에 예약을 변경하거나 취소하시는 경우 100%의 수수료가 부과됩니다.<br>
 				노쇼 또는 일찍 체크아웃하시는 경우 환불해 드리지 않습니다.
 				</p>
 				
@@ -232,8 +232,8 @@
 				<br><br>
 				<b style="font-weight:bold">예약 약관</b><br><br>
 				<p>
-				“1박 예약하기” 버튼을 클릭하면 이용약관 및 개인정보 보호정책 을 읽었고 이에 동의하시는 것으로 간주됩니다.
-				이 결제는 스페인에서 처리됩니다. 여행 공급업체(항공사/호텔/기차 등)가 고객님의 결제를 처리하는 경우에는 이 사항은 적용되지 않습니다.
+				“<span class="night2"></span>박 예약하기” 버튼을 클릭하면 이용약관 및 개인정보 보호정책 을 읽었고 이에 동의하시는 것으로 간주됩니다.
+				여행 공급업체(항공사/호텔/기차 등)가 고객님의 결제를 처리하는 경우에는 이 사항은 적용되지 않습니다.
 				</p>
 				
 				
@@ -258,7 +258,7 @@
 				</script>
 				<hr>
 				<input type="hidden" name="methodFlag" id="mFlag" value="0">
-				<button type="button" id="payBtn" style="float:right;" disabled>예약하기</button>
+				<button type="button" id="payBtn" style="float:right;" disabled><span class="night2"></span>박 예약하기</button>
 				
 				
 				
@@ -282,6 +282,7 @@
 				 	    var result = Math.floor(diff/1000/60/60/24);
 				 		
 				 		$("#nTd").text(result+"박");
+				 		$(".night2").text(result);
 				 		
 				 		
 				 		var a = $("#pTd").text();
@@ -290,7 +291,23 @@
 				 		$("#pTd").text(a+reservPrice);	
 				 		
 				 		
+				 		/* 체크아웃 하루전날 구하기 */
+				 		var yesterday = dat1.getTime() - (1*24*60*60*1000);
+				 		dat1.setTime(yesterday);
 				 		
+				 		var yYear = dat1.getFullYear();
+				 		var yMonth = dat1.getMonth()+1;
+				 		var yDay = dat1.getDate();
+				 		
+				 		if(yMonth < 10){
+				 			yMonth = "0"+yMonth;
+				 		}
+				 		if(yDay < 10){
+				 			yDay = "0"+yDay;
+				 		}
+				 		var yDate = yYear+"-"+yMonth+"-"+yDay;
+				 		
+				 		$("#yesterday").text(yDate);
 				 		
 				 		
 				 		/* 결제방법 선택에 따른 결제모듈 선택 */
@@ -301,7 +318,8 @@
 							} else if($("#mFlag").val() == 2){
 								kakao();
 							} else if($("#mFlag").val() == 0){
-								alert('결제 방법을 선택해 주세요.');
+								alertify.alert('', '결제방법을 선택해주세요.');
+
 							}
 						});
 				 		
@@ -349,7 +367,7 @@
 				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
 				    			},
 				    			error:function(){
-				    				alert("결제 실패");
+				    				alertify.alert('', '결제 실패');
 				    			}			    			
 				    			
 				    		});	/* ajax close */
@@ -402,7 +420,7 @@
 				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
 				    			},
 				    			error:function(){
-				    				alert("결제 실패");
+				    				alertify.alert('', '결제 실패');
 				    			}			    			
 				    			
 				    		});	/* ajax close */
@@ -427,8 +445,8 @@
 				</div>
 			</div>
 			</form>
-			<div class="acmInfo test aa dd">
-				<div class="acmPicture test aa">
+			<div class="acmInfo aa dd">
+				<div class="acmPicture aa">
 				
 					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
@@ -499,6 +517,23 @@
 		</div>
 		<br clear="both">
 	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
 	<%-- 풋터 --%>
     <%@ include file="../main/footer.jsp" %>
 
