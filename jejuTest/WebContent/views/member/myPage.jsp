@@ -75,8 +75,9 @@
 </style>
 
 </head>
-<body>
-
+<body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
+	<%-- 헤더,메뉴바 --%>
+	<%@ include file="../main/header.jsp" %>
 
    <div class="main-content" role="main">
      <div class="main-wrap">
@@ -122,13 +123,17 @@
         </div>
     </div>
 
-
-
-</body>
-</html>
-
-
-
+<script src="<%= request.getContextPath() %>/resources/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.stellar.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.fancybox.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.easing.1.3.js"></script>     
+<script src="<%= request.getContextPath() %>/resources/js/aos.js"></script>      
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap-datepicker.js"></script> 
+<script src="<%= request.getContextPath() %>/resources/js/jquery.timepicker.min.js"></script> 
+<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
 
 </body>
 </html>

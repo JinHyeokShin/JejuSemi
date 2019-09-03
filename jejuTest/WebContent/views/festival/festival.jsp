@@ -8,23 +8,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/css/animate.css">
-<link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/resources/css/aos.css">
-<link rel="stylesheet" href="/resources/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="/resources/css/jquery.timepicker.css">
-<link rel="stylesheet" href="/resources/css/fancybox.min.css">
-      
-<link rel="stylesheet" href="/resources/fonts/ionicons/css/ionicons.min.css">
-<link rel="stylesheet" href="/resources/fonts/fontawesome/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/animate.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/aos.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/jquery.timepicker.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/fancybox.min.css">      
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/fonts/fontawesome/css/font-awesome.min.css">
 <!-- Theme Style -->
-<link rel="stylesheet" href="/resources/css/style.css">
-<link rel="stylesheet" href="/resources/scss/style.scss">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
 
 </head>
-<body>
+<body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
+	<%-- 헤더,메뉴바 --%>
+    <%@ include file="../main/header.jsp" %>
+<script>
+	$(function(){
+		$('html, body').animate( { scrollTop : 750 }, 400 );
+	});
+</script>
+
+	
      
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
@@ -610,4 +616,17 @@
           </div>
          </div>
       
-    </body>
+<script src="<%= request.getContextPath() %>/resources/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.stellar.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.fancybox.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.easing.1.3.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/aos.js"></script>      
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap-datepicker.js"></script> 
+<script src="<%= request.getContextPath() %>/resources/js/jquery.timepicker.min.js"></script> 
+<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>      
+      
+</body>
+</html>

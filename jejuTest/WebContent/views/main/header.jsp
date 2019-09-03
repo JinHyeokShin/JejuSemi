@@ -15,12 +15,12 @@
 <title>Insert title here</title>
 <script src="<%=contextPath%>/resources/js/alertify.min.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.min.css">
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.rtl.min.css"> --%>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css">
 
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.rtl.min.css"> --%>
 <%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.rtl.min.css"> --%>
 <%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.min.css"> --%>
 <%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.rtl.min.css"> --%>
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css"> --%>
 <%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> --%>
 
 
@@ -80,10 +80,7 @@
          .dd{
             float: left;
          }
-         /* .g-signin2>div{
-         	width: 100%;
-         } */
-        
+         
 
 
 </style>
@@ -110,7 +107,7 @@
                 <!-- <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">AboutJeju</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="#section-about" id="nav5">Recommand</a></li>              
                 <li class="nav-item"><a class="nav-link" href="#section-menus" id="nav6">TourSpot</a></li>   
-                <li class="nav-item"><a class="nav-link" href="festival.do" id="nav7">JejuFestival</a></li>         
+                <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/festival.do" id="nav7">JejuFestival</a></li>         
                 <li class="nav-item"><a class="nav-link" href="#section-contact" id="nav8">ContactUs</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#section-apply" id="nav9">ApplyFor</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link" href="#" id="join">Join</a></li> -->

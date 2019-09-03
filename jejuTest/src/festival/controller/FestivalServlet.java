@@ -31,7 +31,7 @@ public class FestivalServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher rd = request.getRequestDispatcher("festival.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("views/festival/festival.jsp");
 		rd.forward(request, response);
 		
 
