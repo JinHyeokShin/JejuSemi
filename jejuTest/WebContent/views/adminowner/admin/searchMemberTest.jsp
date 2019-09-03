@@ -62,7 +62,7 @@ ul.sidebar-menu li ul.sub li.active a {
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-		var data2;
+// 		var data2;
 // 			$.ajax({
 // 				url:'/notUsed.ad',
 // 				success:function(data){
@@ -70,13 +70,7 @@ $(document).ready(function(){
 // 		}
 // 		});
 			var table = $('#myTable').DataTable({
-				processing: true,
-				  ajax: {
-					  url:'/notUsed.ad'
-					  success: function(result){
-					  	return result;
-					  }
-				  },
+				url:'/notUsed.ad',
 				columns: [
 				{"data":'memNum'},
 				{"data":'memId'},

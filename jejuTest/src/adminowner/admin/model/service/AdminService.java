@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import accommodation.model.vo.Acm;
 import adminowner.admin.model.dao.AdminDao;
+import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.Notice;
 import member.model.vo.Member;
 import review.model.vo.Review;
@@ -76,20 +77,35 @@ public class AdminService {
 		}
 		return result;
 	}
-	public ArrayList<Acm> selectAcm() {
+	public int countAcm() {
+		Connection conn= getConnection();
+		int result = new AdminDao().countAcm(conn);
+		close(conn);
+		return result;
+	}
+	public ArrayList<Acm> selectAcm(int currentPage,int boardLimit) {
 		Connection conn = getConnection();
-		ArrayList<Acm> list = new AdminDao().selectAcm(conn);
+		ArrayList<Acm> list = new AdminDao().selectAcm(conn,currentPage, boardLimit);
+		close(conn);
 		return list;
 	}
 	public int reviewCount() {
 		Connection conn = getConnection();
 		int result = new AdminDao().reviewCount(conn);
+		close(conn);
 		return result;
 	}
-	public ArrayList<Review> reviewList(){
+	public ArrayList<Review> reviewList(int currentPage,int boardLimit){
 		Connection conn = getConnection();
-		ArrayList<Review> list = new AdminDao().reviewList(conn);
+		ArrayList<Review> list = new AdminDao().reviewList(conn,currentPage,boardLimit);
+		close(conn);
 		return list;
+	}
+	public AdminIndex adminIndex() {
+		Connection conn = getConnection();
+		AdminIndex ai = new AdminDao().adminIndex(conn);
+		close(conn);
+		return ai;
 	}
 	
 }

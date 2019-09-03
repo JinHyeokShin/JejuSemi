@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import accommodation.model.vo.Acm;
 import accommodation.model.vo.AcmImg;
+import adminowner.admin.model.service.AdminService;
+import adminowner.admin.model.vo.AdminIndex;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
@@ -64,9 +66,9 @@ public class LoginServlet extends HttpServlet {
 				// 로그인 완료 후 다시 메인 페이지로
 				response.sendRedirect(request.getContextPath());
 			} else if ((loginUser.getMemType()).equals("A")) {
-
+				
 				// 로그인 완료 후 다시 메인 페이지로
-				response.sendRedirect("page.ad");
+				response.sendRedirect("adminIndex.ad");
 				
 				
 			} else if (loginUser.getMemType().equals("O")) {

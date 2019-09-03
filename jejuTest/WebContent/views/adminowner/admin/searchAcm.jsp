@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, accommodation.model.vo.Acm"%>
+	pageEncoding="UTF-8" import="java.util.*, accommodation.model.vo.Acm, adminowner.admin.model.vo.*"%>
 <%
 	ArrayList<Acm> list = (ArrayList<Acm>) request.getAttribute("acmList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -37,6 +44,9 @@ ul.sidebar-menu li ul.sub li.active a {
 	background: #fd7e14;
 	color: #fd7e14;
 }
+.content-panel{
+	padding:20px;
+}
 </style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -69,27 +79,27 @@ ul.sidebar-menu li ul.sub li.active a {
 								<th>파워 등록</th>
 								<th>숙소 상태</th>
 								<th>숙소 주소</th>
-								<th>숙소 정지</th>
+<!-- 								<th>숙소 정지</th> -->
 							</tr>
 						</thead>
 						<tbody>
-							<%
-								for (Acm i : list) {
-							%>
-							<tr>
-								<td><%=i.getAcmNum()%></td>
-								<td><%=i.getAcmName()%></td>
-								<td><%=i.getMemNum()%></td>
-								<td><%=i.getAcmPhone()%></td>
-								<td><%=i.getAcmType()%></td>
-								<td><%=i.getAcmGrade()%></td>
-								<td><%=i.getAcmPower()%></td>
-								<td><%=i.getStatus()%></td>
-								<td><%=i.getAcmAddress()%></td>
-							</tr>
-							<%
-								}
-							%>
+							<%if(list.isEmpty()){ %>
+								<tr><td colspn="9">빔!!!!!</td></tr>
+							<%}else{ %>
+								<%for (Acm i : list) {%>
+								<tr>
+									<td><%=i.getAcmNum()%></td>
+									<td><%=i.getAcmName()%></td>
+									<td><%=i.getMemNum()%></td>
+									<td><%=i.getAcmPhone()%></td>
+									<td><%=i.getAcmType()%></td>
+									<td><%=i.getAcmGrade()%></td>
+									<td><%=i.getAcmPower()%></td>
+									<td><%=i.getStatus()%></td>
+									<td><%=i.getAcmAddress()%></td>
+								</tr>
+								<%}%>
+							<%} %>
 						</tbody>
 					</table>
 				</div>

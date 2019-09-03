@@ -13,8 +13,10 @@ public class Acm implements Serializable{
 	 */
 	private static final long serialVersionUID = -2223610554768132052L;
 	
+	private int rNum;
 	private int acmNum;				
-	private String acmName;			
+	private String acmName;	
+	private String memName;
 	private int memNum;		// 사장님, 관리자쪽에서 조회할때 조인받아온 사장님 이름을 컬럼 추가 없이 여기에 넣어도 되요(string이라)
 	private String acmPhone;		
 	private String acmAddress;		
@@ -128,13 +130,15 @@ public class Acm implements Serializable{
 		this.status = status;
 	}
 	
-
-	public Acm(int acmNum, String acmName, int memNum, String acmPhone, String acmType,
+	
+	//관리자 페이징처리
+	public Acm(int rNum, int acmNum,String acmName, String memName, String acmPhone, String acmType,
 			int acmGrade, String acmPower, String status, String acmAddress) {
 		super();
-		this.acmNum = acmNum;
+		this.rNum = rNum;
+		this.acmNum=acmNum;
 		this.acmName = acmName;
-		this.memNum = memNum;
+		this.memName = memName;
 		this.acmPhone = acmPhone;
 		this.acmType = acmType;
 		this.acmGrade = acmGrade;
@@ -257,13 +261,41 @@ public class Acm implements Serializable{
 		this.status = status;
 	}
 
+
+
+	public int getrNum() {
+		return rNum;
+	}
+
+
+
+	public void setrNum(int rNum) {
+		this.rNum = rNum;
+	}
+
+
+
+	public String getMemName() {
+		return memName;
+	}
+
+
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Acm [acmNum=" + acmNum + ", acmName=" + acmName + ", memNum=" + memNum + ", acmPhone=" + acmPhone
-				+ ", acmAddress=" + acmAddress + ", acmType=" + acmType + ", acmGrade=" + acmGrade + ", acmDescriptA="
-				+ acmDescriptA + ", acmDescriptB=" + acmDescriptB + ", acmCoordX=" + acmCoordX + ", acmCoordY="
-				+ acmCoordY + ", acmDistrict=" + acmDistrict + ", acmPower=" + acmPower + ", status=" + status + "]";
+		return "Acm [rNum=" + rNum + ", acmNum=" + acmNum + ", acmName=" + acmName + ", memName=" + memName
+				+ ", memNum=" + memNum + ", acmPhone=" + acmPhone + ", acmAddress=" + acmAddress + ", acmType="
+				+ acmType + ", acmGrade=" + acmGrade + ", acmDescriptA=" + acmDescriptA + ", acmDescriptB="
+				+ acmDescriptB + ", acmCoordX=" + acmCoordX + ", acmCoordY=" + acmCoordY + ", acmDistrict="
+				+ acmDistrict + ", acmPower=" + acmPower + ", status=" + status + ", minPrice=" + minPrice + "]";
 	}
+
 
 	
 

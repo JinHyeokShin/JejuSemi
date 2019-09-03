@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="adminowner.admin.model.vo.AdminIndex"%>
+<%
+	
+	AdminIndex ai = (AdminIndex)request.getAttribute("ai");
+	int uCount =ai.getuCount();
+	int oCount =ai.getoCount();
+	int pTotal =ai.getpTotal();
+	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>ComeToJeju Admin</title>
 <style>
 ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
 	{
@@ -41,25 +50,23 @@ ul.sidebar-menu li ul.sub li.active a {
 					<div class="row content-panel">
 						<div class="col-md-4 profile-text mt mb centered">
 							<div class="right-divider hidden-sm hidden-xs">
-								<h4>1922</h4>
-								<h6>FOLLOWERS</h6>
-								<h4>290</h4>
-								<h6>FOLLOWING</h6>
-								<h4>$ 13,980</h4>
-								<h6>MONTHLY EARNINGS</h6>
+								<h4><%=uCount %></h4>
+								<h6>유저 수</h6>
+								<h4><%=oCount %></h4>
+								<h6>사장님 수</h6>
+								<h4>&#3861;<%=pTotal %></h4>
+								<h6>누적 수입</h6>
 							</div>
 						</div>
 						<!-- /col-md-4 -->
 						<div class="col-md-4 profile-text">
-							<h3>Sam Soffes</h3>
+							<h3><%= loginUser.getMemName() %></h3>
 							<h6>Main Administrator</h6>
-							<p>Contrary to popular belief, Lorem Ipsum is not simply
-								random text. It has roots in a piece of classical Latin
-								literature from 45 BC.</p>
+							<p>Welcome to jeju.</p>
 							<br>
 							<p>
 								<button class="btn btn-theme">
-									<i class="fa fa-envelope"></i> Send Message
+									<i class="fa fa-envelope"></i> 문의 확인
 								</button>
 							</p>
 						</div>
@@ -68,14 +75,8 @@ ul.sidebar-menu li ul.sub li.active a {
 							<div class="profile-pic">
 								<p>
 									<img
-										src="<%=request.getContextPath()%>/resources/adminowner/img/ui-sam.jpg"
+										src="<%=request.getContextPath()%>/resources/adminowner/img/jejuMain.png"
 										class="img-circle">
-								</p>
-								<p>
-									<button class="btn btn-theme">
-										<i class="fa fa-check"></i> Follow
-									</button>
-									<button class="btn btn-theme02">Add</button>
 								</p>
 							</div>
 						</div>

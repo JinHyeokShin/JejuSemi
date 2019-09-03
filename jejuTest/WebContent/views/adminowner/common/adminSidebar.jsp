@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import=" member.model.vo.Member"%>
+<%
+Member loginUser = (Member)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +20,19 @@
     transition: all 0.3s ease;
     cursor: pointer;
 }
+ul.sidebar-menu li ul.sub li.active a {
+    color: #fd7e14;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    display: block;
+    cursor: pointer;
+}
+a{
+    cursor: pointer;
+}
   </style>
   <!-- 아이콘 -->
   <link href="<%= request.getContextPath() %>/resources/adminowner/img/favicon.png" rel="icon">
@@ -29,13 +45,12 @@
   <!--아이콘 css-->
   <link href="<%= request.getContextPath() %>/resources/adminowner/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <!-- 전체 디자인 -->
-  <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/css/DT_bootstrap.css" />
   <link href="<%= request.getContextPath() %>/resources/adminowner/css/style.css" rel="stylesheet">
   <!-- 반응형 -->
   <link href="<%= request.getContextPath() %>/resources/adminowner/css/style-responsive.css" rel="stylesheet">
   <script src="<%= request.getContextPath() %>/resources/adminowner/lib/chart-master/Chart.js"></script>
   <!-- 타이틀 옆에있는 버튼 3개 -->
-  <script type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/js/DT_bootstrap.js"></script>
+<%--   <script type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/js/DT_bootstrap.js"></script> --%>
 
 
 </head>
@@ -46,7 +61,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="확대 / 축소"></div>
       </div>
       <!--logo start-->
-      <a href="<%= request.getContextPath() %>/views/adminowner/owner/ownerIndex.jsp" class="logo"><b>Come To<span> Jeju</span></b></a>
+      <a href="<%= request.getContextPath() %>/adminIndex.ad" class="logo"><b>Come To<span> Jeju</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -248,8 +263,8 @@
         <div id="sidebar" class="nav-collapse ">
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="<%= request.getContextPath() %>/views/adminowner/admin/adminIndex.jsp"><img src="<%= request.getContextPath() %>/resources/adminowner/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-            <h5 class="centered">Sam Soffes</h5>
+            <p class="centered"><a href="<%= request.getContextPath() %>/adminIndex.ad"><img src="<%= request.getContextPath() %>/resources/adminowner/img/jejuMain.png" class="img-circle" width="80"></a></p>
+            <h5 class="centered"><%=loginUser.getMemName() %></h5>
             <li>
               <a class="active1" onclick="goDashBoard();">
                 <i class="fa fa-dashboard"></i>
@@ -335,8 +350,8 @@
   		location.href ="<%= request.getContextPath() %>/adminSearchAcm.ad"
   	}
   	function goSearchMember(){
-  		location.href ="<%= request.getContextPath() %>/adminSearchMem.ad"
-<%--   		location.href ="<%= request.getContextPath() %>/notUsed.ad" --%>
+<%--   		location.href ="<%= request.getContextPath() %>/adminSearchMem.ad" --%>
+  		location.href ="<%= request.getContextPath() %>/notUsed.ad"
   	}
   	function goSearchReview(){
   		location.href ="<%= request.getContextPath() %>/adminSearchReview.ad"

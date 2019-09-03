@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="review.model.vo.Review, java.util.*"%>
+	pageEncoding="UTF-8" import="review.model.vo.Review, java.util.*,adminowner.admin.model.vo.*"%>
 <%
 	ArrayList<Review> rList = (ArrayList<Review>)request.getAttribute("rList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -37,46 +44,49 @@ ul.sidebar-menu li ul.sub li.active a {
 	background: #fd7e14;
 	color: #fd7e14;
 }
+.content-panel{
+	padding:20px;
+}
 </style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-	$(function(){
-		$.ajax({
-			url:"reviewAjax.ad",
-			dataType:"json",
-			type:"post",
-			success:function(data){
-				console.log(data);
-				var $reviewTable = $("#reviewTable tbody");
-				$reviewTable.html("");
+// 	$(function(){
+// 		$.ajax({
+// 			url:"reviewAjax.ad",
+// 			dataType:"json",
+// 			type:"post",
+// 			success:function(data){
+// 				console.log(data);
+// 				var $reviewTable = $("#reviewTable tbody");
+// 				$reviewTable.html("");
 				
-				$.each(data,function(index,value){
-					var $tr = $("<tr>");
+// 				$.each(data,function(index,value){
+// 					var $tr = $("<tr>");
 					
-					var $rNumTd=$("<td>").text(value.rNum);
-					var $mNumTd=$("<td>").text(value.mNum);
-					var $aNumTd=$("<td>").texmt(value.aNum);
-					var $rScoreTd=$("<td>").text(value.rScore);
-					var $rContentTd=$("<td>").text(value.rContnet);
-					var $rDateTd=$("<td>").text(value.rDate);
+// 					var $rNumTd=$("<td>").text(value.rNum);
+// 					var $mNumTd=$("<td>").text(value.mNum);
+// 					var $aNumTd=$("<td>").texmt(value.aNum);
+// 					var $rScoreTd=$("<td>").text(value.rScore);
+// 					var $rContentTd=$("<td>").text(value.rContnet);
+// 					var $rDateTd=$("<td>").text(value.rDate);
 					
-					$tr.append($rNumTd);
-					$tr.append($mNumTd);
-					$tr.append($aNumTd);
-					$tr.append($rScoreTd);
-					$tr.append($rContentTd);
-					$tr.append($rDateTd);
+// 					$tr.append($rNumTd);
+// 					$tr.append($mNumTd);
+// 					$tr.append($aNumTd);
+// 					$tr.append($rScoreTd);
+// 					$tr.append($rContentTd);
+// 					$tr.append($rDateTd);
 					
-					$reviewTable.append($tr);
-				});
-			},
-			error:function(){
-				console.log("ajax실패");
-				console.log(value);
-			}
-		});
-	});
+// 					$reviewTable.append($tr);
+// 				});
+// 			},
+// 			error:function(){
+// 				console.log("ajax실패");
+// 				console.log(value);
+// 			}
+// 		});
+// 	});
 </script>
 </head>
 <body>
@@ -88,22 +98,37 @@ ul.sidebar-menu li ul.sub li.active a {
 			</h3>
 			<br>
 			<div class="col-lg-12 mt">
-				<div class="row content-panel"></div>
-					<table id ="reviewTable" class="table table-bordered">
-					<thead>
-						<tr>
-							<th>리뷰 번호</th>
-							<th>회원 이름</th>
-							<th>숙소 명</th>
-							<th>숙소 점수</th>
-							<th>후기 내용</th>
-							<th>작성 날짜</th>
-						</tr>
-					</thead>
-					<tbody>
-
-					</tbody>
+				<div class="row content-panel">
+					<table id="reviewTable" class="table table-bordered">
+						<thead>
+							<tr>
+								<th>리뷰 번호</th>
+								<th>회원 이름</th>
+								<th>숙소 명</th>
+								<th>숙소 점수</th>
+								<th>후기 내용</th>
+								<th>작성 날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if(rList.isEmpty()){ %>
+							<tr><td colspan="6">비이이이임!!!</td></tr>
+							<%}else{ %>
+							<%for(Review i:rList){ %>
+							<tr>
+								<td><%=i.getReviewNum() %></td>
+								<td><%=i.getMemName() %></td>
+								<td><%=i.getAcmName() %></td>
+								<td><%=i.getReviewScore() %></td>
+								<td><%=i.getReviewContent() %></td>
+								<td><%=i.getReviewDate() %></td>
+								<%} %>
+								<%
+									}
+								%>
+						</tbody>
 					</table>
+				</div>
 			</div>
 		</section>
 	</section>

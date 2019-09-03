@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import adminowner.admin.model.service.AdminService;
+import adminowner.admin.model.vo.PageInfo;
 import review.model.vo.Review;
 
 /**
@@ -31,14 +32,33 @@ public class GoAdminSearchReview extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int count = new AdminService().reviewCount();
-//		ArrayList<Review> list = new AdminService().reviewList();
-//		
-//		request.setCharacterEncoding("utf-8");
-//
-//		request.setAttribute("rList", list);
-//		request.setAttribute("rCount", count);
+		int count = new AdminService().reviewCount();
+		int currentPage; 
+	    int pageLimit;   
+	    int maxPage;    
+	    int startPage;  
+	    int endPage;
+	    int boardLimit = 10; 
+	    currentPage = 1;
+	    if(request.getParameter("currentPage") != null) {
+	         currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	      }
+	      
+	    pageLimit = 10;
+	    maxPage = (int)Math.ceil((double)count/boardLimit);
+	    startPage = (int)Math.floor(((double)currentPage - 1) / pageLimit) * pageLimit + 1;  
+	    endPage = startPage + pageLimit - 1 ;
+	       
+	      if(maxPage < endPage) {
+	         endPage = maxPage; 
+	      }
 		
+		ArrayList<Review> list = new AdminService().reviewList(currentPage, boardLimit);
+		PageInfo pi = new PageInfo(currentPage,count,pageLimit,maxPage,startPage,endPage,boardLimit);
+		
+		request.setCharacterEncoding("utf-8");
+		request.setAttribute("rList", list);
+		request.setAttribute("pi",pi);
 		request.getRequestDispatcher("views/adminowner/admin/searchReview.jsp").forward(request, response);
 	
 	}

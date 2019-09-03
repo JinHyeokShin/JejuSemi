@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import accommodation.model.vo.Acm;
+import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.Notice;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
@@ -181,25 +182,56 @@ public class AdminDao {
       }
       return result;
    }
-   public ArrayList<Acm> selectAcm(Connection conn){
+   public int countAcm(Connection conn) {
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   int result =0;
+	   String sql = prop.getProperty("countAcm");
+	   
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			result = rset.getInt(1);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	return result;
+	   
+			   
+   }
+   public ArrayList<Acm> selectAcm(Connection conn,int currentPage,int boardLimit){
       PreparedStatement pstmt = null;
       ResultSet rset = null;
       ArrayList<Acm> list = new ArrayList<>();
       String sql = prop.getProperty("selectAcm");
+      
+      int startRow = (currentPage -1 ) * boardLimit+1;
+      int endRow = startRow + boardLimit -1;
+      
       try {
          pstmt=conn.prepareStatement(sql);
+         pstmt.setInt(1,startRow);
+         pstmt.setInt(2,endRow);
          rset =pstmt.executeQuery();
+         
          while(rset.next()) {
             
             list.add(new Acm(rset.getInt(1),
-                  rset.getString(2),
-                  rset.getInt(3),
+                  rset.getInt(2),
+            	  rset.getString(3),
                   rset.getString(4),
-                  rset.getString(5), 
-                  rset.getInt(6),
-                  rset.getString(7),
+                  rset.getString(5),
+                  rset.getString(6), 
+                  rset.getInt(7),
                   rset.getString(8),
-                  rset.getString(9)
+                  rset.getString(9),
+                  rset.getString(10)
                   ));
          }
          
@@ -233,15 +265,21 @@ public class AdminDao {
       }
       return result;
    }
-   public ArrayList<Review> reviewList(Connection conn){
+   public ArrayList<Review> reviewList(Connection conn,int currentPage,int boardLimit){
       PreparedStatement pstmt = null;
       ResultSet rset = null;
       ArrayList<Review> list = new ArrayList<>();
       String sql = prop.getProperty("reviewList");
       
+      int startRow = (currentPage -1 ) * boardLimit+1;
+      int endRow = startRow + boardLimit -1;
+      
       try {
          pstmt=conn.prepareStatement(sql);
+         pstmt.setInt(1, startRow);
+         pstmt.setInt(2, endRow);
          rset=pstmt.executeQuery();
+         
          while(rset.next()) {
             list.add(new Review(rset.getInt(1),
                            rset.getInt(2),
@@ -260,5 +298,29 @@ public class AdminDao {
          close(pstmt);
       }
       return list;
+   }
+   public AdminIndex adminIndex(Connection conn) {
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   AdminIndex ai = new AdminIndex();
+	   String sql = prop.getProperty("adminIndex");
+	   
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		rset= pstmt.executeQuery();
+		while(rset.next()) {
+			ai.setuCount(rset.getInt(1));
+			ai.setoCount(rset.getInt(2));
+			ai.setpTotal(rset.getInt(3));
+		}
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	return ai;
    }
 }
