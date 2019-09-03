@@ -63,6 +63,14 @@
 
 <script type="text/javascript">
 
+
+
+	$(function(){
+		$('html, body').animate( { scrollTop : 750 }, 400 );
+	});
+
+
+
 	function nights() {
 		var strDate1 = "<%=checkIn%>";
  		var strDate2 = "<%=checkOut%>";

@@ -435,9 +435,7 @@
         </div>
       </section>
       
-     <%-- 축제 위젯 임시 --%>
-   	 <%@ include file="views/festival/festival.jsp" %>
-
+     
       <section class="section contact-section" id="section-contact">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">

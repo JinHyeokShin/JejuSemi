@@ -115,8 +115,13 @@
 	}
 	
 	
-	
 </style>
+
+<script>
+	$(function(){
+		$('html, body').animate( { scrollTop : 750 }, 400 );
+	});
+</script>
 
 </head>
 <body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
@@ -433,13 +438,7 @@
 				
 				
 				
-				
-				
-				
 				</script>
-				
-				
-				
 				
 				
 				</div>

@@ -216,7 +216,17 @@
               <hr>
 
 			<script>
-				var page = 1;	/* 페이지 변수 */				
+				$(function(){
+					$('html, body').animate( { scrollTop : 750 }, 400 );
+				});
+				
+				
+				
+				
+				
+				
+				var page = 1;	/* 페이지 변수 */		
+				
 				
 				$(".sFilter").change(function(){
 					page = 1;
