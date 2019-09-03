@@ -83,6 +83,7 @@
 </head>
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
       <div class="container">
         <a class="navbar-brand" href="<%= request.getContextPath() %>/index.jsp"><span class="text-danger">Jeju</span>Boram</a>
@@ -101,7 +102,7 @@
                 <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">AboutJeju</a></li>
                 <li class="nav-item"><a class="nav-link" href="#section-team" id="nav5">Recommand</a></li>              
                 <li class="nav-item"><a class="nav-link" href="#section-menus" id="nav6">TourSpot</a></li>   
-                <li class="nav-item"><a class="nav-link" href="#section-events" id="nav7">JejuFestival</a></li>         
+                <li class="nav-item"><a class="nav-link" href="festival.do" id="nav7">JejuFestival</a></li>         
                 <li class="nav-item"><a class="nav-link" href="#section-contact" id="nav8">ContactUs</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#section-apply" id="nav9">ApplyFor</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link" href="#" id="join">Join</a></li> -->
