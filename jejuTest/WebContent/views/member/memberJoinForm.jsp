@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@ page import="java.util.ArrayList, nation.model.vo.Nation" %> --%>
-<%-- <% --%>
-<!--  	ArrayList<Nation> list = (ArrayList<Nation>)request.getAttribute("list"); -->
-<%-- %> --%>
-
+    
 <%
 	String snsId = (String)request.getAttribute("snsId");
 	/* System.out.println(kakaoEmail); */
 	
-
 %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -39,14 +35,13 @@ select{
 	background:#ced4da;
 	border: 1px solid #ced4da;
 }
-#idCheck:hover, #joinBtn:hover, #goMain:hover, #emailCheck:hover{
+#idCheck:hover, #joinBtn:hover, #goMain:hover, #sendCheckNum:hover{
 	cursor:pointer;
 }
 
 </style>
 
     <!-- 플러그인 참조 -->
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
     <script src="http://cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
 
 
@@ -86,13 +81,15 @@ select{
                    </div>
                    
                    <div class="form-group">
+                   
+					   <div>
                        <label for="InputEmail">이메일 주소</label>&nbsp;&nbsp;
-					   <label id="idCheck" style="color:#fd7e14"><b>중복확인</b></label>                   
-                       <input type="email" class="form-control" id="InputEmail" name="memId" placeholder="이메일 주소를 입력해주세요" required>
-                   </div>
-                  
-                  
-                  <!-- 카카오 로그인으로 넘어오면 카카오 아이디(이메일)를 그대로 적용 -->                  
+					   <label id="idCheck" style="color:#fd7e14"><b>중복확인</b></label>&nbsp;&nbsp;   
+					   <label id="sendCheckNum"style="color:red"><b>인증</b></label>   
+					   <label id='btnConfirm' style="color:red" onclick="lf_process();"><b>확인</b></label>           
+                       </div>
+                       
+                   <!-- 카카오 로그인으로 넘어오면 카카오 아이디(이메일)를 그대로 적용 -->                  
                    <script>
                    		var userId = "<%=snsId%>";
                    		
@@ -100,19 +97,16 @@ select{
                    			$("#InputEmail").val(userId);
                    		} 
                    </script>
-                  
-                  
-                  
-                  
-                   <div class="form-group">
-                       <label for="InputEmail">인증번호</label>&nbsp;&nbsp;&nbsp;
-					   <label id="emailCheck" name="emailConfirm" style="color:#fd7e14">
-					   		<a href="javascript:go_join()"><b>인증번호 요청</b></a>
-					   </label>               
-                       <input type="text" class="form-control" id="InputEmail" name="memId" placeholder="인증번호를 입력해주세요" required>
-                  </div>
+                       
+                       <input type="email" class="form-control" id="InputEmail" class="email from-control" name="memId" placeholder="이메일 주소를 입력해주세요" required>		
+                   </div>
+                   
+                   	<div class="form-group">
+						<div style='display:none;' id="emailFrame">
+							<input type="text" name='userNum' id="userNum" class="form-control" placeholder="인증번호를 입력해주세요" required>
+						</div>
+					</div>
             
-
                    <div class="form-group">
                        <label for="inputPassword">비밀번호</label>
                        <input type="password" class="form-control" id="inputPassword" name="memPwd" placeholder="비밀번호를 입력해주세요" required>
@@ -138,7 +132,7 @@ select{
                        &nbsp; &nbsp;
                        
                        <label for="inputNation">국적</label>
-                       <select name="nationCode" style="width:90px">
+                       <select name="nationCode" style="width:90px" required>
                        	<option value="">-------</option>
                        	<option value="1">KOR</option>
                        	<option value="2">MEX</option>
@@ -170,8 +164,9 @@ select{
                        <button type="submit" id="join-submit" class="btn btn-primary" disabled>회원가입<i class="fa fa-check spaceLeft"></i>
                        </button>
                        &nbsp;
-                       <button type="button" class="btn btn-warning" onclick="history.go(-1);">가입취소<i class="fa fa-times spaceLeft"></i>
-                       </button>
+                       <a href="<%= request.getContextPath() %>">
+                       		<button type="button" class="btn btn-warning">가입취소<i class="fa fa-times spaceLeft"></i></button>
+                       </a>
                    </div>
                </form>
            </div>
@@ -179,68 +174,8 @@ select{
 	</div>
 	
 	<script>
-		
-	function joinValidate(){
-	    // 회원 가입 처리
-	    
-        if($("#inputName").val() ==''){
-            alert('이름을 입력하세요');
-            $("#inputName").focus();
-            return false;
-        }
-
-        var email = $('#InputEmail').val();
-        if(email == ''){
-            alert('이메일을 입력하세요');
-            $("#InputEmail").focus();
-            return false;   
-        } else {
-            var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            if (!emailRegex.test(email)) {
-                alert('이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
-                $("#inputEmail").focus();
-                return false;
-            }
-        }
-        var url="emailCheck.jsp?memId="+memId;
-		open(url,"emailwindow", "statusbar=no, scrollbar=no, menubar=no, width=400, height=200" );
-
-        if($("#inputPassword").val() ==''){
-            alert('비밀번호를 입력하세요');
-            $("#inputPassword").focus();
-            return false;
-        }
-
-        if($("#inputPasswordCheck").val() ==''){
-        	$("#pwdResult").text("비밀번호 불일치").css("color","red");
-            alert('비밀번호를 다시 한번 더 입력하세요');
-            $("#inputPasswordCheck").focus();
-            return false;
-        }
-        
-        if($("#inputPassword").val()!== $("#inputPasswordCheck").val()){
-        	$("#inputPasswordCheck").focus();
-        	$("#pwdResult").text("비밀번호 불일치").css("color","red");
-            return false;
-        }
-        
-        var mobile = $('#joinForm input[name=memPhone]').val();
-        if(mobile == ''){
-            alert('휴대폰 번호를 입력하세요');
-            $("#inputMobile").focus();
-            return false;       
-        } else {
-        	var mobileRegex = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g;
-            if (!mobileRegex.test(mobile)) {
-                alert('휴대전화 번호가 유효하지 않습니다. ex)01012341234');
-                $("#inputEmail").focus();
-                return false;
-            }
-        }   
-		return true;
-
-	}
-		// 아이디 중복체크
+	
+		// 이메일 중복체크 유효성 검사
 		$(function() {
 
 			var isUsable = false;
@@ -248,7 +183,8 @@ select{
 			$("#idCheck").click(function() {
 
 				var userId = $("#joinForm input[name=memId]");
-
+				var email = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				
 				$.ajax({
 					url : "idCheck.me",
 					type : "post",
@@ -258,9 +194,18 @@ select{
 					success : function(result) {
 
 						if (result == "fail") { // 사용불가
-							alert("사용할 수 없는 아이디입니다");
+							alert("사용할 수 없는 이메일 형식입니다.");
 							userId.focus();
-						} else { // 사용가능
+							
+						}else if(userId.val() == ""){
+							alert("이메일을 입력해주세요.")
+							userId.focus();
+							
+						}else if(!email.test(userId.val())){
+				            alert('이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
+				            userId.focus();		
+							
+						}else { // 사용가능
 
 							if (confirm("사용 가능한 아이디입니다. 사용하시겠습니까?")) {
 								userId.attr("readonly", "true"); // 더 이상 바꿀 수 없도록
@@ -269,11 +214,9 @@ select{
 								userId.focus();
 							}
 						}
-
 						if (isUsable) {
 							$("#join-submit").removeAttr("disabled");
 						}
-
 					},
 					error : function() {
 						console.log("서버 통신 안됨");
@@ -282,9 +225,110 @@ select{
 
 			});
 		});
+		
+		// 회원 가입 정규식 검사
+		function joinValidate(){
+		    
+	        if($("#inputName").val() ==''){
+	        	alertify.alert('', '이름을 입력하세요.');	
+	            $("#inputName").focus();
+	            return false;
+	        }
+	        
+	        if($("#inputPassword").val() ==''){
+	        	alertify.alert('', '비밀번호를 입력하세요.');
+	            $("#inputPassword").focus();
+	            return false;
+	        }
 
+	        if($("#inputPasswordCheck").val() ==''){
+	        	$("#pwdResult").text("비밀번호 불일치").css("color","red");
+	        	alertify.alert('', '비밀번호를 한 번 더 입력하세요.');
+	            $("#inputPasswordCheck").focus();
+	            return false;
+	        }
+	        
+	        if($("#inputPassword").val()!== $("#inputPasswordCheck").val()){
+	        	$("#inputPasswordCheck").focus();
+	        	$("#pwdResult").text("비밀번호 불일치").css("color","red");
+	            return false;
+	        }
+	        
+	        var mobile = $('#joinForm input[name=memPhone]').val();
+	        if(mobile == ''){
+	            alertify.alert('', '휴대폰 번호를 입력하세요.');
+	            $("#inputMobile").focus();
+	            return false;  
+	            
+	        } else {
+	        	var mobileRegex = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g;
+	            if (!mobileRegex.test(mobile)) {
+	            	alertify.alert('', '휴대전화 번호가 유효하지 않습니다. ex)01012341234');
+	                $("#inputEmail").focus();
+	                return false;
+	            }
+	        }   
+			return true;
+		}
+		
+		// 인증번호 요청
+		
+		var num;
+		
+		$(document).ready(function() {
+			
+			var userId = $("#joinForm input[name=memId]");
+			var email = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			
+			$("#sendCheckNum").click(function() {
+				
+				if(userId.val() == ""){
+					alertify.alert('', '이메일을 입력해주세요.');
+					userId.focus();
+					
+				}else if(!email.test(userId.val())){
+					alertify.alert('', '이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
+		            userId.focus();	
+		
+				}else{
+		
+				$("#emailFrame").fadeIn(350);
+				$("#sendCheckNum").attr("disabled",true);
+				
+				}
+				
+				http = jQuery.ajax({
+			   		url		: "mailCodeSend.we",
+			   		type	: "post",
+					data 	: {InputEmail:$("#InputEmail").val()},
+					dataType: 'html',
+			   		async	: true,
+					success : function(msg) {
+
+						alertify.alert('', '인증번호가 메일로 발송되었습니다.');	
+						num = msg;
+
+					}
+			  	});
+		
+			});
+		
+		});
+
+		function lf_process() {
+			
+			if(num == $("#userNum").val()) {
+				
+				alertify.alert('', '인증되었습니다.');
+				this.close();   // 현재 창 닫기
+				
+			} else {
+				alertify.alert('', '인증번호가 맞지 않습니다.');
+				return;
+			}
+			
+		}
 	</script>
-
 
 <!-- 풋터  -->
 <%@ include file="../main/footer.jsp" %>
@@ -301,5 +345,5 @@ select{
 <script src="<%= request.getContextPath() %>/resources/js/jquery.timepicker.min.js"></script> 
 <script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
         
-    </body>
+</body>
 </html>

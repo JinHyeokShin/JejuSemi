@@ -1097,7 +1097,19 @@
 	 	});
 		
 	 	
+	 	$(function(){
+	 		var strArr = new Array('지금 3명의 사용자가 이 숙소를 보고 있습니다.','최근 24시간동안 5명의 사용자가 이 숙소를 예약했습니다.',
+	 								'1시간전에 이 숙소가 예약되었습니다.','27분전에 이 숙소가 예약되었습니다.',
+	 								'최근 24시간동안 3명의 사용자가 이 숙소를 예약했습니다.','지금 2명의 사용자가 이 숙소를 보고 있습니다.');
+	 		
+	 		setTimeout(() => {
+	 			alertify.success(randomItem(strArr));
+			}, 3000);
+	 	});
 	 	
+	 	function randomItem(a) {
+	 		return a[Math.floor(Math.random() * a.length)];
+		}
 	 	
 	 	
 	</script>
