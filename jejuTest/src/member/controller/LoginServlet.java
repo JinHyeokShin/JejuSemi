@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 
-		}else {
+		}else {	// 로그인 성공
 			HttpSession session = request.getSession();
 
 			// session.setMaxInactiveInterval(600); // 10분(600초)뒤 자동 로그아웃

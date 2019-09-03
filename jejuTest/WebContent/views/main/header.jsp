@@ -177,12 +177,12 @@
 							        Kakao.API.request({
 							          url: '/v2/user/me',
 							          success: function(res) {
-							            alert(JSON.stringify(res));
+							            /* alert(JSON.stringify(res)); */
 							            
 							            /* 이런식으로 id같은 정보를 쿼리스트링으로 보내주면서 페이지 이동 */
 							            /* location.href='/api/kakao_login/kakao_login.php?id='+res.id+'&nickname='+res.properties['nickname']; */
 							            
-							            location.href='<%=contextPath%>/joinForm.me?memId='+res.kakao_account["email"];
+							            location.href='<%=contextPath%>/kakaoLogin.me?kakaoId='+res.kakao_account["email"];
 							            
 							          },
 							          fail: function(error) {

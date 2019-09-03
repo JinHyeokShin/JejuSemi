@@ -69,5 +69,18 @@ public class MemberService {
 		return list;
 	}
    
+   public Member kakaoLoginCheck(String memId) {
+	      
+	      Connection conn = getConnection();
+	      
+	      Member loginUser = new MemberDao().kakaoLoginCheck(conn, memId);
+	      
+	      close(conn);
+	      
+	      return loginUser;
+	   }
+   
+   
+   
 
 }
