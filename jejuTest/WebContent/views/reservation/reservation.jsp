@@ -292,12 +292,12 @@
 				 		
 				 		
 				 		/* 체크아웃 하루전날 구하기 */
-				 		var yesterday = dat2.getTime() - (1*24*60*60*1000);
-				 		dat2.setTime(yesterday);
+				 		var yesterday = dat1.getTime() - (1*24*60*60*1000);
+				 		dat1.setTime(yesterday);
 				 		
-				 		var yYear = dat2.getFullYear();
-				 		var yMonth = dat2.getMonth()+1;
-				 		var yDay = dat2.getDate();
+				 		var yYear = dat1.getFullYear();
+				 		var yMonth = dat1.getMonth()+1;
+				 		var yDay = dat1.getDate();
 				 		
 				 		if(yMonth < 10){
 				 			yMonth = "0"+yMonth;
@@ -318,7 +318,8 @@
 							} else if($("#mFlag").val() == 2){
 								kakao();
 							} else if($("#mFlag").val() == 0){
-								alert('결제 방법을 선택해 주세요.');
+								alertify.alert('', '결제방법을 선택해주세요.');
+
 							}
 						});
 				 		
@@ -366,7 +367,7 @@
 				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
 				    			},
 				    			error:function(){
-				    				alert("결제 실패");
+				    				alertify.alert('', '결제 실패');
 				    			}			    			
 				    			
 				    		});	/* ajax close */
@@ -419,7 +420,7 @@
 				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
 				    			},
 				    			error:function(){
-				    				alert("결제 실패");
+				    				alertify.alert('', '결제 실패');
 				    			}			    			
 				    			
 				    		});	/* ajax close */

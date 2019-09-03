@@ -290,7 +290,7 @@
 					var maxP = document.getElementById("maxPrice");
 										
 					if(maxP.value != 1 && minP.value >= maxP.value){
-						alert("최대 가격이 최소 가격 보다 커야합니다.");
+						alertify.alert('', '최대가격이 최소가격보다 커야합니다.');
 					}else if(minP.value == 1 && maxP.value != 1){
 						maxPrice = (maxP.value)*10000;
 					}else if(minP.value != 1 && maxP.value == 1){
@@ -375,7 +375,7 @@
 						    				}
 							},	/* success close */
 				    		error:function(){
-				    			alert("검색하신 조건에 맞는 숙소가 없습니다.");
+				    			alertify.alert('', '검색하신 조건에 맞는 숙소가 없습니다.');
 				    			/*console.log("통신실패");*/
 				    		},	/* error close */
 				    		beforeSend:function(){
