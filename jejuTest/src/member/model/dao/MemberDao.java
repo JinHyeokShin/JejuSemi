@@ -208,7 +208,7 @@ public class MemberDao {
    
    
 	
-	public Member kakaoLoginCheck(Connection conn, String memId) {
+	public Member snsLoginCheck(Connection conn, String memId) {
 		
 		Member m = null;
 		PreparedStatement pstmt = null;

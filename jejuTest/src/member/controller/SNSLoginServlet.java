@@ -15,14 +15,14 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class KakaoLoginServlet
  */
-@WebServlet("/kakaoLogin.me")
-public class KakaoLoginServlet extends HttpServlet {
+@WebServlet("/snsLogin.me")
+public class SNSLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public KakaoLoginServlet() {
+    public SNSLoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,9 +32,9 @@ public class KakaoLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String kakaoId = request.getParameter("kakaoId");
+		String snsId = request.getParameter("snsId");
 		
-		Member loginUser = new MemberService().kakaoLoginCheck(kakaoId);
+		Member loginUser = new MemberService().snsLoginCheck(snsId);
 		
 		if(loginUser != null) {	// 카카오 아이디가 회원 db에 있을때 -> 로그인
 			HttpSession session = request.getSession();	// 세션 생성
@@ -42,7 +42,7 @@ public class KakaoLoginServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath());	// 메인페이지로 이동
 			
 		} else {	// 카카오 아이디가 회원 db에 없을때 -> 회원가입
-			request.setAttribute("kakaoId", kakaoId);	// 리퀘스트에 카카오 아이디 올려서
+			request.setAttribute("snsId", snsId);	// 리퀘스트에 카카오 아이디 올려서
 			request.getRequestDispatcher("views/member/memberJoinForm.jsp").forward(request, response);	// 회원가입창으로 보내줌
 			
 		}

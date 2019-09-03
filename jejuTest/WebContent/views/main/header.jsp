@@ -25,7 +25,8 @@
 
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name = "google-signin-client_id"content = "229644816841-0i7t2jo0jdc09ch2vfpv81a7ig8gpa8s.apps.googleusercontent.com">
 
 <style>
 /* The Modal (background) */
@@ -79,6 +80,9 @@
          .dd{
             float: left;
          }
+         /* .g-signin2>div{
+         	width: 100%;
+         } */
         
 
 
@@ -182,7 +186,7 @@
 							            /* 이런식으로 id같은 정보를 쿼리스트링으로 보내주면서 페이지 이동 */
 							            /* location.href='/api/kakao_login/kakao_login.php?id='+res.id+'&nickname='+res.properties['nickname']; */
 							            
-							            location.href='<%=contextPath%>/kakaoLogin.me?kakaoId='+res.kakao_account["email"];
+							            location.href='<%=contextPath%>/snsLogin.me?snsId='+res.kakao_account["email"];
 							            
 							          },
 							          fail: function(error) {
@@ -213,10 +217,34 @@
                 
                 
                 
-                
-                
-                
-                  <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
+                <div style="width:100%; height:10px;"></div>
+                <!-- 구글 로그인 -->
+                  <div class="g-signin2" data-width="290" data-height="46" data-onsuccess="onSignIn"></div>
+                  
+                  <script>
+	                  function onSignIn(googleUser) {
+	                	  var profile = googleUser.getBasicProfile();
+	                	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	                	  console.log('Name: ' + profile.getName());
+	                	  console.log('Image URL: ' + profile.getImageUrl());
+	                	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	                	  
+	                	  location.href='<%=contextPath%>/snsLogin.me?snsId='+profile.getEmail();
+	                	  
+	                	  signOut();
+	                	}
+	                  
+	                  function signOut() {
+	                	    var auth2 = gapi.auth2.getAuthInstance();
+	                	    auth2.signOut().then(function () {
+	                	      console.log('User signed out.');
+	                	    });
+	                	  }
+                  
+                  </script>
+                  
+                  <!--  -->
+                  
                 </div>
                 <div class="registration">
                   Don't have an account yet?<br/>

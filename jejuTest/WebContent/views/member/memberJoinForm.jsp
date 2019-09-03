@@ -6,7 +6,7 @@
 <%-- %> --%>
 
 <%
-	String kakaoId = (String)request.getAttribute("kakaoId");
+	String snsId = (String)request.getAttribute("snsId");
 	/* System.out.println(kakaoEmail); */
 	
 
@@ -94,7 +94,7 @@ select{
                   
                   <!-- 카카오 로그인으로 넘어오면 카카오 아이디(이메일)를 그대로 적용 -->                  
                    <script>
-                   		var userId = "<%=kakaoId%>";
+                   		var userId = "<%=snsId%>";
                    		
                    		if(userId != "null"){
                    			$("#InputEmail").val(userId);

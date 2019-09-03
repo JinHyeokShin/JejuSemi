@@ -69,11 +69,11 @@ public class MemberService {
 		return list;
 	}
    
-   public Member kakaoLoginCheck(String memId) {
+   public Member snsLoginCheck(String memId) {
 	      
 	      Connection conn = getConnection();
 	      
-	      Member loginUser = new MemberDao().kakaoLoginCheck(conn, memId);
+	      Member loginUser = new MemberDao().snsLoginCheck(conn, memId);
 	      
 	      close(conn);
 	      
