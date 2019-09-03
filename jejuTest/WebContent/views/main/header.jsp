@@ -118,6 +118,7 @@
                 <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="loginBtn" target=""><span class="pb_rounded-4 px-4 rounded">Login</span></a></li>
                 <%}else{ %>
                 <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="logoutBtn" onclick="logout();"><span class="pb_rounded-4 px-4 rounded" >Logout</span></a></li>
+                <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="mypageBtn" onclick="mypage();"><span class="pb_rounded-4 px-4 rounded">MyPage</span></a></li>
               	<%} %>
               </ul>
             </div>
@@ -342,6 +343,9 @@
           	
           	function memberJoin(){
     			location.href = "<%= request.getContextPath()%>/joinForm.me";
+    		}
+          	function mypage(){
+    			location.href = "<%= request.getContextPath()%>/mypage.me";
     		}
 
       </script> 

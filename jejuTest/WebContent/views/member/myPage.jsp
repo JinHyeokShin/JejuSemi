@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member"%>
 <%
 	Member m = (Member)session.getAttribute("loginUser");
 	
-	String memNum = m.getNum();
-	String memId = m.getMemId();
-	String memPwd = m.getMemPwd();
 	String memName = m.getMemName();
-	String memGender = m.getMemGender();
-	int memPoint = m.getMemPoint();
-	int nationCode = m.getNationCode();
-
+	
 
 %>   
 
@@ -36,28 +30,28 @@
 
 <style>
  .main-content{
-        border:1px solid lightgray;
+        border:1px solid white;
         display:block;
         padding:5px;
         margin :0 auto;
         color:gray;
         width: 900px;
-        height: 600px;
+        height: 700px;
         background:rgb(255, 204, 110);
     }
     .main-wrap{
-        border:1px solid lightgray;
+        border:1px solid white;
         display:block;
         padding:5px;
         margin : 15px;
         color:gray;
         width: 850px;
-        height:550px;
+        height:650px;
         background:white;
         
     }
     .main-user{
-        border:1px solid lightgray;
+        border:1px solid white;
         display:block;
         padding:5px;
         margin:15px;
@@ -70,8 +64,11 @@
 
     }
     .item-list{
-        border:25px solid gray;
+        border:25px solid white;
         display:block;
+    }
+    .main-user{
+    	border: white;
     }
 
 

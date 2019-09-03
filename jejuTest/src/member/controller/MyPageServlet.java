@@ -28,6 +28,8 @@ public class MyPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view = request.getRequestDispatcher("views/member/myPage.jsp");
+		view.forward(request, response);
 	
 	}
 
@@ -35,8 +37,8 @@ public class MyPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("views/member/myPage.jsp");
-		view.forward(request, response);
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
