@@ -47,6 +47,11 @@ select{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/button.min.css">
+
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/animate.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css">
@@ -61,6 +66,14 @@ select{
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
     
 </head>
+
+<script>
+
+	$(function(){
+		$('html, body').animate( { scrollTop : 700 }, 400 );
+	});
+</script>
+
 <body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
 <%-- 헤더,메뉴바 --%>
 <%@ include file="../main/header.jsp" %>
@@ -73,6 +86,7 @@ select{
                </div>
            </div>
            <div class="col-sm-6 col-md-offset-3">
+           
            		<!-- 회원 가입 서블릿 이동 -->
                <form role="form" id="joinForm" action="<%= request.getContextPath() %>/insert.me" method="post" onsubmit="return joinValidate();">
                    <div class="form-group">
@@ -84,9 +98,7 @@ select{
                    
 					   <div>
                        <label for="InputEmail">이메일 주소</label>&nbsp;&nbsp;
-					   <label id="idCheck" style="color:#fd7e14"><b>중복확인</b></label>&nbsp;&nbsp;   
-					   <label id="sendCheckNum"style="color:red"><b>인증</b></label>   
-					   <label id='btnConfirm' style="color:red" onclick="lf_process();"><b>확인</b></label>           
+					   <label id="idCheck" style="color:#fd7e14"><b>중복확인</b></label>&nbsp;&nbsp;          
                        </div>
                        
                    <!-- 카카오 로그인으로 넘어오면 카카오 아이디(이메일)를 그대로 적용 -->                  
@@ -99,6 +111,10 @@ select{
                    </script>
                        
                        <input type="email" class="form-control" id="InputEmail" class="email from-control" name="memId" placeholder="이메일 주소를 입력해주세요" required>		
+					   <div style="padding-top:6px;">                   	  
+	                   	   <button id="sendCheckNum" class="ui orange basic button mini ui button" style="display:none">인증</button>
+	                   	   <button id='btnConfirm' class="ui red basic button mini ui button" style="display:none;" onclick="lf_process();">확인</button>    
+                   	   </div>
                    </div>
                    
                    	<div class="form-group">
@@ -194,15 +210,15 @@ select{
 					success : function(result) {
 
 						if (result == "fail") { // 사용불가
-							alert("사용할 수 없는 이메일 형식입니다.");
+							alertify.alert('', '이미 가입된 이메일입니다.');
 							userId.focus();
 							
 						}else if(userId.val() == ""){
-							alert("이메일을 입력해주세요.")
+							alertify.alert('', '이메일을 입력해주세요.');
 							userId.focus();
 							
 						}else if(!email.test(userId.val())){
-				            alert('이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
+				            alertify.alert('', '이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
 				            userId.focus();		
 							
 						}else { // 사용가능
@@ -215,7 +231,8 @@ select{
 							}
 						}
 						if (isUsable) {
-							$("#join-submit").removeAttr("disabled");
+							$("#sendCheckNum").css("display","inline-block");
+							$("#btnConfirm").css("display", "inline-block");
 						}
 					},
 					error : function() {
@@ -281,6 +298,7 @@ select{
 			var email = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 			
 			$("#sendCheckNum").click(function() {
+			
 				
 				if(userId.val() == ""){
 					alertify.alert('', '이메일을 입력해주세요.');
@@ -289,27 +307,27 @@ select{
 				}else if(!email.test(userId.val())){
 					alertify.alert('', '이메일 주소가 유효하지 않습니다. ex)abc@gmail.com');
 		            userId.focus();	
-		
+				
 				}else{
 		
-				$("#emailFrame").fadeIn(350);
-				$("#sendCheckNum").attr("disabled",true);
+					$("#emailFrame").fadeIn(350);
+					$("#sendCheckNum").attr("disabled",true);
 				
+					http = jQuery.ajax({
+				   		url		: "mailCodeSend.we",
+				   		type	: "post",
+						data 	: {InputEmail:$("#InputEmail").val()},
+						dataType: 'html',
+				   		async	: true,
+						success : function(msg) {
+	
+							alertify.alert('', '인증번호가 메일로 발송되었습니다.');	
+							num = msg;
+	
+						}
+				  	});
 				}
 				
-				http = jQuery.ajax({
-			   		url		: "mailCodeSend.we",
-			   		type	: "post",
-					data 	: {InputEmail:$("#InputEmail").val()},
-					dataType: 'html',
-			   		async	: true,
-					success : function(msg) {
-
-						alertify.alert('', '인증번호가 메일로 발송되었습니다.');	
-						num = msg;
-
-					}
-			  	});
 		
 			});
 		
@@ -320,10 +338,17 @@ select{
 			if(num == $("#userNum").val()) {
 				
 				alertify.alert('', '인증되었습니다.');
+				
 				this.close();   // 현재 창 닫기
+				
+				$("#userNum").attr("readonly", "true");
+				$("#join-submit").attr("disabled", false);
+				$("#btnConfirm").attr("disabled", true);
 				
 			} else {
 				alertify.alert('', '인증번호가 맞지 않습니다.');
+				
+				$("#join-submit").attr("disabled", true);
 				return;
 			}
 			
