@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	int flag = (int)request.getAttribute("flag");
+	int price= (int)request.getAttribute("price");
 %>
 
 <!DOCTYPE html>
@@ -134,7 +135,7 @@
 			</div>
 		
 			<script>
-			console.log($("input[name=payMethod]").val());
+
 			function inicis() {
 				
 				    	IMP.init('imp80836035');
@@ -159,6 +160,7 @@
 				    				  confirmNum:rsp.apply_num,
 							    	  payMethod : "C",
 							    	  acmNum : <%= acm.getAcmNum()%>,
+							    	  price : <%= price %>,
 							    	  flag : <%= flag%>
 				    				 },
 				    			success:function(data){
@@ -202,6 +204,7 @@
 				    				  confirmNum:rsp.apply_num,
 							    	  payMethod : "K",
 							    	  acmNum : <%= acm.getAcmNum()%>,
+							    	  price : <%= price %>,
 							    	  flag : <%= flag%>
 				    				  
 				    				 },

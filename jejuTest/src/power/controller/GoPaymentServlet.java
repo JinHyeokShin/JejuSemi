@@ -37,8 +37,9 @@ public class GoPaymentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int flag = Integer.parseInt(request.getParameter("flag"));
-		
+	  	int price =Integer.parseInt(request.getParameter("price"));
 		request.setAttribute("flag", flag);
+		request.setAttribute("price", price);
 		
 		
 		request.getRequestDispatcher("views/adminowner/owner/payment.jsp").forward(request, response);

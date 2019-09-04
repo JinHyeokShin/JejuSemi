@@ -40,8 +40,8 @@ public class InsertPowerServlet extends HttpServlet {
 		String payMethod = request.getParameter("payMethod");
   	  	int acmNum = Integer.parseInt(request.getParameter("acmNum"));
   	  	int flag =Integer.parseInt(request.getParameter("flag"));
-		
-  	  	Payment pay = new Payment(payNum, reservNum, payPrice, confirmNum, payMethod);
+  	  	int price =Integer.parseInt(request.getParameter("price"));
+  	  	Payment pay = new Payment(payNum, reservNum, price, confirmNum, payMethod);
   	  	
 		Power pow = new Power(acmNum, payNum, flag);
 		
@@ -50,6 +50,7 @@ public class InsertPowerServlet extends HttpServlet {
 		System.out.println(payNum);
 		System.out.println(reservNum);
 		System.out.println(payPrice);
+		System.out.println(price);
 		System.out.println(confirmNum);
 		
 		System.out.println(payMethod);

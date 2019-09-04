@@ -33,7 +33,6 @@ public class PowerDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertPayment");
 		
-		System.out.println("ConfirmNum : "+pay.getConfirmNum());
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

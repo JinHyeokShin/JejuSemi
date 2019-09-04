@@ -12,13 +12,25 @@ public class Payment {	// 추후 결제 모듈 연동시 변경될 확률 높음
 	private String payCancel;		// 결제 취소 여부(y/n)
 	private String payDate;			// 결제일
 	private String CancelDate;		// 결제 취소일
-	
+	private int price;				// 실제 결제금액 파워등록용
 	public Payment() {
 		
 	}
 	
 	
 	
+	public int getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+
 	public Payment(String payNum, String reservNum, int payPrice, String confirmNum, String payMethod) {
 		super();
 		this.payNum = payNum;
