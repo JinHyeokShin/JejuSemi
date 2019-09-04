@@ -47,9 +47,13 @@ ul.sidebar-menu li ul.sub li.active a {
 .content-panel{
 	padding:20px;
 }
+#tr1 td{
+	text-align: center;
+}
 </style>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+
 <script>
 // 	$(function(){
 // 		$.ajax({
@@ -101,37 +105,69 @@ ul.sidebar-menu li ul.sub li.active a {
 				<div class="row content-panel">
 					<table id="reviewTable" class="table table-bordered">
 						<thead>
-							<tr>
-								<th>리뷰 번호</th>
-								<th>회원 이름</th>
-								<th>숙소 명</th>
-								<th>숙소 점수</th>
-								<th>후기 내용</th>
-								<th>작성 날짜</th>
+							<tr id="tr1">
+								<th style="width:50px;">번호</th>
+								<th style="width:500px;">리뷰제목</th>
+								<th>숙소</th>
+								<th>점수</th>
+								<th>작성자</th>
+								<th>예약번호</th>
+								<th>작성일</th>
+								
 							</tr>
 						</thead>
 						<tbody>
 							<%if(rList.isEmpty()){ %>
-							<tr><td colspan="6">비이이이임!!!</td></tr>
+							<tr><td colspan="8">비이이이임!!!</td></tr>
 							<%}else{ %>
-							<%for(Review i:rList){ %>
-							<tr>
-								<td><%=i.getReviewNum() %></td>
-								<td><%=i.getMemName() %></td>
-								<td><%=i.getAcmName() %></td>
-								<td><%=i.getReviewScore() %></td>
-								<td><%=i.getReviewContent() %></td>
-								<td><%=i.getReviewDate() %></td>
+								<%for(Review i:rList){ %>
+									<tr>
+										<td><%=i.getReviewNum() %></td>
+										<td><%=i.getMemName() %></td>
+										<td><%=i.getAcmName() %></td>
+										<td><%=i.getReservNum() %></td>
+										<td><%=i.getReviewScore() %></td>
+										<td><%=i.getReviewTitle() %></td>
+										<td><%=i.getReviewDate() %></td>
+									</tr>
 								<%} %>
-								<%
-									}
-								%>
+							<%}%>
 						</tbody>
 					</table>
+										<div class="pagingArea" align="right">
+					<%if(currentPage == 1){ %>
+						<button class="btn btn-default" disabled> &lt; previous </button>
+					<%}else{ %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%=currentPage-1%>'">&lt; previous</button>
+					<%} %>
+					<%for(int p = startPage; p <= endPage; p++){ %>
+						<%if(p == currentPage){ %>
+							<button class="btn btn-warning" disabled> <%= p %> </button>
+						<%}else{ %>
+							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%= p %>'"> <%= p %> </button>
+						<%} %>
+					<%} %>
+					<%if(currentPage == maxPage){ %>
+						<button class="btn btn-default" disabled> next &gt; </button>
+					<%}else { %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
+					<%} %>
+					</div>
 				</div>
 			</div>
 		</section>
 	</section>
+	<script>
+	$(function(){
+		$("#reviewTable td").click(function(){
+			var rNum = $(this).parent().children().eq(0).text();
+			console.log(rNum);
+			location.href ="<%= request.getContextPath() %>/reviewDetail.ad?rNum=" +rNum;
+<%--  			href="<%= request.getContextPath() %>/NoticeDetail.ad" --%>
+				
+		})
+	})
+	</script>
 	<%@ include file="../../../views/adminowner/common/footer.jsp"%>
 </body>
 </html>

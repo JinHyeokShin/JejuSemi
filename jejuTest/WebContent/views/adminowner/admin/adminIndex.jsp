@@ -53,7 +53,7 @@ ul.sidebar-menu li ul.sub li.active a {
 								<h4><%=uCount %></h4>
 								<h6>유저 수</h6>
 								<h4><%=oCount %></h4>
-								<h6>사장님 수</h6>
+								<h6>숙소 수</h6>
 								<h4>&#3861;<%=pTotal %></h4>
 								<h6>누적 수입</h6>
 							</div>

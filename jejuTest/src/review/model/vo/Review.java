@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Review {
 	
-	private int rNum;				//페이징처리위한rNum
 	private int reviewNum;			// 후기 번호
 	private int memNum;				// 회원 번호
 	private int acmNum;				// 숙소 번호
@@ -35,21 +34,23 @@ public class Review {
 	}
 	
 
-
-	public Review(int rNum,int reviewNum, String memName, String acmName, int reviewScore, String reviewContent,
-			Date reviewDate) {
+	
+	
+	//관리자 리뷰조회
+	public Review(int reviewNum, String memName, String acmName, String reservNum, int reviewScore, String reviewTitle,
+			String reviewContent, Date reviewDate) {
 		super();
-		this.rNum=rNum;
 		this.reviewNum = reviewNum;
+		this.reservNum = reservNum;
 		this.memName = memName;
 		this.acmName = acmName;
 		this.reviewScore = reviewScore;
+		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.reviewDate = reviewDate;
 	}
-	
-	
-	
+
+
 
 	public Review(int memNum, int acmNum, String reservNum, int reviewScore, String reviewTitle, String reviewContent) {
 		super();
@@ -132,14 +133,6 @@ public class Review {
 	}
 
 
-	public int getrNum() {
-		return rNum;
-	}
-
-
-	public void setrNum(int rNum) {
-		this.rNum = rNum;
-	}
 
 
 	public String getMemName() {
@@ -188,7 +181,7 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [rNum=" + rNum + ", reviewNum=" + reviewNum + ", memNum=" + memNum + ", acmNum=" + acmNum
+		return "Review [reviewNum=" + reviewNum + ", memNum=" + memNum + ", acmNum=" + acmNum
 				+ ", memName=" + memName + ", acmName=" + acmName + ", reviewScore=" + reviewScore + ", reviewContent="
 				+ reviewContent + ", reviewDate=" + reviewDate + "]";
 	}

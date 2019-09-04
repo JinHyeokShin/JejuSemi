@@ -48,8 +48,6 @@ ul.sidebar-menu li ul.sub li.active a {
 	padding:20px;
 }
 </style>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 // 	jQuery(function($) {
 // 		$("#myTable").DataTable();
@@ -79,7 +77,7 @@ ul.sidebar-menu li ul.sub li.active a {
 								<th>파워 등록</th>
 								<th>숙소 상태</th>
 								<th>숙소 주소</th>
-<!-- 								<th>숙소 정지</th> -->
+								<th>숙소 상태</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -87,6 +85,12 @@ ul.sidebar-menu li ul.sub li.active a {
 								<tr><td colspn="9">빔!!!!!</td></tr>
 							<%}else{ %>
 								<%for (Acm i : list) {%>
+								<% 
+								String checked="";
+								if(i.getStatus().charAt(0) == 'Y'){ 
+									checked ="checked";
+								}
+							%>
 								<tr>
 									<td><%=i.getAcmNum()%></td>
 									<td><%=i.getAcmName()%></td>
@@ -97,15 +101,63 @@ ul.sidebar-menu li ul.sub li.active a {
 									<td><%=i.getAcmPower()%></td>
 									<td><%=i.getStatus()%></td>
 									<td><%=i.getAcmAddress()%></td>
+									<td>
+									<input type ="checkbox" data-toggle="toggle" id="susBtn" onclick="tgBtn();" value="sus" data-onstyle="warning" data-on="Y" data-off="N"<%=checked%>>
+									</td>
 								</tr>
 								<%}%>
 							<%} %>
 						</tbody>
 					</table>
+					<div class="pagingArea" align="right">
+					<%if(currentPage == 1){ %>
+						<button class="btn btn-default" disabled> &lt; previous </button>
+					<%}else{ %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%=currentPage-1%>'">&lt; previous</button>
+					<%} %>
+					<%for(int p = startPage; p <= endPage; p++){ %>
+						<%if(p == currentPage){ %>
+							<button class="btn btn-warning" disabled> <%= p %> </button>
+						<%}else{ %>
+							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%= p %>'"> <%= p %> </button>
+						<%} %>
+					<%} %>
+					<%if(currentPage == maxPage){ %>
+						<button class="btn btn-default" disabled> next &gt; </button>
+					<%}else { %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
+					<%} %>
+					</div>
 				</div>
 			</div>
 		</section>
 	</section>
+	<script>
+	$(function(){
+		$("#myTable input").change(function(){
+			var acmNum = $(this).closest('tr').children().eq(0).text();
+			var ckVal;
+			if($(this).is(":checked")){
+				ckVal="Y";
+			}else{
+				ckVal="N";
+			}
+			var susData = {"acmNum":acmNum, "ckVal":ckVal};
+			
+			$.ajax({
+				url:"acmSus.ad",
+				type:"post",
+				data:{acmNum:acmNum,ckVal:ckVal},
+				success:function(){
+					console.log("success");
+					$(this).closest('tr').children().eq(8).val(ckVal);
+				}
+			});
+			
+		});
+	});
+	
+	</script>
 	<%@ include file="../../../views/adminowner/common/footer.jsp"%>
 </body>
 </html>

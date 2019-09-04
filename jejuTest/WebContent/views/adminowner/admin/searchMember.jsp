@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import=" java.util.* ,member.model.vo.Member"%>
+	pageEncoding="UTF-8" import=" java.util.* ,member.model.vo.Member,adminowner.admin.model.vo.*"%>
 <!-- 	org.json.simple.* , -->
  <%
 	ArrayList<Member> list =(ArrayList<Member>)request.getAttribute("list");
-
+ 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -46,49 +52,7 @@ ul.sidebar-menu li ul.sub li.active a {
 	padding: 10px;
 }
 </style>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap.min.css"/>
- 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap.min.js"></script>
-
-<script>	
-var num;
-$(document).ready(function(){
- 			var table = $('#myTable').DataTable({
- 			});
-});
-
- 		
- 	
-$(function(){
-	$("#myTable input").click(function(){
-		num = $(this).closest('tr').children().eq(0).text();
-		console.log(num);
-		$.ajax({
-			url:'memSus.ad',
-			type:'post',
-			data:{
-				mNum:num
-			},
-			success:function(){
-				$(this).closest('tr').children().eq(8).val('N');
-			}
-		});
-	});
-});
-	
-// 	function susBtn(){
-// 		console.log("클릭"+num);
-// 	};
- 	
- 	
- 	</script>
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
 </head>
 <body>
@@ -115,38 +79,92 @@ $(function(){
 								<th>회원 상태</th>
 								<th>회원 가입일</th>
 								<th>회원 노쇼</th>
-								<th>회원정지</th>
+								<th>회원상태</th>
 							</tr>
 						</thead>
 						<tbody>
 						<%if(list.isEmpty()){ %>
-							
+							<tr><td colspan="12">비이이이이임!!!!!!</td></tr>
 						<%}else{ %>
-						<%for(Member m : list){ %>
-							<tr>
-								<td><%=m.getMemNum() %></td>
-								<td><%=m.getMemId() %></td>
-								<td><%=m.getMemName() %></td>
-								<td><%=m.getMemGender() %></td>
-								<td><%=m.getMemPhone() %></td>
-								<td><%=m.getNationCode() %></td>
-								<td><%=m.getMemPoint() %></td>
-								<td><%=m.getMemType() %></td>
-								<td><%=m.getMemStatus() %></td>
-								<td><%=m.getEnrollDate() %></td>
-								<td><%=m.getNoShow() %></td>
-								<td>
-								<input id="susBtn" style="height: 27px;" type ="button" class="btn btn-theme04" value="정지" >
-								</td>
-							</tr>
-							<%}; %>
+						
+							<%for(Member m : list){ %>
+							<% 
+								String checked="";
+								if(m.getMemStatus().charAt(0) == 'Y'){ 
+									checked ="checked";
+								}
+							%>
+								<tr>
+									<td><%=m.getMemNum() %></td>
+									<td><%=m.getMemId() %></td>
+									<td><%=m.getMemName() %></td>
+									<td><%=m.getMemGender() %></td>
+									<td><%=m.getMemPhone() %></td>
+									<td><%=m.getNationCode() %></td>
+									<td><%=m.getMemPoint() %></td>
+									<td><%=m.getMemType() %></td>
+									<td><%=m.getMemStatus() %></td>
+									<td><%=m.getEnrollDate() %></td>
+									<td><%=m.getNoShow() %></td>
+									<td>
+									<input type ="checkbox" data-toggle="toggle" id="susBtn" onclick="tgBtn();" value="sus" data-onstyle="warning" data-on="Y" data-off="N"<%=checked%>>
+									</td>
+								</tr>
+								<%}; %>
 							<%}; %>
 						</tbody>
 					</table>
+					<div class="pagingArea" align="right">
+					<%if(currentPage == 1){ %>
+						<button class="btn btn-default" disabled> &lt; previous </button>
+					<%}else{ %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%=currentPage-1%>'">&lt; previous</button>
+					<%} %>
+					
+					<%for(int p = startPage; p <= endPage; p++){ %>
+						<%if(p == currentPage){ %>
+							<button class="btn btn-warning" disabled> <%= p %> </button>
+						<%}else{ %>
+							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%= p %>'"> <%= p %> </button>
+						<%} %>
+					<%} %>
+					
+					<%if(currentPage == maxPage){ %>
+						<button class="btn btn-default" disabled> next &gt; </button>
+					<%}else { %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
+					<%} %>
+					</div>
 				</div>
 			</div>
 		</section>
 	</section>
+	<script>
+	$(function(){
+		$("#myTable input").change(function(){
+			var memNum = $(this).closest('tr').children().eq(0).text();
+			var ckVal;
+			if($(this).is(":checked")){
+				ckVal="Y";
+			}else{
+				ckVal="N";
+			}
+			var susData = {"memNum":memNum, "ckVal":ckVal};
+			
+			$.ajax({
+				url:"memSus.ad",
+				type:"post",
+				data:{memNum:memNum,ckVal:ckVal},
+				success:function(){
+					console.log("success");
+					$(this).closest('tr').children().eq(8).val(ckVal);
+				}
+			});
+			
+		});
+	});
+	
+	</script>
 	<%@ include file="../../../views/adminowner/common/footer.jsp"%>
 </body>
 </html>

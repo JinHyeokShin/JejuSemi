@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import adminowner.admin.model.service.AdminService;
 
 /**
- * Servlet implementation class MemberSuspend
+ * Servlet implementation class AcmSuspend
  */
-@WebServlet("/memSus.ad")
-public class MemberSuspend extends HttpServlet {
+@WebServlet("/acmSus.ad")
+public class AcmSuspend extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberSuspend() {
+    public AcmSuspend() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,20 +29,12 @@ public class MemberSuspend extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int memNum = Integer.parseInt(request.getParameter("memNum"));
+		int acmNum = Integer.parseInt(request.getParameter("acmNum"));
 		String ck= request.getParameter("ckVal");  
 		
-//		System.out.println(memNum);
+//		System.out.println(acmNum);
 //		System.out.println(ck);
-		
-		int result = new AdminService().memberSuspend(memNum,ck);
-		
-//		int mNum= Integer.parseInt(request.getParameter("mNum"));
-//		int result = new AdminService().memberSuspend(mNum);
-		
-	
-	
+		int result = new AdminService().acmSuspend(acmNum,ck);
 	}
 
 	/**

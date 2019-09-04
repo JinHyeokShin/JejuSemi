@@ -166,21 +166,6 @@ ul.sidebar-menu li ul.sub li.active a {
 		</section>
 		<!-- main content end-->
 		<%@ include file="../../../views/adminowner/common/footer.jsp"%>
-		<!--footer start-->
-		<!--     <footer class="site-footer">
-      <div class="text-center">
-        <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
-        </p>
-        <div class="credits">
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
-        </div>
-        <a href="index.html#" class="go-top">
-          <i class="fa fa-angle-up"></i>
-          </a>
-      </div>
-    </footer>
-    footer end-->
 	</section>
 	<script>
 	$(function(){
@@ -191,8 +176,6 @@ ul.sidebar-menu li ul.sub li.active a {
 				
 		})
 	})
-
-
 	</script>
 
 </body>

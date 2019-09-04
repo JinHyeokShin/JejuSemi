@@ -1,8 +1,5 @@
 package adminowner.admin.model.service;
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.rollback;
+import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -14,16 +11,37 @@ import adminowner.admin.model.vo.Notice;
 import member.model.vo.Member;
 import review.model.vo.Review;
 public class AdminService {
-	public ArrayList<Member> searchMember() {
+	
+	public AdminIndex adminIndex() {
 		Connection conn = getConnection();
-		ArrayList<Member> list = new AdminDao().searchMember(conn);
+		AdminIndex ai = new AdminDao().adminIndex(conn);
+		close(conn);
+		return ai;
+	}
+	
+	public int memberCount() {
+		Connection conn = getConnection();
+		int result = new AdminDao().memberCount(conn);
+		close(conn);
+		return result;
+	}
+	public ArrayList<Member> searchMember(int currentPage,int boardLimit) {
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao().searchMember(conn,currentPage, boardLimit);
 		close(conn);
 		return list;
 	}
-	/**
-	 * 공지 리스트.
-	 * @return
-	 */
+	public int memberSuspend(int mNum,String ck) {
+		Connection conn = getConnection();
+		int result = new AdminDao().memberSuspend(conn,mNum,ck);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
 	public ArrayList<Notice> selectNList(){
 		Connection conn = getConnection();
 		ArrayList<Notice> nList= new AdminDao().selectNList(conn);
@@ -67,16 +85,7 @@ public class AdminService {
 		}
 		return result;
 	}
-	public int memberSuspend(int mNum) {
-		Connection conn = getConnection();
-		int result = new AdminDao().memberSuspend(conn,mNum);
-		if(result>0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		return result;
-	}
+	
 	public int countAcm() {
 		Connection conn= getConnection();
 		int result = new AdminDao().countAcm(conn);
@@ -89,6 +98,17 @@ public class AdminService {
 		close(conn);
 		return list;
 	}
+	public int acmSuspend(int acmNum,String ck) {
+		Connection conn = getConnection();
+		int result = new AdminDao().acmSuspend(conn,acmNum,ck);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
 	public int reviewCount() {
 		Connection conn = getConnection();
 		int result = new AdminDao().reviewCount(conn);
@@ -101,11 +121,10 @@ public class AdminService {
 		close(conn);
 		return list;
 	}
-	public AdminIndex adminIndex() {
+	public Review reviewDetail(int rNum) {
 		Connection conn = getConnection();
-		AdminIndex ai = new AdminDao().adminIndex(conn);
+		Review r = new AdminDao().reviewDetail(conn,rNum);
 		close(conn);
-		return ai;
+		return r;
 	}
-	
 }

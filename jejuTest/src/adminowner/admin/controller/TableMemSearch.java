@@ -35,7 +35,7 @@ public class TableMemSearch extends HttpServlet {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Member> list = new AdminService().searchMember();
+		ArrayList<Member> list = new AdminService().searchMember(1,999);
 		
 		JSONArray jArr = new JSONArray();
 		JSONObject jobj = new JSONObject();

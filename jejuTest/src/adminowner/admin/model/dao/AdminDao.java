@@ -32,20 +32,83 @@ public class AdminDao {
       }
 
    }
+   
+   public AdminIndex adminIndex(Connection conn) {
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   AdminIndex ai = new AdminIndex();
+	   String sql = prop.getProperty("adminIndex");
+	   
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		rset= pstmt.executeQuery();
+		while(rset.next()) {
+			ai.setuCount(rset.getInt(1));
+			ai.setoCount(rset.getInt(2));
+			ai.setpTotal(rset.getInt(3));
+		}
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	return ai;
+   }
 
-   public ArrayList<Member> searchMember(Connection conn) {
+   public int memberCount(Connection conn) {
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   int result= 0;
+	   String sql = prop.getProperty("memberCount");
+	   
+	   try {
+		pstmt=conn.prepareStatement(sql);
+		rset=pstmt.executeQuery();
+		
+		while(rset.next()) {
+			result=rset.getInt(1);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		close(rset);
+		close(pstmt);
+	}
+	   return result;   
+   }
+   
+   public ArrayList<Member> searchMember(Connection conn,int currentPage,int boardLimit) {
       ArrayList<Member> list = new ArrayList<>();
       PreparedStatement pstmt = null;
       ResultSet rset = null;
       String sql = prop.getProperty("searchMember");
+      int startRow = (currentPage -1 ) * boardLimit+1;
+      int endRow = startRow + boardLimit -1;
       try {
          pstmt = conn.prepareStatement(sql);
+         pstmt.setInt(1, startRow);
+         pstmt.setInt(2, endRow);
          rset = pstmt.executeQuery();
 
          while (rset.next()) {
-            list.add(new Member(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
-                  rset.getString(5), rset.getString(6), rset.getInt(7), rset.getInt(8), rset.getString(9),
-                  rset.getString(10), rset.getDate(11), rset.getDate(12), rset.getInt(13)));
+            list.add(new Member(rset.getInt("MEM_NUM"),
+			            		rset.getString("MEM_ID"),
+			            		rset.getString("MEM_PWD"),
+			            		rset.getString("MEM_NAME"),
+			                    rset.getString("MEM_GENDER"),
+			                    rset.getString("MEM_PHONE"),
+			                    rset.getInt("NATION_CODE"),
+			                    rset.getInt("MEM_POINT"),
+			                    rset.getString("MEM_TYPE"),                  
+			                    rset.getString("MEM_STATUS"),
+			                    rset.getDate("ENROLL_DATE"),
+			                    rset.getDate("OUT_DATE"),
+			                    rset.getInt("NOSHOW")
+                    ));
          }
       } catch (SQLException e) {
          // TODO Auto-generated catch block
@@ -56,7 +119,32 @@ public class AdminDao {
       }
       return list;
    }
-
+   public int memberSuspend(Connection conn, int mNum, String ck) {
+	      int result=0;
+	      PreparedStatement pstmt = null;
+	      String sql = prop.getProperty("memberSuspend");
+//	      String status;
+//	      if(ck=="true") {
+//	    	  status="N";
+//	      }else {
+//	    	  status="Y";
+//	      }
+	      try {
+	         pstmt=conn.prepareStatement(sql);
+	         pstmt.setString(1, ck);
+	         pstmt.setInt(2, mNum);
+	         
+	         result = pstmt.executeUpdate();
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      return result;
+	   }
+   
+  
    /**
     * 공지사항 리스트
     * 
@@ -82,7 +170,7 @@ public class AdminDao {
       } finally {
          close(rset);
          close(pstmt);
-      }
+      };
       return nList;
    }
    public int insertNotice(Connection conn, Notice n) {
@@ -165,23 +253,7 @@ public class AdminDao {
       }
       return result;
    }
-   public int memberSuspend(Connection conn, int mNum) {
-      int result=0;
-      PreparedStatement pstmt = null;
-      String sql = prop.getProperty("memberSuspend");
-      System.out.println("DAO : "+mNum);
-      try {
-         pstmt=conn.prepareStatement(sql);
-         pstmt.setInt(1, mNum);
-         result = pstmt.executeUpdate();
-      } catch (SQLException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }finally {
-         close(pstmt);
-      }
-      return result;
-   }
+   
    public int countAcm(Connection conn) {
 	   PreparedStatement pstmt = null;
 	   ResultSet rset = null;
@@ -223,15 +295,15 @@ public class AdminDao {
          while(rset.next()) {
             
             list.add(new Acm(rset.getInt(1),
-                  rset.getInt(2),
-            	  rset.getString(3),
-                  rset.getString(4),
-                  rset.getString(5),
-                  rset.getString(6), 
-                  rset.getInt(7),
-                  rset.getString(8),
-                  rset.getString(9),
-                  rset.getString(10)
+			                  rset.getInt(2),
+			            	  rset.getString(3),
+			                  rset.getString(4),
+			                  rset.getString(5),
+			                  rset.getString(6), 
+			                  rset.getInt(7),
+			                  rset.getString(8),
+			                  rset.getString(9),
+			                  rset.getString(10)
                   ));
          }
          
@@ -244,6 +316,24 @@ public class AdminDao {
       }
       return list;
    }
+   public int acmSuspend(Connection conn,int acmNum,String ck) {
+	   int result = 0;
+	   PreparedStatement pstmt = null;
+	   String sql = prop.getProperty("acmSuspend");
+	   try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, ck);
+		pstmt.setInt(2, acmNum);
+		result = pstmt.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+        close(pstmt);
+     }
+     return result;
+   }
+   
    public int reviewCount(Connection conn) {
       int result = 0;
       PreparedStatement pstmt = null;
@@ -281,13 +371,15 @@ public class AdminDao {
          rset=pstmt.executeQuery();
          
          while(rset.next()) {
-            list.add(new Review(rset.getInt(1),
-                           rset.getInt(2),
+            list.add(new Review(rset.getInt(2),
                            rset.getString(3),
                            rset.getString(4),
-                           rset.getInt(5),
-                           rset.getString(6),
-                           rset.getDate(7)
+                           rset.getString(5),
+                           rset.getInt(6),
+                           rset.getString(7),
+                           rset.getString(8),
+                           rset.getDate(9)
+                           
                   ));
          }
       } catch (SQLException e) {
@@ -299,20 +391,26 @@ public class AdminDao {
       }
       return list;
    }
-   public AdminIndex adminIndex(Connection conn) {
+   public Review reviewDetail(Connection conn, int rNum) {
 	   PreparedStatement pstmt = null;
 	   ResultSet rset = null;
-	   AdminIndex ai = new AdminIndex();
-	   String sql = prop.getProperty("adminIndex");
+	   String sql = prop.getProperty("reviewDetail");
+	   Review r = new Review();
 	   
 	   try {
-		pstmt = conn.prepareStatement(sql);
-		rset= pstmt.executeQuery();
-		while(rset.next()) {
-			ai.setuCount(rset.getInt(1));
-			ai.setoCount(rset.getInt(2));
-			ai.setpTotal(rset.getInt(3));
-		}
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setInt(1, rNum);
+		rset=pstmt.executeQuery();
+		
+		r.setReviewNum(rset.getInt(2));
+		r.setMemName(rset.getString(3));
+		r.setAcmName(rset.getString(4));
+		r.setReservNum(rset.getString(4));
+		r.setReviewScore(rset.getInt(5));
+		r.setReviewTitle(rset.getString(6));
+		r.setReviewContent(rset.getString(7));
+		r.setReviewDate(rset.getDate(8));
+		
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -321,6 +419,9 @@ public class AdminDao {
 		close(rset);
 		close(pstmt);
 	}
-	return ai;
+	return r;
+	   
+	   
    }
+  
 }

@@ -33,10 +33,15 @@ ul.sidebar-menu li ul.sub li.active a {
 a{
     cursor: pointer;
 }
+.table{
+align:middle;
+}
   </style>
   <!-- 아이콘 -->
   <link href="<%= request.getContextPath() %>/resources/adminowner/img/favicon.png" rel="icon">
   <link href="<%= request.getContextPath() %>/resources/adminowner/img/apple-touch-icon.png" rel="apple-touch-icon">
+  
+  
   
   <!-- jquery 연결 -->
   <script src="<%= request.getContextPath() %>/resources/adminowner/lib/fullcalendar/jquery.min.js"></script>
@@ -49,6 +54,13 @@ a{
   <!-- 반응형 -->
   <link href="<%= request.getContextPath() %>/resources/adminowner/css/style-responsive.css" rel="stylesheet">
   <script src="<%= request.getContextPath() %>/resources/adminowner/lib/chart-master/Chart.js"></script>
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+  <!--  토글버튼 -->
+  <link href="//cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css" rel="stylesheet">  
+  <script src="//cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
   <!-- 타이틀 옆에있는 버튼 3개 -->
 <%--   <script type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/advanced-datatable/js/DT_bootstrap.js"></script> --%>
 
@@ -350,8 +362,8 @@ a{
   		location.href ="<%= request.getContextPath() %>/adminSearchAcm.ad"
   	}
   	function goSearchMember(){
-<%--   		location.href ="<%= request.getContextPath() %>/adminSearchMem.ad" --%>
-  		location.href ="<%= request.getContextPath() %>/notUsed.ad"
+  		location.href ="<%= request.getContextPath() %>/adminSearchMem.ad"
+<%--   		location.href ="<%= request.getContextPath() %>/notUsed.ad" --%>
   	}
   	function goSearchReview(){
   		location.href ="<%= request.getContextPath() %>/adminSearchReview.ad"
