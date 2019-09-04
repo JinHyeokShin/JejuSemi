@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>jeue Boram에 지원하세요</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
@@ -63,10 +63,6 @@
 
 .nav-item {
 	cursor: pointer;
-}
-
-#logoutBtn {
-	display: none;
 }
 
 
@@ -335,6 +331,14 @@ select {
 
 	<%-- 헤더,메뉴바 --%>
     <%@ include file="../main/header.jsp" %>
+    
+    <script>
+
+		$(function(){
+			$('html, body').animate( { scrollTop : 750 }, 400 );
+		});
+	</script>
+ 
 
 <!-- ------------------------------------------------------ -->
 
@@ -343,8 +347,8 @@ select {
 	<div class="content ">
 		<h2 class="h2tit h2">온라인입사지원</h2>		
 		<div class="tit_top  div">
-		</div><!-- //tit_top end -->
-		<!-- 20171010 -->
+		</div>
+
 		<div class="section  div">
 			<h3 class="h3">개인정보 보호법에 의한 개인정보 활용에 대한 동의</h3>
 			<div class="section  div">
@@ -408,28 +412,24 @@ select {
 			
 		</div>
 		<!-- form 어디로 넘겨줄지 -->
-			<form id="defaultFrm" class="form" name="defaultFrm" action="" method="post">
+			<form id="defaultFrm" class="form" name="defaultFrm" action="hireEmail.hi" method="post">
 				<div class="grid  div">
 					<table class="tb_row table">
-				      <colgroup>
-					      <col width="150" />
-					      <col />
-				      </colgroup>
-					<tr class="tr">
-						<th class="th">구분</th>
-						<td class="td">
-					    <select name="recruitType" id="recruitType" class="select" onchange="javascript:board.form(0, this);">
-						   <option value="0" selected="selected">전체</option>
-						   <option value="10"  >신입</option>
-						   <option value="20"  >경력</option>
-						   <option value="30"  >상시모집</option>
-						</select>
-						</td>
-					</tr>
+<!-- 					<tr class="tr"> -->
+<!-- 						<th class="th">구분</th> -->
+<!-- 						<td class="td"> -->
+<!-- 					    <select name="recruitType" id="recruitType" class="select" required> -->
+<!-- 						   <option value="0" selected="selected">전체</option> -->
+<!-- 						   <option value="10"  >신입</option> -->
+<!-- 						   <option value="20"  >경력</option> -->
+<!-- 						   <option value="30"  >상시모집</option> -->
+<!-- 						</select> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
 					<tr class="tr">
 				        <th class="th">지원분야</th>
 				        <td class="td"><div class="item div">
-				            <select name="categorySrlList" id="categorySrlList" class="select">
+				            <select name="categorySrlList" id="categorySrlList" class="select" required>
 				            	<option value="choice">선택하세요</option>
                                 <option value="deginer" label="UX/UI디자이너" class="label">
                                 <option value="publisher" label="퍼블리셔" class="label">
@@ -441,19 +441,21 @@ select {
 				      <tr class="tr">
 				        <th class="th">이름</th>
 				        <td class="td"><div class="item div">
-				            <input class="i_text input" id="txtUserName" type="text" name="txtUserName" />
+				            <input class="i_text input" id="txtUserName" type="text" name="txtUserName" required>
 				          </div></td>
 				      </tr>
 				      <tr class="tr">
 				        <th class="th">생년월일</th>
 				        <td class="td"><div class="item div">
-				            <input class="i_text input" id="txtRegNumberArry0" type="text" name="txtRegNumberArry0" maxlength="6" onkeydown="return showKeyCode(event);" onkeyup="removeChar(event);" style="ime-mode: disabled;"/> ex) 1990년 10월 26일 : 901026
+				            <input class="i_text input" id="txtRegNumberArry0" type="text" 
+				            name="txtRegNumberArry0" maxlength="6" onkeydown="return showKeyCode(event);" 
+				            onkeyup="removeChar(event);" style="ime-mode: disabled;" required> ex) 1990년 10월 26일 : 901026
 				          </div></td>
 				      </tr>
 				      <tr class="tr">
 					      <th class="th">비밀번호</th>
 					      <td class="td"><div class="item div">
-					          <input class="i_text input" id="txtUserPass" type="password" name="txtUserPass" maxlength="20" size="20">
+					          <input class="i_text input" id="txtUserPass" type="password" name="txtUserPass" maxlength="20" size="20" required>
 					      </div></td>
 				      </tr>
 				      <tr class="tr">
@@ -485,8 +487,8 @@ select {
 <!-- ------------------------------------------------------ -->
 
 
-	<%-- 풋터 --%>
-    <%@ include file="../main/footer.jsp" %>
+<%-- 풋터 --%>
+<%@ include file="../main/footer.jsp" %>
 
 <script src="<%= request.getContextPath() %>/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>

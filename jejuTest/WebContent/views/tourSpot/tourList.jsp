@@ -431,6 +431,14 @@ body.modal-open[style] {
 <%-- 헤더,메뉴바 --%>
 <%@ include file="../main/header.jsp" %>
 
+<script>
+
+	$(function(){
+		$('html, body').animate( { scrollTop : 750 }, 400 );
+	});
+</script>
+
+
 <script src="<%= request.getContextPath() %>/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
@@ -481,7 +489,6 @@ body.modal-open[style] {
 							<% TourSpotImg tourImg = new TourSpotService().tourImgView(list.get(i).getSpotnum());%>
 
 							<div class="col-md-4">
-<%-- 							data-target = <%= "#" + i + "" %> --%>
 								<div class="travel-menu mb-5">
 									<h3 class="text-white">
 										<a href="#myModal<%=i %>" id="tspot<%= i %>" class="spot" target="_self" class="text-white" data-toggle= "modal" data-target = "#myModal<%= i %>">
