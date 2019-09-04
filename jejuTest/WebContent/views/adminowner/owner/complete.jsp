@@ -116,7 +116,7 @@
 									</tbody>
 								</table>
 								<table>
-										<div class="well well-small green" align="center" width="100%">
+										<div class="jin well well-small green" align="center" onclick="goDashBoard();">
 											<strong>결제완료</strong>
 										</div>
 								</table>
@@ -130,6 +130,11 @@
       </section>
       <!-- /wrapper -->
     </section>
+    <script>
+    function goDashBoard(){
+  		location.href = "<%= request.getContextPath() %>/ownerIndex.ow";
+  	}
+    </script>
     <%@ include file="../../../views/adminowner/common/footer.jsp" %>
 </body>
 </html>
