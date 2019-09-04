@@ -1,6 +1,7 @@
 package festival.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import festival.model.service.FestivalService;
+import festival.model.vo.Festival;
+import tourSpot.model.service.TourSpotService;
+import tourSpot.model.vo.TourSpot;
 
 
 /**
@@ -31,10 +37,12 @@ public class FestivalServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher rd = request.getRequestDispatcher("views/festival/festival.jsp");
-		rd.forward(request, response);
+		ArrayList<Festival> list = new FestivalService().selectList();
 		
+		request.setAttribute("list", list);
 
+		RequestDispatcher view = request.getRequestDispatcher("views/festival/festival.jsp");
+		view.forward(request, response);
 		
 	}
 
