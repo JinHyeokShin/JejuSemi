@@ -13,16 +13,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="<%=contextPath%>/resources/js/alertify.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="<%= request.getContextPath() %>/resources/js/alertify.min.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.min.css">
+
+<script src="<%= request.getContextPath() %>/resources/js/semantic.min.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css">
 
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/alertify.rtl.min.css"> --%>
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.rtl.min.css"> --%>
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.min.css"> --%>
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/default.rtl.min.css"> --%>
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.rtl.min.css"> --%>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/item.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/button.min.css">
 
+<script src="<%= request.getContextPath() %>/resources/js/form.min.js"></script>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/form.min.css">
+
+
+
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/animate.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/aos.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/jquery.timepicker.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/fancybox.min.css">      
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/fonts/fontawesome/css/font-awesome.min.css">
+<!-- Theme Style -->
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
+
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/semantic.min.css">
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+        <script src="<%= request.getContextPath() %>/resources/js/semantic.min.js"></script>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>

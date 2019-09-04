@@ -12,8 +12,8 @@ public class Reservation {
 	private String checkOutDate;		// 체크아웃
 	private int reservPrice;		// 결제 예상 금액
 	private String reservCancel;	// 예약 취소 여부(y/n)
-	private Date reservDate;		// 예약 날짜 --> 예약이 발생한 날짜
-	private Date cancelDate;		// 예약 취소 날짜
+	private String reservDate;		// 예약 날짜 --> 예약이 발생한 날짜
+	private String cancelDate;		// 예약 취소 날짜
 	private String reservRequire;	// 예약 문의
 	private String noShow;			// 노쇼
 	private String status;			// 상태
@@ -40,7 +40,7 @@ public class Reservation {
 
 
 	public Reservation(String reservNum, int memNum, int roomNum, int reservPax, String checkInDate, String checkOutDate,
-			int reservPrice, String reservCancel, Date reservDate, Date cancelDate, String reservRequire, String noShow,
+			int reservPrice, String reservCancel, String reservDate, String cancelDate, String reservRequire, String noShow,
 			String status) {
 		super();
 		this.reservNum = reservNum;
@@ -57,6 +57,27 @@ public class Reservation {
 		this.noShow = noShow;
 		this.status = status;
 	}
+	
+	
+	public Reservation(String reservNum, int roomNum, int reservPax, String checkInDate, String checkOutDate,
+			int reservPrice, String reservCancel, String reservDate, String cancelDate, String reservRequire, String noShow,
+			String status) {
+		super();
+		this.reservNum = reservNum;
+		this.roomNum = roomNum;
+		this.reservPax = reservPax;
+		this.checkInDate = checkInDate;
+		this.checkOutDate = checkOutDate;
+		this.reservPrice = reservPrice;
+		this.reservCancel = reservCancel;
+		this.reservDate = reservDate;
+		this.cancelDate = cancelDate;
+		this.reservRequire = reservRequire;
+		this.noShow = noShow;
+		this.status = status;
+	}
+
+
 
 	public String getReservNum() {
 		return reservNum;
@@ -122,19 +143,19 @@ public class Reservation {
 		this.reservCancel = reservCancel;
 	}
 
-	public Date getReservDate() {
+	public String getReservDate() {
 		return reservDate;
 	}
 
-	public void setReservDate(Date reservDate) {
+	public void setReservDate(String reservDate) {
 		this.reservDate = reservDate;
 	}
 
-	public Date getCancelDate() {
+	public String getCancelDate() {
 		return cancelDate;
 	}
 
-	public void setCancelDate(Date cancelDate) {
+	public void setCancelDate(String cancelDate) {
 		this.cancelDate = cancelDate;
 	}
 

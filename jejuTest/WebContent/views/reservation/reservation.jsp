@@ -172,7 +172,7 @@
 				
 				
 				</div>
-				<div class="roomInfo section pp">
+				<div class="roomInfo pp">
 				
 				<label style="font-weight:bold; font-size:2em; color:#fd7e14;">객실 정보</label><hr>
 				
@@ -185,7 +185,7 @@
 				<textarea rows="6" cols="40" name="reservRequire"></textarea>
 				
 				</div>
-				<div class="paymentInfo bg-light section pp">
+				<div class="paymentInfo bg-light pp">
 				
 				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >결제 방법</label><hr>
 				
@@ -212,7 +212,7 @@
 				
 				
 				</div>
-				<div class="agreementInfo section pp">
+				<div class="agreementInfo pp">
 				
 				<label style="font-weight:bold; font-size:2em; color:#fd7e14;" >예약 약관 및 취소 정책</label><hr>
 				
@@ -360,7 +360,7 @@
 				    				  reservEmail:$("input[name=reservEmail]").val(),
 				    				  reservPhone:$("input[name=reservPhone]").val(),
 				    				  reservRequire:$("textarea[name=reservRequire]").val(),
-				    				  payMethod:$("input[name=payMethod]").val(),
+				    				  payMethod:$("input[name=payMethod]:checked").val(),
 				    				  reservPrice:reservPrice,
 				    				  reservPax:<%=adult%>+<%=child%>,
 				    				  checkIn:"<%=checkIn%>",
@@ -413,7 +413,7 @@
 				    				  reservEmail:$("input[name=reservEmail]").val(),
 				    				  reservPhone:$("input[name=reservPhone]").val(),
 				    				  reservRequire:$("textarea[name=reservRequire]").val(),
-				    				  payMethod:$("input[name=payMethod]").val(),
+				    				  payMethod:$("input[name=payMethod]:checked").val(),
 				    				  reservPrice:reservPrice,
 				    				  reservPax:<%=adult%>+<%=child%>,
 				    				  checkIn:"<%=checkIn%>",

@@ -14,6 +14,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>마이페이지</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/list.min.css">
+<script src="<%= request.getContextPath() %>/resources/js/semantic.min.js"></script>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css">
+
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/semantic.min.css">
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+        <script src="<%= request.getContextPath() %>/resources/js/semantic.min.js"></script>
+
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/animate.css">
@@ -29,99 +40,96 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
 
 <style>
- .main-content{
-        border:1px solid white;
-        display:block;
-        padding:5px;
-        margin :0 auto;
-        color:gray;
-        width: 900px;
-        height: 700px;
-        background:rgb(255, 204, 110);
-    }
-    .main-wrap{
-        border:1px solid white;
-        display:block;
-        padding:5px;
-        margin : 15px;
-        color:gray;
-        width: 850px;
-        height:650px;
-        background:white;
-        
-    }
-    .main-user{
-        border:1px solid white;
-        display:block;
-        padding:5px;
-        margin:15px;
-        color:black;
-    }
-    .list-link{
-        border: 1px solid black;
-        display:block;
-        padding:10px;
-
-    }
-    .item-list{
-        border:25px solid white;
-        display:block;
-    }
-    .main-user{
-    	border: white;
-    }
-
-
+	.myPageContainer{
+		padding:50px;
+		padding-top: 100px;
+		padding-bottom: 100px;
+	}
+	.myPageWrap{
+		border-radius: 20px;
+	}	
+	.mp01{
+		height:30%;
+		padding-top: 20px;
+		text-indent: 25px;
+	}
+	.mp02{
+		height:70%;
+		padding:20px;
+	}
+	.mp03{
+		background: white;
+	}
+	.content{
+		vertical-align: middle;
+	}
+	.item{
+		height:75px;
+	}
+	.header{
+		font-size: 25px;
+	}
+	.description{
+		line-height: 2.2;
+    	text-indent: 3px;
+	}
 </style>
+<script>
+	$(function(){
+		$('html, body').animate( { scrollTop : 750 }, 400 );
+	});
+</script>
 
 </head>
 <body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
 	<%-- 헤더,메뉴바 --%>
 	<%@ include file="../main/header.jsp" %>
 
-   <div class="main-content" role="main">
-     <div class="main-wrap">
-      	<div class="main-user">
-              	사용자
-      	</div>
-      		<ul class="item-link">
-        		<li id="item-myme" class="item-list">
-       			 	<a href="">
-                      	  내 계정
-                 	</a><br>
-                   <span class="hide"> 비밀번호 및 기타 설정을 변경할 수 있습니다.</span>
-                 </li>
-                
-                 <li id="item-mypay" class="item-list">
-                     <a href="">
-                       	 내 예약 정보
-                     </a><br>
-                    <span class="hide"> 예약 정보를 설정할 수 있습니다. </span>          
-                 </li>
-
-                 <li id="item-myheart" class="item-list">
-                     <a href="">
-                      		 즐겨찾기
-                     </a><br>
-                    <span class="hide"> 즐겨찾기를 설정할 수 있습니다.</span>
-                 </li>
-
-                 <li id="item-mypoint" class="item-list">
-                     <a href="">
-                     	   내 포인트
-                     </a><br>
-                    <span class="hide"> 내 포인트를 관리할 수 있습니다</span>
-                 </li>
-
-                 <li id="item-myreview" class="item-list">
-                     <a href="">
-                        	이용 후기
-                     </a><br>
-                    <span class="hide"> 이용 후기를 관리할 수 있습니다.</span>
-                 </li>               
-            </ul>
-        </div>
-    </div>
+	<div class="myPageSection aa">
+		<div class="container myPageContainer aa">
+			<div class="myPageWrap aa bg-light">
+				<div class="mp01 aa">
+					<span style="font-weight:bold; font-size:3em; color:#fd7e14; line-height:initial;"><%=memName %></span>
+				</div>
+				<div class="mp02 aa">
+					<div class="mp03 aa">
+						<div class="ui relaxed divided list">
+						  <div class="item" style="padding-top: 20px">
+						    <i class="large github middle aligned icon"></i>
+						    <div class="content"">
+						      <a class="header">내 정보 수정</a>
+						      <div class="description">회원님의 계정 정보를 수정합니다.</div>
+						    </div>
+						  </div>
+						  <div class="item" style="padding-top: 20px">
+						    <i class="large github middle aligned icon"></i>
+						    <div class="content">
+						      <a class="header" href="<%=contextPath%>/reserv.me?memNum=<%=m.getMemNum()%>">예약 내역 조회</a>
+						      <div class="description">회원님의 모든 예약 내역을 관리합니다.</div>
+						    </div>
+						  </div>
+						  <div class="item" style="padding-top: 20px">
+						    <i class="large github middle aligned icon"></i>
+						    <div class="content">
+						      <a class="header">내가 쓴 리뷰 조회</a>
+						      <div class="description">회원님이 작성한 리뷰들을 관리합니다.</div>
+						    </div>
+						  </div>
+						  <div class="item" style="padding-top: 18px">
+						    <i class="large github middle aligned icon"></i>
+						    <div class="content">
+						      <a class="header">찜한 숙소</a>
+						      <div class="description">즐겨찾기한 숙소들을 조회합니다.</div>
+						    </div>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</div>
+	<%-- 풋터 --%>
+    <%@ include file="../main/footer.jsp" %>
 
 <script src="<%= request.getContextPath() %>/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>

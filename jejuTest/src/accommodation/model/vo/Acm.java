@@ -13,7 +13,6 @@ public class Acm implements Serializable{
 	 */
 	private static final long serialVersionUID = -2223610554768132052L;
 	
-	private int rNum;
 	private int acmNum;				
 	private String acmName;	
 	private String memName;
@@ -46,7 +45,13 @@ public class Acm implements Serializable{
 	public void setMinPrice(int minPrice) {
 		this.minPrice = minPrice;
 	}
-
+	
+	public Acm(int acmNum, String acmName, String acmAddress) {
+		super();
+		this.acmNum = acmNum;
+		this.acmName = acmName;
+		this.acmAddress = acmAddress;
+	}
 	
 
 	public Acm(int acmNum, String acmName, String acmPhone, String acmAddress, String acmType, int acmGrade,
@@ -135,7 +140,6 @@ public class Acm implements Serializable{
 	public Acm(int rNum, int acmNum,String acmName, String memName, String acmPhone, String acmType,
 			int acmGrade, String acmPower, String status, String acmAddress) {
 		super();
-		this.rNum = rNum;
 		this.acmNum=acmNum;
 		this.acmName = acmName;
 		this.memName = memName;
@@ -263,18 +267,6 @@ public class Acm implements Serializable{
 
 
 
-	public int getrNum() {
-		return rNum;
-	}
-
-
-
-	public void setrNum(int rNum) {
-		this.rNum = rNum;
-	}
-
-
-
 	public String getMemName() {
 		return memName;
 	}
@@ -289,7 +281,7 @@ public class Acm implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Acm [rNum=" + rNum + ", acmNum=" + acmNum + ", acmName=" + acmName + ", memName=" + memName
+		return "Acm [acmNum=" + acmNum + ", acmName=" + acmName + ", memName=" + memName
 				+ ", memNum=" + memNum + ", acmPhone=" + acmPhone + ", acmAddress=" + acmAddress + ", acmType="
 				+ acmType + ", acmGrade=" + acmGrade + ", acmDescriptA=" + acmDescriptA + ", acmDescriptB="
 				+ acmDescriptB + ", acmCoordX=" + acmCoordX + ", acmCoordY=" + acmCoordY + ", acmDistrict="

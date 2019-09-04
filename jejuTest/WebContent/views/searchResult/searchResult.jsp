@@ -127,26 +127,26 @@
         .etc{
         	padding-left:0;
         }
-        .wrap-loading{		
+         .wrap-loading{		
 		    position: fixed;
 		    left:0;
 		    right:0;
 		    top:0;
 		    bottom:0;
-		    background: rgba(0,0,0,0.2);
+		    display:none;
 		}
-		.wrap-loading div{
+		/* .wrap-loading div{
 			position: fixed;
 	        top:50%;
 	        left:50%;
 	        margin-left: auto;
 	        margin-right: auto;
 	        margin-top: -21px;
-	    }	
-	    .display-none{
+	    }	 */ 
+	    /* .wrap-loading{
 	        display:none;
 	        timeToHide:2000;
-	    }
+	    } */
 </style>
 </head>
 <body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
@@ -157,9 +157,7 @@
     
     <section class="section resultSection container" id="searchResult"">
         
-		<div class="wrap-loading display-none">
-		    <div><img src="<%=contextPath%>/resources/images/loading.gif"></div>
-		</div>
+		
 		
           <aside>
             <hr>
@@ -230,8 +228,12 @@
 				
 				$(".sFilter").change(function(){
 					page = 1;
-					listReload();			
 					$('html, body').animate( { scrollTop : 750 }, 400 );	/* 필터 클릭시 스크롤 위로 올려줌 */
+					$('.wrap-loading').addClass('loading');
+			    	$('.wrap-loading').css('display','block');
+			    	window.setTimeout(function(){$('.wrap-loading').removeClass('loading');},1000);
+			    	window.setTimeout(function(){listReload();},800);
+			    	window.setTimeout(function(){$('.wrap-loading').css('display','none');},1000);		
 				});					
 				
 				
@@ -343,14 +345,15 @@
 					    										    					
 					    					var str = "";
 					    					
+					    										    					
 					    					$.each(result["acmList"], function(index, value){
 				    							
 								    			str += '<li>'+
 															'<div class="test resultWrap aa" id="resultAcmDiv">'+
 															'<div class="d1 dd aa">'+
 																'<div class="d3 aa title">'+
-																	'<a href="#" style="font-weight: bold; font-size: 1.5em;">'+value.acmName +'</a>'+'<br>'+
-																	'<label style="font-size:10px;">'+value.acmAddress+'</label>'+
+																	'<a style="font-weight: bold; font-size: 1.5em; color:#fd7e14;">'+value.acmName +'</a>'+'<br>'+
+																	'<label style="font-size:12px;">'+value.acmAddress+'</label>'+
 																'</div>'+
 																'<div class="d4 aa">'+
 																	'<div class="dd d5 aa">';
@@ -389,10 +392,10 @@
 				    			/*console.log("통신실패");*/
 				    		},	/* error close */
 				    		beforeSend:function(){
-				    			$('.wrap-loading').removeClass('display-none');
+				    			/* $('.wrap-loading').addClass('loading');
 				    			window.setTimeout(function(){
-			    					  $('.wrap-loading').addClass('display-none');
-			    				  },800);
+			    					  $('.wrap-loading').removeClass('loading');
+			    				  },1000); */
 				    		},
 				    		complete:function(){
 				    			
@@ -430,9 +433,9 @@
 								<div class="test resultWrap aa" id="resultAcmDiv">
 									<div class="d1 dd aa">
 										<div class="d3 aa title">
-											<a href="#" style="font-weight: bold; font-size: 1.5em;"><%=acm.getAcmName()%></a>
+											<a style="font-weight: bold; font-size: 1.5em; color:#fd7e14;"><%=acm.getAcmName()%></a>
 											<br>
-											<label style="font-size:10px;"><%=acm.getAcmAddress()%></label>
+											<label style="font-size:12px;"><%=acm.getAcmAddress()%></label>
 										</div>
 										<div class="d4 aa">
 											<div class="dd d5 aa">
@@ -496,8 +499,13 @@
 						    	
 						    	page++;
 						    	
+						    	$('.wrap-loading').addClass('loading');
+						    	$('.wrap-loading').css('display','block');
+						    	window.setTimeout(function(){$('.wrap-loading').removeClass('loading');},1000);
+						    	window.setTimeout(function(){listReload();},800);
+						    	window.setTimeout(function(){$('.wrap-loading').css('display','none');},1000);
 						    	
-						    	listReload();
+						    	/* listReload(); */
 							}
 						});
 					});
@@ -518,7 +526,9 @@
     		<!-- <div class="test aa footerDiv" style="width:100%; height:500px;">
 			    
 			    </div> -->
-
+		<div class="wrap-loading ui form" style="position: fixed;">
+		    <%-- <div><img src="<%=contextPath%>/resources/images/loading.gif"></div> --%>
+		</div>
    			
     		<%-- 풋터 --%>
     		<%@ include file="../main/footer.jsp" %>
