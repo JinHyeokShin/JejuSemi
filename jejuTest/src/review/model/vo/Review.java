@@ -8,9 +8,11 @@ public class Review {
 	private int reviewNum;			// 후기 번호
 	private int memNum;				// 회원 번호
 	private int acmNum;				// 숙소 번호
+	private String reservNum;		// 예약 번호	*FK 아님*
 	private String memName;			// 작성자 이름
 	private String acmName;			// 숙소 이름
 	private int reviewScore;		// 숙소 별점
+	private String reviewTitle;		// 후기 제목
 	private String reviewContent;	// 후기 내용
 	private Date reviewDate;		// 후기 작성 날짜
 	
@@ -19,7 +21,8 @@ public class Review {
 	public Review() {
 		
 	}
-
+	
+	
 
 	public Review(int reviewNum, int memNum, int acmNum, int reviewScore, String reviewContent, Date reviewDate) {
 		super();
@@ -43,6 +46,29 @@ public class Review {
 		this.reviewScore = reviewScore;
 		this.reviewContent = reviewContent;
 		this.reviewDate = reviewDate;
+	}
+	
+	
+	
+
+	public Review(int memNum, int acmNum, String reservNum, int reviewScore, String reviewTitle, String reviewContent) {
+		super();
+		this.memNum = memNum;
+		this.acmNum = acmNum;
+		this.reservNum = reservNum;
+		this.reviewScore = reviewScore;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
+	}
+
+
+	public Review(int memNum, int acmNum, int reviewScore, String reviewTitle, String reviewContent) {
+		super();
+		this.memNum = memNum;
+		this.acmNum = acmNum;
+		this.reviewScore = reviewScore;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
 	}
 
 
@@ -133,6 +159,30 @@ public class Review {
 
 	public void setAcmName(String acmName) {
 		this.acmName = acmName;
+	}
+	
+	
+	
+
+	public String getReviewTitle() {
+		return reviewTitle;
+	}
+
+
+	public void setReviewTitle(String reviewTitle) {
+		this.reviewTitle = reviewTitle;
+	}
+
+	
+	
+
+	public String getReservNum() {
+		return reservNum;
+	}
+
+
+	public void setReservNum(String reservNum) {
+		this.reservNum = reservNum;
 	}
 
 

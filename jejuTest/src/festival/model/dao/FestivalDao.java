@@ -91,8 +91,7 @@ public class FestivalDao {
 			close(rset);
 			close(pstmt);
 		}
-		return festivalImgView;
-		
+		return festivalImgView;		
 	}
 	
 	

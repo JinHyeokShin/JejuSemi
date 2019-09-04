@@ -88,35 +88,35 @@
 	<div class="myPageSection aa">
 		<div class="container myPageContainer aa">
 			<div class="myPageWrap aa bg-light">
-				<div class="mp01 aa">
+				<div class="mp01 aa" style="text-indent: 30px">
 					<span style="font-weight:bold; font-size:3em; color:#fd7e14; line-height:initial;"><%=memName %></span>
 				</div>
 				<div class="mp02 aa">
 					<div class="mp03 aa">
 						<div class="ui relaxed divided list">
-						  <div class="item" style="padding-top: 20px">
-						    <i class="large github middle aligned icon"></i>
+						  <div class="item" style="padding-top: 20px; padding-left: 20px;">
+						    
 						    <div class="content"">
 						      <a class="header">내 정보 수정</a>
 						      <div class="description">회원님의 계정 정보를 수정합니다.</div>
 						    </div>
 						  </div>
-						  <div class="item" style="padding-top: 20px">
-						    <i class="large github middle aligned icon"></i>
+						  <div class="item" style="padding-top: 20px; padding-left: 20px;">
+						    
 						    <div class="content">
 						      <a class="header" href="<%=contextPath%>/reserv.me?memNum=<%=m.getMemNum()%>">예약 내역 조회</a>
 						      <div class="description">회원님의 모든 예약 내역을 관리합니다.</div>
 						    </div>
 						  </div>
-						  <div class="item" style="padding-top: 20px">
-						    <i class="large github middle aligned icon"></i>
+						  <div class="item" style="padding-top: 20px; padding-left: 20px;">
+						    
 						    <div class="content">
 						      <a class="header">내가 쓴 리뷰 조회</a>
 						      <div class="description">회원님이 작성한 리뷰들을 관리합니다.</div>
 						    </div>
 						  </div>
-						  <div class="item" style="padding-top: 18px">
-						    <i class="large github middle aligned icon"></i>
+						  <div class="item" style="padding-top: 18px; padding-left: 20px;">
+						    
 						    <div class="content">
 						      <a class="header">찜한 숙소</a>
 						      <div class="description">즐겨찾기한 숙소들을 조회합니다.</div>

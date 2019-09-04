@@ -17,6 +17,7 @@ public class Reservation {
 	private String reservRequire;	// 예약 문의
 	private String noShow;			// 노쇼
 	private String status;			// 상태
+//	private String reviewStatus;	// 리뷰 등록 여부(y/n)
 	
 	public Reservation() {
 		

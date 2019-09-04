@@ -27,6 +27,9 @@
 <script src="<%= request.getContextPath() %>/resources/js/form.min.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/form.min.css">
 
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/icon.min.css">
+
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/input.min.css">
 
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
@@ -130,7 +133,7 @@
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav3">RentCar</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">AboutJeju</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="#section-about" id="nav5">Recommand</a></li>              
-                <li class="nav-item"><a class="nav-link" href="#section-menus" id="nav6">TourSpot</a></li>   
+                <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/tourList.to" id="nav6">TourSpot</a></li>   
                 <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/festival.do" id="nav7">JejuFestival</a></li>         
                 <li class="nav-item"><a class="nav-link" href="#section-contact" id="nav8">ContactUs</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#section-apply" id="nav9">ApplyFor</a></li> -->
