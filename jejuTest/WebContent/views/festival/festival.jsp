@@ -121,16 +121,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -154,15 +154,15 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid"style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px">
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px">
 									 	<%=list.get(i).getFestivalName()%>
 									</span>
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									<p style="padding-top: 5px; text-align: center">
@@ -186,16 +186,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -220,16 +220,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -254,16 +254,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -288,16 +288,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -322,16 +322,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -357,16 +357,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -392,16 +392,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -427,16 +427,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -462,16 +462,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
@@ -497,16 +497,16 @@
 						<% FestivalImg img = new FestivalService().festivalImgView(list.get(i).getFestivalNum());%>
 
 						<div class="col-md-4">
-							<div class="travel-menu mb-5" style="height: 530px; background: black; opacity:0.8;">
+							<div class="travel-menu mb-5" style="height: 520px; background: black; opacity:0.8;">
 								<img src="<%=img.getFestivalImgPath()%>" class="img-fluid" style="width: 100%; height: 320px;">
 								
 								<div style="opacity: 0.8; padding-top: 20px">
 								
-									<span class="d-block text-primary h4" style="text-align: center; padding: 15px"> 
+									<span class="d-block text-primary h3" style="text-align: center; padding: 15px"> 
 										<%=list.get(i).getFestivalName()%>
 									</span>
 									
-									<p class="text-white" style="text-align: center">
+									<p class="text-white h6" style="text-align: center">
 										<%=list.get(i).getFestivalDescript()%>
 									</p>
 									
