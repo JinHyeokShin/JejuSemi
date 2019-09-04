@@ -54,7 +54,7 @@
                   <li>WordPress Installation</li>
                   <li>24/7 Support</li>
                 </ul>
-                <a class="btn btn-theme" onclick="goPayment();">Order Now</a>
+                <a class="btn btn-theme" onclick="goPayment(30);">Order Now</a>
               </div>
               <!-- end custombox -->
             </div>
@@ -78,7 +78,7 @@
                   <li>WordPress Installation</li>
                   <li>24/7 Support</li>
                 </ul>
-                <a class="btn btn-theme" onclick="goPayment();">Order Now</a>
+                <a class="btn btn-theme" onclick="goPayment(60);">Order Now</a>
               </div>
               <!-- end custombox -->
             </div>
@@ -102,7 +102,7 @@
                   <li>WordPress Installation</li>
                   <li>24/7 Support</li>
                 </ul>
-                <a class="btn btn-theme" onclick="goPayment();">Order Now</a>
+                <a class="btn btn-theme" onclick="goPayment(90);">Order Now</a>
               </div>
               <!-- end custombox -->
             </div>
@@ -115,8 +115,10 @@
       <!-- /wrapper -->
     </section>
     <script>
-  	function goPayment(){
-  		location.href ="<%= request.getContextPath() %>/payment.ow"
+  	function goPayment(flag){
+  		location.href ="<%= request.getContextPath() %>/payment.ow?flag="+flag;
+  		system.out.println(flag);
+  		
   	}
     </script>
         <%@ include file="../../../views/adminowner/common/footer.jsp" %>

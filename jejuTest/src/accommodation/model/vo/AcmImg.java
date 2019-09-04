@@ -1,7 +1,13 @@
 package accommodation.model.vo;
 
-public class AcmImg {
+import java.io.Serializable;
+
+public class AcmImg implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2434013887610116030L;
 	private int imgNum;
 	private String imgPath;
 	private int acmNum;

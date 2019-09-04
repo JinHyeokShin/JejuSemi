@@ -33,7 +33,11 @@ public class Acm implements Serializable{
 	public Acm() {
 		
 	}
-	
+	public Acm(int acmNum) {
+		super();
+		this.acmNum = acmNum;
+	}
+
 	
 
 	public int getMinPrice() {

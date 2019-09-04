@@ -1,6 +1,7 @@
-package adminowner.owner;
+package power.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.model.vo.Member;
+import accommodation.model.service.AcmService;
+import accommodation.model.vo.Acm;
+import accommodation.model.vo.AcmImg;
+import accommodation.model.vo.Room;
 import power.model.service.PowerService;
 import power.model.vo.Power;
 
@@ -16,13 +20,13 @@ import power.model.vo.Power;
  * Servlet implementation class GoPayment
  */
 @WebServlet("/payment.ow")
-public class GoPayment extends HttpServlet {
+public class GoPaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GoPayment() {
+    public GoPaymentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +35,14 @@ public class GoPayment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*request.setCharacterEncoding("utf-8");
+		
+		int flag = Integer.parseInt(request.getParameter("flag"));
+		
+		request.setAttribute("flag", flag);
 		
 		
-		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-		int ownerNum = loginUser.getMemNum(); 
-		Power p = new Power();
-		p.setOwnerNum(ownerNum);
-		
-		int result = new PowerService().ownerInsertPower(p ,ownerNum);
-		
-		if(result > 0) {
-			response.sendRedirect("page.ow");
-		}*/
 		request.getRequestDispatcher("views/adminowner/owner/payment.jsp").forward(request, response);
+		
 	}
 
 	/**

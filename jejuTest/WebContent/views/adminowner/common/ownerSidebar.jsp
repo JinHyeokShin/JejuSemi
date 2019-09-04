@@ -7,7 +7,7 @@
 
 <%  Member loginUser = (Member)session.getAttribute("loginUser");
 	ArrayList<AcmImg> acmImgList = (ArrayList<AcmImg>)session.getAttribute("acmImgList");
-	 Acm acm = (Acm)session.getAttribute("acm");
+	Acm acm = (Acm)session.getAttribute("acm");
 %>
 
 	

@@ -73,11 +73,8 @@ public class LoginServlet extends HttpServlet {
 				
 			} else if (loginUser.getMemType().equals("O")) {
 				int memNum = loginUser.getMemNum();
-				
 				Acm acm = new MemberService().getAcm(memNum);
-				
 				int acmNum = acm.getAcmNum();
-				
 				ArrayList<AcmImg> acmImgList = new MemberService().acmImgList(acmNum);
 				
 				session.setAttribute("acmImgList", acmImgList);
