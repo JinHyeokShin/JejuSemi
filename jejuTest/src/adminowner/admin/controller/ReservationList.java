@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import accommodation.model.vo.Acm;
 import adminowner.admin.model.service.AdminService;
 import adminowner.admin.model.vo.PageInfo;
+import reservation.model.vo.Reservation;
 
 /**
- * Servlet implementation class GoAdminSearchAcm
+ * Servlet implementation class ReservationList
  */
-@WebServlet("/adminSearchAcm.ad")
-public class GoAdminSearchAcm extends HttpServlet {
+@WebServlet("/ReservationList.ad")
+public class ReservationList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GoAdminSearchAcm() {
+    public ReservationList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +32,19 @@ public class GoAdminSearchAcm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int count = new AdminService().countAcm();
+		int count = new AdminService().reservationCount();
 		int currentPage; 
 	    int pageLimit;   
 	    int maxPage;    
 	    int startPage;  
 	    int endPage;
 	    int boardLimit = 10; 
+	    
 	    currentPage = 1;
+	    
 	    if(request.getParameter("currentPage") != null) {
 	         currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	      }
+	    }
 	      
 	    pageLimit = 5;
 	    maxPage = (int)Math.ceil((double)count/boardLimit);
@@ -52,15 +54,15 @@ public class GoAdminSearchAcm extends HttpServlet {
 	      if(maxPage < endPage) {
 	         endPage = maxPage; 
 	      }
-	    
-		ArrayList<Acm> list = new AdminService().selectAcm(currentPage, boardLimit);
+		
+		
+		ArrayList<Reservation> rList = new AdminService().reservationSearch(currentPage, boardLimit);
 		PageInfo pi = new PageInfo(currentPage,count,pageLimit,maxPage,startPage,endPage,boardLimit);
 		
 		request.setCharacterEncoding("utf-8");
-		request.setAttribute("acmList", list);
-		request.setAttribute("pi", pi);
-		request.getRequestDispatcher("views/adminowner/admin/searchAcm.jsp").forward(request, response);
-	
+		request.setAttribute("rlist", rList);
+		request.setAttribute("rPi",pi);
+		request.getRequestDispatcher("views/adminowner/admin/reservationList.jsp").forward(request, response);
 	}
 
 	/**

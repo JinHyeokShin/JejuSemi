@@ -107,7 +107,7 @@ ul.sidebar-menu li ul.sub li.active a {
 						<thead>
 							<tr id="tr1">
 								<th style="width:50px;">번호</th>
-								<th style="width:500px;">리뷰제목</th>
+								<th style="width:700px;">리뷰제목</th>
 								<th>숙소</th>
 								<th>점수</th>
 								<th>작성자</th>
@@ -123,11 +123,11 @@ ul.sidebar-menu li ul.sub li.active a {
 								<%for(Review i:rList){ %>
 									<tr>
 										<td><%=i.getReviewNum() %></td>
-										<td><%=i.getMemName() %></td>
-										<td><%=i.getAcmName() %></td>
-										<td><%=i.getReservNum() %></td>
-										<td><%=i.getReviewScore() %></td>
 										<td><%=i.getReviewTitle() %></td>
+										<td><%=i.getAcmName() %></td>
+										<td><%=i.getReviewScore() %></td>
+										<td><%=i.getMemName() %></td>
+										<td><%=i.getReservNum() %></td>
 										<td><%=i.getReviewDate() %></td>
 									</tr>
 								<%} %>

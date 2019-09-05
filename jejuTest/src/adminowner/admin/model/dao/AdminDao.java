@@ -16,6 +16,7 @@ import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.Notice;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
+import reservation.model.vo.Reservation;
 import review.model.vo.Review;
 
 public class AdminDao {
@@ -371,14 +372,16 @@ public class AdminDao {
          rset=pstmt.executeQuery();
          
          while(rset.next()) {
-            list.add(new Review(rset.getInt(2),
-                           rset.getString(3),
-                           rset.getString(4),
-                           rset.getString(5),
-                           rset.getInt(6),
-                           rset.getString(7),
-                           rset.getString(8),
-                           rset.getDate(9)
+            list.add(new Review(rset.getInt(2),//REVIEW_NUM
+            		
+                           rset.getString(3),//MEM_NAME
+                           rset.getString(4),//ACM_NAME
+                           
+                           rset.getString(5),//RES_NUM
+                           rset.getInt(6),//SCORE
+                           rset.getString(7),//TITLE
+                           rset.getString(8),//CONTENT
+                           rset.getDate(9)//DATE
                            
                   ));
          }
@@ -392,6 +395,7 @@ public class AdminDao {
       return list;
    }
    public Review reviewDetail(Connection conn, int rNum) {
+	   System.out.println(rNum);
 	   PreparedStatement pstmt = null;
 	   ResultSet rset = null;
 	   String sql = prop.getProperty("reviewDetail");
@@ -402,14 +406,16 @@ public class AdminDao {
 		pstmt.setInt(1, rNum);
 		rset=pstmt.executeQuery();
 		
-		r.setReviewNum(rset.getInt(2));
-		r.setMemName(rset.getString(3));
-		r.setAcmName(rset.getString(4));
-		r.setReservNum(rset.getString(4));
-		r.setReviewScore(rset.getInt(5));
-		r.setReviewTitle(rset.getString(6));
-		r.setReviewContent(rset.getString(7));
-		r.setReviewDate(rset.getDate(8));
+		if(rset.next()) {
+			r.setReviewNum(rset.getInt(2));
+			r.setMemName(rset.getString(3));
+			r.setAcmName(rset.getString(4));
+			r.setReservNum(rset.getString(5));
+			r.setReviewScore(rset.getInt(6));
+			r.setReviewTitle(rset.getString(7));
+			r.setReviewContent(rset.getString(8));
+			r.setReviewDate(rset.getDate(9));
+		}
 		
 		
 	} catch (SQLException e) {
@@ -420,8 +426,64 @@ public class AdminDao {
 		close(pstmt);
 	}
 	return r;
-	   
-	   
    }
-  
+   public int reservationCount(Connection conn) {
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   int result =0;
+	   String sql = prop.getProperty("reservationCount");
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			result = rset.getInt(1);
+		}
+				
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	   return result;
+   }
+   public ArrayList<Reservation> reservationSearch(Connection conn,int currentPage,int boardLimit ){
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   String sql =prop.getProperty("reservationSearch");
+	   ArrayList<Reservation> rList = new ArrayList<Reservation>();
+	   int startRow = (currentPage -1 ) * boardLimit+1;
+       int endRow = startRow + boardLimit -1;
+	   try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, endRow);
+		rset=pstmt.executeQuery();
+		while(rset.next()){
+		rList.add(new Reservation(rset.getString(2),
+									rset.getString(3),
+									rset.getString(4),
+									rset.getString(5),
+									rset.getInt(6),
+									rset.getString(7),
+									rset.getString(8),
+									rset.getInt(9),
+									rset.getString(10),
+									rset.getString(11),
+									rset.getString(12),
+									rset.getString(13),
+									rset.getString(14),
+									rset.getString(15)
+				));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	   return rList;
+   }
 }
