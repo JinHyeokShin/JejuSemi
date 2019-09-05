@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import adminowner.admin.model.service.AdminService;
+import adminowner.admin.model.vo.Notice;
 import management.model.service.ManagementService;
 import management.model.vo.Management;
 import management.model.vo.PageInfo;
@@ -33,7 +35,8 @@ public class OwnerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		
 		int memNum = ((Member)request.getSession().getAttribute("loginUser")).getMemNum();
 		// 총 게시글 갯수
 		int reserveCount = new ManagementService().getOwnerListCount(memNum);
@@ -93,7 +96,16 @@ public class OwnerServlet extends HttpServlet {
 			endPage = maxPage;	// maxPage = 13, endPage = 13
 		}
 		
+		ArrayList<Notice> nList = new AdminService().selectNList();
 		
+		if(nList!=null) {
+			request.setAttribute("nList",nList);
+		}else {
+			request.setAttribute("msg", "공지사항 리스트 조회 실패");
+//			오류페이지  보내주기.
+			//			request.getRequestDispatcher()
+		}
+	
 		// 현재 페이지(currentPage)에 따른 게시글 리스트 조회하기
 		ArrayList<Management> list = new ManagementService().ownerSelectList(currentPage, boardLimit, ((Member)request.getSession().getAttribute("loginUser")).getMemNum());
 		

@@ -335,7 +335,7 @@ a{
 
   <script>
   	function goDashBoard(){
-  		location.href = "<%= request.getContextPath() %>/ownerIndex.ow";
+  		location.href = "<%= request.getContextPath() %>/page.ow";
   	}
   	function goManagement(){
   		location.href ="<%= request.getContextPath() %>/management.ow";
