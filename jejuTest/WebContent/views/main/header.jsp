@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/semantic.min.css">
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/item.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/input.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/button.min.css">
 
 <script src="<%= request.getContextPath() %>/resources/js/form.min.js"></script>
@@ -30,8 +31,10 @@
 
 <script src="<%= request.getContextPath() %>/resources/js/accordion.min.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/accordion.min.css">
-<script src="<%= request.getContextPath() %>/resources/js/package.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/index.js"></script>
+
+<%-- <script src="<%= request.getContextPath() %>/resources/js/package.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/index.js"></script> --%>
+
 
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
