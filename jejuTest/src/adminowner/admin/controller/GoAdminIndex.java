@@ -29,6 +29,7 @@ public class GoAdminIndex extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("adminIndex.ad");
 		AdminIndex ai = new AdminService().adminIndex();
 		if(ai!=null) {
 			System.out.println("adIndex ai가져옴 : "+ai);

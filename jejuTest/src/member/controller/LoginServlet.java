@@ -66,7 +66,6 @@ public class LoginServlet extends HttpServlet {
 				// 로그인 완료 후 다시 메인 페이지로
 				response.sendRedirect(request.getContextPath());
 			} else if ((loginUser.getMemType()).equals("A")) {
-				
 				// 로그인 완료 후 다시 메인 페이지로
 				response.sendRedirect("adminIndex.ad");
 				

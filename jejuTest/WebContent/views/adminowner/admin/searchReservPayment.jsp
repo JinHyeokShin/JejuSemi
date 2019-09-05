@@ -57,7 +57,32 @@ ul.sidebar-menu li ul.sub li.active a {
 </style>
 </head>
 <body>
-
+	<script>
+		$(function(){
+			console.log(<%=rCurrentPage%>);
+			if(<%=rCurrentPage%> > 1){
+		 		$('#li2').attr('class','active');
+		 		$('#reservationList').attr('class','active');
+				
+		 		$('#li1').removeAttr('class','active');
+		 		$('#paymentList').removeAttr('class','active');
+	
+		 		$('#hide1').hide();
+		 	};
+			
+		});
+		function fn1(){
+			console.log("fn1");
+			$('#hide1').show();
+			$('#hide2').hide();
+		}
+		function fn2(){
+			console.log("fn2");
+			$('#hide1').hide();
+			$('#hide2').show();
+			
+		}
+	</script>
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
@@ -72,20 +97,25 @@ ul.sidebar-menu li ul.sub li.active a {
 						<div class="row content-panel">
 							<div class="panel-heading">
 								<ul class="nav nav-tabs nav-justified">
-									<li class="active"><a data-toggle="tab" href="#noticeList"
-										class="contact-map">공지사항 조회</a></li>
-									<li><a data-toggle="tab" href="#noticeWrite">공지사항 작성</a></li>
+									
+									<li id="li1" class="active">
+									<a data-toggle="tab" onclick="fn1();" href="#paymentList" class="contact-map">결제 조회</a>
+									</li>
+									
+									<li id="li2" >
+									<a data-toggle="tab" onclick="fn2();"href="#reservationList">예약 조회</a>
+									
+									</li>
 								</ul>
 
 							</div>
 							<!-- /panel-heading -->
 							<div class="panel-body">
 								<div class="tab-content">
-
-
-									<div id="noticeList" class="tab-pane active">
+								
+									<div id="paymentList" class="tab-pane active">
 										<div class="col-md-12 mt">
-											<div class="content-panel">
+											<div id="hide1" class="content-panel">
 												<table id="myTable1" class="table table-bordered display"
 													style="font-size: 15px;">
 													<thead>
@@ -122,6 +152,27 @@ ul.sidebar-menu li ul.sub li.active a {
 														<%}; %>
 													</tbody>
 												</table>
+												<div class="pagingArea" align="right">
+													<%if(pCurrentPage == 1){ %>
+														<button class="btn btn-default" disabled> &lt; previous </button>
+													<%}else{ %>
+														<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?pCurrentPage=<%=pCurrentPage-1%>'">&lt; previous</button>
+													<%} %>
+													
+													<%for(int p = pStartPage; p <= pEndPage; p++){ %>
+														<%if(p == pCurrentPage){ %>
+															<button class="btn btn-warning" disabled> <%= p %> </button>
+														<%}else{ %>
+															<button class="btn" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?pCurrentPage=<%= p %>'"> <%= p %> </button>
+														<%} %>
+													<%} %>
+													
+													<%if(pCurrentPage == pMaxPage){ %>
+														<button class="btn btn-default" disabled> next &gt; </button>
+													<%}else { %>
+														<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?pCurrentPage=<%= pCurrentPage+1 %>'">next &gt;</button>
+													<%} %>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -130,9 +181,9 @@ ul.sidebar-menu li ul.sub li.active a {
 
 
 									<!-- 									공지사항작성 -->
-									<div id="noticeWrite" class="tab-pane">
+									<div id="reservationList" class="tab-pane">
 										<div class="col-md-12 mt">
-											<div class="content-panel">
+											<div id="hide2" class="content-panel">
 												<table id="myTable2" class="table table-bordered display"
 													style="font-size: 10px;">
 													<thead>
@@ -180,6 +231,27 @@ ul.sidebar-menu li ul.sub li.active a {
 														<%}; %>
 													</tbody>
 												</table>
+												<div class="pagingArea" align="right">
+													<%if(rCurrentPage == 1){ %>
+														<button class="btn btn-default" disabled> &lt; previous </button>
+													<%}else{ %>
+														<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?rCurrentPage=<%=rCurrentPage-1%>'">&lt; previous</button>
+													<%} %>
+													
+													<%for(int p = rStartPage; p <= rEndPage; p++){ %>
+														<%if(p == rCurrentPage){ %>
+															<button class="btn btn-warning" disabled> <%= p %> </button>
+														<%}else{ %>
+															<button class="btn" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?rCurrentPage=<%= p %>'"> <%= p %> </button>
+														<%} %>
+													<%} %>
+													
+													<%if(rCurrentPage == rMaxPage){ %>
+														<button class="btn btn-default" disabled> next &gt; </button>
+													<%}else { %>
+														<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?rCurrentPage=<%= rCurrentPage+1 %>'">next &gt;</button>
+													<%} %>
+												</div>
 											</div>
 											<!-- /col-lg-8 -->
 										</div>

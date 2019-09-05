@@ -18,7 +18,7 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class MemSearchTable
  */
-@WebServlet("/notUsed.ad")
+@WebServlet("/notUsed")
 public class TableMemSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

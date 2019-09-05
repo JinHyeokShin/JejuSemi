@@ -43,13 +43,6 @@ ul.sidebar-menu li ul.sub li.active a {
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.css"/> -->
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap.css"/> -->
- 
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap.js"></script> -->
 
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
@@ -69,20 +62,39 @@ $(document).ready(function(){
 // 					data = data2;
 // 		}
 // 		});
+// 			var table = $('#myTable').DataTable({
+// 				url:'/notUsed.ad',
+// 				columns: [
+// 				{"data":'memNum'},
+// 				{"data":'memId'},
+// 				{"data":'memName'},
+// 				{"data":'memGender'},
+// 				{"data":'memPhone'},
+// 				{"data":'nationCode'},
+// 				{"data":'memPoint'},
+// 				{"data":'memType'},
+// 				{"data":'memStatus'},
+// 				{"data":'enrollDate'},
+// 				{"data":'noShow'}
+// 			    ]
+// 			});
 			var table = $('#myTable').DataTable({
-				url:'/notUsed.ad',
+				ajax: {
+			        url: 'notUsed',
+			        dataSrc: 'data'
+				},
 				columns: [
 				{"data":'memNum'},
-				{"data":'memId'},
-				{"data":'memName'},
-				{"data":'memGender'},
-				{"data":'memPhone'},
-				{"data":'nationCode'},
-				{"data":'memPoint'},
-				{"data":'memType'},
 				{"data":'memStatus'},
+				{"data":'memName'},
+				{"data":'noShow'},
+				{"data":'memPhone'},
+				{"data":'memType'},
+				{"data":'memGender'},
+				{"data":'memPoint'},
 				{"data":'enrollDate'},
-				{"data":'noShow'}
+				{"data":'memId'},
+				{"data":'nationCode'}
 			    ]
 			});
 });
