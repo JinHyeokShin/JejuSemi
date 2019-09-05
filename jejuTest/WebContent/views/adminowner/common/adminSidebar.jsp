@@ -378,7 +378,8 @@ align:middle;
   		location.href ="<%= request.getContextPath() %>/adminSearchReview.ad"
   	}
   	function goSearchReservPayment(){
-  		location.herf ="<%= request.getContextPath()%>/goSearchReservPayment.ad"
+  		console.log("click");
+  		location.href ="<%= request.getContextPath() %>/goSearchReservPayment.ad"
   	}
   	
   	function goInquiry(){

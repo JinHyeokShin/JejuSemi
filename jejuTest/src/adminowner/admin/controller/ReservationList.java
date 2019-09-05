@@ -32,6 +32,8 @@ public class ReservationList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("ReservationListServletSucc");
 		int count = new AdminService().reservationCount();
 		int currentPage; 
 	    int pageLimit;   

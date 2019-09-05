@@ -27,6 +27,7 @@ public class GoAdminSearchReservPayment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		request.getRequestDispatcher("views/adminowner/admin/reservationList.jsp").forward(request, response);
+		System.out.println("goServletSucc");
 		response.sendRedirect("ReservationList.ad");
 	}
 

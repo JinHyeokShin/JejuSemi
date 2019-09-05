@@ -1,18 +1,17 @@
 package adminowner.admin.model.vo;
 
-import java.sql.Date;
 
 public class Notice {
 	private int nNum;
 	private String nTitle;
 	private String nContent;
-	private Date nDate;
-	private Date nModifyDate;
+	private String nDate;
+	private String nModifyDate;
 	private String nStatus;
 	public Notice() {
 		
 	}
-	public Notice(int nNum, String nTitle, String nContent, Date nDate, Date nModifyDate, String nStatus) {
+	public Notice(int nNum, String nTitle, String nContent, String nDate, String nModifyDate, String nStatus) {
 		super();
 		this.nNum = nNum;
 		this.nTitle = nTitle;
@@ -46,16 +45,16 @@ public class Notice {
 	public void setnContent(String nContent) {
 		this.nContent = nContent;
 	}
-	public Date getnDate() {
+	public String getnDate() {
 		return nDate;
 	}
-	public void setnDate(Date nDate) {
+	public void setnDate(String nDate) {
 		this.nDate = nDate;
 	}
-	public Date getnModifyDate() {
+	public String getnModifyDate() {
 		return nModifyDate;
 	}
-	public void setnModifyDate(Date nModifyDate) {
+	public void setnModifyDate(String nModifyDate) {
 		this.nModifyDate = nModifyDate;
 	}
 	public String getnStatus() {
