@@ -40,6 +40,7 @@ public class AdminService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 	
@@ -52,12 +53,12 @@ public class AdminService {
 	public int insertNotice(Notice n) {
 		Connection conn = getConnection();
 		int result = new AdminDao().insertNotice(conn, n);
-		close(conn);
 		if(result>0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 	public Notice selectNotice(int nNum) {
@@ -74,6 +75,7 @@ public class AdminService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 	public int deleteNotice(int nNum) {
@@ -84,6 +86,7 @@ public class AdminService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 	
@@ -107,6 +110,7 @@ public class AdminService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 	

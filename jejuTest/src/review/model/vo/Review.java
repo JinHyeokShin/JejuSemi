@@ -13,7 +13,7 @@ public class Review {
 	private int reviewScore;		// 숙소 별점
 	private String reviewTitle;		// 후기 제목
 	private String reviewContent;	// 후기 내용
-	private Date reviewDate;		// 후기 작성 날짜
+	private String reviewDate;		// 후기 작성 날짜
 	
 	
 	
@@ -23,7 +23,7 @@ public class Review {
 	
 	
 
-	public Review(int reviewNum, int memNum, int acmNum, int reviewScore, String reviewContent, Date reviewDate) {
+	public Review(int reviewNum, int memNum, int acmNum, int reviewScore, String reviewContent, String reviewDate) {
 		super();
 		this.reviewNum = reviewNum;
 		this.memNum = memNum;
@@ -37,7 +37,7 @@ public class Review {
 	
 	
 	public Review(int reviewNum, int memNum, int acmNum, String reservNum, int reviewScore, String reviewTitle,
-			String reviewContent, Date reviewDate) {
+			String reviewContent, String reviewDate) {
 		super();
 		this.reviewNum = reviewNum;
 		this.memNum = memNum;
@@ -53,7 +53,7 @@ public class Review {
 
 	//관리자 리뷰조회
 	public Review(int reviewNum, String memName, String acmName, String reservNum, int reviewScore, String reviewTitle,
-			String reviewContent, Date reviewDate) {
+			String reviewContent, String reviewDate) {
 		super();
 		this.reviewNum = reviewNum;
 		this.reservNum = reservNum;
@@ -138,12 +138,12 @@ public class Review {
 	}
 
 
-	public Date getReviewDate() {
+	public String getReviewDate() {
 		return reviewDate;
 	}
 
 
-	public void setReviewDate(Date reviewDate) {
+	public void setReviewDate(String reviewDate) {
 		this.reviewDate = reviewDate;
 	}
 

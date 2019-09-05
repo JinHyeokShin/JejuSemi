@@ -112,6 +112,7 @@ public class AdminDao {
                     ));
          }
       } catch (SQLException e) {
+    	  
          // TODO Auto-generated catch block
          e.printStackTrace();
       } finally {
@@ -385,7 +386,7 @@ public class AdminDao {
                            rset.getInt(6),//SCORE
                            rset.getString(7),//TITLE
                            rset.getString(8),//CONTENT
-                           rset.getDate(9)//DATE
+                           rset.getString(9)//DATE
                            
                   ));
          }
@@ -418,7 +419,7 @@ public class AdminDao {
 			r.setReviewScore(rset.getInt(6));
 			r.setReviewTitle(rset.getString(7));
 			r.setReviewContent(rset.getString(8));
-			r.setReviewDate(rset.getDate(9));
+			r.setReviewDate(rset.getString(9));
 		}
 		
 		
@@ -439,17 +440,19 @@ public class AdminDao {
 	   try {
 		pstmt = conn.prepareStatement(sql);
 		rset = pstmt.executeQuery();
-		if(rset.next()) {
+//		if(rset.next()) {
+//			result = rset.getInt(1);
+//		}
+		while(rset.next()) {
 			result = rset.getInt(1);
 		}
-				
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally {
-		close(rset);
-		close(pstmt);
-	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
 	   return result;
    }
    public ArrayList<Reservation> reservationSearch(Connection conn,int currentPage,int boardLimit ){
