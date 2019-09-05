@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="accommodation.model.vo.*, java.text.SimpleDateFormat, java.util.*, accommodation.model.service.*"%>
+    pageEncoding="UTF-8" import="accommodation.model.vo.*, java.text.SimpleDateFormat, java.util.*, accommodation.model.service.*,
+    							 nation.model.vo.*, review.model.vo.*"%>
     
 <%
 	Acm acm = (Acm)request.getAttribute("acm");
@@ -20,7 +21,8 @@
 	
 	double avg = (double)request.getAttribute("avg");
 	
-	
+	ArrayList<Nation> nationList = (ArrayList<Nation>)request.getAttribute("nationList");
+	ArrayList<ReviewB> reservList = (ArrayList<ReviewB>)request.getAttribute("reservList");
 		
  %>
     
@@ -516,6 +518,20 @@
 			height: 35%;
 			padding: 15px;
 		}
+		#allReview:hover{
+			font-weight:bold;
+			color:#fd7e14;
+			cursor:pointer;
+		}
+		.starR{
+		  background: url('<%= request.getContextPath() %>/resources/images/ico_review.png') no-repeat right 0;
+		  background-size: auto 100%;
+		  width: 30px;
+		  height: 30px;
+		  display: inline-block;
+		  text-indent: -9999px;
+		}
+		.starR.on{background-position:0 0;}
 		
         
 </style>
@@ -797,7 +813,7 @@
                 						<b id="avgPoint" style="font-size: 45px; display: inline-block; float: left;">&nbsp;<%=avg %></b>
                 					</div>
                 					<div class="des3_2_2_1_2 aa ">
-                						<a id="allReview">이 숙소의 모든 리뷰 보러가기</a>
+                						<b id="allReview" >이 숙소의 모든 리뷰 보러가기</b>
                 					</div>
                 				</div>
                 			</div>
@@ -1045,8 +1061,49 @@
       		<p id="result">결과 표시</p>
     	</div>    
     </div>
-    
     <!--  -->
+    
+    
+	<!-- 리뷰 모달 -->
+	
+	<div id="reviewModal" class="popModal">
+		<div class="modal-content" style="width:900px; height:500px; padding:50px;">
+			<span class="close" style="margin-left:auto;">&times;</span>
+			
+			<%for(ReviewB r : reservList){ %>
+			
+			<div class="aa" style="padding-left:30px;padding-right:30px;padding-top:10px;padding-bottom:10px;border-radius:15px;background:#f2f4fb">
+				<b style="font-size:25px; font-weight:bold;"><%=r.getReviewTitle() %></b>
+				<div class="aa review1_2 starRev" style="height:25px; float:right;">
+										<span class="starR" id="star1">1</span>
+									    <span class="starR" id="star2">2</span>
+									    <span class="starR" id="star3">3</span>
+									    <span class="starR" id="star4">4</span>
+									    <span class="starR" id="star5">5</span>
+									</div>
+				<br>
+				<p style="font-size:18px;"><%=r.getReviewContent() %></p>
+				<span><%=r.getMemName() %> </span><img src="<%=contextPath%>/<%=r.getImgPath()%>"><span style="float:right"><%=r.getReviewDate() %></span>			
+			</div>
+			<script>
+				/* 리뷰에 저장된 별점 만큼 별점 보이게 해주는 메소드 */
+				$(function() {											
+					for(var i=1; i <= <%=r.getReviewScore()%>; i++){
+						$("#star"+i).addClass("on");
+					}
+				});									
+			</script>
+			<%} %>
+			
+		</div>
+	</div>
+	
+
+		
+	<!--  -->    
+
+    
+    <!-- 카카오맵 확대 모달 -->
     
     <div id="BigMapModal" class="popModal">
     	<div class="modal-content map_wrap" style="width:70%; height:70%;">
@@ -1143,7 +1200,10 @@
             $('body').removeClass("modal-open");
           });
 	    
-	    
+	    $("#allReview").on('click',function(){
+	    	$("#reviewModal").css("display","block");
+	    	$('body').addClass("modal-open");
+	    });
 	    
 	    
 	    /*  */

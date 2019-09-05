@@ -13,7 +13,9 @@ import accommodation.model.service.AcmService;
 import accommodation.model.vo.Acm;
 import accommodation.model.vo.AcmImg;
 import accommodation.model.vo.Room;
+import nation.model.vo.Nation;
 import review.model.service.ReviewService;
+import review.model.vo.ReviewB;
 
 /**
  * Servlet implementation class DetailAcmServlet
@@ -51,6 +53,11 @@ public class DetailAcmServlet extends HttpServlet {
 			request.setAttribute("roomList", roomList);
 			double avg = new ReviewService().selectAvg(acmNum);
 			request.setAttribute("avg", avg);
+			ArrayList<Nation> nationList = new AcmService().selectNation();
+			request.setAttribute("nationList", nationList);
+			ArrayList<ReviewB> reservList = new ReviewService().selectAcmReview(acmNum);
+			request.setAttribute("reservList", reservList);
+			
 			
 			request.getRequestDispatcher("views/accommodation/acmDetail.jsp").forward(request, response);			
 		} else {

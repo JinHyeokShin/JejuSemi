@@ -1,12 +1,17 @@
 package review.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import review.model.dao.ReviewDao;
 import review.model.vo.Review;
+import review.model.vo.ReviewB;
 
 
 public class ReviewService {
@@ -77,5 +82,19 @@ public class ReviewService {
 		
 		return avg;
 	}
+	
+	
+	public ArrayList<ReviewB> selectAcmReview(int acmNum){
+		Connection conn = getConnection();
+		
+		ArrayList<ReviewB> list = new ReviewDao().selectAcmReview(conn, acmNum);
+		
+		close(conn);
+		
+		return list;
+		
+		
+	}
+	
 
 }

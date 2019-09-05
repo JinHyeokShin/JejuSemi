@@ -16,6 +16,7 @@ import accommodation.model.vo.Room;
 import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
 import member.model.vo.WishList;
+import nation.model.vo.Nation;
 
 public class AcmService {
 	
@@ -268,6 +269,20 @@ public class AcmService {
 		close(conn);
 		
 		return list;		
+	}
+	
+	
+	/**
+	 * nation 테이블 정보 모두 호출(국기출력용)
+	 * @return
+	 */
+	public ArrayList<Nation> selectNation(){
+		Connection conn = getConnection();
+		ArrayList<Nation> list = new AcmDao().selectNation(conn);
+		
+		close(conn);
+		
+		return list;
 	}
 
 }

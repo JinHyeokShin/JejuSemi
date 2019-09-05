@@ -12,6 +12,7 @@ import java.util.Properties;
 import static common.JDBCTemplate.*;
 import reservation.model.dao.ReservationDao;
 import review.model.vo.Review;
+import review.model.vo.ReviewB;
 
 public class ReviewDao {
 	
@@ -141,6 +142,44 @@ public class ReviewDao {
 			close(pstmt);			
 		}
 		return result;
+	}
+	
+	
+	
+	
+	
+	public ArrayList<ReviewB> selectAcmReview(Connection conn, int acmNum){
+		ArrayList<ReviewB> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAcmReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new ReviewB(rset.getInt("review_num"),
+						            rset.getString("mem_name"),
+						            rset.getInt("acm_num"),
+						            rset.getString("reservation_num"),
+						            rset.getString("img_path"),
+						            rset.getInt("review_score"),
+						            rset.getString("review_title"),
+						            rset.getString("review_content"),
+						            rset.getDate("review_date")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return list;
 	}
 	
 	

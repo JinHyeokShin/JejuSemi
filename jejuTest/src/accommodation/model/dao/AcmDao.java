@@ -19,6 +19,7 @@ import accommodation.model.vo.Room;
 import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
 import member.model.vo.WishList;
+import nation.model.vo.Nation;
 
 public class AcmDao {
 	
@@ -600,7 +601,28 @@ public class AcmDao {
 	}
 	
 	
-	
+	public ArrayList<Nation> selectNation(Connection conn){
+		ArrayList<Nation> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;		
+		String sql = prop.getProperty("selectNation");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Nation(rset.getInt("nation_code"),rset.getString("nation_name"),rset.getString("img_path")));				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	
 	

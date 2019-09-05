@@ -119,8 +119,7 @@
 									
 									<script>
 										/* 리뷰에 저장된 별점 만큼 별점 보이게 해주는 메소드 */
-										$(function() {
-											
+										$(function() {											
 											for(var i=1; i <= <%=r.getReviewScore()%>; i++){
 												$("#star"+i).addClass("on");
 											}
