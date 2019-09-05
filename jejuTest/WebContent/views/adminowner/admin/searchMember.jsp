@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import=" java.util.* ,member.model.vo.Member,adminowner.admin.model.vo.*"%>
-<!-- 	org.json.simple.* , -->
  <%
 	ArrayList<Member> list =(ArrayList<Member>)request.getAttribute("list");
  	PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -52,7 +51,6 @@ ul.sidebar-menu li ul.sub li.active a {
 	padding: 10px;
 }
 </style>
-
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
 </head>
 <body>

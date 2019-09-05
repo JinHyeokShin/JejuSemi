@@ -1,5 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import=" java.util.* ,payment.model.vo.Payment,adminowner.admin.model.vo.*,reservation.model.vo.*"%>
+<%
+	ArrayList<Payment> pList =(ArrayList<Payment>)request.getAttribute("pList");
+	PageInfo pPi = (PageInfo)request.getAttribute("pPi");
+	
+	int pListCount = pPi.getListCount();
+	int pCurrentPage = pPi.getCurrentPage();
+	int pMaxPage = pPi.getMaxPage();
+	int pStartPage = pPi.getStartPage();
+	int pEndPage = pPi.getEndPage();
+	
+	ArrayList<Reservation> rList = (ArrayList<Reservation>)request.getAttribute("rList");
+	PageInfo rPi = (PageInfo)request.getAttribute("rPi");
+	
+	int rListCount = rPi.getListCount();
+	int rCurrentPage = rPi.getCurrentPage();
+	int rMaxPage = rPi.getMaxPage();
+	int rStartPage = rPi.getStartPage();
+	int rEndPage = rPi.getEndPage();
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +58,7 @@ ul.sidebar-menu li ul.sub li.active a {
 </head>
 <body>
 
-<section id="container">
+	<section id="container">
 		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
@@ -61,34 +81,110 @@ ul.sidebar-menu li ul.sub li.active a {
 							<!-- /panel-heading -->
 							<div class="panel-body">
 								<div class="tab-content">
+
+
 									<div id="noticeList" class="tab-pane active">
 										<div class="col-md-12 mt">
 											<div class="content-panel">
-<!-- 											인클루드 -->
-											
+												<table id="myTable1" class="table table-bordered display"
+													style="font-size: 15px;">
+													<thead>
+														<tr>
+															<th>결제 번호</th>
+															<th>예약 번호</th>
+															<th>결제 금액</th>
+															<th>승인 번호</th>
+															<th>결제 수단</th>
+															<th>결제 취소</th>
+															<th>결제일</th>
+															<th>결체 취소일</th>
+														</tr>
+													</thead>
+													<tbody>
+														<%if(pList.isEmpty()){ %>
+														<tr>
+															<td colspan="8">비이이이이임!!!!!!</td>
+														</tr>
+														<%}else{ %>
+
+														<%for(Payment p : pList){ %>
+														<tr>
+															<td><%=p.getPayPrice() %></td>
+															<td><%=p.getReservNum() %></td>
+															<td><%=p.getPayPrice() %></td>
+															<td><%=p.getConfirmNum() %></td>
+															<td><%=p.getPayMethod() %></td>
+															<td><%=p.getPayCancel() %></td>
+															<td><%=p.getPayDate() %></td>
+															<td><%=p.getCancelDate() %>
+														</tr>
+														<%}; %>
+														<%}; %>
+													</tbody>
+												</table>
 											</div>
 										</div>
 									</div>
 									<!-- /tab-pane -->
-									
-									
-									
-<!-- 									공지사항작성 -->
+
+
+
+									<!-- 									공지사항작성 -->
 									<div id="noticeWrite" class="tab-pane">
-										<div class="row">
-											<div class="col-lg-8 col-lg-offset-2 detailed">
-<!-- 											인클루드 -->
+										<div class="col-md-12 mt">
+											<div class="content-panel">
+												<table id="myTable2" class="table table-bordered display"
+													style="font-size: 10px;">
+													<thead>
+														<tr>
+															<th>번호</th>
+															<th>숙소</th>
+															<th>룸</th>
+															<th>예약자</th>
+															<th>인원</th>
+															<th>체크인</th>
+															<th>체크아웃</th>
+															<th>가격</th>
+															<th>예약일</th>
+															<th>취소</th>
+															<th>취소일</th>
+															<th>요구사항</th>
+															<th>노쇼</th>
+															<th>상태</th>
+														</tr>
+													</thead>
+													<tbody>
+														<%if(rList.isEmpty()){ %>
+														<tr>
+															<td colspan="14">why?</td>
+														</tr>
+														<%}else{ %>
+														<%for(Reservation i : rList){ %>
+														<tr>
+															<td><%=i.getReservNum() %></td>
+															<td><%=i.getAcmName() %></td>
+															<td><%=i.getRoomName() %></td>
+															<td><%=i.getMemName() %></td>
+															<td><%=i.getReservPax() %></td>
+															<td><%=i.getCheckInDate() %></td>
+															<td><%=i.getCheckOutDate() %></td>
+															<td><%=i.getReservPrice() %></td>
+															<td><%=i.getReservDate() %></td>
+															<td><%=i.getReservCancel() %></td>
+															<td><%=i.getCancelDate() %></td>
+															<td><%=i.getReservRequire() %></td>
+															<td><%=i.getNoShow() %></td>
+															<td><%=i.getStatus()%></td>
+														</tr>
+														<%}; %>
+														<%}; %>
+													</tbody>
+												</table>
 											</div>
 											<!-- /col-lg-8 -->
 										</div>
-										<!-- /row -->
 									</div>
-									
-									
-									
-									
-									
-									
+
 								</div>
 								<!-- /tab-content -->
 							</div>

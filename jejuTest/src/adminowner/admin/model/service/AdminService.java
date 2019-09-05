@@ -1,5 +1,8 @@
 package adminowner.admin.model.service;
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,6 +12,7 @@ import adminowner.admin.model.dao.AdminDao;
 import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.Notice;
 import member.model.vo.Member;
+import payment.model.vo.Payment;
 import reservation.model.vo.Reservation;
 import review.model.vo.Review;
 public class AdminService {
@@ -143,5 +147,17 @@ public class AdminService {
 		ArrayList<Reservation> rList = new AdminDao().reservationSearch(conn,currentPage, boardLimit);
 		close(conn);
 		return rList;
+	}
+	public int paymentCount() {
+		Connection conn = getConnection();
+		int result = new AdminDao().paymentCount(conn);
+		close(conn);
+		return result;
+	}
+	public ArrayList<Payment> paymentSearch(int currentPage,int boardLimit){
+		Connection conn = getConnection();
+		ArrayList<Payment> pList = new AdminDao().paymentSearch(conn, currentPage, boardLimit);
+		close(conn);
+		return pList;
 	}
 }

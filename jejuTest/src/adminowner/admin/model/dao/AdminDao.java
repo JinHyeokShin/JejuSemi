@@ -16,6 +16,7 @@ import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.Notice;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
+import payment.model.vo.Payment;
 import reservation.model.vo.Reservation;
 import review.model.vo.Review;
 
@@ -125,12 +126,6 @@ public class AdminDao {
 	      int result=0;
 	      PreparedStatement pstmt = null;
 	      String sql = prop.getProperty("memberSuspend");
-//	      String status;
-//	      if(ck=="true") {
-//	    	  status="N";
-//	      }else {
-//	    	  status="Y";
-//	      }
 	      try {
 	         pstmt=conn.prepareStatement(sql);
 	         pstmt.setString(1, ck);
@@ -165,8 +160,8 @@ public class AdminDao {
             nList.add(new Notice(rset.getInt(1),
 				            		rset.getString(2),
 				            		rset.getString(3),
-				            		rset.getString(4),
-				                    rset.getString(5),
+				            		rset.getDate(4),
+				                    rset.getDate(5),
 				                    rset.getString(6)));
          };
 
@@ -211,8 +206,8 @@ public class AdminDao {
             n.setnNum(rset.getInt(1));
             n.setnTitle(rset.getString(2));
             n.setnContent(rset.getString(3));
-            n.setnDate(rset.getString(4));
-            n.setnModifyDate(rset.getString(5));
+            n.setnDate(rset.getDate(4));
+            n.setnModifyDate(rset.getDate(5));
             n.setnStatus(rset.getString(6));
          }
          
@@ -493,4 +488,70 @@ public class AdminDao {
 	}
 	   return rList;
    }
+   public int paymentCount(Connection conn) {
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   String sql = prop.getProperty("paymentCount");
+	   int result =0;
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		rset=pstmt.executeQuery();
+		while(rset.next()) {
+			result = rset.getInt(1);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	   return result;
+   }
+   public ArrayList<Payment> paymentSearch(Connection conn, int currentPage,int boardLimit){
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   String sql = prop.getProperty("paymentSearch");
+	   ArrayList<Payment> pList = new ArrayList<>();
+	   int startRow = (currentPage -1 ) * boardLimit+1;
+       int endRow = startRow + boardLimit -1;
+	   try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, endRow);
+		rset=pstmt.executeQuery();
+		while(rset.next()) {
+			pList.add(new Payment(rset.getString(2),
+									rset.getString(3),
+									rset.getInt(4),
+									rset.getString(5),
+									rset.getString(6),
+									rset.getString(7),
+									rset.getString(8),
+									rset.getString(9)
+					));
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+		
+	}
+	   return pList;
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 }
