@@ -37,6 +37,11 @@
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/card.min.css">
 
+<script src="<%= request.getContextPath() %>/resources/js/modal.min.js"></script>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/modal.min.css">
+
+
+
 <%-- <script src="<%= request.getContextPath() %>/resources/js/package.js"></script>
 <script src="<%= request.getContextPath() %>/resources/js/index.js"></script> --%>
 

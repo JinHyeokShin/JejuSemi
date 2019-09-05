@@ -63,7 +63,8 @@
 
 <script type="text/javascript">
 
-
+	
+	
 
 	$(function(){
 		$('html, body').animate( { scrollTop : 750 }, 400 );
@@ -555,8 +556,8 @@
     <section class="detailSection" style="text-align:center;">
     	<div class="detailWrap aa container">
             <div class="headDiv aa" align="left">			<!-- header div -->
-            <label style="font-weight:bold; font-size:3em; color:#fd7e14;"><%=acm.getAcmName()%></label><br>
-            <label><%=acm.getAcmAddress()%></label>
+            <label style="font-weight:bold; font-size:3em; color:#fd7e14; margin-bottom:0px;"><%=acm.getAcmName()%></label><br>
+            <label style="font-size: 18px; text-indent: 10px;"><%=acm.getAcmAddress()%></label>
             </div>		
             <div class="bodyDiv aa">
                 <div class="body_1_Div aa">	<!-- 사진들어갈 div -->
@@ -769,9 +770,9 @@
                 		</ul>
                 	</div>               		
                 		
-                	<div class="des2 aa dd" align="left" style="text-indent:120px;">
+                	<div class="des2 aa dd" align="left" style="text-indent:60px;">
                 		<b style="font-weight:bold; font-size:20px;">추가 편의 시설/서비스</b>
-                		<ul align="left" style="text-indent:120px;">
+                		<ul align="left" style="text-indent:60px;">
                 			<%for(String a : desArr2) {%>
                 				<li style="font-size:15px"><span style="color:yellowgreen">✔ </span> <%=a %></li>
                 			<%} %>
@@ -796,7 +797,7 @@
                 						<b id="avgPoint" style="font-size: 45px; display: inline-block; float: left;">&nbsp;<%=avg %></b>
                 					</div>
                 					<div class="des3_2_2_1_2 aa ">
-                						<a href="">이 숙소의 모든 리뷰 보러가기</a>
+                						<a id="allReview">이 숙소의 모든 리뷰 보러가기</a>
                 					</div>
                 				</div>
                 			</div>
@@ -1065,6 +1066,13 @@
     </div>
     
     
+    
+    
+    
+    
+    
+    
+    
     <script>
     
     var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
@@ -1230,6 +1238,7 @@
 	 	function randomItem(a) {
 	 		return a[Math.floor(Math.random() * a.length)];
 		}
+	 	
 	 	
 	 	
 	</script>
