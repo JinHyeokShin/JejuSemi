@@ -33,7 +33,7 @@ public class ReservationList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("ReservationListServletSucc");
+		
 		int count = new AdminService().reservationCount();
 		int currentPage; 
 	    int pageLimit;   
@@ -63,11 +63,12 @@ public class ReservationList extends HttpServlet {
 		
 		
 		
-		
+		System.out.println("ReservationListServletSucc");
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("rlist", rList);
 		request.setAttribute("rPi",pi);
 		request.getRequestDispatcher("views/adminowner/admin/reservationList.jsp").forward(request, response);
+	
 	}
 
 	/**

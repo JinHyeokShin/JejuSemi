@@ -78,54 +78,29 @@ ul.sidebar-menu li ul.sub li.active a {
 						</thead>
 						<tbody>
 						<%if(rList.isEmpty()){ %>
-							<tr><td colspan="12">비이이이이임!!!!!!</td></tr>
+							<tr><td colspan="14">why?</td></tr>
 						<%}else{ %>
-						
-							<%for(Reservation r : rList){ %>
+							<%for(Reservation i : rList){ %>
 								<tr>
-									<td><%=r.getReservNum() %></td>
-									<td><%=r.getAcmName() %></td>
-									<td><%=r.getRoomName() %></td>
-									<td><%=r.getMemName() %></td>
-									<td><%=r.getReservPax() %></td>
-									<td><%=r.getCheckInDate() %></td>
-									<td><%=r.getCheckOutDate() %></td>
-									<td><%=r.getReservPrice() %></td>
-									<td><%=r.getReservDate() %></td>
-									<td><%=r.getReservCancel() %></td>
-									<td><%=r.getCancelDate() %></td>
-									<td><%=r.getReservRequire() %></td>
-									<td><%=r.getNoShow() %></td>
-									<td><%=r.getStatus()%></td>
-<!-- 									<td> -->
-<%-- 									<input type ="checkbox" data-toggle="toggle" id="susBtn" onclick="tgBtn();" value="sus" data-onstyle="warning" data-on="Y" data-off="N"<%=checked%>> --%>
-<!-- 									</td> -->
+									<td><%=i.getReservNum() %></td>
+									<td><%=i.getAcmName() %></td>
+									<td><%=i.getRoomName() %></td>
+									<td><%=i.getMemName() %></td>
+									<td><%=i.getReservPax() %></td>
+									<td><%=i.getCheckInDate() %></td>
+									<td><%=i.getCheckOutDate() %></td>
+									<td><%=i.getReservPrice() %></td>
+									<td><%=i.getReservDate() %></td>
+									<td><%=i.getReservCancel() %></td>
+									<td><%=i.getCancelDate() %></td>
+									<td><%=i.getReservRequire() %></td>
+									<td><%=i.getNoShow() %></td>
+									<td><%=i.getStatus()%></td>
 								</tr>
 								<%}; %>
 							<%}; %>
 						</tbody>
 					</table>
-<!-- 					<div class="pagingArea" align="right"> -->
-<%-- 					<%if(currentPage == 1){ %> --%>
-<!-- 						<button class="btn btn-default" disabled> &lt; previous </button> -->
-<%-- 					<%}else{ %> --%>
-<%-- 						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%=currentPage-1%>'">&lt; previous</button> --%>
-<%-- 					<%} %> --%>
-					
-<%-- 					<%for(int p = startPage; p <= endPage; p++){ %> --%>
-<%-- 						<%if(p == currentPage){ %> --%>
-<%-- 							<button class="btn btn-warning" disabled> <%= p %> </button> --%>
-<%-- 						<%}else{ %> --%>
-<%-- 							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%= p %>'"> <%= p %> </button> --%>
-<%-- 						<%} %> --%>
-<%-- 					<%} %> --%>
-					
-<%-- 					<%if(currentPage == maxPage){ %> --%>
-<!-- 						<button class="btn btn-default" disabled> next &gt; </button> -->
-<%-- 					<%}else { %> --%>
-<%-- 						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button> --%>
-<%-- 					<%} %> --%>
-<!-- 					</div> -->
 				</div>
 			</div>
 </body>

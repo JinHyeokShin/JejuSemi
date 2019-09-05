@@ -386,7 +386,7 @@ public class AdminDao {
                            rset.getInt(6),//SCORE
                            rset.getString(7),//TITLE
                            rset.getString(8),//CONTENT
-                           rset.getString(9)//DATE
+                           rset.getDate(9)//DATE
                            
                   ));
          }
@@ -419,7 +419,7 @@ public class AdminDao {
 			r.setReviewScore(rset.getInt(6));
 			r.setReviewTitle(rset.getString(7));
 			r.setReviewContent(rset.getString(8));
-			r.setReviewDate(rset.getString(9));
+			r.setReviewDate(rset.getDate(9));
 		}
 		
 		
