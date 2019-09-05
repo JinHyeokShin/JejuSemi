@@ -246,12 +246,71 @@ public class MemberDao {
 		}
 		return m;
 	}
+	
+	public Member searchPwd(Connection conn, String memberId) {
+
+		Member m = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("mem_num"),
+						       rset.getString("mem_id"),
+						       rset.getString("mem_pwd"),
+						       rset.getString("mem_name"),
+						       rset.getString("mem_gender"),
+						       rset.getString("mem_phone"),
+						       rset.getInt("nation_code"),
+						       rset.getInt("mem_point"),
+						       rset.getString("mem_type"),
+						       rset.getString("mem_status"),
+						       rset.getDate("enroll_date"),
+						       rset.getDate("out_date"),
+						       rset.getInt("noshow"));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+	}
+	
+	public int updatePwd(Connection conn, String memId, String newPwd) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updatePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, memId);
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;	 
    
-   
-   
-   
-   
-   
+		}
 
 
 }

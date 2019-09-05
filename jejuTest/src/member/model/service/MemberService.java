@@ -60,8 +60,9 @@ public class MemberService {
    }
    
    public ArrayList<AcmImg> acmImgList(int acmNum){
-		Connection conn = getConnection();
-		
+	
+	   Connection conn = getConnection();
+	
 		ArrayList<AcmImg> list = new MemberDao().acmImgList(conn, acmNum);
 		
 		close(conn);
@@ -71,14 +72,51 @@ public class MemberService {
    
    public Member snsLoginCheck(String memId) {
 	      
-	      Connection conn = getConnection();
-	      
-	      Member loginUser = new MemberDao().snsLoginCheck(conn, memId);
-	      
-	      close(conn);
-	      
-	      return loginUser;
-	   }
+      Connection conn = getConnection();
+      
+      Member loginUser = new MemberDao().snsLoginCheck(conn, memId);
+      
+      close(conn);
+      
+      return loginUser;
+   }
+   
+   public Member searchPwd(String memberId) {
+	   
+	   Connection conn = getConnection();
+	   
+	   Member m = new MemberDao().searchPwd(conn, memberId);
+	   
+	   close(conn);
+	   
+	   return m;
+   }
+   
+   public Member updatePwd(String memId, String newPwd) {
+	   
+	   Connection conn = getConnection();
+		
+		int result = new MemberDao().updatePwd(conn, memId, newPwd);
+		
+		Member updateMem = null;
+		
+		if(result > 0) {
+			commit(conn);
+			updateMem = new MemberDao().searchPwd(conn, memId);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return updateMem;
+	   
+   }
+   
+   
+   
+   
+   
+   
    
    
    

@@ -27,9 +27,6 @@
 <script src="<%= request.getContextPath() %>/resources/js/form.min.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/form.min.css">
 
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/icon.min.css">
-
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/input.min.css">
 
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
@@ -162,7 +159,7 @@
                 <!-- <label class="checkbox"> -->
                   <input type="checkbox" value="remember-me"> 기억하기
                   <span class="pull-right">
-                  <a data-toggle="modal" href="header.jsp#myModal"> Forgot Password?</a>
+                  <a data-toggle="" href="<%=contextPath %>/searchPwdForm.me"> Forgot Password?</a>
                   </span>
                   <!-- </label> -->
                 <button class="btn btn-theme btn-block" type="submit"><a href="#">SIGN IN</a></button>
@@ -262,7 +259,7 @@
                   Don't have an account yet?<br/>
                   
                   <!-- 회원가입 버튼 클릭 -->
-                  <button class="btn btn-theme btn-block" type="button" onclick="memberJoin();"> <a href="#" id="memberJoinBtn" onclick="memberJoin();">Create an account</a></button>
+                  <a href="<%= contextPath %>/joinForm.me" id="memberJoinBtn">Create an account</a>
 
                 <!-- </div> -->
               </div>
@@ -365,9 +362,6 @@
   				location.href="<%= request.getContextPath() %>/logout.me";			
   			}
           	
-          	function memberJoin(){
-    			location.href = "<%= request.getContextPath()%>/joinForm.me";
-    		}
           	function mypage(){
     			location.href = "<%= request.getContextPath()%>/mypage.me";
     		}
