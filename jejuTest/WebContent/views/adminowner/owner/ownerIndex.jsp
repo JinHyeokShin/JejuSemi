@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList, management.model.vo.*"%>
+	<%@page import="adminowner.admin.model.vo.Notice"%>
     <% 
     ArrayList<Management> list = (ArrayList<Management>)request.getAttribute("list");
-    
+	
     System.out.println(list);
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
@@ -12,6 +13,8 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
+	
+	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
     %>
 
 
@@ -59,6 +62,9 @@ ul.sidebar-menu li ul.sub li.active a {
 }
 textarea{
 	resize: none;
+}
+#noticeList{
+cursor:pointer;
 }
   </style>
 </head>
@@ -129,74 +135,37 @@ textarea{
                       <div id="overview" class="tab-pane active">
                           <div class="col-md-12 mt">
                             <div class="content-panel">
-                                <h3><i class="fa fa-angle-right"></i> 안녕 Table</h3>
+                                <h3><i class="fa fa-angle-right"></i> 공지사항</h3>
                                 <hr>
-                              <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                  </tr>
-                                  <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                  </tr>
-                                  <tr>
-                                    <td>3</td>
-                                    <td>Simon</td>
-                                    <td>Mosa</td>
-                                    <td>@twitter</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                          <div class="col-md-12 mt">
-                            <div class="content-panel">
-                                <h3><i class="fa fa-angle-right"></i>안뇽 Table</h3>
-                                <hr>
-                              <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                  </tr>
-                                  <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                  </tr>
-                                  <tr>
-                                    <td>3</td>
-                                    <td>Simon</td>
-                                    <td>Mosa</td>
-                                    <td>@twitter</td>
-                                  </tr>
-                                </tbody>
-                              </table>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th width="50px">#</th>
+									<th width="250px">공지 제목</th>
+									<th width="50px">공지 수정일</th>
+									<th width="50px">공지 작성일</th>
+									<th width="1px"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<%if(nList.isEmpty()){ %>
+								<tr>
+									<td colspan="4" align="center">공지내역이없습니다!</td>
+								</tr>
+								<%}else{ %> <%int i=0; %> 
+									<%for (Notice n : nList){ %> 
+										<%i++; %>
+										<tr id="noticeList">
+											<td><%=i %></td>
+											<td id="nTitle"><%=n.getnTitle() %></td>
+											<td id="nMDate"><%=n.getnModifyDate() %></td>
+											<td id ="nDate"><%=n.getnDate() %></td> 
+											<input type="hidden" id ="nNum" value="<%=n.getnNum() %>">
+										</tr>
+									<%}; %>
+								<%}; %>
+							</tbody>
+						</table>
                             </div>
                           </div>
                         <!-- /OVERVIEW -->
@@ -348,5 +317,15 @@ textarea{
     </footer>
     footer end-->
   </section>
+  	<script>
+	$(function(){
+		$("#noticeList td").click(function(){
+			var nNum = $(this).parent().children().eq(4).val();
+			location.href ="<%= request.getContextPath() %>/noticeDetail.ow?nNum=" +nNum;
+<%--  			href="<%= request.getContextPath() %>/NoticeDetail.ad" --%>
+				
+		})
+	})
+	</script>
 </body>
 </html>
