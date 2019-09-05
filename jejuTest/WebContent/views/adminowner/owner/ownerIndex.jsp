@@ -13,6 +13,8 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
     %>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,6 +57,9 @@ ul.sidebar-menu li ul.sub li.active a {
     border: 10px solid #f1f2f7;
     margin-top: 20px;
 }
+textarea{
+	resize: none;
+}
   </style>
 </head>
 
@@ -75,7 +80,7 @@ ul.sidebar-menu li ul.sub li.active a {
                       <h6>ID</h6>
                       <h4><%= loginUser.getMemName()%></h4>
                       <h6>NAME</h6>
-                      <h4><%= loginUser.getMemPhone() %></h4>
+                      <h4><%= acm.getAcmPhone() %></h4>
                       <h6>PHONE</h6>
                     </div>
                   </div>
@@ -196,10 +201,7 @@ ul.sidebar-menu li ul.sub li.active a {
                           </div>
                         <!-- /OVERVIEW -->
                       </div>
-
-
-
-                      <!-- /tab-pane -->
+                      
                       <div id="contact" class="tab-pane">
                           <div class="col-md-12 mt">
                             <div class="content-panel">
@@ -270,41 +272,42 @@ ul.sidebar-menu li ul.sub li.active a {
                         <div class="row">
                           <div class="col-lg-8 col-lg-offset-2 detailed">
                             <h4 class="mb"> 숙소 정보 변경 </h4>
-                            <form role="form" class="form-horizontal">
-                              <div class="form-group">
+                            <form action="<%= request.getContextPath() %>/updateAcm.ow" class="form-horizontal">
+                              <!-- <div class="form-group">
                                 <label class="col-lg-2 control-label"> 대표 이미지 변경</label>
                                 <div class="col-lg-6">
-                                  <input type="file" id="exampleInputFile" class="file-pos">
+                                  <input type="file" id="ImgAcm" name="ImgAcm" class="file-pos">
                                 </div>
-                              </div>
+                              </div> -->
                               <div class="form-group">
                                 <label class="col-lg-2 control-label"> 숙소 이름 </label>
                                 <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="c-name" class="form-control">
+                                  <input type="text" placeholder=" " id="changeAcmName" name="changeAcmName" class="form-control">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label class="col-lg-2 control-label"> 숙소 연락처 </label>
                                 <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="lives-in" class="form-control">
+                                  <input type="text" placeholder=" " id="changeAcmPhone" name="changeAcmPhone" class="form-control">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label class="col-lg-2 control-label"> 설명 1 </label>
                                 <div class="col-lg-10">
-                                  <textarea rows="5" cols="30" class="form-control" id="" name=""></textarea>
+                                  <textarea rows="5" cols="30" class="form-control" id="descriptionA" name="descriptionA" placeholder="레스토랑+야외 수영장+아침 식사 가능+24시간 운영 프런트 데스크+매일 하우스키핑+편의점+다국어 구사 가능 직원+무료 WiFi+무료 주차         형식으로 입력해주세요."></textarea>
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label class="col-lg-2 control-label"> 설명2 </label>
                                 <div class="col-lg-10">
-                                  <textarea rows="5" cols="30" class="form-control" id="" name=""></textarea>
+                                  <textarea rows="5" cols="30" class="form-control" id="descriptionB" name="descriptionB" placeholder="24시간 리셉션+룸 서비스+시설 내 놀이터+전용 욕실+프리미엄 TV 채널+매일 하우스 키핑                											      형식으로 입력해주세요."></textarea>
                                 </div>
                               </div>
                               <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                   <button class="btn btn-theme" type="submit">Save</button>
-                                  <button class="btn btn-theme04" type="button">Cancel</button>
+                                  <input type="reset" value="Cancel" class="btn btn-theme04">
+                                  <!-- <button class="btn btn-theme04" type="button"  onclick="location.href='#'">Cancel</button> -->
                                 </div>
                               </div>
                             </form>

@@ -72,10 +72,10 @@ a{
       <!--logo start-->
       <a href="<%= request.getContextPath() %>/ownerIndex.ow" class="logo"><b>Come To<span> Jeju</span></b></a>
       <!--logo end-->
-      <div class="nav notify-row" id="top_menu">
-        <!--  notification start -->
+<!--       <div class="nav notify-row" id="top_menu">
+         notification start
         <ul class="nav top-menu">
-          <!-- settings start -->
+          settings start
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
               <i class="fa fa-tasks"></i>
@@ -143,8 +143,8 @@ a{
               </li>
             </ul>
           </li>
-          <!-- settings end -->
-          <!-- inbox dropdown start-->
+          settings end
+          inbox dropdown start
           <li id="header_inbox_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
               <i class="fa fa-envelope-o"></i>
@@ -208,8 +208,8 @@ a{
               </li>
             </ul>
           </li>
-          <!-- inbox dropdown end -->
-          <!-- notification dropdown start-->
+          inbox dropdown end
+          notification dropdown start
           <li id="header_notification_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
               <i class="fa fa-bell-o"></i>
@@ -253,10 +253,10 @@ a{
               </li>
             </ul>
           </li>
-          <!-- notification dropdown end -->
+          notification dropdown end
         </ul>
-        <!--  notification end -->
-      </div>
+         notification end
+      </div> -->
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><a class="logout" onclick="logout();">Logout</a></li>

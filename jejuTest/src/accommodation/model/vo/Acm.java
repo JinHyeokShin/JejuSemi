@@ -40,6 +40,13 @@ public class Acm implements Serializable{
 
 	
 
+	public Acm(String acmName, String acmPhone, String acmDescriptA, String acmDescriptB) {
+		super();
+		this.acmName = acmName;
+		this.acmPhone = acmPhone;
+		this.acmDescriptA = acmDescriptA;
+		this.acmDescriptB = acmDescriptB;
+	}
 	public int getMinPrice() {
 		return minPrice;
 	}

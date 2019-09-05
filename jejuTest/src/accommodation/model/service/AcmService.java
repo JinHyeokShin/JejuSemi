@@ -12,7 +12,6 @@ import accommodation.model.vo.Option;
 import accommodation.model.vo.Room;
 import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
-import payment.model.vo.Payment;
 
 public class AcmService {
 	
@@ -146,7 +145,30 @@ public class AcmService {
 		return room;		
 	}
 	
-	
+	/**
+	 * 사장님페이지에서 사장님 자기 자신 회원정보 수정
+	 * @param acm
+	 * @return
+	 */
+	public Acm updateAcm(Acm acm,int ownerNum) {
+		Connection conn = getConnection();
+		
+		int result = new AcmDao().updateAcm(conn, acm, ownerNum);
+		
+		Acm updateAcm = null;
+		
+		if(result > 0) {
+			commit(conn);
+			
+			updateAcm = new AcmDao().updateSelectAcm(conn, ownerNum);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateAcm;
+	}
 	
 	
 	
