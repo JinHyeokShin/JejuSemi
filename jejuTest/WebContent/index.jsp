@@ -447,7 +447,8 @@
         <div class="row">
           <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
             
-            <form method="post" class="bg-white p-md-5 p-4 mb-5 border">
+            
+            <form method="post" class="bg-white p-md-5 p-4 mb-5 border" action="contact.we">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label for="name">Name</label>
@@ -473,12 +474,10 @@
               </div>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="submit" value="Send Message" class="btn btn-primary text-white font-weight-bold">
+                  <input type="submit" value="Send Message" id="contactSub"class="btn btn-primary text-white font-weight-bold">
                   <div class="submitting"></div>
                 </div>
-              </div>
-
-             
+              </div>       
             </form>
 
             
@@ -487,9 +486,9 @@
           <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
             <div class="row">
               <div class="col-md-10 ml-auto contact-info">
-                <p><span class="d-block">Address:</span> <span class="text-black"> 98 West 21th Street, Suite 721 New York NY 10016</span></p>
-                <p><span class="d-block">Phone:</span> <span class="text-black"> (+1) 234 4567 8910</span></p>
-                <p><span class="d-block">Email:</span> <span class="text-black"> info@yourdomain.com</span></p>
+                <p><span class="d-block">Address:</span> <span class="text-black"> 서울특별시 강남구 테헤란로14길 6 남도빌딩</span></p>
+                <p><span class="d-block">Phone:</span> <span class="text-black">  02-562-2378</span></p>
+                <p><span class="d-block">Email:</span> <span class="text-black"> jejuboram@jeju.com</span></p>
               </div>
             </div>
           </div>
@@ -511,7 +510,22 @@
         </div>
       </section>
 
-      
+	<script>
+	
+		$(document).ready(function() {
+
+			$("#contactSub").click(function() {
+
+				alertify.alert('', '문의 내용이 전송 되었습니다.');
+
+			});
+		});
+		
+	</script>
+
+
+
+
 	<%-- 풋터 --%>
     <%@ include file="views/main/footer.jsp" %>
 	
