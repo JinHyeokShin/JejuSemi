@@ -82,7 +82,7 @@
 
 
 
-<div class="test aa">
+<div class="aa">
 		<div class="myReservContainer aa container">
 		
 		<div style="font-size:30px; padding-bottom:8px;">

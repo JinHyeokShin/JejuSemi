@@ -118,7 +118,7 @@
 						  <div class="item" style="padding-top: 18px; padding-left: 20px;">
 						    
 						    <div class="content">
-						      <a class="header">찜한 숙소</a>
+						      <a class="header" href="<%=contextPath%>/myLike.me?memNum=<%=m.getMemNum()%>">찜한 숙소</a>
 						      <div class="description">즐겨찾기한 숙소들을 조회합니다.</div>
 						    </div>
 						  </div>

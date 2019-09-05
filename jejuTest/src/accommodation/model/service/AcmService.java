@@ -241,5 +241,33 @@ public class AcmService {
 		return result;
 	}
 	
+	
+	/**
+	 * 회원의 모든 찜 리스트를 호출 하는 서비스
+	 * @param memNum
+	 * @return
+	 */
+	public ArrayList<WishList> selectWishList(int memNum){
+		Connection conn = getConnection();
+		ArrayList<WishList> list = new AcmDao().selectWishList(conn, memNum);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	
+	/**
+	 * 모든 숙소를 호출하는 서비스
+	 * @return
+	 */
+	public ArrayList<Acm> selectAcmList(){
+		Connection conn = getConnection();
+		ArrayList<Acm> list = new AcmDao().selectAcmList(conn);
+		
+		close(conn);
+		
+		return list;		
+	}
 
 }

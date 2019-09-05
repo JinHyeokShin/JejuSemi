@@ -520,7 +520,7 @@ public class AcmDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				wish = new WishList(rset.getInt("mem_num"),rset.getInt("acm_num"));
+				wish = new WishList(rset.getInt("mem_num"),rset.getInt("acm_num"),rset.getDate("wish_date"));
 			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -530,6 +530,75 @@ public class AcmDao {
 		}
 		return wish;
 	}
+	
+	
+	
+	public ArrayList<WishList> selectWishList(Connection conn, int memNum){
+		ArrayList<WishList> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectWishList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new WishList(rset.getInt("mem_num"),rset.getInt("acm_num"),rset.getDate("wish_date")));				
+			}	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return list;
+	}
+	
+	
+	
+	public ArrayList<Acm> selectAcmList(Connection conn){
+		ArrayList<Acm> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAcmList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Acm acm = new Acm();
+				acm.setAcmNum(rset.getInt("acm_num"));
+				acm.setAcmName(rset.getString("acm_name"));
+				acm.setAcmPhone(rset.getString("acm_phone"));
+				acm.setAcmAddress(rset.getString("acm_address"));
+				acm.setAcmType(rset.getString("acm_type"));
+				acm.setAcmGrade(rset.getInt("acm_grade"));
+				acm.setAcmDescriptA(rset.getString("acm_descript_a"));
+				acm.setAcmDescriptB(rset.getString("acm_descript_b"));
+				acm.setAcmCoordX(rset.getString("acm_coord_x"));
+				acm.setAcmCoordY(rset.getString("acm_coord_y"));
+				acm.setAcmDistrict(rset.getString("acm_district"));
+				acm.setAcmPower(rset.getString("acm_power"));
+				
+				list.add(acm);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return list;
+	}
+	
 	
 	
 	
