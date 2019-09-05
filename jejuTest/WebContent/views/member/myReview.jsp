@@ -5,24 +5,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<style>
-    .no-cresult{
-            background:rgb(255, 187, 60);
-            padding-top: 20px;
-            padding-bottom: 26px;
-            font-size: 25px;
-            border: 1px solid white;
-            border-radius: 10px;	
-    }
-</style>
 </head>
-
 <body>
+<script>
+	$(function(){
+		$('html, body').animate( { scrollTop : 750 }, 400 );
+	});
+</script>
+	<%-- 헤더,메뉴바 --%>
+	<%@ include file="../main/header.jsp" %>
 
-    <h2>이용 후기 작성</h2>
-    <br>
-    <div id="no-iresult" class="no-cresult">작성할 수 있는 후기가 없습니다.</div>
-            
+
+
+
+
+
+	<%-- 풋터 --%>
+    <%@ include file="../main/footer.jsp" %>
+
+<script src="<%= request.getContextPath() %>/resources/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/popper.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.stellar.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.fancybox.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery.easing.1.3.js"></script>     
+<script src="<%= request.getContextPath() %>/resources/js/aos.js"></script>      
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap-datepicker.js"></script> 
+<script src="<%= request.getContextPath() %>/resources/js/jquery.timepicker.min.js"></script> 
+<script src="<%= request.getContextPath() %>/resources/js/main.js"></script>
+
 </body>
 </html>

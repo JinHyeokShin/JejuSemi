@@ -3,6 +3,7 @@ package review.model.service;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import review.model.dao.ReviewDao;
 import review.model.vo.Review;
@@ -29,6 +30,11 @@ public class ReviewService {
 	}
 	
 	
+	/**
+	 * 사용자가 마이페이지->예약 조회 들어갈때 해당 예약에 작성해놓은 리뷰가 있으면 리뷰작성 버튼 비활성화 하는 서비스
+	 * @param reservNum
+	 * @return
+	 */
 	public int checkReview(String reservNum) {
 		Connection conn = getConnection();
 		int result = 0;
@@ -46,7 +52,20 @@ public class ReviewService {
 	}
 	
 	
-	
+	/**
+	 * 사용자가 마이페이지->내 리뷰 조회 들어갈 때 리스트 호출해주는 서비스
+	 * @param memNum
+	 * @return
+	 */
+	public ArrayList<Review> selectReviewList(int memNum){
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new ReviewDao().selectReviewList(conn, memNum);
+		
+		close(conn);
+		
+		return list;
+	}
 	
 
 }

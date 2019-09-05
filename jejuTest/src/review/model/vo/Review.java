@@ -36,6 +36,21 @@ public class Review {
 
 	
 	
+	public Review(int reviewNum, int memNum, int acmNum, String reservNum, int reviewScore, String reviewTitle,
+			String reviewContent, Date reviewDate) {
+		super();
+		this.reviewNum = reviewNum;
+		this.memNum = memNum;
+		this.acmNum = acmNum;
+		this.reservNum = reservNum;
+		this.reviewScore = reviewScore;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
+		this.reviewDate = reviewDate;
+	}
+
+
+
 	//관리자 리뷰조회
 	public Review(int reviewNum, String memName, String acmName, String reservNum, int reviewScore, String reviewTitle,
 			String reviewContent, Date reviewDate) {
