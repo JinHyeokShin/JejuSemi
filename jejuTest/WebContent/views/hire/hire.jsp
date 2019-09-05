@@ -101,9 +101,9 @@
 
 }
 
-.section {
-    padding: 0.6em 0;
-}
+/* .section { */
+/*     padding: 1em 0; */
+/* } */
 
 .tit_top {
 	padding-bottom: 7px;
@@ -335,23 +335,20 @@ select {
     <script>
 
 		$(function(){
-			$('html, body').animate( { scrollTop : 750 }, 400 );
+			$('html, body').animate( { scrollTop : 700 }, 400 );
 		});
 	</script>
- 
-
-<!-- ------------------------------------------------------ -->
 
 
-<div id="container" class="apply div">
+<div id="container" class="apply div container">
 	<div class="content ">
 		<h2 class="h2tit h2">온라인입사지원</h2>		
 		<div class="tit_top  div">
 		</div>
 
-		<div class="section  div">
+		<div class="section div" style="padding: 1em 0;">
 			<h3 class="h3">개인정보 보호법에 의한 개인정보 활용에 대한 동의</h3>
-			<div class="section  div">
+			<div class="section  div" style="padding: 1em 0;">
 				<h4 class="h4">[개인정보 수집,이용에 대한 동의(필수)]</h4>
 				<div class=" div" style="overflow-y:auto; width:100%; height:100px; padding:10px; border:0.5px solid gray;">
 
@@ -386,12 +383,12 @@ select {
 				</div>
 				<div class="check div">
 					<input id="check1 input" type="radio" value="Y" name="check1" class="input">
-					<label for="check1" class="label">동의합니다.</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<label for="check1" class="label" style="color:#666">동의합니다.</label>&nbsp;&nbsp;&nbsp;&nbsp;
 					<input id="check1N input" type="radio" value="N" name="check1" class="input">
-					<label for="check1N" class="label">동의하지 않습니다.</label>
+					<label for="check1N" class="label" style="color:#666">동의하지 않습니다.</label>
 				</div>
 			</div>
-			<div class="section div">
+			<div class="section div" style="padding: 1em 0;">
 				<h4 class="h4">[민감정보 처리에 대한 동의(필수)]</h4>
 				<div class="div" style="overflow-y:auto; width:100%; height:100px; padding:10px; border:0.5px solid gray;">
 					<h5 class="underline font120 h5">민감정보 수집/이용 목적</h5>
@@ -404,71 +401,47 @@ select {
 				</div>
 				<div class="check div">
 					<input id="check2" class="input" type="radio" value="Y" name="check2" class="input">
-					<label for="check2" class="label">동의합니다.</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<label for="check2" class="label" style="color:#666">동의합니다.</label>&nbsp;&nbsp;&nbsp;&nbsp;
 					<input id="check2N" class="input" type="radio" value="N" name="check2" class="input">
-					<label for="check2N" class="label">동의하지 않습니다.</label>
+					<label for="check2N" class="label" style="color:#666">동의하지 않습니다.</label>
 				</div>
 			</div>
 			
 		</div>
 		<!-- form 어디로 넘겨줄지 -->
-			<form id="defaultFrm" class="form" name="defaultFrm" action="hireEmail.hi" method="post">
+			<form id="defaultFrm" class="form" name="defaultFrm" action="" method="post">
 				<div class="grid  div">
 					<table class="tb_row table">
-<!-- 					<tr class="tr"> -->
-<!-- 						<th class="th">구분</th> -->
-<!-- 						<td class="td"> -->
-<!-- 					    <select name="recruitType" id="recruitType" class="select" required> -->
-<!-- 						   <option value="0" selected="selected">전체</option> -->
-<!-- 						   <option value="10"  >신입</option> -->
-<!-- 						   <option value="20"  >경력</option> -->
-<!-- 						   <option value="30"  >상시모집</option> -->
-<!-- 						</select> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-					<tr class="tr">
-				        <th class="th">지원분야</th>
-				        <td class="td"><div class="item div">
-				            <select name="categorySrlList" id="categorySrlList" class="select" required>
-				            	<option value="choice">선택하세요</option>
-                                <option value="deginer" label="UX/UI디자이너" class="label">
-                                <option value="publisher" label="퍼블리셔" class="label">
-                                <option value="frontdeveloper" label="프론트개발자" class="label">
-                                <option value="backdeveloper" label="백엔드개발자" class="label">
-							</select>
-				          </div></td>
-				      </tr> 
 				      <tr class="tr">
 				        <th class="th">이름</th>
 				        <td class="td"><div class="item div">
-				            <input class="i_text input" id="txtUserName" type="text" name="txtUserName" required>
+				            <input class="i_text input" id="userName" type="text" name="userName" required>
 				          </div></td>
 				      </tr>
 				      <tr class="tr">
 				        <th class="th">생년월일</th>
 				        <td class="td"><div class="item div">
-				            <input class="i_text input" id="txtRegNumberArry0" type="text" 
-				            name="txtRegNumberArry0" maxlength="6" onkeydown="return showKeyCode(event);" 
-				            onkeyup="removeChar(event);" style="ime-mode: disabled;" required> ex) 1990년 10월 26일 : 901026
+				            <input class="i_text input" id="birth" type="text" name="birth" maxlength="6"
+				            style="ime-mode: disabled;" required> ex) 1990년 10월 26일 : 901026
 				          </div></td>
 				      </tr>
 				      <tr class="tr">
-					      <th class="th">비밀번호</th>
+					      <th class="th">이메일</th>
 					      <td class="td"><div class="item div">
-					          <input class="i_text input" id="txtUserPass" type="password" name="txtUserPass" maxlength="20" size="20" required>
+					          <input class="i_text input" id="userEmail" type="email" name="userEmail" required>
 					      </div></td>
 				      </tr>
 				      <tr class="tr">
 					      <th class="th">첨부파일</th>
 					      <td class="td"><div class="item div">
-					          <input class="i_text input" id="txtUserPass" type="file" name="file" style="color:red">
+					          <input class="i_text input" id="item" type="file" name="item" style="color:red">
 					      </div></td>
 				      </tr>
 				 </table>
 				 </div>
 				 <div class="btn_page div">
 					 <a href="#" class=" btnRed" id="btn_apply" name="btn_apply" onclick="return false;">
-					 	<span class="btn2">지원하기</span>
+					 	<span class="btn2" id="apply">지원하기</span>
 					 </a>
 				 </div>
 			</form>
@@ -477,14 +450,31 @@ select {
 
 
 <!-- 지원하기 버튼 -->
-<script>
-    $("#btn_apply").bind("click", function(){
-			board.goNextStep();
-			return false;
-	}); 
+	<script>
+	
+	var num;
+	
+	$("#apply").click(function() {
+		
+			http = jQuery.ajax({
+		   		url		: "hireMail.hi",
+		   		type	: "post",
+				data 	: {userName:$("#userName").val(),
+						   birth:$("#birth").val(),
+						   userEmail:$("#userEmail").val()},
+				dataType: 'html',
+		   		async	: true,
+				success : function(msg) {
+	
+					alertify.alert('', '메일이 발송되었습니다.');	
+					num = msg;
+					console.log(msg);
+				}
+		  	});
+		});
 
 </script>
-<!-- ------------------------------------------------------ -->
+	<!-- ------------------------------------------------------ -->
 
 
 <%-- 풋터 --%>
