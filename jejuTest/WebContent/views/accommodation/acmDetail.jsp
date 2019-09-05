@@ -526,6 +526,14 @@
 	<%-- 헤더,메뉴바 --%>
     <%@ include file="../main/header.jsp" %>
     
+    <%
+    	if(loginUser == null){
+    		loginUser = new Member();
+    		loginUser.setMemNum(0);
+    	}
+    
+    %>
+    
     <style>
     	.map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
 		.radius_border{border:1px solid #919191;border-radius:5px;}     
@@ -837,7 +845,9 @@
             					if(result == 1){
                 					$("#like").prop("checked",true);
                 					console.log("찜한 숙소 입니다.");
-            					}                					
+            					} else{
+            						$("#like").prop("checked",false);
+            					}          					
             				},
             				error:function(){
             					console.log("ajax 통신 실패");
