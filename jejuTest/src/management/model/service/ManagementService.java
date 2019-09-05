@@ -17,10 +17,10 @@ public class ManagementService {
 	 * 1_1. 게시판 리스트 갯수 조회용 서비스
 	 * @return
 	 */
-	public int getOwnerListCount() {
+	public int getOwnerListCount(int memNum) {
 		Connection conn = getConnection();
 		
-		int listCount = new ManagementDao().getOwnerListCount(conn);
+		int listCount = new ManagementDao().getOwnerListCount(conn,memNum);
 		
 		close(conn);
 		

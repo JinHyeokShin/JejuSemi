@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@page import="java.util.ArrayList, management.model.vo.*"%>
+    <% 
+    ArrayList<Management> list = (ArrayList<Management>)request.getAttribute("list");
+    
+    System.out.println(list);
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+ 	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+    %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -95,13 +107,13 @@ ul.sidebar-menu li ul.sub li.active a {
                   <div class="panel-heading">
                     <ul class="nav nav-tabs nav-justified">
                       <li class="active">
-                        <a data-toggle="tab" href="#overview">Overview</a>
+                        <a data-toggle="tab" href="#overview">공지사항</a>
                       </li>
                       <li>
-                        <a data-toggle="tab" href="#contact" class="contact-map">Contact</a>
+                        <a data-toggle="tab" href="#contact" class="contact-map">예약 및 후기 확인</a>
                       </li>
                       <li>
-                        <a data-toggle="tab" href="#edit">Edit Profile</a>
+                        <a data-toggle="tab" href="#edit"> 숙소 정보 변경</a>
                       </li>
                     </ul>
                   </div>
@@ -191,38 +203,65 @@ ul.sidebar-menu li ul.sub li.active a {
                       <div id="contact" class="tab-pane">
                           <div class="col-md-12 mt">
                             <div class="content-panel">
-                                <h3><i class="fa fa-angle-right"></i>게시판만들거임</h3>
+                                <h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
                                 <hr>
-                                  <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                  </tr>
-                                  <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                  </tr>
-                                  <tr>
-                                    <td>3</td>
-                                    <td>Simon</td>
-                                    <td>Mosa</td>
-                                    <td>@twitter</td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                                <table class="table">
+				              		<tr>
+				              			<th>Rownum</th>
+				              			<th>ROOM_NAME</th>
+				              			<th>RESERV_PAX</th>
+				              			<th>CHECKINDATE</th>
+				              			<th>CHECKOUTDATE</th>
+				              			<th>예약날짜</th>
+				              			<th>이름</th>
+				              			<th>전화번호</th>
+				              			<th>예약 가격</th>
+				
+				              		</tr>
+              		
+              		
+					<% if(list.isEmpty()){ %>
+					<tr>
+						<td colspan="9" align="center">조회된 리스트가 없습니다.</td>
+					</tr>
+					<%}else{ 
+						int i=1;%>
+						<%for(Management manage : list) {%>
+						 <tr>
+							<td><%= i++ %></td>
+							<td><%= manage.getRoomName() %></td>
+							<td><%= manage.getReservPax() %></td>
+							<td><%= manage.getCheckInDate()%></td>
+							<td><%= manage.getCheckOutDate()%></td>
+							<td><%= manage.getReservDate()%></td>
+							<td><%= manage.getMemName()%></td>
+							<td><%= manage.getMemPhone()%></td>
+							<td><%= manage.getReservPrice()%>원</td> 
+						</tr>
+						<%} %>
+					<%} %>
+              	</table>
+              	<div class="pagingArea" align="right">
+					<%if(currentPage == 1){ %>
+						<button class="btn btn-default" disabled> &lt; previous </button>
+					<%}else{ %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/page.ow?currentPage=<%=currentPage-1%>'">&lt; previous</button>
+					<%} %>
+					
+					<%for(int p = startPage; p <= endPage; p++){ %>
+						<%if(p == currentPage){ %>
+							<button class="btn btn-warning" disabled> <%= p %> </button>
+						<%}else{ %>
+							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/page.ow?currentPage=<%= p %>'"> <%= p %> </button>
+						<%} %>
+					<%} %>
+					
+					<%if(currentPage == maxPage){ %>
+						<button class="btn btn-default" disabled> next &gt; </button>
+					<%}else { %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/page.ow?currentPage=<%= currentPage+1 %>'">next &gt;</button>
+					<%} %>
+					</div>
                               </div>
                           </div>
                       </div>
@@ -230,77 +269,36 @@ ul.sidebar-menu li ul.sub li.active a {
                       <div id="edit" class="tab-pane">
                         <div class="row">
                           <div class="col-lg-8 col-lg-offset-2 detailed">
-                            <h4 class="mb">Personal Information</h4>
+                            <h4 class="mb"> 숙소 정보 변경 </h4>
                             <form role="form" class="form-horizontal">
                               <div class="form-group">
-                                <label class="col-lg-2 control-label"> Avatar</label>
+                                <label class="col-lg-2 control-label"> 대표 이미지 변경</label>
                                 <div class="col-lg-6">
                                   <input type="file" id="exampleInputFile" class="file-pos">
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-lg-2 control-label">Company</label>
+                                <label class="col-lg-2 control-label"> 숙소 이름 </label>
                                 <div class="col-lg-6">
                                   <input type="text" placeholder=" " id="c-name" class="form-control">
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-lg-2 control-label">Lives In</label>
+                                <label class="col-lg-2 control-label"> 숙소 연락처 </label>
                                 <div class="col-lg-6">
                                   <input type="text" placeholder=" " id="lives-in" class="form-control">
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-lg-2 control-label">Country</label>
-                                <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="country" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label">Description</label>
+                                <label class="col-lg-2 control-label"> 설명 1 </label>
                                 <div class="col-lg-10">
-                                  <textarea rows="10" cols="30" class="form-control" id="" name=""></textarea>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                          <div class="col-lg-8 col-lg-offset-2 detailed mt">
-                            <h4 class="mb">Contact Information</h4>
-                            <form role="form" class="form-horizontal">
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label">Address 1</label>
-                                <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="addr1" class="form-control">
+                                  <textarea rows="5" cols="30" class="form-control" id="" name=""></textarea>
                                 </div>
                               </div>
                               <div class="form-group">
-                                <label class="col-lg-2 control-label">Address 2</label>
-                                <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="addr2" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label">Phone</label>
-                                <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="phone" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label">Cell</label>
-                                <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="cell" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label">Email</label>
-                                <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="email" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label">Skype</label>
-                                <div class="col-lg-6">
-                                  <input type="text" placeholder=" " id="skype" class="form-control">
+                                <label class="col-lg-2 control-label"> 설명2 </label>
+                                <div class="col-lg-10">
+                                  <textarea rows="5" cols="30" class="form-control" id="" name=""></textarea>
                                 </div>
                               </div>
                               <div class="form-group">

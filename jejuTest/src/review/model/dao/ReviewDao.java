@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import static common.JDBCTemplate.*;
@@ -82,7 +83,38 @@ public class ReviewDao {
 	
 	
 	
-	
+	public ArrayList<Review> selectReviewList(Connection conn, int memNum){
+		ArrayList<Review> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("review_num"),
+						            rset.getInt("mem_num"),
+						            rset.getInt("acm_num"),
+						            rset.getString("reservation_num"),
+						            rset.getInt("review_score"),
+						            rset.getString("review_title"),
+						            rset.getString("review_content"),
+						            rset.getDate("review_date")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return list;
+	}
 	
 
 }

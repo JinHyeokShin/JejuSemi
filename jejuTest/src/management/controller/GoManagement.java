@@ -33,8 +33,9 @@ public class GoManagement extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
+		int memNum = ((Member)request.getSession().getAttribute("loginUser")).getMemNum();
 		// 총 게시글 갯수
-		int reserveCount = new ManagementService().getOwnerListCount();
+		int reserveCount = new ManagementService().getOwnerListCount(memNum);
 		// ----------- 페이징 처리 -------------
 		int currentPage;		// 현재 페이지
 		int pageLimit; 			// 한 페이지 하단에 보여질 페이지 수
@@ -96,7 +97,7 @@ public class GoManagement extends HttpServlet {
 		ArrayList<Management> list = new ManagementService().ownerSelectList(currentPage, boardLimit, ((Member)request.getSession().getAttribute("loginUser")).getMemNum());
 		
 		// 페이지 정보들 PageInfo 객체에 담아주기
-		PageInfo pi = new PageInfo(currentPage, reserveCount, pageLimit, maxPage, startPage, endPage, boardLimit);
+		PageInfo pi = new PageInfo(currentPage, reserveCount, pageLimit, maxPage, startPage, endPage, boardLimit, ((Member)request.getSession().getAttribute("loginUser")).getMemNum());
 		
 		// request에 전달값 담기
 		request.setAttribute("list", list);

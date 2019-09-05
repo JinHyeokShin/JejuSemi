@@ -111,7 +111,7 @@
 						  <div class="item" style="padding-top: 20px; padding-left: 20px;">
 						    
 						    <div class="content">
-						      <a class="header">내가 쓴 리뷰 조회</a>
+						      <a class="header" href="<%=contextPath%>/myReview.rv?memNum=<%=m.getMemNum()%>">내가 쓴 리뷰 조회</a>
 						      <div class="description">회원님이 작성한 리뷰들을 관리합니다.</div>
 						    </div>
 						  </div>

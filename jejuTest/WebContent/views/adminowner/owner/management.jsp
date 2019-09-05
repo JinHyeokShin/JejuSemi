@@ -89,7 +89,7 @@ ul.sidebar-menu li ul.sub li.active a {
             </section>
           </aside>
          </div>
-                <h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
+      	<h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
         <div class="col-lg-12 mt">
         	<section class="panel">
               <div class="panel-body">
@@ -129,60 +129,40 @@ ul.sidebar-menu li ul.sub li.active a {
 						<%} %>
 					<%} %>
               	</table>
-              			<div class="btn-group btn-group-justified" align="center">
-		
-			<!-- 맨처음으로 (<<) -->
-			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow?currentPage=1'"> &lt;&lt; </button>
-			
-			<!-- 이전페이지로(<) -->
-			<%if(currentPage == 1){ %>
-			<button class="btn btn-theme" disabled> &lt; </button>
-			<%}else{ %>
-			<button class="btn btn-theme" class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow?currentPage=<%= currentPage-1 %>'"> &lt; </button>
-			<%} %>
-			
-			
-			<!-- 10개의 페이지 목록 -->
-			<%for(int p=startPage; p<=endPage; p++){ %>
-				
-				<%if(p == currentPage){ %>
-				<button class="btn btn-theme" disabled> <%= p %> </button>
-				<%}else{ %>
-				<button class="btn btn-theme" onclick="location.href='<%=request.getContextPath() %>/management.ow?currentPage=<%= p %>'"> <%= p %> </button>
-				<%} %>
-				
-			<%} %>
-			
-			
-			<!-- 다음페이지로(>) -->
-			<%if(currentPage == maxPage){ %>
-			<button disabled> &gt; </button>
-			<%}else { %>
-			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow?currentPage=<%= currentPage+1 %>'"> &gt; </button>
-			<%} %>
-			
-			<!-- 맨끝으로(>>) -->
-			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
-			
-		</div>
+              			<div class="pagingArea" align="right">
+					<%if(currentPage == 1){ %>
+						<button class="btn btn-default" disabled> &lt; previous </button>
+					<%}else{ %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%=currentPage-1%>'">&lt; previous</button>
+					<%} %>
+					
+					<%for(int p = startPage; p <= endPage; p++){ %>
+						<%if(p == currentPage){ %>
+							<button class="btn btn-warning" disabled> <%= p %> </button>
+						<%}else{ %>
+							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%= p %>'"> <%= p %> </button>
+						<%} %>
+					<%} %>
+					
+					<%if(currentPage == maxPage){ %>
+						<button class="btn btn-default" disabled> next &gt; </button>
+					<%}else { %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
+					<%} %>
+					</div>
 		</div>
 		</section>
 		
 		<div class="searchArea" align="center">
 			<select id="searchCondition" name="searchCondition">
 				<option>----</option>
-				<option value="category">카테고리</option>
-				<option value="writer">작성자</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
+				<option value="category">이름</option>
+				<option value="writer">전화번호</option>
 			</select>
 			<input type="search">
 			
 			<button class="btn btn-theme" type="submit">검색하기</button>
-			
-			<%if(loginUser != null){ %>
-			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/insertForm.bo'">작성하기</button>
-			<%} %>
+			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow'">초기화하기</button>
 			
 		</div>
               </div>

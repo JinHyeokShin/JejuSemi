@@ -9,7 +9,7 @@ public class PageInfo {
 	private int startPage;			// 한 페이지 하단에 보여질 페이징바의 첫 페이지수
 	private int endPage;			// 한 페이지 하단에 보여질 페이징바의 마지막 페이지수 
 	private int boardLimit;			// 한 페이지에 보여질 게시글 수
-	
+	private int memNum;				// 사장님 번호
 	public PageInfo() {
 		
 	}
@@ -24,6 +24,27 @@ public class PageInfo {
 		this.startPage = startPage;
 		this.endPage = endPage;
 		this.boardLimit = boardLimit;
+	}
+
+	public PageInfo(int currentPage, int listCount, int pageLimit, int maxPage, int startPage, int endPage,
+			int boardLimit, int memNum) {
+		super();
+		this.currentPage = currentPage;
+		this.listCount = listCount;
+		this.pageLimit = pageLimit;
+		this.maxPage = maxPage;
+		this.startPage = startPage;
+		this.endPage = endPage;
+		this.boardLimit = boardLimit;
+		this.memNum = memNum;
+	}
+
+	public int getMemNum() {
+		return memNum;
+	}
+
+	public void setMemNum(int memNum) {
+		this.memNum = memNum;
 	}
 
 	public int getCurrentPage() {

@@ -522,17 +522,6 @@
 
 
 
-
-
-
-
-
-
-
-
-	
-
-
 	<%-- 풋터 --%>
     <%@ include file="../main/footer.jsp" %>
 

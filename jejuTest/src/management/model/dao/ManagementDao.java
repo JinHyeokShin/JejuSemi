@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -28,18 +27,19 @@ private Properties prop = new Properties();
 	}
 	
 	
-	public int getOwnerListCount(Connection conn) {
+	public int getOwnerListCount(Connection conn, int memNum) {
 			int listCount = 0;
 			
-			Statement stmt = null;
+			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			
 			String sql = prop.getProperty("getOwnerListCount");
 			
 			try {
-				stmt = conn.createStatement();
+				pstmt = conn.prepareStatement(sql);
 				
-				rset = stmt.executeQuery(sql);
+				pstmt.setInt(1, memNum);
+				rset = pstmt.executeQuery();
 				
 				if(rset.next()) {
 					listCount = rset.getInt(1);
@@ -49,7 +49,7 @@ private Properties prop = new Properties();
 				e.printStackTrace();
 			} finally {
 				close(rset);
-				close(stmt);
+				close(pstmt);
 			}
 			
 			return listCount;
