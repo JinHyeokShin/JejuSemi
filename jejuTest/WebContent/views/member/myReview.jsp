@@ -106,6 +106,26 @@
 							<div class="content ui input" style="padding-right: 1.5em; padding-top: 13px;">
 								<div class="aa">
 									<span>예약번호 : <%=r.getReservNum() %></span>
+									<div class="aa review1_2 starRev" style="height: 25px;">
+										<span class="starR" id="star1">1</span>
+									    <span class="starR" id="star2">2</span>
+									    <span class="starR" id="star3">3</span>
+									    <span class="starR" id="star4">4</span>
+									    <span class="starR" id="star5">5</span>
+									</div>
+									
+									<script>
+										/* 리뷰에 저장된 별점 만큼 별점 보이게 해주는 메소드 */
+										$(function() {
+											
+											for(var i=1; i <= <%=r.getReviewScore()%>; i++){
+												$("#star"+i).addClass("on");
+											}
+										});
+									
+									</script>
+									
+									
 								</div>
 								<input type="text" id="reviewTitle" value="<%=r.getReviewTitle() %>" size="50" readonly>
 								<span style="float: right; margin-top: 13px; margin-right: 10px; font-size: 18px;">작성일 : <span id="reviewDate"><%=r.getReviewDate()%></span></span>
