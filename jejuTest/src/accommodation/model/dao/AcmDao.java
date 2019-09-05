@@ -18,6 +18,7 @@ import accommodation.model.vo.Option;
 import accommodation.model.vo.Room;
 import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
+import member.model.vo.WishList;
 
 public class AcmDao {
 	
@@ -397,6 +398,8 @@ public class AcmDao {
 		}
 		return room;
 	}
+	
+	
 	public Acm updateSelectAcm(Connection conn, int ownerNum) {
 		
 		Acm acm = null;
@@ -453,10 +456,82 @@ public class AcmDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-		}
-		
+		}		
 		return result;
 	}
+	
+	
+	
+
+	public int insertLike(Connection conn, int memNum, int acmNum) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertLike");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNum);
+			pstmt.setInt(2, acmNum);
+			
+			result = pstmt.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	public int deleteLike(Connection conn, int memNum, int acmNum) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteLike");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNum);
+			pstmt.setInt(2, acmNum);
+			
+			result = pstmt.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	public WishList checkLike(Connection conn, int memNum, int acmNum) {
+		WishList wish = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("checkLike");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNum);
+			pstmt.setInt(2, acmNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				wish = new WishList(rset.getInt("mem_num"),rset.getInt("acm_num"));
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return wish;
+	}
+	
+	
 	
 	
 	

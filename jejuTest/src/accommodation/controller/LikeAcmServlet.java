@@ -1,7 +1,6 @@
 package accommodation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,22 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import accommodation.model.service.AcmService;
-import accommodation.model.vo.Acm;
-import accommodation.model.vo.AcmImg;
-import accommodation.model.vo.Room;
-import review.model.service.ReviewService;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class DetailAcmServlet
+ * Servlet implementation class LikeAcmServlet
  */
-@WebServlet("/detail.ac")
-public class DetailAcmServlet extends HttpServlet {
+@WebServlet("/like.ac")
+public class LikeAcmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailAcmServlet() {
+    public LikeAcmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,33 +30,42 @@ public class DetailAcmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+
+		int likeFlag = Integer.parseInt(request.getParameter("likeFlag"));
 		int acmNum = Integer.parseInt(request.getParameter("acmNum"));
-				
-		Acm acm = new AcmService().selectAcm(acmNum);
-		String checkIn = request.getParameter("checkIn");
-		String checkOut = request.getParameter("checkOut");
+		int memNum = (((Member)request.getSession().getAttribute("loginUser")).getMemNum());
 		
-				
-		if(acm != null) {
-			request.setAttribute("acm", acm);
-			ArrayList<AcmImg> acmImgList = new AcmService().acmImgListView(acmNum);			
-			request.setAttribute("acmImgList", acmImgList);
-			ArrayList<Room> roomList = new AcmService().selectRoomList(acmNum,checkIn,checkOut);
-			request.setAttribute("roomList", roomList);
-			double avg = new ReviewService().selectAvg(acmNum);
-			request.setAttribute("avg", avg);
+		int result = 0;
+		
+		if(likeFlag == 1) {	// 체크 됐을때
+			result = new AcmService().insertLike(memNum, acmNum);
 			
-			request.getRequestDispatcher("views/accommodation/acmDetail.jsp").forward(request, response);			
-		} else {
+		} else if(likeFlag == 2) {	// 체크 안됐을때
+			result = new AcmService().deleteLike(memNum, acmNum);	
 			
 		}
 		
+		int result1 = 0;
 		
-		
-		
-		
+		if(result > 0) {
+			
+			if(likeFlag == 1) {
+				result1 = 1;
+				response.getWriter().print(result1);
+			} else if(likeFlag == 2) {
+				result1 = 2;
+				response.getWriter().print(result1);
+			}
+			
+		} else {
+			if(likeFlag == 1) {
+				System.out.println("찜하기 실패");
+			} else if(likeFlag == 2) {
+				System.out.println("찜삭제 실패");
+			}
+		}
+	
+	
 	}
 
 	/**

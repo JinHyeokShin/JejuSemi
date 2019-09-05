@@ -1,7 +1,6 @@
 package accommodation.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,22 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import accommodation.model.service.AcmService;
-import accommodation.model.vo.Acm;
-import accommodation.model.vo.AcmImg;
-import accommodation.model.vo.Room;
-import review.model.service.ReviewService;
 
 /**
- * Servlet implementation class DetailAcmServlet
+ * Servlet implementation class LikeCheckServlet
  */
-@WebServlet("/detail.ac")
-public class DetailAcmServlet extends HttpServlet {
+@WebServlet("/check.li")
+public class LikeCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailAcmServlet() {
+    public LikeCheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,32 +30,21 @@ public class DetailAcmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		int memNum = Integer.parseInt(request.getParameter("memNum"));
 		int acmNum = Integer.parseInt(request.getParameter("acmNum"));
-				
-		Acm acm = new AcmService().selectAcm(acmNum);
-		String checkIn = request.getParameter("checkIn");
-		String checkOut = request.getParameter("checkOut");
 		
-				
-		if(acm != null) {
-			request.setAttribute("acm", acm);
-			ArrayList<AcmImg> acmImgList = new AcmService().acmImgListView(acmNum);			
-			request.setAttribute("acmImgList", acmImgList);
-			ArrayList<Room> roomList = new AcmService().selectRoomList(acmNum,checkIn,checkOut);
-			request.setAttribute("roomList", roomList);
-			double avg = new ReviewService().selectAvg(acmNum);
-			request.setAttribute("avg", avg);
-			
-			request.getRequestDispatcher("views/accommodation/acmDetail.jsp").forward(request, response);			
-		} else {
-			
+		System.out.println(memNum);
+		System.out.println(acmNum);
+		
+		int result = new AcmService().checkLike(memNum, acmNum);
+		
+		System.out.println(result);
+		
+		if(result == 1) {
+			response.getWriter().print(result);			
+		} else if(result == 2) {
+			System.out.println("찜하지 않은 숙소 입니다.");
 		}
-		
-		
-		
-		
-		
 	}
 
 	/**

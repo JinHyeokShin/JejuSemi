@@ -18,6 +18,14 @@ public class WishList {
 		this.acmNum = acmNum;
 		this.wishDate = wishDate;
 	}
+	
+	
+
+	public WishList(int memNum, int acmNum) {
+		super();
+		this.memNum = memNum;
+		this.acmNum = acmNum;
+	}
 
 	public int getMemNum() {
 		return memNum;

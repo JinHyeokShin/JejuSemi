@@ -1,6 +1,9 @@
 package accommodation.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -12,6 +15,7 @@ import accommodation.model.vo.Option;
 import accommodation.model.vo.Room;
 import accommodation.model.vo.RoomImg;
 import accommodation.model.vo.Search;
+import member.model.vo.WishList;
 
 public class AcmService {
 	
@@ -171,11 +175,71 @@ public class AcmService {
 	}
 	
 	
+
+	/**
+	 * 찜하기 insert 하는 서비스
+	 * @param memNum
+	 * @param acmNum
+	 * @return
+	 */
+	public int insertLike(int memNum, int acmNum) {
+		Connection conn = getConnection();
+		
+		int result = new AcmDao().insertLike(conn, memNum, acmNum);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}		
+		close(conn);
+		
+		return result;
+	}
+	
+	
+	
+	/**
+	 * 찜한거 삭제하는 메소드
+	 * @param memNum
+	 * @param acmNum
+	 * @return
+	 */
+	public int deleteLike(int memNum, int acmNum) {
+		Connection conn = getConnection();
+		
+		int result = new AcmDao().deleteLike(conn, memNum, acmNum);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	
 	
-	
+	/**
+	 * 숙소 상세 페이지 들어갈 때 회원이 찜한 숙소인지 아닌지 체크 하는 서비스
+	 * @param memNum
+	 * @param acmNum
+	 * @return
+	 */
+	public int checkLike(int memNum, int acmNum) {
+		Connection conn = getConnection();
+		WishList wish = new AcmDao().checkLike(conn, memNum, acmNum);
+		int result = 0;
+		if(wish != null) {
+			result = 1;
+		} else {
+			result = 2;
+		}
+		return result;
+	}
 	
 
 }

@@ -61,10 +61,13 @@
 	  height: 30px;
 	  display: inline-block;
 	  text-indent: -9999px;
-	  cursor: pointer;
 	}
 	.starR.on{background-position:0 0;}
-
+	
+	#acmImg{
+		cursor:pointer;
+	}
+	
 
 </style>
 </head>
@@ -164,12 +167,12 @@
 	$(document).on('click','#acmImg',function(){
 		
 		var today = new Date();
-		today1 = getFormatDate(today);
+		var today1 = getFormatDate(today);
 		
 		var tommorow = new Date();
 		tommorow.setDate(today.getDate()+1);
 		
-		tommorow1 = getFormatDate(tommorow);
+		var tommorow1 = getFormatDate(tommorow);
 				
 		console.log(today1);
 		console.log(tommorow1);

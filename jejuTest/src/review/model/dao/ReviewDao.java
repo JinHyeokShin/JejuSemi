@@ -116,5 +116,33 @@ public class ReviewDao {
 		return list;
 	}
 	
+	
+	public double selectAvg(Connection conn, int acmNum) {
+		double result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAvg");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = Math.round(rset.getInt(1)*10)/10.0;		
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return result;
+	}
+	
+	
 
 }

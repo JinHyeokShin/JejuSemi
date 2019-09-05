@@ -67,5 +67,15 @@ public class ReviewService {
 		return list;
 	}
 	
+	
+	public double selectAvg(int acmNum) {
+		Connection conn = getConnection();
+		
+		double avg = new ReviewDao().selectAvg(conn, acmNum);
+		
+		close(conn);
+		
+		return avg;
+	}
 
 }

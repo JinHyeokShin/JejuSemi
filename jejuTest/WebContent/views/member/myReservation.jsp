@@ -67,6 +67,10 @@
 	  cursor: pointer;
 	}
 	.starR.on{background-position:0 0;}
+	
+	#acmImg{
+		cursor:pointer;
+	}
 
 
 </style>
@@ -99,7 +103,7 @@
 							<%for(AcmImg img : acmThumbnailImgList) {%>
 								
 								<%if(acm.getAcmNum() == img.getAcmNum()) {%>
-									<img src="<%=img.getImgPath()%>" style="height:100%">
+									<img src="<%=img.getImgPath()%>" id="acmImg" style="height:100%">
 								<%} %>
 								
 							<%} %>
@@ -284,6 +288,35 @@
 			
 			
 			
+			
+			function getFormatDate(date){ 
+				
+				var year = date.getFullYear();
+				var month = (1 + date.getMonth());
+				month = month >= 10 ? month : '0' + month;
+				var day = date.getDate();
+				day = day >= 10 ? day : '0' + day;
+				
+				return year + '-' + month + '-' + day; 		
+				}
+			
+			
+			$(document).on('click','#acmImg',function(){
+				
+				var today = new Date();
+				var today1 = getFormatDate(today);
+				
+				var tommorow = new Date();
+				tommorow.setDate(today.getDate()+1);
+				
+				var tommorow1 = getFormatDate(tommorow);
+						
+				console.log(today1);
+				console.log(tommorow1);
+				
+				location.href="<%=contextPath %>/detail.ac?acmNum="+$('#acmNum').val()+"&checkIn="+today1+"&checkOut="+tommorow1+"&adult=1&child=0";
+				
+			})
 		
 		</script>
 

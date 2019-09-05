@@ -18,9 +18,9 @@
 	
 	ArrayList<Room> roomList = (ArrayList<Room>)request.getAttribute("roomList");
 	
-	/* for(Room room: roomList){
-		System.out.println(room);		
-	} */
+	double avg = (double)request.getAttribute("avg");
+	
+	
 		
  %>
     
@@ -486,6 +486,35 @@
 		.hideTable{
 		display:none
 		}
+		.des3_1{
+			height: 5%;
+		}
+		.des3_2{
+			height: 85%;
+			border-radius: 15px;
+		}
+		.des3_2_1{
+			height: 25%;
+			padding: 30px;
+		}
+		.des3_2_2{
+			height: 75%;
+			padding:15px;
+		}
+		.des3_2_2_1{
+			width:100%;
+			height:100%;
+			border-radius: 15px;
+			background: white;
+		}
+		.des3_2_2_1_1{
+			height: 65%;
+			padding: 30px 80px;
+		}
+		.des3_2_2_1_2{
+			height: 35%;
+			padding: 15px;
+		}
 		
         
 </style>
@@ -741,9 +770,82 @@
                 		</ul>
                 	</div>
                 		
-                	<div class="des3 aa dd"></div>
+                	<div class="des3 aa dd">
+                		<div class="des3_1"></div>
+                		<div class="des3_2 aa bg-light">
+                			<div class="des3_2_1 aa">
+                				
+                				<div class="ui toggle checkbox">
+								  <input type="checkbox" name="like" id="like">
+								  <label>즐겨찾기</label>
+								</div>
+                				
+                			</div>
+                			<div class="des3_2_2 aa">
+                				<div class="des3_2_2_1 aa">
+                					<div class="des3_2_2_1_1 aa ">
+                						<img src="<%=contextPath%>/resources/images/star1.png" style="float:left; width: 50px; display: inline-block;">
+                						<b id="avgPoint" style="font-size: 45px; display: inline-block; float: left;">&nbsp;<%=avg %></b>
+                					</div>
+                					<div class="des3_2_2_1_2 aa ">
+                						<a href="">이 숙소의 모든 리뷰 보러가기</a>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                	</div>
                 	
                 </div>		<!-- 설명들어갈 div -->
+                
+                <script>
+                	var likeFlag = 0;
+                
+                	$(document).on('change','#like',function(){
+                		if($('#like').prop('checked')){
+                			likeFlag = 1;		/* 체크 됐을때 */
+                		} else{
+                			likeFlag = 2;		/* 체크 안됐을때 */
+                		}
+                		
+                		$.ajax({
+                			url:"like.ac",
+                			type:"post",
+                			data:{likeFlag:likeFlag,
+                				  acmNum:<%=acm.getAcmNum()%>
+                				 },
+                			success:function(result){
+                				if(result == 1){
+                					$("#like").prop("checked",true);
+                					console.log("찜하기 성공");
+                				}else if(result == 2){
+                					$("#like").prop("checked",false);
+                					console.log("찜삭제 성공");
+                				}
+                			}
+                		});                		
+                	});
+                	
+                	
+                	$(function(){
+            			console.log("찜했는지 검사");
+            			$.ajax({
+            				url:"check.li",
+            				type:"post",
+            				data:{memNum:<%=loginUser.getMemNum()%>,
+            					  acmNum:<%=acm.getAcmNum()%>},
+            				success:function(result){
+            					if(result == 1){
+                					$("#like").prop("checked",true);
+                					console.log("찜한 숙소 입니다.");
+            					}                					
+            				},
+            				error:function(){
+            					console.log("ajax 통신 실패");
+            				}
+            			});
+            		})
+                
+                </script>
                 
                 
                 <!-- 다시 검색하는 위젯 -->
