@@ -1,29 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.model.vo.*, reservation.model.vo.*, reservation.model.service.*, accommodation.model.vo.*, 
+    pageEncoding="UTF-8" import="member.model.vo.*, accommodation.model.vo.*, 
     							 java.util.*, review.model.service.*, review.model.vo.*"%>
 <%
 	Member m = (Member)session.getAttribute("loginUser");
 	ArrayList<WishList> wishList = (ArrayList<WishList>)request.getAttribute("wishList");
 	ArrayList<AcmImg> acmThumbnailImgList = (ArrayList<AcmImg>)request.getAttribute("acmThumbnailImgList");
-	ArrayList<Acm> acmList = (ArrayList<Acm>)request.getAttribute("acmList");
-	
+	ArrayList<Acm> acmList = (ArrayList<Acm>)request.getAttribute("acmList");	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 	.likeContainer{
 		padding-top: 100px;
     	padding-bottom: 100px;    	
 	}
-	.likecards{
-		
-	}
-
-
-
+	
 </style>
 
 </head>
@@ -34,8 +29,7 @@
 	});
 </script>
 	<%-- 헤더,메뉴바 --%>
-	<%@ include file="../main/header.jsp" %>
-	
+	<%@ include file="../main/header.jsp" %>	
 	
 	<div class="aa">
 		<div class="likeContainer container aa" style="padding-left:110px; padding-right:110px;">
@@ -124,19 +118,7 @@
 		
 		</div>	<!-- container close -->
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	<%-- 풋터 --%>
     <%@ include file="../main/footer.jsp" %>
