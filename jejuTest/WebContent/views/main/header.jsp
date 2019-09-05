@@ -136,13 +136,12 @@
                 <li class="nav-item"><a class="nav-link" href="#section-home" id="nav1">Home</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav2">Flight</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav3">RentCar</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">AboutJeju</a></li> -->
-                <li class="nav-item"><a class="nav-link" href="#section-about" id="nav5">Recommand</a></li>              
-                <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/tourList.to" id="nav6">TourSpot</a></li>   
-                <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/festival.do" id="nav7">JejuFestival</a></li>         
+                <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">Recommand</a></li>              
+                <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/tourList.to" id="nav5">TourSpot</a></li>   
+                <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/festival.do" id="nav6">JejuFestival</a></li>  
+                <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/faq.fq" id="nav7">FAQ</a></li>       
                 <li class="nav-item"><a class="nav-link" href="#section-contact" id="nav8">ContactUs</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="#section-apply" id="nav9">ApplyFor</a></li> -->
-                <!-- <li class="nav-item"><a class="nav-link" href="#" id="join">Join</a></li> -->
+ 
                 <% if(loginUser == null){ %>
                 <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" id="loginBtn" target=""><span class="pb_rounded-4 px-4 rounded">Login</span></a></li>
                 <%}else{ %>
