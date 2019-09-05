@@ -61,6 +61,9 @@ public class ReservationList extends HttpServlet {
 		ArrayList<Reservation> rList = new AdminService().reservationSearch(currentPage, boardLimit);
 		PageInfo pi = new PageInfo(currentPage,count,pageLimit,maxPage,startPage,endPage,boardLimit);
 		
+		
+		
+		
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("rlist", rList);
 		request.setAttribute("rPi",pi);

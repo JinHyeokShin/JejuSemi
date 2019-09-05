@@ -49,7 +49,7 @@ ul.sidebar-menu li ul.sub li.active a {
 .content-panel {
 	padding: 10px;
 }
-<%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
+<%-- <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%> --%>
 
 </style>
 </head>

@@ -161,8 +161,12 @@ public class AdminDao {
          pstmt = conn.prepareStatement(sql);
          rset = pstmt.executeQuery();
          while (rset.next()) {
-            nList.add(new Notice(rset.getInt(1), rset.getString(2), rset.getString(3),rset.getDate(4),
-                  rset.getDate(5), rset.getString(6)));
+            nList.add(new Notice(rset.getInt(1),
+				            		rset.getString(2),
+				            		rset.getString(3),
+				            		rset.getString(4),
+				                    rset.getString(5),
+				                    rset.getString(6)));
          };
 
       } catch (SQLException e) {
@@ -206,8 +210,8 @@ public class AdminDao {
             n.setnNum(rset.getInt(1));
             n.setnTitle(rset.getString(2));
             n.setnContent(rset.getString(3));
-            n.setnDate(rset.getDate(4));
-            n.setnModifyDate(rset.getDate(5));
+            n.setnDate(rset.getString(4));
+            n.setnModifyDate(rset.getString(5));
             n.setnStatus(rset.getString(6));
          }
          
