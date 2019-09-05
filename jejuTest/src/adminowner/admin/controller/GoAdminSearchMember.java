@@ -46,7 +46,7 @@ public class GoAdminSearchMember extends HttpServlet {
 	         currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	    }
 	      
-	    pageLimit = 10;
+	    pageLimit = 5;
 	    maxPage = (int)Math.ceil((double)count/boardLimit);
 	    startPage = (int)Math.floor(((double)currentPage - 1) / pageLimit) * pageLimit + 1;  
 	    endPage = startPage + pageLimit - 1 ;

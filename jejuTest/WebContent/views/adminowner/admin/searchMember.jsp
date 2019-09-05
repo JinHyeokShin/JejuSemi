@@ -76,7 +76,6 @@ ul.sidebar-menu li ul.sub li.active a {
 								<th>회원 국적</th>
 								<th>회원 포인트</th>
 								<th>회원 타입</th>
-								<th>회원 상태</th>
 								<th>회원 가입일</th>
 								<th>회원 노쇼</th>
 								<th>회원상태</th>
@@ -103,7 +102,6 @@ ul.sidebar-menu li ul.sub li.active a {
 									<td><%=m.getNationCode() %></td>
 									<td><%=m.getMemPoint() %></td>
 									<td><%=m.getMemType() %></td>
-									<td><%=m.getMemStatus() %></td>
 									<td><%=m.getEnrollDate() %></td>
 									<td><%=m.getNoShow() %></td>
 									<td>

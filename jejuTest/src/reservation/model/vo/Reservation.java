@@ -5,7 +5,10 @@ import java.util.Date;
 public class Reservation {
 
 	private String reservNum;			// 예약 번호
+private String memName;				//관리자 : 예약회원이름
 	private int memNum;				// 예약한 회원 번호
+	private String acmName;			// 관리자 : 예약숙소 이름
+	private String roomName;		// 관리자 : 예약 룸 이름
 	private int roomNum;			// 방 번호
 	private int reservPax;			// 예약 인원
 	private String checkInDate;		// 체크인 
@@ -66,6 +69,28 @@ public class Reservation {
 		super();
 		this.reservNum = reservNum;
 		this.roomNum = roomNum;
+		this.reservPax = reservPax;
+		this.checkInDate = checkInDate;
+		this.checkOutDate = checkOutDate;
+		this.reservPrice = reservPrice;
+		this.reservCancel = reservCancel;
+		this.reservDate = reservDate;
+		this.cancelDate = cancelDate;
+		this.reservRequire = reservRequire;
+		this.noShow = noShow;
+		this.status = status;
+	}
+	
+
+	//관리자
+	public Reservation(String reservNum, String memName, String acmName, String roomName, int reservPax,
+			String checkInDate, String checkOutDate, int reservPrice, String reservCancel, String reservDate,
+			String cancelDate, String reservRequire, String noShow, String status) {
+		super();
+		this.reservNum = reservNum;
+		this.memName = memName;
+		this.acmName = acmName;
+		this.roomName = roomName;
 		this.reservPax = reservPax;
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
@@ -183,6 +208,42 @@ public class Reservation {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public String getMemName() {
+		return memName;
+	}
+
+
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
+
+
+	public String getAcmName() {
+		return acmName;
+	}
+
+
+
+	public void setAcmName(String acmName) {
+		this.acmName = acmName;
+	}
+
+
+
+	public String getRoomName() {
+		return roomName;
+	}
+
+
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+
+
 
 	@Override
 	public String toString() {
