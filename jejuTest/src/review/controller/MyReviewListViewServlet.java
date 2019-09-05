@@ -37,10 +37,10 @@ public class MyReviewListViewServlet extends HttpServlet {
 		int memNum = Integer.parseInt(request.getParameter("memNum"));
 		
 		ArrayList<Review> reviewList = new ReviewService().selectReviewList(memNum);	// 내 리뷰 목록 호출	
-		ArrayList<AcmImg> acmImgList = new AcmService().acmThumbnailListView();			// 숙소 대표 사진들 호출
+		ArrayList<AcmImg> acmThumbnailImgList = new AcmService().acmThumbnailListView();			// 숙소 대표 사진들 호출
 		
 		request.setAttribute("reviewList", reviewList);
-		request.setAttribute("acmImgList", acmImgList);
+		request.setAttribute("acmThumbnailImgList", acmThumbnailImgList);
 		
 		request.getRequestDispatcher("views/member/myReview.jsp").forward(request, response);
 		
