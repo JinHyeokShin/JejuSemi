@@ -34,8 +34,9 @@ public class GoPsManagement extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String acmName = ((Acm)request.getSession().getAttribute("acm")).getAcmName();
+		int acmNum = ((Acm)request.getSession().getAttribute("acm")).getAcmNum();
 		
-		int count = new OwnerReviewService().reviewCount(acmName);
+		int count = new OwnerReviewService().reviewCount(acmNum);
 		int currentPage; 
 	    int pageLimit;   
 	    int maxPage;    
@@ -56,7 +57,7 @@ public class GoPsManagement extends HttpServlet {
 	         endPage = maxPage; 
 	      }
 		
-		ArrayList<Review> list = new OwnerReviewService().reviewList(currentPage, boardLimit, acmName);
+	    ArrayList<Review> list = new OwnerReviewService().reviewList(currentPage, boardLimit, acmName);
 		PageInfo pi = new PageInfo(currentPage,count,pageLimit,maxPage,startPage,endPage,boardLimit);
 		
 		request.setCharacterEncoding("utf-8");

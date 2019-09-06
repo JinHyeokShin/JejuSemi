@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList, management.model.vo.*"%>
 	<%@page import="adminowner.admin.model.vo.Notice"%>
+<%@page import="review.model.vo.Review"%>
     <% 
     ArrayList<Management> list = (ArrayList<Management>)request.getAttribute("list");
 	
@@ -15,6 +16,8 @@
 	int endPage = pi.getEndPage();
 	
 	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
+	
+	ArrayList<Review> rList = (ArrayList<Review>)request.getAttribute("rList");
     %>
 
 
@@ -135,9 +138,9 @@ cursor:pointer;
                       <div id="overview" class="tab-pane active">
                           <div class="col-md-12 mt">
                             <div class="content-panel">
+						<table class="table table-hover">
                                 <h3><i class="fa fa-angle-right"></i> 공지사항</h3>
                                 <hr>
-						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th width="50px">#</th>
@@ -175,7 +178,6 @@ cursor:pointer;
                           <div class="col-md-12 mt">
                             <div class="content-panel">
                                 <h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
-                                <hr>
                                 <table class="table">
 				              		<tr>
 				              			<th>Rownum</th>
@@ -233,9 +235,63 @@ cursor:pointer;
 						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/page.ow?currentPage=<%= currentPage+1 %>'">next &gt;</button>
 					<%} %>
 					</div>
-                              </div>
-                          </div>
-                      </div>
+                    </div>
+                    <br>
+                    <div class="content-panel">
+                        <h3><i class="fa fa-angle-right"></i>리뷰 조회</h3>
+                    	<table id="reviewTable" class="table table-bordered">
+						<thead>
+							<tr id="tr1">
+								<th style="width:50px;">번호</th>
+								<th style="width:700px;">리뷰제목</th>
+								<th>숙소</th>
+								<th>점수</th>
+								<th>작성자</th>
+								<th>예약번호</th>
+								<th>작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if(rList.isEmpty()){ %>
+							<tr><td colspan="8">비이이이임!!!</td></tr>
+							<%}else{ %>
+								<%for(Review i:rList){ %>
+									<tr>
+										<td><%=i.getReviewNum() %></td>
+										<td><%=i.getReviewTitle() %></td>
+										<td><%=i.getAcmName() %></td>
+										<td><%=i.getReviewScore() %></td>
+										<td><%=i.getMemName() %></td>
+										<td><%=i.getReservNum() %></td>
+										<td><%=i.getReviewDate() %></td>
+									</tr>
+								<%} %>
+							<%}%>
+						</tbody>
+					</table>
+					<div class="pagingArea" align="right">
+					<%if(currentPage == 1){ %>
+						<button class="btn btn-default" disabled> &lt; previous </button>
+					<%}else{ %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/psManagement.ow?currentPage=<%=currentPage-1%>'">&lt; previous</button>
+					<%} %>
+					<%for(int p = startPage; p <= endPage; p++){ %>
+						<%if(p == currentPage){ %>
+							<button class="btn btn-warning" disabled> <%= p %> </button>
+						<%}else{ %>
+							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/psManagement.ow?currentPage=<%= p %>'"> <%= p %> </button>
+						<%} %>
+					<%} %>
+					<%if(currentPage == maxPage){ %>
+						<button class="btn btn-default" disabled> next &gt; </button>
+					<%}else { %>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/psManagement.ow?currentPage=<%= currentPage+1 %>'">next &gt;</button>
+					<%} %>
+					</div>
+                </div>
+            </div>
+            </div>
+                      
                       <!-- /tab-pane -->
                       <div id="edit" class="tab-pane">
                         <div class="row">

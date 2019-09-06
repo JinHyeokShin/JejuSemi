@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import accommodation.model.vo.Acm;
 import adminowner.admin.model.service.AdminService;
 import adminowner.admin.model.vo.Notice;
 import management.model.service.ManagementService;
 import management.model.vo.Management;
 import management.model.vo.PageInfo;
 import member.model.vo.Member;
+import review.model.service.OwnerReviewService;
+import review.model.vo.Review;
 
 /**
  * Servlet implementation class OwnerServlet
@@ -38,6 +41,8 @@ public class OwnerServlet extends HttpServlet {
 		
 		
 		int memNum = ((Member)request.getSession().getAttribute("loginUser")).getMemNum();
+		String acmName = ((Acm)request.getSession().getAttribute("acm")).getAcmName();
+		int acmNum = ((Acm)request.getSession().getAttribute("acm")).getAcmNum();
 		// 총 게시글 갯수
 		int reserveCount = new ManagementService().getOwnerListCount(memNum);
 		// ----------- 페이징 처리 -------------
@@ -95,7 +100,9 @@ public class OwnerServlet extends HttpServlet {
 		if(maxPage < endPage) {
 			endPage = maxPage;	// maxPage = 13, endPage = 13
 		}
-		
+		ArrayList<Review> list1 = new OwnerReviewService().reviewList(currentPage, boardLimit, acmName);
+		request.setAttribute("rList", list1);
+
 		ArrayList<Notice> nList = new AdminService().selectNList();
 		
 		if(nList!=null) {

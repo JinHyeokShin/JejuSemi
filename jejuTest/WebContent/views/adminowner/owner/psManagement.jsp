@@ -39,18 +39,66 @@
     display: block;
     cursor: pointer;
 } */
+.profile-pic img {
+    width: 60%;
+    height: 50%;
+    border: 10px solid #f1f2f7;
+    margin-top: 20px;
+}
+#reviewTable td{
+cursor:pointer;
+}
+#reviewTable th{
+cursor : default;
+}
   </style>
 </head>
     <%@ include file="../../../views/adminowner/common/ownerSidebar.jsp" %>
 <body>
 	<section id="main-content">
 		<section class="wrapper site-min-height">
-			<h3>
-				<i class="fa fa-angle-right"></i> 리뷰 조회
-			</h3>
+					<div class="row mt">
+              <div class="col-lg-12">
+                <div class="row content-panel">
+                  <div class="col-md-4 profile-text mt mb centered">
+                    <div class="right-divider hidden-sm hidden-xs">
+                      <h4><%= loginUser.getMemId() %></h4>
+                      <h6>ID</h6>
+                      <h4><%= loginUser.getMemName()%></h4>
+                      <h6>NAME</h6>
+                      <h4><%= acm.getAcmPhone() %></h4>
+                      <h6>PHONE</h6>
+                    </div>
+                  </div>
+                  <!-- /col-md-4 -->
+                  <div class="col-md-4 profile-text">
+                    <h3><%= acm.getAcmName() %></h3>
+                    <h6><%= loginUser.getMemName() %>님 환영합니다</h6>
+                    <p>COME TO JEJU를 이용해주셔서 감사합니다.<br>사용하시다가 불편한 점이나 개선할 점을<br> 문의해주시면 최대한 빠르게 조치하겠습니다.</p>
+                    <br>
+                    <p><button class="btn btn-theme" onclick="goInquiry();"><i class="fa fa-envelope"></i> 문의하기</button></p>
+                  </div>
+                  <!-- /col-md-4 -->
+                  <div class="col-md-4 centered">
+                    <div class="profile-pic">
+                      <p><img src="<%= acmImgList.get(0).getImgPath()%>"></p>
+                      <p>
+<!--                         <button class="btn btn-theme"><i class="fa fa-check"></i> Follow</button>
+                        <button class="btn btn-theme02">Add</button> -->
+                      </p>
+                    </div>
+                  </div>
+                  <!-- /col-md-4 -->
+                </div>
+                </div>
+                </div>
 			<br>
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
+			<h3>
+				<i class="fa fa-angle-right"></i> 리뷰 조회
+			</h3>
+			<hr>
 					<table id="reviewTable" class="table table-bordered">
 						<thead>
 							<tr id="tr1">
@@ -81,7 +129,7 @@
 							<%}%>
 						</tbody>
 					</table>
-										<div class="pagingArea" align="right">
+					<div class="pagingArea" align="right">
 					<%if(currentPage == 1){ %>
 						<button class="btn btn-default" disabled> &lt; previous </button>
 					<%}else{ %>

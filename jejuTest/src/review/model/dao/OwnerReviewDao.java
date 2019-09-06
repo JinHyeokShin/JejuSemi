@@ -29,7 +29,7 @@ public class OwnerReviewDao {
 		}		
 	}	
 	
-	  public int reviewCount(Connection conn, String acmName) {
+	  public int reviewCount(Connection conn, int acmNum) {
 	      int result = 0;
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
@@ -37,7 +37,7 @@ public class OwnerReviewDao {
 	      
 	      try {
 	         pstmt= conn.prepareStatement(sql);
-	         pstmt.setString(1, acmName);
+	         pstmt.setInt(1, acmNum);
 	         rset = pstmt.executeQuery();
 	         while(rset.next()) {
 	            result = rset.getInt(1);

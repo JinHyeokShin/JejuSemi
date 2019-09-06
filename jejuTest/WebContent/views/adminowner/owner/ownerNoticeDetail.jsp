@@ -43,6 +43,12 @@ ul.sidebar-menu li ul.sub li.active a {
 .panel-heading {
 	margin: 15px;
 }
+.profile-pic img {
+    width: 60%;
+    height: 50%;
+    border: 10px solid #f1f2f7;
+    margin-top: 20px;
+}
 </style>
 </head>
 <body>

@@ -10,9 +10,9 @@ import review.model.dao.OwnerReviewDao;
 import review.model.vo.Review;
 
 public class OwnerReviewService {
-	public int reviewCount(String acmName) {
+	public int reviewCount(int acmNum) {
 		Connection conn = getConnection();
-		int result = new OwnerReviewDao().reviewCount(conn, acmName);
+		int result = new OwnerReviewDao().reviewCount(conn, acmNum);
 		close(conn);
 		return result;
 	}

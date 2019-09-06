@@ -89,10 +89,11 @@ ul.sidebar-menu li ul.sub li.active a {
             </section>
           </aside>
          </div>
-      	<h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
         <div class="col-lg-12 mt">
         	<section class="panel">
               <div class="panel-body">
+              <div class="content-panel">
+      	<h3><i class="fa fa-angle-right"></i> 예약 관리 게시판</h3>
               	<table class="table">
               		<tr>
               			<th>Rownum</th>
@@ -150,9 +151,6 @@ ul.sidebar-menu li ul.sub li.active a {
 						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
 					<%} %>
 					</div>
-		</div>
-		</section>
-		
 		<div class="searchArea" align="center">
 			<select id="searchCondition" name="searchCondition">
 				<option>----</option>
@@ -161,10 +159,14 @@ ul.sidebar-menu li ul.sub li.active a {
 			</select>
 			<input type="search">
 			
-			<button class="btn btn-theme" type="submit">검색하기</button>
+			<button class="btn btn-theme" onclick="SearchTarget();">검색하기</button>
 			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow'">초기화하기</button>
 			
 		</div>
+		</div>
+		</div>
+		</section>
+		
               </div>
         </section>
     </section>
