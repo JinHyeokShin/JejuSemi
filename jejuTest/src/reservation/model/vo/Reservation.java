@@ -1,6 +1,5 @@
 package reservation.model.vo;
 
-import java.util.Date;
 
 public class Reservation {
 

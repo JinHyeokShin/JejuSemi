@@ -3,7 +3,6 @@ package accommodation.model.vo;
 import java.io.Serializable;
 
 public class AcmImg implements Serializable{
-	
 	/**
 	 * 
 	 */

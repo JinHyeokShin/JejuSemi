@@ -7,10 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import payment.model.vo.Payment;
-import power.model.service.PowerService;
-import power.model.vo.Power;
-
 /**
  * Servlet implementation class GoPowerMoney
  */

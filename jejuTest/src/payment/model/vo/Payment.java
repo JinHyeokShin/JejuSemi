@@ -1,6 +1,5 @@
 package payment.model.vo;
 
-import java.util.Date;
 
 public class Payment {	// 추후 결제 모듈 연동시 변경될 확률 높음(api쪽 반환값들에 맞춰서)
 	

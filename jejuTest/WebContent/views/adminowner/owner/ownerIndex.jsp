@@ -129,7 +129,7 @@ cursor:pointer;
                     </ul>
                   </div>
                   <!-- /panel-heading -->
-                  <div class="panel-body">
+                   <div class="panel-body">
                     <div class="tab-content">
 
                       <div id="overview" class="tab-pane active">
@@ -154,11 +154,11 @@ cursor:pointer;
 								</tr>
 								<%}else{ %> <%int i=0; %> 
 									<%for (Notice n : nList){ %> 
-										<%i++; %>
+										<%i++;%>
 										<tr id="noticeList">
 											<td><%=i %></td>
 											<td id="nTitle"><%=n.getnTitle() %></td>
-											<td id="nMDate"><%=n.getnModifyDate() %></td>
+											<td id="nMDate"><%=n.getnModifyDate()%></td>
 											<td id ="nDate"><%=n.getnDate() %></td> 
 											<input type="hidden" id ="nNum" value="<%=n.getnNum() %>">
 										</tr>
