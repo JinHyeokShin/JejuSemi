@@ -6,7 +6,6 @@ public class Reply {
 	
 	private int replyNum;			// 댓글 번호
 	private int reviewNum;			// 후기 번호
-	private int memNum;				// 회원 번호
 	private String replyContent;	// 댓글 내용
 	private Date replyDate;			// 댓글 날짜
 	
@@ -14,11 +13,16 @@ public class Reply {
 		
 	}
 
+	public Reply(int reviewNum, String replyContent) {
+		super();
+		this.reviewNum = reviewNum;
+		this.replyContent = replyContent;
+	}
+
 	public Reply(int replyNum, int reviewNum, int memNum, String replyContent, Date replyDate) {
 		super();
 		this.replyNum = replyNum;
 		this.reviewNum = reviewNum;
-		this.memNum = memNum;
 		this.replyContent = replyContent;
 		this.replyDate = replyDate;
 	}
@@ -39,13 +43,6 @@ public class Reply {
 		this.reviewNum = reviewNum;
 	}
 
-	public int getMemNum() {
-		return memNum;
-	}
-
-	public void setMemNum(int memNum) {
-		this.memNum = memNum;
-	}
 
 	public String getReplyContent() {
 		return replyContent;
@@ -65,9 +62,11 @@ public class Reply {
 
 	@Override
 	public String toString() {
-		return "Reply [replyNum=" + replyNum + ", reviewNum=" + reviewNum + ", memNum=" + memNum + ", replyContent="
-				+ replyContent + ", replyDate=" + replyDate + "]";
+		return "Reply [replyNum=" + replyNum + ", reviewNum=" + reviewNum + ", replyContent=" + replyContent
+				+ ", replyDate=" + replyDate + "]";
 	}
+
+
 	
 	
 	
