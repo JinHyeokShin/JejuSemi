@@ -138,23 +138,23 @@ $(document).ready(function(){
 <!-- 								<th>회원정지</th> -->
 							</tr>
 						</thead>
-<!-- 						<tbody> -->
+						<tbody>
 							
-<!-- 							<tr> -->
-<!-- 								<td>memNum</td> -->
-<!-- 								<td>memId</td> -->
-<!-- 								<td>memName</td> -->
-<!-- 								<td>memGender</td> -->
-<!-- 								<td>memPhone</td> -->
-<!-- 								<td>nationCode</td> -->
-<!-- 								<td>memPoint</td> -->
-<!-- 								<td>memType</td> -->
-<!-- 								<td>memStatus</td> -->
-<!-- 								<td>enrollDate</td> -->
-<!-- 								<td>noShowtd> -->
+							<tr>
+								<td>memNum</td>
+								<td>memId</td>
+								<td>memName</td>
+								<td>memGender</td>
+								<td>memPhone</td>
+								<td>nationCode</td>
+								<td>memPoint</td>
+								<td>memType</td>
+								<td>memStatus</td>
+								<td>enrollDate</td>
+								<td>noShowtd>
 <!-- 								<td><input id ="susBtn" type ="button" class="btn btn-theme04"name="btn"value="정지" ></td> -->
-<!-- 							</tr> -->
-<!-- 						</tbody> -->
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>

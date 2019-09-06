@@ -3,6 +3,7 @@ package power.model.vo;
 public class Power {
 	
 	private int powerNum;		// 파워등록 번호
+	private String acmName;
 	private int acmNum;			// 숙소 번호
 	private String payNum;			// 결제 번호
 	private String startDate;		// 파워등록 시작일
@@ -32,6 +33,29 @@ public class Power {
 		this.endDate = endDate;
 		this.powerStatus = powerStatus;
 		this.powerFlag = powerFlag;
+	}
+
+	//관리자 조회
+	public Power(int powerNum, String acmName, String payNum, String startDate, String endDate, String powerStatus,
+			int powerFlag) {
+		super();
+		this.powerNum = powerNum;
+		this.acmName = acmName;
+		this.payNum = payNum;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.powerStatus = powerStatus;
+		this.powerFlag = powerFlag;
+	}
+
+
+	public String getAcmName() {
+		return acmName;
+	}
+
+
+	public void setAcmName(String acmName) {
+		this.acmName = acmName;
 	}
 
 

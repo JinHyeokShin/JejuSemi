@@ -331,7 +331,7 @@ align:middle;
                   </a>
             </li>
             <li>
-                <a class="active8 onclick="">
+                <a class="active8" onclick="goSearchPower();">
                   <i class="fa fa-envelope"></i>
                   <span>파워 등록 관리</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
@@ -371,8 +371,8 @@ align:middle;
   		location.href ="<%= request.getContextPath() %>/adminSearchAcm.ad"
   	}
   	function goSearchMember(){
-  		location.href ="<%= request.getContextPath() %>/adminSearchMem.ad"
-<%--   		location.href ="<%= request.getContextPath() %>/notUsed" --%>
+<%--   		location.href ="<%= request.getContextPath() %>/adminSearchMem.ad" --%>
+  		location.href ="<%= request.getContextPath() %>/notUsed"
   	}
   	function goSearchReview(){
   		location.href ="<%= request.getContextPath() %>/adminSearchReview.ad"
@@ -380,6 +380,11 @@ align:middle;
   	function goSearchReservPayment(){
   		console.log("click");
   		location.href ="<%= request.getContextPath() %>/goSearchReservPayment.ad"
+  	}
+  	
+  	function goSearchPower(){
+  		console.log("click");
+  		location.href ="<%= request.getContextPath() %>/goSearchPower.ad"
   	}
   	
   	function goInquiry(){

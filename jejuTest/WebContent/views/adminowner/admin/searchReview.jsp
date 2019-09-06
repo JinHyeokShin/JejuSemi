@@ -138,19 +138,19 @@ ul.sidebar-menu li ul.sub li.active a {
 					<%if(currentPage == 1){ %>
 						<button class="btn btn-default" disabled> &lt; previous </button>
 					<%}else{ %>
-						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%=currentPage-1%>'">&lt; previous</button>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchReview.ad?currentPage=<%=currentPage-1%>'">&lt; previous</button>
 					<%} %>
 					<%for(int p = startPage; p <= endPage; p++){ %>
 						<%if(p == currentPage){ %>
 							<button class="btn btn-warning" disabled> <%= p %> </button>
 						<%}else{ %>
-							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%= p %>'"> <%= p %> </button>
+							<button class="btn" onclick="location.href='<%= request.getContextPath() %>/adminSearchReview.ad?currentPage=<%= p %>'"> <%= p %> </button>
 						<%} %>
 					<%} %>
 					<%if(currentPage == maxPage){ %>
 						<button class="btn btn-default" disabled> next &gt; </button>
 					<%}else { %>
-						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchAcm.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
+						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchReview.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
 					<%} %>
 					</div>
 				</div>

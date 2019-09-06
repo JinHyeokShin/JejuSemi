@@ -13,6 +13,7 @@ import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.Notice;
 import member.model.vo.Member;
 import payment.model.vo.Payment;
+import power.model.vo.Power;
 import reservation.model.vo.Reservation;
 import review.model.vo.Review;
 public class AdminService {
@@ -160,4 +161,35 @@ public class AdminService {
 		close(conn);
 		return pList;
 	}
+	public int powerCount() {
+		Connection conn = getConnection();
+		int result = new AdminDao().powerCount(conn);
+		close(conn);
+		return result;
+	}
+	public ArrayList<Power> powerSearch(int currentPage,int boardLimit){
+		Connection conn = getConnection();
+		ArrayList<Power> list = new AdminDao().powerSearch(conn,currentPage, boardLimit);
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

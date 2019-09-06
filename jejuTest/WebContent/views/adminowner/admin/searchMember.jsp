@@ -145,17 +145,17 @@ ul.sidebar-menu li ul.sub li.active a {
 			}else{
 				ckVal="N";
 			}
-			var susData = {"memNum":memNum, "ckVal":ckVal};
+// 			var susData = {"memNum":memNum, "ckVal":ckVal};
 			
-			$.ajax({
-				url:"memSus.ad",
-				type:"post",
-				data:{memNum:memNum,ckVal:ckVal},
-				success:function(){
-					console.log("success");
-					$(this).closest('tr').children().eq(8).val(ckVal);
-				}
-			});
+// 			$.ajax({
+// 				url:"memSus.ad",
+// 				type:"post",
+// 				data:{memNum:memNum,ckVal:ckVal},
+// 				success:function(){
+// 					console.log("success");
+// 					$(this).closest('tr').children().eq(8).val(ckVal);
+// 				}
+// 			});
 			
 		});
 	});

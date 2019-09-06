@@ -17,6 +17,7 @@ import adminowner.admin.model.vo.Notice;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
 import payment.model.vo.Payment;
+import power.model.vo.Power;
 import reservation.model.vo.Reservation;
 import review.model.vo.Review;
 
@@ -542,6 +543,85 @@ public class AdminDao {
 	}
 	   return pList;
    }
+   public int powerCount(Connection conn) {
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   String sql = prop.getProperty("powerCount");
+	   int result = 0;
+	   
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		rset= pstmt.executeQuery();
+		while(rset.next()) {
+			result= rset.getInt(1);
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	   return result;
+   }
+   public ArrayList<Power> powerSearch(Connection conn, int currentPage, int boardLimit){
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   ArrayList<Power> list = new ArrayList<>();
+	   String sql = prop.getProperty("powerSearch");
+	   int startRow = (currentPage -1 ) * boardLimit+1;
+       int endRow = startRow + boardLimit -1;
+       try {
+		pstmt= conn.prepareStatement(sql);
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, endRow);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			list.add(new Power(rset.getInt(2),
+								rset.getString(3),
+								rset.getString(4),
+								rset.getString(5),
+								rset.getString(6),
+								rset.getString(7),
+								rset.getInt(8)
+					));
+		
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+    return list;
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
    

@@ -1,30 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import=" java.util.* ,payment.model.vo.Payment,adminowner.admin.model.vo.*,reservation.model.vo.*"%>
-<%
-	ArrayList<Payment> pList =(ArrayList<Payment>)request.getAttribute("pList");
-	PageInfo pPi = (PageInfo)request.getAttribute("pPi");
-	
-	int pListCount = pPi.getListCount();
-	int pCurrentPage = pPi.getCurrentPage();
-	int pMaxPage = pPi.getMaxPage();
-	int pStartPage = pPi.getStartPage();
-	int pEndPage = pPi.getEndPage();
-	
-	ArrayList<Reservation> rList = (ArrayList<Reservation>)request.getAttribute("rList");
-	PageInfo rPi = (PageInfo)request.getAttribute("rPi");
-	
-	int rListCount = rPi.getListCount();
-	int rCurrentPage = rPi.getCurrentPage();
-	int rMaxPage = rPi.getMaxPage();
-	int rStartPage = rPi.getStartPage();
-	int rEndPage = rPi.getEndPage();
-
-%>
+	pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Come To Jeju -</title>
 <style>
 ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
@@ -57,32 +37,99 @@ ul.sidebar-menu li ul.sub li.active a {
 </style>
 </head>
 <body>
-	<script>
-		$(function(){
-			console.log(<%=rCurrentPage%>);
-			if(<%=rCurrentPage%> > 1){
-		 		$('#li2').attr('class','active');
-		 		$('#reservationList').attr('class','active');
+<script>
+//PaymentAjax
+
+$(function(){
+	ajax();
+});
+
+
+var pCurrentPage;
+var ppBoardLimit;
+var pPageLimit;
+var pMaxPage;
+var pStartPage;
+var pEndPage;
+var pBoardLimit; 
+function ajax(){
+	$.ajax({
+		url:"paymentAjax.ad",
+		dataType:"json",
+		type:"get",
+		data:{pCurrentPage:pCurrentPage},
+		success:function(data){
+			var $tableBody = $("#myTable1 tbody");
+			$tableBody.html("");
+			
+			$.each(data.pArr, function(index,value) {//data [index]
+				var $tr = $("<tr>");//<tr></tr>
 				
-		 		$('#li1').removeAttr('class','active');
-		 		$('#paymentList').removeAttr('class','active');
+				var $pCurrentPageTd = $("<td>").text(value.pCurrentPage);
+				var $pCountTd = $("<td>").text(value.pCount);
+				var $pPageLimitTd = $("<td>").text(value.pPageLimit);
+				var $pMaxPageTd = $("<td>").text(value.pMaxPage);
+				var $pStartPageTd = $("<td>").text(value.pStartPage);
+				var $pEndPageTd = $("<td>").text(value.pEndPage);
+				var $pBoardLimitTd = $("<td>").text(value.pBoardLimit);
+
+				$tr.append($pCurrentPageTd);
+				$tr.append($pCountTd);
+				$tr.append($pPageLimitTd);
+				$tr.append($pMaxPageTd);
+				$tr.append($pStartPageTd);
+				$tr.append($pEndPageTd);
+				$tr.append($pBoardLimitTd);
+
+				$tableBody.append($tr);
+			});
+			pCurrentPage = data.pObj.pCurrentPage;
+			ppBoardLimit = data.ppBoardLimit;
+			pPageLimit = data.pObj.pPageLimit;
+			pMaxPage = data.pObj.pMaxPage;
+			pStartPage = data.pObj.pStartPage;
+			pEndPage  = data.pObj.pEndPage;
+			pBoardLimit = data.pObj.pBoardLimit;
+			
+			
+			if(pCurrentPage==1){
+				$('#prev').attr('disabled',true);
+			}else{
+				$('#prev').attr('disabled',false);
+			}
+			if(pCurrentPage==pMaxPage){
+				$('#next').attr('disabled',true);
+			}else{
+				$('#next').attr('disabled',false);
+			}
+			
+			$('#btnArea').empty();
+			var $div =$('#btnArea')
+			for(var i = pStartPage ; i <= pEndPage ; i++){        //시작페이지부터 종료페이지까지 반복문
+	        	if(pCurrentPage == i){                            //현재페이지가 반복중인 페이지와 같다면
+	               	$div.append("<button class=\"btn\" disabled >"+i+"</button>");    //버튼 비활성화
+	        	}else{
+	               	$div.append("<button class=\"btn\" onclick=\"pgBtn("+i+");\">"+i+"</button>");    //버튼 비활성화
+	        	}
+	        }
+		}//success end
+	});//$ajax end
+};//function ajax() end
+function pgBtn(i){
+	pCurrentPage=i;
+	ajax();
+};
+function prev(){
+	pCurrentPage =pCurrentPage-1;
+	ajax();
+}
+function next(){
+	pCurrentPage =pCurrentPage+1;
+	ajax();
 	
-		 		$('#hide1').hide();
-		 	};
-			
-		});
-		function fn1(){
-			console.log("fn1");
-			$('#hide1').show();
-			$('#hide2').hide();
-		}
-		function fn2(){
-			console.log("fn2");
-			$('#hide1').hide();
-			$('#hide2').show();
-			
-		}
-	</script>
+}
+</script>
+</script>
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
         MAIN CONTENT
@@ -99,11 +146,11 @@ ul.sidebar-menu li ul.sub li.active a {
 								<ul class="nav nav-tabs nav-justified">
 									
 									<li id="li1" class="active">
-									<a data-toggle="tab" onclick="fn1();" href="#paymentList" class="contact-map">결제 조회</a>
+									<a data-toggle="tab"  href="#paymentList" class="contact-map">결제 조회</a>
 									</li>
 									
 									<li id="li2" >
-									<a data-toggle="tab" onclick="fn2();"href="#reservationList">예약 조회</a>
+									<a data-toggle="tab" href="#reservationList">예약 조회</a>
 									
 									</li>
 								</ul>
@@ -126,53 +173,13 @@ ul.sidebar-menu li ul.sub li.active a {
 															<th>승인 번호</th>
 															<th>결제 수단</th>
 															<th>결제 취소</th>
-															<th>결제일</th>
+															<th>결제일시</th>
 															<th>결체 취소일</th>
 														</tr>
 													</thead>
 													<tbody>
-														<%if(pList.isEmpty()){ %>
-														<tr>
-															<td colspan="8">비이이이이임!!!!!!</td>
-														</tr>
-														<%}else{ %>
-
-														<%for(Payment p : pList){ %>
-														<tr>
-															<td><%=p.getPayPrice() %></td>
-															<td><%=p.getReservNum() %></td>
-															<td><%=p.getPayPrice() %></td>
-															<td><%=p.getConfirmNum() %></td>
-															<td><%=p.getPayMethod() %></td>
-															<td><%=p.getPayCancel() %></td>
-															<td><%=p.getPayDate() %></td>
-															<td><%=p.getCancelDate() %>
-														</tr>
-														<%}; %>
-														<%}; %>
 													</tbody>
 												</table>
-												<div class="pagingArea" align="right">
-													<%if(pCurrentPage == 1){ %>
-														<button class="btn btn-default" disabled> &lt; previous </button>
-													<%}else{ %>
-														<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?pCurrentPage=<%=pCurrentPage-1%>'">&lt; previous</button>
-													<%} %>
-													
-													<%for(int p = pStartPage; p <= pEndPage; p++){ %>
-														<%if(p == pCurrentPage){ %>
-															<button class="btn btn-warning" disabled> <%= p %> </button>
-														<%}else{ %>
-															<button class="btn" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?pCurrentPage=<%= p %>'"> <%= p %> </button>
-														<%} %>
-													<%} %>
-													
-													<%if(pCurrentPage == pMaxPage){ %>
-														<button class="btn btn-default" disabled> next &gt; </button>
-													<%}else { %>
-														<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?pCurrentPage=<%= pCurrentPage+1 %>'">next &gt;</button>
-													<%} %>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -205,53 +212,8 @@ ul.sidebar-menu li ul.sub li.active a {
 														</tr>
 													</thead>
 													<tbody>
-														<%if(rList.isEmpty()){ %>
-														<tr>
-															<td colspan="14">why?</td>
-														</tr>
-														<%}else{ %>
-														<%for(Reservation i : rList){ %>
-														<tr>
-															<td><%=i.getReservNum() %></td>
-															<td><%=i.getAcmName() %></td>
-															<td><%=i.getRoomName() %></td>
-															<td><%=i.getMemName() %></td>
-															<td><%=i.getReservPax() %></td>
-															<td><%=i.getCheckInDate() %></td>
-															<td><%=i.getCheckOutDate() %></td>
-															<td><%=i.getReservPrice() %></td>
-															<td><%=i.getReservDate() %></td>
-															<td><%=i.getReservCancel() %></td>
-															<td><%=i.getCancelDate() %></td>
-															<td><%=i.getReservRequire() %></td>
-															<td><%=i.getNoShow() %></td>
-															<td><%=i.getStatus()%></td>
-														</tr>
-														<%}; %>
-														<%}; %>
 													</tbody>
 												</table>
-												<div class="pagingArea" align="right">
-													<%if(rCurrentPage == 1){ %>
-														<button class="btn btn-default" disabled> &lt; previous </button>
-													<%}else{ %>
-														<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?rCurrentPage=<%=rCurrentPage-1%>'">&lt; previous</button>
-													<%} %>
-													
-													<%for(int p = rStartPage; p <= rEndPage; p++){ %>
-														<%if(p == rCurrentPage){ %>
-															<button class="btn btn-warning" disabled> <%= p %> </button>
-														<%}else{ %>
-															<button class="btn" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?rCurrentPage=<%= p %>'"> <%= p %> </button>
-														<%} %>
-													<%} %>
-													
-													<%if(rCurrentPage == rMaxPage){ %>
-														<button class="btn btn-default" disabled> next &gt; </button>
-													<%}else { %>
-														<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/goSearchReservPayment.ad?rCurrentPage=<%= rCurrentPage+1 %>'">next &gt;</button>
-													<%} %>
-												</div>
 											</div>
 											<!-- /col-lg-8 -->
 										</div>
