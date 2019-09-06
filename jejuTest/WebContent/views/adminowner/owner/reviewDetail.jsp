@@ -52,6 +52,9 @@ ul.sidebar-menu li ul.sub li.active a {
     border: 10px solid #f1f2f7;
     margin-top: 20px;
 }
+textarea{
+resize:none;
+}
 </style>
 </head>
 <body>
@@ -98,6 +101,7 @@ ul.sidebar-menu li ul.sub li.active a {
 					<div class="content-panel">
 					<h3><i class="fa fa-angle-right"></i> 리뷰 조회</h3>
 					<hr>
+				<form role="form" class="form-horizontal" method="post" id="form1" action="<%=request.getContextPath() %>/insertReply.ow">
 					<table id="reviewTable" class="table table-bordered">
 						<thead>
 							<tr id="tr1">
@@ -112,7 +116,7 @@ ul.sidebar-menu li ul.sub li.active a {
 						</thead>
 						<tbody>
 								<tr>
-									<td><%=r.getReviewNum() %></td>
+									<td><%=r.getReviewNum() %><input type="hidden" name="reviewNum" value="<%=r.getReviewNum() %>"></td>
 									<td><%=r.getReviewTitle() %></td>
 									<td><%=r.getAcmName() %></td>
 									<td><%=r.getReviewScore() %></td>
@@ -128,13 +132,28 @@ ul.sidebar-menu li ul.sub li.active a {
 								</tr>
 						</tbody>
 					</table>
+						<input type="hidden" id ="nNum" name ="nNum" value="">
+						<div class="form-group">
+						<h3><i class="fa fa-angle-right"></i> 댓글 달기</h3>
+						<hr>
+							<div class="col-lg-12">
+								<textarea rows="5" cols="5" class="form-control" id="reply" name="reply"></textarea>
+							</div>
+							
+						</div>
+						<div class="form-group">
+							<div class=" col-lg-12">
+								<button class="btn btn-theme04" id="bt1" type="submit">댓글 작성하기</button>
+								<button class="btn btn-theme03" id="bt2" type="reset">초기화</button>
+								<!-- <button class="btn btn-theme" id="submitBtn" type="submit" disabled style="width: 80px;">Save</button -->
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			</div>
 		</section>
 	</section>
 	<%@ include file="../../../views/adminowner/common/footer.jsp"%>
-
-
 </body>
 </html>

@@ -115,7 +115,10 @@ cursor : default;
 							<%if(rList.isEmpty()){ %>
 							<tr><td colspan="8">비이이이임!!!</td></tr>
 							<%}else{ %>
-								<%for(Review i:rList){ %>
+							
+								<%for(Review i:rList){ 
+									
+								%>
 									<tr>
 										<td><%=i.getReviewNum() %></td>
 										<td><%=i.getReviewTitle() %></td>
