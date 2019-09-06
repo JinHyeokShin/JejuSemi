@@ -317,19 +317,24 @@
 				 		
 				 		/* 결제방법 선택에 따른 결제모듈 선택 */
 				 		$("#payBtn").click(function(){	
+				 			
+				 			console.log($("input[name=reservEmail]").val());
+				 			console.log($("input[name=reservName]").val());
+				 			console.log($("input[name=reservPhone]").val());
+				 			
+				 			if($("input[name=reservEmail]").val() == "" || $("input[name=reservName]").val() == "" || $("input[name=reservPhone]").val() == ""){
+				 				alertify.alert('', '예약자 정보를 모두 입력해 주세요.');
+				 			} else {
+				 				if($("#mFlag").val() == 1){
+									inicis();
+								} else if($("#mFlag").val() == 2){
+									kakao();
+								} else if($("#mFlag").val() == 0){
+									alertify.alert('', '결제방법을 선택해주세요.');
+								}
+				 			}
 							
-							if($("#mFlag").val() == 1){
-								inicis();
-							} else if($("#mFlag").val() == 2){
-								kakao();
-							} else if($("#mFlag").val() == 0){
-								alertify.alert('', '결제방법을 선택해주세요.');
-
-							}
 						});
-				 		
-				 		
-				 		
 				 		
 				 		
 					});

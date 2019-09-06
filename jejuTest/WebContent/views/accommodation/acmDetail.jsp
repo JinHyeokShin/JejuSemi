@@ -524,14 +524,14 @@
 			cursor:pointer;
 		}
 		.starR{
-		  background: url('<%= request.getContextPath() %>/resources/images/ico_review.png') no-repeat right 0;
+		  background: url('<%= request.getContextPath() %>/resources/images/ico_star.png') no-repeat right 0;
 		  background-size: auto 100%;
 		  width: 30px;
 		  height: 30px;
 		  display: inline-block;
 		  text-indent: -9999px;
 		}
-		.starR.on{background-position:0 0;}
+		.starR.on{background-position:0 0;}		
 		
         
 </style>
