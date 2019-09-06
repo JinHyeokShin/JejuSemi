@@ -95,8 +95,6 @@ public class MemberService {
    public Member updatePwd(String memId, String newPwd) {
 	   
 	   Connection conn = getConnection();
-	   
-	   
 		
 		int result = new MemberDao().updatePwd(conn, memId, newPwd);
 		
@@ -113,67 +111,7 @@ public class MemberService {
 		return updateMem;
 	   
    }
-   // 회원 정보 수정
-   public Member updateMember(Member mem) {
-		Connection conn = getConnection();
-		
-		int result = new MemberDao().updateMember(conn, mem);
-		
-		Member updateMem = null;
-		
-		if(result > 0) {
-			commit(conn);
-			
-			updateMem = new MemberDao().selectMember(conn, mem.getMemId());
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return updateMem;
-		
-		
-	}
    
-   
-   //회원 탈퇴
-	public int deleteMember(String userId) {
-		Connection conn = getConnection();
-		
-		int result = new MemberDao().deleteMember(conn, userId);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return result;
-	}
-	
-	// 비밀번호 수정
-	public Member updateMyPwd(String memId, String memPwd, String newPwd) {
-		Connection conn = getConnection();
-		
-		int result = new MemberDao().updateMyPwd(conn, memId, memPwd, newPwd);
-			
-		Member updateMem = null;
-		
-		if(result > 0) {
-			commit(conn);
-			updateMem = new MemberDao().selectMember(conn, memId);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return updateMem;
-	}
-
    
    
    

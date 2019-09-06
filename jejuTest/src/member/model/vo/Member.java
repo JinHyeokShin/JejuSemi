@@ -46,7 +46,7 @@ public class Member implements Serializable{
 	
 	
 	// 회원가입을 위한 생성자
-	public Member(String memId, String memPwd, String memName, String memGender, String memPhone, int nationCode) {
+	public Member(String memId, String memPwd, String memName, String memGender, String memPhone, int nationCode, String memType) {
 		super();
 		this.memId = memId;
 		this.memPwd = memPwd;
@@ -54,18 +54,8 @@ public class Member implements Serializable{
 		this.memGender = memGender;
 		this.memPhone = memPhone;
 		this.nationCode = nationCode;
+		this.memType = memType;
 	}
-	
-	// 회원수정
-	public Member(String memId, String memName, String memPhone, int nationCode) {
-		super();
-		this.memId = memId;
-		this.memName = memName;
-		this.memPhone = memPhone;
-		this.nationCode = nationCode;
-	}
-	
-	
 
 	public int getMemNum() {
 		return memNum;

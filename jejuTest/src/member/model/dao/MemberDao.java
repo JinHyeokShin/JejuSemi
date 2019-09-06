@@ -98,6 +98,7 @@ public class MemberDao {
          pstmt.setString(4, mem.getMemGender());
          pstmt.setString(5, mem.getMemPhone());
          pstmt.setInt(6, mem.getNationCode());
+         pstmt.setString(7, mem.getMemType());
          
          result = pstmt.executeUpdate();
          
@@ -287,80 +288,8 @@ public class MemberDao {
 		return m;
 	}
 	
-public int updateMember(Connection conn, Member mem) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("updateMember");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, mem.getNationCode());
-			pstmt.setString(2, mem.getMemName());
-			pstmt.setString(3, mem.getMemPhone());
-			pstmt.setString(4, mem.getMemId());
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-		
-		
-	}
-	
-	public Member selectMember(Connection conn, String memId) {
-		
-		Member mem = null;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectMember");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, memId);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				mem = new Member(rset.getInt("mem_num"),
-					       rset.getString("mem_id"),
-					       rset.getString("mem_pwd"),
-					       rset.getString("mem_name"),
-					       rset.getString("mem_gender"),
-					       rset.getString("mem_phone"),
-					       rset.getInt("nation_code"),
-					       rset.getInt("mem_point"),
-					       rset.getString("mem_type"),
-					       rset.getString("mem_status"),
-					       rset.getDate("enroll_date"),
-					       rset.getDate("out_date"),
-					       rset.getInt("noshow"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		
-		return mem;
-		
-	}
-	
-	
 	public int updatePwd(Connection conn, String memId, String newPwd) {
+		
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -373,65 +302,16 @@ public int updateMember(Connection conn, Member mem) {
 			pstmt.setString(2, memId);
 			
 			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-		
-		
-	}
-	
-	public int deleteMember(Connection conn, String memId) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("deleteMember");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memId);
-			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
 		
-		return result;
-	}
-		
-		
-		
-	
-	
-	public int updateMyPwd(Connection conn, String memId, String memPwd, String newPwd) {
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("updateMyPwd");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, newPwd);
-			pstmt.setString(2, memId);
-			pstmt.setString(3, memPwd);
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
+		return result;	 
+   
 		}
-		
-		return result;
-	}
-}
-		
 
+
+}

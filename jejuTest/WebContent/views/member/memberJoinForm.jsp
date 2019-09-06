@@ -95,13 +95,21 @@ select{
      <article class="container">
            <div class="page-header">
                <div class="col-md-6 col-md-offset-3">
-               <a class="navbar-brand" style="font-size:30px"><span class="text-danger" style="font-size:35px;">Jeju</span> Boram 회원가입</a>
+               <a class="navbar-brand" style="font-size:30px; margin-bottom:1.2rem;"><span class="text-danger" style="font-size:35px;">Jeju</span> Boram 회원가입</a>
                </div>
            </div>
            <div class="col-sm-6 col-md-offset-3">
            
                  <!-- 회원 가입 서블릿 이동 -->
                <form role="form" id="joinForm" action="<%= request.getContextPath() %>/insert.me" method="post" onsubmit="return joinValidate();">
+                  
+                  <div class="form-group" style="margin-bottom:-1rem; margin-left:355px;">
+                       <label for="inputJoin1">일반회원</label>
+                       <input type="radio" class="join-control" id="inputJoin1" name="memType" value="U" required>
+                       <label for="inputJoin2">기업회원</label>
+                       <input type="radio" class="join-control" id="inputJoin2" name="memType" value="O" required>
+                   </div>
+                  
                    <div class="form-group">
                        <label for="inputName">성명</label>
                        <input type="text" class="form-control" id="inputName" name="memName" placeholder="이름을 입력해 주세요" required>
