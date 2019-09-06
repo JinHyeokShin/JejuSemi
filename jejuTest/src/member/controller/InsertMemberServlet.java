@@ -40,10 +40,9 @@ public class InsertMemberServlet extends HttpServlet {
       String memGender = request.getParameter("memGender");
       String memPhone = request.getParameter("memPhone");
       int nationCode = Integer.parseInt(request.getParameter("nationCode"));
+      String memType = request.getParameter("memType");
       
-      Member mem = new Member(memId, memPwd, memName, memGender, memPhone, nationCode);
-      
-//      mem = new MemberService().selectNation(mem);
+      Member mem = new Member(memId, memPwd, memName, memGender, memPhone, nationCode, memType);
       
       int result = new MemberService().insertMember(mem);
 
