@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,14 +43,14 @@ textarea {
           <div class="col-lg-6 col-md-6 col-sm-6">
             <h4 class="title">관리자에게 문의하기</h4>
             <div id="message"></div>
-            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+            <form class="contact-form" role="form" action="inquiry.we" method="POST">
 
               <div class="form-group">
-                <input type="name" name="name" class="form-control" id="contact-name" value="<%= acm.getAcmName() %>" data-rule="minlen:4" data-msg="Please enter at least 4 chars" disabled>
+                <input type="text" name="name" class="form-control" id="contact-name" value="<%= acm.getAcmName() %>" data-msg="Please enter at least 4 chars" readonly>
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="email" name="email" class="form-control" id="contact-email" value="<%= loginUser.getMemId() %>" data-rule="email" data-msg="Please enter a valid email" disabled>
+                <input type="email" name="email" class="form-control" id="contact-email" value="<%= loginUser.getMemId() %>" data-rule="email" data-msg="Please enter a valid email" readonly>
                 <div class="validate"></div>
               </div>
 
