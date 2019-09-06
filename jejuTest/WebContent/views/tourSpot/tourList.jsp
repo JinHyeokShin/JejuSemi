@@ -575,7 +575,7 @@ body.modal-open[style] {
 			
 				<!-- Modal Header -->
 				<div class="modal-header" style="background:#fd7e14; padding:0.8em; border-top-left-radius:0rem; border-top-right-radius: 0rem;">
-					<h2 class="modal-title">Jeju Travel</h2>
+					<h2 class="modal-title" style="color:white">Jeju Travel</h2>
 					<button type="button" class="close" data-dismiss="modal" style="margin-left:auto; color:#000; outline:none;">&times;</button>
 
 				</div>
@@ -584,10 +584,10 @@ body.modal-open[style] {
 					
 					<div class="row">
 
-						<div class="col-md-5 test aa text-white" style="padding:5px;">
+						<div class="col-md-5 aa text-white" style="padding:5px;">
 
 							<!-- 상세 부분 백그라운드 이미지 -->
-							<div class="test aa dd"
+							<div class="aa dd"
 								style="background-image: url('http://garmuri.com/files/attach/images/169/040/116/b779d8c8560c5049e6efaf4652c6a5a6.jpg');">
 								<br>
 								<div style="width: auto; padding: 10px;">
@@ -609,14 +609,14 @@ body.modal-open[style] {
 						</div>
 
 						<!-- api 지도 -->
-						<div class="col-md-7 mapDiv test aa" style="padding:5px;">
-							<div class="test aa dd map" id="map<%=i %>"
+						<div class="col-md-7 mapDiv aa" style="padding:5px;">
+							<div class="aa dd map" id="map<%=i %>"
 								style="width: 100%; height: 350px;"></div>
 						</div>
 
-						<div class="col-md-12 test aa" style="height: 70px; padding:5px;">
-							<div class="test aa" style="height: 55px;">
-								<div class="test aa ee route0_1 col-md-5">
+						<div class="col-md-12 aa" style="height: 70px; padding:5px;">
+							<div class="aa" style="height: 55px;">
+								<div class="aa ee route0_1 col-md-5">
 									<b>출발지:</b> &nbsp;<label>제주공항</label>
 									
 <!-- 									<select id="selectSpot" style="height:30px; color: #6c757d; border: 1px solid #ced4da"> -->
@@ -625,11 +625,11 @@ body.modal-open[style] {
 <!-- 									</select> -->
 								</div>
 
-								<div class="test aa ee route0_2 col-md-5">
+								<div class="aa ee route0_2 col-md-5">
 									<b>도착지:</b> &nbsp;<label><%= list.get(i).getSpotName() %></label>
 								</div>
 
-								<div class="test ee route3 col-md-2" style="display: fixed;">
+								<div class="ee route3 col-md-2" style="display: fixed;">
 									<!-- 경로보기 버튼 div -->
 									<a href="#routeModal<%= i %>"class="detailBtn btn btn-primary btn-block text-white"
 										id="routeBtn" data-toggle="modal" data-target="#routeModal<%= i %>"

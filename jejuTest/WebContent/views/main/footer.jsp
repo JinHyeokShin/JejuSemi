@@ -30,7 +30,7 @@
               <!-- <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li> -->
               <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> 서울특별시 강남구 테헤란로<br>14길 6 <br> 남도빌딩 2층, 3층, 4층</span></p>
               <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> 1544-9970</span></p>
-              <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> boram@iei.or.kr</span></p>
+              <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> admin@jejuboram.com</span></p>
             </div>
             <div class="col-md-3 mb-5">
               <p>Sign up for our newsletter</p>
