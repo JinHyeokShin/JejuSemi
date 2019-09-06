@@ -1085,6 +1085,19 @@
 				<p style="font-size:18px;"><%=r.getReviewContent() %></p>
 				<span><%=r.getMemName() %> </span><img src="<%=contextPath%>/<%=r.getImgPath()%>"><span style="float:right"><%=r.getReviewDate() %></span>			
 			</div>
+			
+			
+			<!-- 사장님 댓글  -->			
+			<div class="aa reply0" style="margin-top:5px;">
+				<div class="aa dd reply1" style="width:40%; height:100%;"></div>
+				<div class="aa dd reply2" style="width:60%; height:100%;padding-left:30px;padding-right:30px;padding-top:10px;padding-bottom:10px;border-radius:15px;background:#faedd2;">
+					<p style="font-size:16px;">댓글내용</p>
+					<span style="float:right;font-size:13px;">작성날짜</span>
+				</div>
+			</div>
+			<!--  -->
+			
+			
 			<script>
 				/* 리뷰에 저장된 별점 만큼 별점 보이게 해주는 메소드 */
 				$(function() {											
@@ -1102,6 +1115,11 @@
 		
 	<!--  -->    
 
+    
+    
+    
+    
+    
     
     <!-- 카카오맵 확대 모달 -->
     

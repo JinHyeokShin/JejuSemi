@@ -373,7 +373,7 @@
 				    				  roomNum:<%=room.getRoomNum()%>
 				    				 },
 				    			success:function(data){
-				    				
+				    				sendMail();
 				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
 				    			},
 				    			error:function(){
@@ -427,7 +427,9 @@
 				    				 },
 				    			success:function(data){
 				    				console.log(rsp.apply_num);
+				    				sendMail();
 				    				location.href="<%=contextPath%>/views/reservation/complete.jsp?reservNum=" + data;
+				    				
 				    			},
 				    			error:function(){
 				    				alertify.alert('', '결제 실패');
@@ -441,6 +443,31 @@
 				}	<!--  카카오 결제 close   -->
 				
 				
+				function sendMail() {
+					
+					$.ajax({
+						url:"reservSend.we",
+						type:"post",
+						data:{reservName:$("input[name=reservName]").val(),
+		    				  reservEmail:$("input[name=reservEmail]").val(),
+		    				  reservPhone:$("input[name=reservPhone]").val(),
+		    				  reservRequire:$("textarea[name=reservRequire]").val(),
+		    				  payMethod:$("input[name=payMethod]:checked").val(),
+		    				  reservPrice:reservPrice,
+		    				  acmName:"<%=acm.getAcmName() %>",
+		    				  roomName:"<%=room.getRoomName() %>",
+		    				  reservPax:<%=adult%>+<%=child%>,
+		    				  checkIn:"<%=checkIn%>",
+		    				  checkOut:"<%=checkOut%>"
+						},
+						success:function(){
+							
+						},
+						error:function(){
+							
+						}
+					});
+				}
 				
 				
 				</script>
@@ -485,7 +512,7 @@
 				<div style="width:100%; height:15px;"></div> <!-- 간격 -->
 					<div class="aa bg-light" style="border-radius: 10px;">
 						<div class="aa" style="width:100%; height:60px; line-height: initial; padding:15px;">
-							<b style="font-size:18px; font-weight:bold; color:#fd7e14;"><%=acm.getAcmName() %></b><br>
+							<b id="acmName" style="font-size:18px; font-weight:bold; color:#fd7e14;"><%=acm.getAcmName() %></b><br>
 							<b style="font-size:11px"><%=acm.getAcmAddress() %></b>				
 						</div>
 						<div class="aa" style="width:100%; height: 200px; padding:15px;">

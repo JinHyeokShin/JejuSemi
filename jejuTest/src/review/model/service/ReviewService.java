@@ -91,9 +91,7 @@ public class ReviewService {
 		
 		close(conn);
 		
-		return list;
-		
-		
+		return list;		
 	}
 	
 

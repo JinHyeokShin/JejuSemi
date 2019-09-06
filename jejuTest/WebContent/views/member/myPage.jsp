@@ -94,39 +94,39 @@
 				<div class="mp02 aa">
 					<div class="mp03 aa">
 						<div class="ui relaxed divided list">
-						  <div class="item" style="padding-top: 20px; padding-left: 20px;">
-						    
+						
+						  <div class="item" style="padding-top: 20px; padding-left: 20px;">						    
 						    <div class="content"">
 						      <a class="header" href="myme.me">내 정보 수정</a>
 						      <div class="description">회원님의 계정 정보를 수정합니다.</div>
 						    </div>
 						  </div>
-						  <div class="item" style="padding-top: 20px; padding-left: 20px;">
 						  
-						  <div class="content"">
-						      <a class="header" href="mydelete.me">회원탈퇴</a>
-						      <div class="description">회원님의 계정을 탈퇴합니다.</div>
-						    </div>
-						  </div>
-						  <div class="item" style="padding-top: 20px; padding-left: 20px;">
-						    
+						  <div class="item" style="padding-top: 20px; padding-left: 20px;">						    
 						    <div class="content">
 						      <a class="header" href="<%=contextPath%>/reserv.me?memNum=<%=m.getMemNum()%>">예약 내역 조회</a>
 						      <div class="description">회원님의 모든 예약 내역을 관리합니다.</div>
 						    </div>
 						  </div>
-						  <div class="item" style="padding-top: 20px; padding-left: 20px;">
-						    
+						  
+						  <div class="item" style="padding-top: 20px; padding-left: 20px;">						    
 						    <div class="content">
 						      <a class="header" href="<%=contextPath%>/myReview.rv?memNum=<%=m.getMemNum()%>">내가 쓴 리뷰 조회</a>
 						      <div class="description">회원님이 작성한 리뷰들을 관리합니다.</div>
 						    </div>
 						  </div>
-						  <div class="item" style="padding-top: 18px; padding-left: 20px;">
-						    
+						  
+						  <div class="item" style="padding-top: 18px; padding-left: 20px;">						    
 						    <div class="content">
 						      <a class="header" href="<%=contextPath%>/myLike.me?memNum=<%=m.getMemNum()%>">찜한 숙소</a>
 						      <div class="description">즐겨찾기한 숙소들을 조회합니다.</div>
+						    </div>
+						  </div>						  
+						   
+						  <div class="item" style="padding-top: 20px; padding-left: 20px;">						  
+						  	<div class="content"">
+						      <a class="header" href="mydelete.me">회원탈퇴</a>
+						      <div class="description">회원님의 계정을 탈퇴합니다.</div>
 						    </div>
 						  </div>
 						  

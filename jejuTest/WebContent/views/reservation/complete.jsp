@@ -70,6 +70,12 @@
     		</div>
     	</div>
     </section>
+    
+    <script>
+    	$("#myReservCheck").click(function(){
+			location.href="<%=contextPath%>/reserv.me?memNum="+<%=loginUser.getMemNum()%>;
+    	});
+    </script>
 	
 	
 	<%-- 풋터 --%>

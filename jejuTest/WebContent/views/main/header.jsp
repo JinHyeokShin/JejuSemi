@@ -42,9 +42,8 @@
 
 
 
-<%-- <script src="<%= request.getContextPath() %>/resources/js/package.js"></script>
-<script src="<%= request.getContextPath() %>/resources/js/index.js"></script> --%>
-
+<%-- <script type="text/javascript" src="<%= request.getContextPath() %>/resources/js/package.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/resources/js/index.js"></script> --%>
 
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">

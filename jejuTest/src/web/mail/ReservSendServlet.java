@@ -37,18 +37,20 @@ public class ReservSendServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		 // 한글 깨짐이 생기기 때문에 문자를 변경해줘야 한다.	 
-		 String reservName = new String(request.getParameter("reservName").getBytes("ISO-8859-1"), "UTF-8");
-		 String reservEmail = new String(request.getParameter("reservEmail").getBytes("ISO-8859-1"), "UTF-8");
-		 String reservPhone = new String(request.getParameter("reservPhone").getBytes("ISO-8859-1"), "UTF-8");
-		 String reservRequire = new String(request.getParameter("reservRequire").getBytes("ISO-8859-1"), "UTF-8");
-		 String payMethod = new String(request.getParameter("payMethod").getBytes("ISO-8859-1"), "UTF-8");
-		 String reservPrice = new String(request.getParameter("reservPrice").getBytes("ISO-8859-1"), "UTF-8");
-		 String acmName = new String(request.getParameter("acmName").getBytes("ISO-8859-1"), "UTF-8");
-		 String roomName = new String(request.getParameter("roomName").getBytes("ISO-8859-1"), "UTF-8");
-		 String reservPax = new String(request.getParameter("reservPax").getBytes("ISO-8859-1"), "UTF-8");
-		 String checkIn = new String(request.getParameter("checkIn").getBytes("ISO-8859-1"), "UTF-8");
-		 String checkOut = new String(request.getParameter("checkOut").getBytes("ISO-8859-1"), "UTF-8");
+		 String reservName = request.getParameter("reservName");
+		 String reservEmail = request.getParameter("reservEmail");
+		 String reservPhone = request.getParameter("reservPhone");
+		 String reservRequire = request.getParameter("reservRequire");
+		 String payMethod = request.getParameter("payMethod");
+		 String reservPrice = request.getParameter("reservPrice");
+		 String acmName = request.getParameter("acmName");
+		 String roomName = request.getParameter("roomName");
+		 String reservPax = request.getParameter("reservPax");
+		 String checkIn = request.getParameter("checkIn");
+		 String checkOut = request.getParameter("checkOut");
 		
 		
 	
@@ -161,9 +163,9 @@ public class ReservSendServlet extends HttpServlet {
 		        
 		        msg.setHeader("Content-Transfer-Encoding", "quoted-printable");
 	
-	        	msg.setFrom(new InternetAddress("sangyoon2ya@gmail.com", reservName ,"euc-kr"));			// 발신자
+	        	msg.setFrom(new InternetAddress("sangyoon2ya@gmail.com", "관리자" ,"UTF-8"));			// 발신자
 	        	
-	        	InternetAddress to = new InternetAddress("sangyoon5_4@naver.com", "관리자" ,"euc-kr");		// 수신자
+	        	InternetAddress to = new InternetAddress(reservEmail, reservName,"UTF-8");		// 수신자
 	        	msg.setRecipient(Message.RecipientType.TO, to);            
 	        		            
 	            Transport.send(msg);  
@@ -179,7 +181,7 @@ public class ReservSendServlet extends HttpServlet {
 	        		e.printStackTrace();
 	        }  
 	        
-	        response.sendRedirect(request.getContextPath());
+	        System.out.println("예약 메일 전송 완료");
 	    }
 
 	/**

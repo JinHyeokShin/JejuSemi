@@ -160,12 +160,16 @@
 											if(temp == 0){ %>
 											<button class="ui orange button" id="reviewBtn">리뷰 작성</button>											
 											<%} else if(temp == 1) {%>
-											<button class="ui grey button" id="reviewBtn" disabled=true>리뷰 작성 완료</button>
+											<button class="ui grey button" id="reviewBtn" disabled>리뷰 작성 완료</button>
 											<%} %>
 											
 											
-										<%}else{ %>
-											<button class="ui blue button" id="cancelBtn" onclick="">예약 취소</button>
+										<%}else{ %>											
+											<%if(r.getReservCancel().equals("Y")) {%>
+												<button class="ui grey button" id="cancelBtn" disabled>취소된 예약</button>												
+											<%} else{%>
+												<button class="ui blue button" id="cancelBtn" >예약 취소</button>
+											<%} %>
 										<%} %>
 										
 										<input type="hidden" id="acmNum" value="<%=acm.getAcmNum() %>">
@@ -215,9 +219,11 @@
 			/* 예약 취소 버튼을 눌렀을때 */
 			$(document).on('click','#cancelBtn',function(){
 				var yoso = $(this);
-				alertify.confirm("예약을 취소 하시겠습니까?",function(){
+				alertify.confirm(" ", "예약을 취소 하시겠습니까?",function(){
 					cancelReserv(yoso);
-				  });				
+				  },function(){
+					  
+				  });			
 			});
 			
 			/* 예약 취소 하는 메소드 */
