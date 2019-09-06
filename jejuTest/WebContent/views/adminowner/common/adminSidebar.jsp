@@ -371,8 +371,8 @@ align:middle;
   		location.href ="<%= request.getContextPath() %>/adminSearchAcm.ad"
   	}
   	function goSearchMember(){
-<%--   		location.href ="<%= request.getContextPath() %>/adminSearchMem.ad" --%>
-  		location.href ="<%= request.getContextPath() %>/notUsed"
+  		location.href ="<%= request.getContextPath() %>/adminSearchMem.ad"
+<%--   		location.href ="<%= request.getContextPath() %>/notUsed" --%>
   	}
   	function goSearchReview(){
   		location.href ="<%= request.getContextPath() %>/adminSearchReview.ad"

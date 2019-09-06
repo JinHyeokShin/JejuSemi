@@ -45,8 +45,8 @@ display:inline;
 align:right;
 }
 .pagingArea{
-align:right;
-float:right;
+	align:right;
+	float:right;
 }
 </style>
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
@@ -99,7 +99,7 @@ float:right;
 					$tableBody.append($tr);
 				});
 				currentPage = data.pObj.currentPage;
-				listCount = data.listCount;
+				listCount = data.pObj.listCount;
 				pageLimit = data.pObj.pageLimit;
 				maxPage = data.pObj.maxPage;
 				startPage = data.pObj.startPage;

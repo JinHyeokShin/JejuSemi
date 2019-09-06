@@ -34,6 +34,14 @@ ul.sidebar-menu li ul.sub li.active a {
 .panel-heading {
 	margin: 15px;
 }
+.inline {
+	display:inline;
+	align:right;
+}
+.pagingArea{
+	align:right;
+	float:right;
+}
 </style>
 </head>
 <body>
@@ -41,7 +49,7 @@ ul.sidebar-menu li ul.sub li.active a {
 //PaymentAjax
 
 $(function(){
-	ajax();
+	ajaxP();
 });
 
 
@@ -52,7 +60,7 @@ var pMaxPage;
 var pStartPage;
 var pEndPage;
 var pBoardLimit; 
-function ajax(){
+function ajaxP(){
 	$.ajax({
 		url:"paymentAjax.ad",
 		dataType:"json",
@@ -65,26 +73,29 @@ function ajax(){
 			$.each(data.pArr, function(index,value) {//data [index]
 				var $tr = $("<tr>");//<tr></tr>
 				
-				var $pCurrentPageTd = $("<td>").text(value.pCurrentPage);
-				var $pCountTd = $("<td>").text(value.pCount);
-				var $pPageLimitTd = $("<td>").text(value.pPageLimit);
-				var $pMaxPageTd = $("<td>").text(value.pMaxPage);
-				var $pStartPageTd = $("<td>").text(value.pStartPage);
-				var $pEndPageTd = $("<td>").text(value.pEndPage);
-				var $pBoardLimitTd = $("<td>").text(value.pBoardLimit);
+				var $payNumTd = $("<td>").text(value.payNum);
+				var $resNumTd = $("<td>").text(value.resNum);
+				var $payPriceTd = $("<td>").text(value.payPrice);
+				var $confirmNumTd = $("<td>").text(value.confirmNum);
+				var $payMethodTd = $("<td>").text(value.payMethod);
+				var $paycanelTd = $("<td>").text(value.paycanel);
+				var $payDateTd = $("<td>").text(value.payDate);
+				var $cancelDateTd = $("<td>").text(value.cancelDate);
 
-				$tr.append($pCurrentPageTd);
-				$tr.append($pCountTd);
-				$tr.append($pPageLimitTd);
-				$tr.append($pMaxPageTd);
-				$tr.append($pStartPageTd);
-				$tr.append($pEndPageTd);
-				$tr.append($pBoardLimitTd);
+				$tr.append($payNumTd);
+				$tr.append($resNumTd);
+				$tr.append($payPriceTd);
+				$tr.append($confirmNumTd);
+				$tr.append($payMethodTd);
+				$tr.append($paycanelTd);
+				$tr.append($payDateTd);
+				$tr.append($cancelDateTd);
 
 				$tableBody.append($tr);
 			});
+			
 			pCurrentPage = data.pObj.pCurrentPage;
-			ppBoardLimit = data.ppBoardLimit;
+			ppBoardLimit = data.pObj.pBoardLimit;
 			pPageLimit = data.pObj.pPageLimit;
 			pMaxPage = data.pObj.pMaxPage;
 			pStartPage = data.pObj.pStartPage;
@@ -93,42 +104,41 @@ function ajax(){
 			
 			
 			if(pCurrentPage==1){
-				$('#prev').attr('disabled',true);
+				$('#prevP').attr('disabled',true);
 			}else{
-				$('#prev').attr('disabled',false);
+				$('#prevP').attr('disabled',false);
 			}
 			if(pCurrentPage==pMaxPage){
-				$('#next').attr('disabled',true);
+				$('#nextP').attr('disabled',true);
 			}else{
-				$('#next').attr('disabled',false);
+				$('#nextP').attr('disabled',false);
 			}
 			
-			$('#btnArea').empty();
-			var $div =$('#btnArea')
+			$('#btnAreaP').empty();
+			var $div =$('#btnAreaP')
 			for(var i = pStartPage ; i <= pEndPage ; i++){        //시작페이지부터 종료페이지까지 반복문
 	        	if(pCurrentPage == i){                            //현재페이지가 반복중인 페이지와 같다면
 	               	$div.append("<button class=\"btn\" disabled >"+i+"</button>");    //버튼 비활성화
 	        	}else{
-	               	$div.append("<button class=\"btn\" onclick=\"pgBtn("+i+");\">"+i+"</button>");    //버튼 비활성화
+	               	$div.append("<button class=\"btn\" onclick=\"pgBtnP("+i+");\">"+i+"</button>");    //버튼 비활성화
 	        	}
 	        }
 		}//success end
 	});//$ajax end
 };//function ajax() end
-function pgBtn(i){
+function pgBtnP(i){
 	pCurrentPage=i;
-	ajax();
+	ajaxP();
 };
-function prev(){
+function prevP(){
 	pCurrentPage =pCurrentPage-1;
-	ajax();
+	ajaxP();
 }
-function next(){
+function nextP(){
 	pCurrentPage =pCurrentPage+1;
-	ajax();
+	ajaxP();
 	
 }
-</script>
 </script>
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
@@ -180,6 +190,13 @@ function next(){
 													<tbody>
 													</tbody>
 												</table>
+												<div id="pagingAreaP" class="pagingArea inline" align="right">
+													<button id="prevP" class="btn btn-default" onclick="prevP();" >&lt; previous</button>
+													
+													<div id = "btnAreaP" class="inline"></div>
+													
+													<button id="nextP" class="btn btn-default" onclick="nextP();" >next &gt;</button>
+												</div>	
 											</div>
 										</div>
 									</div>
@@ -214,6 +231,13 @@ function next(){
 													<tbody>
 													</tbody>
 												</table>
+												<div id="pagingAreaR" class="pagingArea inline" align="right">
+													<button id="prevR" class="btn btn-default" onclick="prevR();" >&lt; previous</button>
+													
+													<div id = "btnAreaR" class="inline"></div>
+													
+													<button id="nextR" class="btn btn-default" onclick="nextR();" >next &gt;</button>
+												</div>		
 											</div>
 											<!-- /col-lg-8 -->
 										</div>

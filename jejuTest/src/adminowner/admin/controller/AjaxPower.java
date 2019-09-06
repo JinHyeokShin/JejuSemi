@@ -52,7 +52,17 @@ public class AjaxPower extends HttpServlet {
 		}
 		pageLimit = 5;
 		maxPage = (int) Math.ceil((double) listCount / boardLimit);
-		startPage = (int) Math.floor(((double) currentPage - 1) / pageLimit) * pageLimit + 1;
+		
+//		startPage = (int) Math.floor(((double) currentPage - 1) / pageLimit) * pageLimit + 1;
+
+		if(currentPage<3) {
+			startPage = (int) Math.floor(((double) currentPage - 1) / pageLimit) * pageLimit + 1;
+		}else {
+			startPage = currentPage-2;
+		}
+		if(maxPage<currentPage+2) {
+			startPage=maxPage-4 ;
+		}
 		endPage = startPage + pageLimit - 1;
 		if (maxPage < endPage) {
 			endPage = maxPage;

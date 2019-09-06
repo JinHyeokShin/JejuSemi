@@ -48,7 +48,7 @@ public class AjaxPayment extends HttpServlet {
 	    
 	    pCurrentPage = 1;
 	    
-	    if(request.getParameter("currentPage") != null) {
+	    if(request.getParameter("pCurrentPage") != null) {
 	    	pCurrentPage = Integer.parseInt(request.getParameter("currentPage"));
 	    }
 	      
@@ -63,7 +63,6 @@ public class AjaxPayment extends HttpServlet {
 		
 		
 		ArrayList<Payment> pList = new AdminService().paymentSearch(pCurrentPage, pBoardLimit);
-		PageInfo pPi = new PageInfo(pCurrentPage,pCount,pPageLimit,pMaxPage,pStartPage,pEndPage,pBoardLimit);
 		
 		JSONArray pArr = new JSONArray();
 		for (Payment p : pList) {
@@ -75,9 +74,10 @@ public class AjaxPayment extends HttpServlet {
 			jsonPayment.put("payMethod",p.getPayMethod());
 			jsonPayment.put("paycanel",p.getPayCancel());
 			jsonPayment.put("payDate",p.getPayDate());
-			jsonPayment.put("cancelDate",p.getCancelDate());
+			jsonPayment.put("cancelDate",String.valueOf(p.getCancelDate()));
 			pArr.add(jsonPayment);
 		}
+		
 		
 			JSONObject pObj = new JSONObject();
 			pObj.put("pCurrentPage", pCurrentPage);
