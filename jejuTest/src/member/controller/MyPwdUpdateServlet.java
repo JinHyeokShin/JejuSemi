@@ -35,6 +35,13 @@ public class MyPwdUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		// 현재 비밀번호, 새로운 비밀번호
 		
+		String memPwd = request.getParameter("memPwd");
+		String newPwd = request.getParameter("newPwd");
+		
+		String memId = ((Member)request.getSession().getAttribute("loginUser")).getMemId();
+		
+		Member updateMem = new MemberService().updateMyPwd(memId, memPwd, newPwd);
+		
 		
 		// 성공이던 실패던 동일한 페이지가 보여지게끔
 		RequestDispatcher view = request.getRequestDispatcher("views/member/myPwdUp.jsp");

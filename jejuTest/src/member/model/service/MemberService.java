@@ -153,6 +153,26 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	// 비밀번호 수정
+	public Member updateMyPwd(String memId, String memPwd, String newPwd) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMyPwd(conn, memId, memPwd, newPwd);
+			
+		Member updateMem = null;
+		
+		if(result > 0) {
+			commit(conn);
+			updateMem = new MemberDao().selectMember(conn, memId);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateMem;
+	}
 
    
    

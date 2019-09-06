@@ -269,7 +269,11 @@
 
 		function goMain(){
 			
-			location.href="<%= request.getContextPath() %>";		
+			location.href="<%= request.getContextPath()%>";	
+		}
+		
+		function updatePwd(){
+			window.open("views/member/myPwdUp.jsp", "비밀번호 변경창", "width=500, height=300");
 		}
 
 

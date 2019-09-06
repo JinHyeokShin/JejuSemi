@@ -293,8 +293,6 @@ public int updateMember(Connection conn, Member mem) {
 		PreparedStatement pstmt = null;
 		
 		String sql = prop.getProperty("updateMember");
-		System.out.println(mem);
-		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -405,10 +403,35 @@ public int updateMember(Connection conn, Member mem) {
 		}
 		
 		return result;
-		
-		
-		
 	}
-
-
+		
+		
+		
+	
+	
+	public int updateMyPwd(Connection conn, String memId, String memPwd, String newPwd) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMyPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, memId);
+			pstmt.setString(3, memPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
+		
+
