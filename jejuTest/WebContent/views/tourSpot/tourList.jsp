@@ -616,17 +616,13 @@ body.modal-open[style] {
 
 						<div class="col-md-12 aa" style="height: 70px; padding:5px;">
 							<div class="aa" style="height: 55px;">
-								<div class="aa ee route0_1 col-md-5">
-									<b>출발지:</b> &nbsp;<label>제주공항</label>
+								<div class="aa ee route0_1 col-md-5" style="font-size:18px;">
+									<b>출발지:</b> &nbsp;<label style="margin-left:25px;">제주공항</label>
 									
-<!-- 									<select id="selectSpot" style="height:30px; color: #6c757d; border: 1px solid #ced4da"> -->
-<!-- 												<option value="jeju1">제주 공항</option> -->
-<!-- 												<option value="jeju2">제주항</option> -->
-<!-- 									</select> -->
 								</div>
 
-								<div class="aa ee route0_2 col-md-5">
-									<b>도착지:</b> &nbsp;<label><%= list.get(i).getSpotName() %></label>
+								<div class="aa ee route0_2 col-md-5" style="font-size:18px;">
+									<b>도착지:</b> &nbsp;<label style="margin-left:25px;"><%= list.get(i).getSpotName() %></label>
 								</div>
 
 								<div class="ee route3 col-md-2" style="display: fixed;">

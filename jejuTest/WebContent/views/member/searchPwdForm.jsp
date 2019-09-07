@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%
-	Member mId = (Member)session.getAttribute("memberId");
-%>
-
-
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,6 +53,15 @@
 
 
 </head>
+
+
+<script>
+   $(function(){
+      $('html, body').animate( { scrollTop : 700 }, 400 );
+   });
+</script>
+
+
 <body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
 
 <%-- 헤더,메뉴바 --%>
@@ -129,7 +133,7 @@
 			if(userId.val() == ""){
 				alertify.alert('', '이메일을 입력해주세요.');
 				userId.focus();
-			
+		
 			}else{
 	
 				$("#join-submit").css("display", "inline-block");
@@ -153,8 +157,9 @@
 	
 	function lf_process() {
 		
-			console.log(num);
-			console.log($("#userNum").val());
+		console.log(num);
+		console.log($("#userNum").val());
+		
 		if(num == $("#userNum").val()) {
 			
 			alertify.alert('', '인증되었습니다.');

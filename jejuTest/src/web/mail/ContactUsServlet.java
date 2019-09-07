@@ -66,34 +66,36 @@ public class ContactUsServlet extends HttpServlet {
 	        	
 	        	 //String 제목 = new String(제목.getBytes("EUC-KR"),"8859_1");
 	        	
-	        	String subject = "문의 내역입니다" + "<" + email + ">";  // 제목
+	        	String subject = "사용자 문의 내역입니다" + "<" + email + ">";  // 제목
 	        	String content = 									 // 내용
-	        			
+	        		"<div>" +
+	        			"<p><h3>" + "<span style='color:blue'>" + "<" +name + "</span>" + "님이 문의 주신 내용입니다" +">" + "</h3></p>" +
 	        	        "<div>" +
         		        	"<div>" +
-        		        		"<label>Name</label> <br>" +
+        		        		"<b><label>Name</label></b> <br>" +
         		        		"<input type=\"text\" size=\"40\" value=" + name + " \"readonly\">" +	 
         		        	"</div>" +
         		        	
 							"<div>" +
-								"<label>Phone</label> <br>" +
+								"<b><label>Phone</label></b> <br>" +
 								"<input type=\"text\" size=\"40\" value=" + phone + " \"readonly\">" +	 
 							"</div>" +
 						"</div>" +
 		      		        		
 						"<div>" +
 							"<div>" +
-								"<label>Email</label> <br>" +
+								"<b><label>Email</label></b> <br>" +
 								"<input type=\"text\" size=\"40\" value=" + email.toString() + " \"readonly\">" +	
 							"</div>" +
 						"</div>" +
 								
 						"<div>" +
 							"<div>" +
-								"<label>Writer Message</label><br>" +
-								"<textarea cols=\"40\" rows=\"8\" readonly='readonly'\">" + message + "</textarea>" +
+								"<b><label>Writer Message</label></b><br>" +
+								"<textarea cols=\"40\" rows=\"9\" readonly='readonly'\">" + message + "</textarea>" +
 							"</div>" +
-						"</div>";
+						"</div>" +
+					"</div>";
 	        	
 	        	System.out.println(name);
 	        	System.out.println(phone);

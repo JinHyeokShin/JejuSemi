@@ -74,81 +74,95 @@ public class ReservSendServlet extends HttpServlet {
 	        	String subject = "예약이 완료되었습니다." + "<" + reservEmail + ">";  // 제목
 	        	String content = 	// 내용
 	        			
+	        	"<div style=\"line-height: 1.8em;\">" +	
+	        		"<div>" +
+	        			"<p><h2>" + reservName + "고객님 감사합니다! 고객님의 예약이 완료되었습니다!" + "</h2></p>" +
+	        			"<ul>" +
+		        			"<li>예약 내역 확인을 부탁드립니다</li>" +
+		        			"<li>예약 관련 문제 발생 시, 고객센터에 문의 바랍니다.</li>" +
+		        			"<li>체크인 시, 인쇄된 바우처 사본 또는 모바일 바우처를 호텔 직원에게 제시해 주세요." + "</li>" +
+	        			"<br>" + 
+	        			"<hr>" +
+	        			
+	        			"<h2 style='color:blue'>예약 내역 확인</h2><br>" +
+
 	        	        "<div>" +
 	    		        	"<div>" +
-	    		        		"<label>Name</label> <br>" +
-	    		        		"<input type=\"text\" size=\"40\" value=" + reservName + " \"readonly\">" +	 
+	    		        		"<b><label>예약자명 : </label></b>" +
+	    		        		"<lable style='margin-left:30px;'>" + reservName + "</lable>" +	
 	    		        	"</div>" +
 	    		        	
 							"<div>" +
-								"<label>Phone</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + reservPhone + " \"readonly\">" +	 
+								"<b><label>핸드폰 번호 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + reservPhone + "</lable>" +	 
 							"</div>" +
 						"</div>" +
 		      		        		
 						"<div>" +
 							"<div>" +
-								"<label>Email</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + reservEmail + " \"readonly\">" +	
+								"<b><label>이메일 주소 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + reservEmail + "</lable>" +		
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
-								"<label>Accommodation</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + acmName + " \"readonly\">" +	
+								"<b><label>숙소명 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + acmName + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
-								"<label>Room</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + roomName + " \"readonly\">" +	
+								"<b><label>객실명 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + roomName + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
-								"<label>결제방법</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + payMethod + "명  \"readonly\">" +	
+								"<b><label>결제방법 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + payMethod + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
-								"<label>예약인원</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + reservPax + "명  \"readonly\">" +	
+								"<b><label>예약인원 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + reservPax + "명" + "</lable>" +	
 							"</div>" +
 						"</div>" +
 						
 							
 						"<div>" +
 							"<div>" +
-								"<label>가격</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + reservPrice + " \"readonly\">" +	
+								"<b><label>가격 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + reservPrice + "원" + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
-								"<label>체크인</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + checkIn + " \"readonly\">" +	
+								"<b><label>체크인 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + checkIn + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
-								"<label>체크아웃</label> <br>" +
-								"<input type=\"text\" size=\"40\" value=" + checkOut + " \"readonly\">" +	
+								"<b><label>체크아웃 : </label></b>" +
+								"<lable style='margin-left:30px;'>" + checkOut + "</lable>" +	
 							"</div>" +
 						"</div>" +
 								
 						"<div>" +
 							"<div>" +
-								"<label>요구사항</label><br>" +
-								"<textarea cols=\"40\" rows=\"8\" readonly='readonly'\">" + reservRequire + "</textarea>" +
+								"<b><label>요구사항 : </label></b><br>" +
+								"<textarea cols=\"40\" rows=\"8\" readonly='readonly'\"style=\"border:none\">" + reservRequire + "</textarea>" +
 							"</div>" +
-						"</div>";
+						"</div>" +
+					"</div>" +
+				"</div>";
 	        	
 //	        	System.out.println(name);
 //	        	System.out.println(phone);
