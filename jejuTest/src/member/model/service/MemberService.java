@@ -1,6 +1,9 @@
 package member.model.service;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import accommodation.model.vo.Acm;
@@ -112,13 +115,47 @@ public class MemberService {
 	   
    }
    
-   
-   
-   
-   
-   
-   
-   
-   
+	public Member updateMyPwd(String memId, String memPwd, String newPwd) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMyPwd(conn, memId, memPwd, newPwd);
+			
+		Member updateMem = null;
+		
+		if(result > 0) {
+			commit(conn);
+			updateMem = new MemberDao().selectMember(conn, memId);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateMem;
+	}
+	
+
+	  // 회원 정보 수정
+	   public Member updateMember(Member mem) {
+			Connection conn = getConnection();
+			
+			int result = new MemberDao().updateMember(conn, mem);
+			
+			Member updateMem = null;
+			
+			if(result > 0) {
+				commit(conn);
+				
+				updateMem = new MemberDao().selectMember(conn, mem.getMemId());
+			}else {
+				rollback(conn);
+			}
+			
+			close(conn);
+			
+			return updateMem;
+			
+			
+		}
 
 }

@@ -56,6 +56,16 @@ public class Member implements Serializable{
 		this.nationCode = nationCode;
 		this.memType = memType;
 	}
+	
+	
+
+	public Member(String memId, String memName, String memPhone, int nationCode) {
+		super();
+		this.memId = memId;
+		this.memName = memName;
+		this.memPhone = memPhone;
+		this.nationCode = nationCode;
+	}
 
 	public int getMemNum() {
 		return memNum;

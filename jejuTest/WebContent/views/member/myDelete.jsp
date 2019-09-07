@@ -3,7 +3,8 @@
 <%
 	Member m = (Member)session.getAttribute("loginUser");
 	
-	String memName 	= m.getMemName();
+	String memId = m.getMemId();
+	String memName = m.getMemName();
 	
 
 %>   

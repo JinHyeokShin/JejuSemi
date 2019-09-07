@@ -111,11 +111,31 @@
     display:-webkit-box;
     -webkit-box-orient:horizontal;
     widows: 650px;
-    height: 130px;
+    height: 200px;
+    -webkit-box-align:center;
+    border-radius: 10px;
+    }
+    #mommy1{
+    border:2px solid gray;
+    display:-webkit-box;
+    -webkit-box-orient:horizontal;
+    widows: 650px;
+    height: 110px;
     -webkit-box-align:center;
     border-radius: 10px;
     
     }
+     #mommy2{
+    border:2px solid gray;
+    display:-webkit-box;
+    -webkit-box-orient:horizontal;
+    widows: 650px;
+    height: 110px;
+    -webkit-box-align:center;
+    border-radius: 10px;
+    
+    }
+    
     #kid1{
     border: 2px solid white;
     background :white;
@@ -127,12 +147,33 @@
     }
     #kid2{
     border: 2px solid white;
+    position: relative;
     background :white;
- 
+ 	top:-20px;
     margin:10px;
     width:65px;
     height:75px;
-    -webkit-box-flex:1;
+	right:200px;
+    }
+    #kid3{
+    border: 2px solid white;
+    position: relative;
+    background :white;
+    margin:10px;
+    top:10px;
+    width:65px;
+    height:75px;
+	right:200px;
+    }
+    #kid4{
+    border: 2px solid white;
+    position: relative;
+    background :white;
+    margin:10px;
+    top:10px;
+    width:65px;
+    height:75px;
+	right:200px;
     }
     
     p{
@@ -151,7 +192,7 @@
     cursor:pointer;
     background-color:white;
     }
-    #name, #phone{
+    #name, #phone, #id{
     border-radius: 5px;
     width:185px;
     }
@@ -173,9 +214,6 @@
 	
     <div class="main-content" role="main">
         <div class="main-wrap">
-            <div class="main-user">
-                &nbsp; <%=memName%>
-            </div>
             <hr>
             <h1> &nbsp; &nbsp; <span class="text-danger">Jeju</span>Boram 내 정보 수정</h1><br>
             <form id="updateForm" action="<%= contextPath %>/update.me" method="post">
@@ -190,6 +228,7 @@
                     
                     <div class="detail2" id="kid2">
                     	<div class="input1">
+                    	  <b>아이디 :</b>
                     	  <input type="text" id="id" name="memId" value="<%=memId%>" readonly><!--아아디 데이터값 -->
 						  <b>이&nbsp;&nbsp;&nbsp;&nbsp;름 :</b>
                           <input type="text" id="name" name="memName" value="<%=memName%>" ><!--이름데이터값-->
@@ -202,12 +241,12 @@
                     <hr>
                     
                     <li id="item-mypay" class="item-list">
-                    <div id="mommy">
+                    <div id="mommy1">
                         <div id="kid1" >
                             <h3>국 적</h3>         
                             <p>국적을 변경합니다.</p>
                         </div>
-                        <div id="kid2">
+                        <div id="kid3">
                             <div class="input1">
 
                                          <label for="inputNation"><b>국적 : </b></label>
@@ -243,13 +282,13 @@
                     <hr>
                     
                    <li id="item-myheart" class="item-list">
-                   <div id="mommy">
+                   <div id="mommy2">
                         <div id="kid1" >
                             <h3>비밀번호</h3>
                             <p>비밀번호를 변경합니다</p>
                         </div>
                         <br>
-                        <div id="kid2">                            
+                        <div id="kid4">                            
                                <input id="pwdBtn" type="button" onclick="updatePwd();" value="비밀번호 변경">
                         </div>
                     </li>
@@ -260,10 +299,10 @@
 	                <input type="submit" value="수정하기" id="updateBtn" onclick="goMain()">
 	                <input type="submit" value="취소" id="cancelBtn" onclick="goMyMe();">
 	            </div>
-            
+            </div>
             </form>
         </div>
-    </div>
+    
     
     <script>
 
@@ -273,7 +312,9 @@
 		}
 		
 		function updatePwd(){
-			window.open("views/member/myPwdUp.jsp", "비밀번호 변경창", "width=500, height=300");
+			
+
+			window.open("views/member/myPwdUp.jsp", "비밀번호 변경창", "width=500, height=250");
 		}
 
 

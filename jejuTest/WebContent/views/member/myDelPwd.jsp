@@ -4,6 +4,7 @@
 	Member m = (Member)session.getAttribute("loginUser");
 
 	String msg = (String)request.getAttribute("msg");
+	String memId = m.getMemId();
 	String memPwd = m.getMemPwd();
 %>
 <!DOCTYPE html>
@@ -87,13 +88,14 @@
 	<script>
 		
 		function deleteMember(){
+		var pwd = prompt("비밀번호를 입력해주세요");
 			
 			if(pwd == "<%= memPwd %>"){
 				var bool = confirm("정말로 탈퇴하시겠습니까?");
 				
 				if(bool){
 					
-					$("#updateForm").attr("action", "<%= request.getContextPath() %>/index.jsp");
+					$("#updateForm").attr("action", "<%= request.getContextPath() %>/mydeletepwd.me");
 					$("#updateForm").submit();
 				}
 				

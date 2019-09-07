@@ -102,7 +102,7 @@
 				return;
 			}
 			
-			String memId = ((Member)request.getSession().getAttribute("loginUser")).getMemId();
+			String memId = <%=((Member)session.getAttribute("loginUser")).getMemId()%>;
 			
 			Member updateMem = new MemberService().updatePwd(memId, newPwd);
 			if(updateMem != null) { // 성공적으로 수정되었을 경우
