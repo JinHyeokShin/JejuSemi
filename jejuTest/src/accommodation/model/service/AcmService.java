@@ -285,4 +285,24 @@ public class AcmService {
 		return list;
 	}
 
+	
+	
+	/**
+	 * 파워등록된 모든 숙소들을 호출하는 서비스
+	 * @return
+	 */
+	public ArrayList<Acm> powerList(){
+		Connection conn = getConnection();
+		ArrayList<Acm> list = new AcmDao().powerList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	
+	
+	
+	
+	
 }

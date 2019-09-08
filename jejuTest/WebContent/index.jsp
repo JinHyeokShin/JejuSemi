@@ -9,6 +9,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/animate.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/owl.carousel.min.css">
@@ -68,6 +81,39 @@
 
 
 </head>
+<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick.css" />
+
+    <link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css" />
+
+    <script src="http://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="http://kenwheeler.github.io/slick/slick/slick.min.js"></script>
+<script>
+
+
+	var jq = jQuery.noConflict();
+
+	
+	/* slick 돌리는 function */
+	jq(document).ready(function(){		
+		
+		  powerListView();
+	      
+	});
+	
+	function startSlick(){
+		
+		console.log('slick실행');
+		
+		jq('.slick-items').slick({
+	    	  slidesToShow: 3,
+	    	  slidesToScroll: 1,
+	    	  autoplay: true,
+	    	  autoplaySpeed: 2000
+	      });
+	}
+
+</script>
 <body data-spy="scroll" data-target="#templateux-navbar" data-offset="200">
 
 	<%-- 헤더,메뉴바 --%>
@@ -274,48 +320,72 @@
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
               <h2 class="heading" data-aos="fade-up">인기 숙소</h2>
-              <p data-aos="fade-up" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+              <p data-aos="fade-up" data-aos-delay="100">요즘 제주도에서 가장 핫한 숙소들을 만나보세요!</p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6 col-lg-4" data-aos="fade-up">
-              <a href="#" class="room">
-                <figure class="img-wrap">
-                  <img src="resources/images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
-                </figure>
-                <div class="p-3 text-center room-info">
-                  <h2>Single Room</h2>
-                  <span class="text-uppercase letter-spacing-1">90$ / per night</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4" data-aos="fade-up">
-              <a href="#" class="room">
-                <figure class="img-wrap">
-                  <img src="resources/images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
-                </figure>
-                <div class="p-3 text-center room-info">
-                  <h2>Family Room</h2>
-                  <span class="text-uppercase letter-spacing-1">120$ / per night</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-md-6 col-lg-4" data-aos="fade-up">
-              <a href="#" class="room">
-                <figure class="img-wrap">
-                  <img src="resources/images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
-                </figure>
-                <div class="p-3 text-center room-info">
-                  <h2>Presidential Room</h2>
-                  <span class="text-uppercase letter-spacing-1">250$ / per night</span>
-                </div>
-              </a>
-            </div>
-
-
-          </div>
+          
+          <div class="row powerAcms slick-items">
+          </div> <!-- row class close -->
+          
+          	<script>
+		
+		function powerListView() {
+			
+			$.ajax({
+				url:"powerAcm.ac",
+				type:"post",
+				success:function(result){
+					var powerList = result.powerList;
+					var thumbList = result.acmThumbnailListView;
+					
+					console.log("ajax성공");
+					
+					
+					console.log(powerList);
+					console.log(thumbList);
+					
+					
+					var str = "";
+					
+					$.each(powerList, function(index, value){
+						
+					str +='<div class="col-md-6 col-lg-4" data-aos="fade-up">'+
+				              '<a href="#" class="room">'+
+				                '<figure class="img-wrap">';
+				                
+				                	$.each(thumbList, function(index2, value2){
+				                		if(value.acmNum == value2.acmNum){
+					                  		str += '<img src="'+value2.imgPath+'" width="330" height="220" class="mb-3">';
+				                		}
+				                	});
+				                
+				     str += '</figure>'+
+				                '<div class="p-3 text-center room-info">'+
+				                  '<b style="font-size:1.7em;">'+value.acmName+'</b><br>'+
+				                  '<span class="text-uppercase letter-spacing-1" style="font-size:13px; color:black;">'+value.acmAddress+'</span>'+
+			                	'</div></a></div>';			
+					});
+					
+					console.log("str 생성 완료");
+					
+					$(".powerAcms").html(str);
+					
+					console.log("str 출력 완료");
+					startSlick();
+				},
+				error:function(){
+					console.log('파워등록숙소들 불러오기 실패');
+				}
+			});			
+		}
+	
+		
+	</script>
+          
+          
+          
+          
+          
         </div>
       </section>
       

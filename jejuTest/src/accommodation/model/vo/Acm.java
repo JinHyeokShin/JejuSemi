@@ -40,6 +40,17 @@ public class Acm implements Serializable{
 
 	
 
+	public Acm(int acmNum, String acmName, String acmPhone, String acmAddress, String acmType, int acmGrade,
+			String acmDistrict) {
+		super();
+		this.acmNum = acmNum;
+		this.acmName = acmName;
+		this.acmPhone = acmPhone;
+		this.acmAddress = acmAddress;
+		this.acmType = acmType;
+		this.acmGrade = acmGrade;
+		this.acmDistrict = acmDistrict;
+	}
 	public Acm(String acmName, String acmPhone, String acmDescriptA, String acmDescriptB) {
 		super();
 		this.acmName = acmName;

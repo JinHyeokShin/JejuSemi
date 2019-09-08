@@ -58,7 +58,7 @@
 		padding-top:4px;
 	}
 	.starR{
-	  background: url('<%= request.getContextPath() %>/resources/images/ico_review.png') no-repeat right 0;
+	  background: url('<%= request.getContextPath() %>/resources/images/ico_star.png') no-repeat right 0;
 	  background-size: auto 100%;
 	  width: 30px;
 	  height: 30px;
@@ -251,10 +251,11 @@
 			/* 리뷰 작성 버튼 눌렀을때  슬라이드*/
 			$(function(){
 				$(document).on('click','#reviewBtn',function(){
-			    	if($(".reviewWrap").css('display') == 'none'){
-			        	$(".reviewWrap").slideDown();
+			    	if($(this).parents(".myReservWrap").next().css('display') == 'none'){
+			    		$('.reviewWrap').slideUp();
+			    		$(this).parents(".myReservWrap").next().slideDown();
 			        } else{
-			        	$(".reviewWrap").slideUp();
+			        	$(this).parents(".myReservWrap").next().slideUp();
 			        }
 			    });
 			});

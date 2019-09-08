@@ -59,11 +59,12 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
 
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/semantic.min.css">
-        <script
-          src="https://code.jquery.com/jquery-3.1.1.min.js"
-          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-          crossorigin="anonymous"></script>
-        <script src="<%= request.getContextPath() %>/resources/js/semantic.min.js"></script>
+
+
+
+
+
+<script src="<%= request.getContextPath() %>/resources/js/semantic.min.js"></script>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>

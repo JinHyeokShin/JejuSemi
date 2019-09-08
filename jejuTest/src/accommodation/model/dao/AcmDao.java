@@ -626,4 +626,44 @@ public class AcmDao {
 	
 	
 	
+	
+	public ArrayList<Acm> powerList(Connection conn){
+		
+		ArrayList<Acm> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("powerList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Acm(rset.getInt("acm_num"),
+						         rset.getString("acm_name"),
+						         rset.getString("acm_phone"),
+						         rset.getString("acm_address"),
+						         rset.getString("acm_type"),
+						         rset.getInt("acm_grade"),
+						         rset.getString("acm_district")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
