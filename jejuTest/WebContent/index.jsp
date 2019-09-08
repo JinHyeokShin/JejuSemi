@@ -350,7 +350,8 @@
 					$.each(powerList, function(index, value){
 						
 					str +='<div class="col-md-6 col-lg-4" data-aos="fade-up">'+
-				              '<a href="#" class="room">'+
+							  '<input type="hidden" id="acmNum" value="'+value.acmNum+'">'+
+				              '<a id="acmImg" class="room" style="cursor:pointer; outline:none;">'+
 				                '<figure class="img-wrap">';
 				                
 				                	$.each(thumbList, function(index2, value2){
@@ -361,7 +362,7 @@
 				                
 				     str += '</figure>'+
 				                '<div class="p-3 text-center room-info">'+
-				                  '<b style="font-size:1.7em;">'+value.acmName+'</b><br>'+
+				                  '<b style="font-size:1.7em; color:#fd7e14;">'+value.acmName+'</b><br>'+
 				                  '<span class="text-uppercase letter-spacing-1" style="font-size:13px; color:black;">'+value.acmAddress+'</span>'+
 			                	'</div></a></div>';			
 					});
@@ -379,6 +380,44 @@
 			});			
 		}
 	
+		
+		
+		
+		
+		
+
+		function getFormatDate(date){ 
+			
+			var year = date.getFullYear();
+			var month = (1 + date.getMonth());
+			month = month >= 10 ? month : '0' + month;
+			var day = date.getDate();
+			day = day >= 10 ? day : '0' + day;
+			
+			return year + '-' + month + '-' + day; 		
+			}
+		
+		
+		$(document).on('click','#acmImg',function(){
+			
+			var today = new Date();
+			var today1 = getFormatDate(today);
+			
+			var tommorow = new Date();
+			tommorow.setDate(today.getDate()+1);
+			
+			var tommorow1 = getFormatDate(tommorow);
+					
+			console.log(today1);
+			console.log(tommorow1);
+			
+			location.href="<%=contextPath %>/detail.ac?acmNum="+$(this).prev().val()+"&checkIn="+today1+"&checkOut="+tommorow1+"&adult=1&child=0";
+			
+		})
+		
+		
+		
+		
 		
 	</script>
           
