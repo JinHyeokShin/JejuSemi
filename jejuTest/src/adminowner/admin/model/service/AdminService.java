@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import accommodation.model.vo.Acm;
 import adminowner.admin.model.dao.AdminDao;
 import adminowner.admin.model.vo.AdminIndex;
+import adminowner.admin.model.vo.Chart;
 import adminowner.admin.model.vo.Notice;
 import member.model.vo.Member;
 import payment.model.vo.Payment;
@@ -173,7 +174,13 @@ public class AdminService {
 		close(conn);
 		return list;
 	}
-	
+	public ArrayList<Chart> chartSearch(){
+		Connection conn = getConnection();
+		ArrayList<Chart> list = new AdminDao().chartSearch(conn);
+		close(conn);
+		return list;
+		
+	}
 	
 	
 	

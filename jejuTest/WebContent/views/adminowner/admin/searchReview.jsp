@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
+ul.sidebar-menu li a.active5, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
 	{
 	background: #fd7e14;
 	color: #fff;
@@ -103,7 +103,7 @@ ul.sidebar-menu li ul.sub li.active a {
 			<br>
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
-					<table id="reviewTable" class="table table-bordered">
+					<table id="reviewTable" class="table table-bordered table-hover">
 						<thead>
 							<tr id="tr1">
 								<th style="width:50px;">번호</th>

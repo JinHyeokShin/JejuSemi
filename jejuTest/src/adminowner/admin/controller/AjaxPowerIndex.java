@@ -9,21 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import adminowner.admin.model.service.AdminService;
-import adminowner.admin.model.vo.AdminIndex;
-import adminowner.admin.model.vo.Notice;
+import power.model.vo.Power;
 
 /**
- * Servlet implementation class GoAdminNotice
+ * Servlet implementation class AjaxPowerIndex
  */
-@WebServlet("/adminNotice.ad")
-public class GoAdminNotice extends HttpServlet {
+@WebServlet("/powerAjaxIndex.ad")
+public class AjaxPowerIndex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GoAdminNotice() {
+    public AjaxPowerIndex() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +33,30 @@ public class GoAdminNotice extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AdminIndex ai = new AdminService().adminIndex();
-		ArrayList<Notice> nList = new AdminService().selectNList();
 		
-		if(nList!=null && ai!=null) {
-			request.setAttribute("nList",nList);
-			request.setAttribute("ai", ai);
-			request.getRequestDispatcher("views/adminowner/admin/notice.jsp").forward(request, response);
-		}else {
-			request.setAttribute("msg", "공지사항 리스트 조회 실패");
-//			오류페이지  보내주기.
-			//			request.getRequestDispatcher()
+		ArrayList<Power> list = new AdminService().powerSearch(1, 5);
+		
+		JSONArray pArr = new JSONArray();
+		for (Power p : list) {
+			JSONObject jsonPower = new JSONObject();
+			jsonPower.put("pNum", p.getPowerNum());
+			jsonPower.put("acmName", p.getAcmName());
+			jsonPower.put("payNum", p.getPayNum());
+			jsonPower.put("sDate", p.getStartDate());
+			jsonPower.put("eDate", p.getEndDate());
+			jsonPower.put("pStat", p.getPowerStatus());
+			jsonPower.put("pFlag", p.getPowerFlag());
+			pArr.add(jsonPower);
 		}
+
+		
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(pArr);
 	}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

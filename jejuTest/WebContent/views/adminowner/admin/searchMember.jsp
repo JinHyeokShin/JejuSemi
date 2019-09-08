@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 <style>
 /* //fd7e14 */
-ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
+ul.sidebar-menu li a.active4, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
 	{
 	background: #fd7e14;
 	color: #fff;
@@ -63,7 +63,7 @@ ul.sidebar-menu li ul.sub li.active a {
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
 					<input type="hidden" id="h1">
-					<table id="myTable" class="table table-bordered display" style="font-size: 15px;">
+					<table id="myTable" class="table table-hover table-bordered display" style="font-size: 15px;">
 						<thead>
 							<tr>
 								<th>회원 번호</th>

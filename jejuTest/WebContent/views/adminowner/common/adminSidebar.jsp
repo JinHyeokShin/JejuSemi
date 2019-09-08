@@ -324,17 +324,17 @@ align:middle;
                   </a>
             </li>
             <li>
-                <a class="active7 onclick="">
+                <a class="active7" onclick="goSearchPower();">
                   <i class="fa fa-envelope"></i>
-                  <span>통계 조회</span>
+                  <span>파워 등록 관리</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
             <li>
-                <a class="active8" onclick="goSearchPower();">
+                <a class="active8" onclick="goSearchChart();">
                   <i class="fa fa-envelope"></i>
-                  <span>파워 등록 관리</span>
-                  <!-- <span class="label label-theme pull-right mail-info">2</span> -->
+                  <span>통계 조회</span>
+                  <span class="label label-theme pull-right mail-info"></span>
                   </a>
             </li>
 
@@ -379,16 +379,16 @@ align:middle;
   	}
   	function goSearchReservPayment(){
   		console.log("click");
-  		location.href ="<%= request.getContextPath() %>/goSearchReservPayment.ad"
+  		location.href ="<%= request.getContextPath() %>/adminSearchReservPower.ad"
   	}
   	
   	function goSearchPower(){
   		console.log("click");
-  		location.href ="<%= request.getContextPath() %>/goSearchPower.ad"
+  		location.href ="<%= request.getContextPath() %>/adminSearchPower.ad"
   	}
   	
-  	function goInquiry(){
-  		location.href ="../admin/inquiry.jsp"
+  	function goSearchChart(){
+  		location.href ="<%= request.getContextPath() %>/adminChart.ad"
   	}
   	function logout() {
 		location.href="<%= request.getContextPath() %>/logout.me";			

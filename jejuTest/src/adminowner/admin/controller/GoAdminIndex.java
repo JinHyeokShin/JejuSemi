@@ -1,6 +1,8 @@
 package adminowner.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import adminowner.admin.model.service.AdminService;
 import adminowner.admin.model.vo.AdminIndex;
+import adminowner.admin.model.vo.Notice;
 
 /**
  * Servlet implementation class GoAdminIndex
@@ -29,12 +32,10 @@ public class GoAdminIndex extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("adminIndex.ad");
 		AdminIndex ai = new AdminService().adminIndex();
-		if(ai!=null) {
-			System.out.println("adIndex ai가져옴 : "+ai);
-			
-		}
+		ArrayList<Notice> nList = new AdminService().selectNList();
+		
+		request.setAttribute("nList",nList);
 		request.setAttribute("ai", ai);
 		
 		request.getRequestDispatcher("views/adminowner/admin/adminIndex.jsp").forward(request, response);

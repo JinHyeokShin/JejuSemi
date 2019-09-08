@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class goAdminSearchPower
  */
-@WebServlet("/goSearchPower.ad")
+@WebServlet("/adminSearchPower.ad")
 public class goAdminSearchPower extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

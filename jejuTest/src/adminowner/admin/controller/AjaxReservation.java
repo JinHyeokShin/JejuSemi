@@ -49,14 +49,18 @@ public class AjaxReservation extends HttpServlet {
 	    if(request.getParameter("rCurrentPage") != null) {
 	         rCurrentPage = Integer.parseInt(request.getParameter("rCurrentPage"));
 	    }
-	      
+	    System.out.println(rCurrentPage);
 	    rPageLimit = 5;
 	    rMaxPage = (int)Math.ceil((double)rCount/rBoardLimit);
-	    rStartPage = (int)Math.floor(((double)rCurrentPage - 1) / rPageLimit) * rPageLimit + 1;  
+	   
+
+	      rStartPage = (int)Math.floor(((double)rCurrentPage - 1) / rPageLimit) * rPageLimit + 1;
+	      
+	    
+	    
 	    rEndPage = rStartPage + rPageLimit - 1 ;
-	       
-	      if(rMaxPage < rEndPage) {
-	         rEndPage = rMaxPage; 
+	    if(rMaxPage < rEndPage) {
+	       rEndPage = rMaxPage; 
 	      }
 		
 		

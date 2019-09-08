@@ -36,17 +36,17 @@ public class AjaxPower extends HttpServlet {
 	 *      response)
 	 */
 	@SuppressWarnings("unchecked")
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		int listCount = new AdminService().powerCount();
 		int currentPage; // 현재 페이지
 		int pageLimit; // 한 페이지 하단에 보여질 페이지 수
 		int maxPage; // 전체 페이지에서 가장 마지막 페이지
 		int startPage; // 한 페이지 하단에 보여질 시작 페이지
 		int endPage; // 한 페이지 하단에 보여질 마지막 페이지
-
 		int boardLimit = 10; // 한 페이지에 보여질 게시글 최대 갯수
+		
 		currentPage = 1;
+		
 		if (request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
@@ -55,14 +55,17 @@ public class AjaxPower extends HttpServlet {
 		
 //		startPage = (int) Math.floor(((double) currentPage - 1) / pageLimit) * pageLimit + 1;
 
-		if(currentPage<3) {
+		if(currentPage==1) {
+			startPage=1;
+		}else if(currentPage<3) {
 			startPage = (int) Math.floor(((double) currentPage - 1) / pageLimit) * pageLimit + 1;
+		}else if(maxPage<currentPage+2) {
+			startPage=maxPage-4 ;
 		}else {
 			startPage = currentPage-2;
 		}
-		if(maxPage<currentPage+2) {
-			startPage=maxPage-4 ;
-		}
+		
+		
 		endPage = startPage + pageLimit - 1;
 		if (maxPage < endPage) {
 			endPage = maxPage;
@@ -95,7 +98,7 @@ public class AjaxPower extends HttpServlet {
 		JSONObject send = new JSONObject();
 		send.put("pArr", pArr);
 		send.put("pObj", pObj);
-
+		System.out.println("ajaxPower!!");
 		
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(send);

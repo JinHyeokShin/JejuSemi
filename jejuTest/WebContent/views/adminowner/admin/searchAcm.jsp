@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
+ul.sidebar-menu li a.active3, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
 	{
 	background: #fd7e14;
 	color: #fff;
@@ -65,7 +65,7 @@ ul.sidebar-menu li ul.sub li.active a {
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
 				 total : <%=list.size() %>
-					<table id="myTable" class="table table-bordered">
+					<table id="myTable" class="table table-hover table-bordered">
 						<thead>
 							<tr>
 								<th>숙소 번호</th>

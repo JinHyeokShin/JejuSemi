@@ -56,11 +56,13 @@ public class GoAdminSearchReview extends HttpServlet {
 		ArrayList<Review> list = new AdminService().reviewList(currentPage, boardLimit);
 		PageInfo pi = new PageInfo(currentPage,count,pageLimit,maxPage,startPage,endPage,boardLimit);
 		
+		System.out.println(list);
+		
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("rList", list);
 		request.setAttribute("pi",pi);
 		request.getRequestDispatcher("views/adminowner/admin/searchReview.jsp").forward(request, response);
-	
+		
 	}
 
 	/**

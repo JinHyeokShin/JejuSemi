@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 /* //fd7e14 */
-ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
+ul.sidebar-menu li a.active7, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
 	{
 	background: #fd7e14;
 	color: #fff;
@@ -93,8 +93,8 @@ align:right;
 					$tr.append($payNumTd);
 					$tr.append($sDateTd);
 					$tr.append($eDateTd);
-					$tr.append($pStatTd);
 					$tr.append($pFlagTd);
+					$tr.append($pStatTd);
 	
 					$tableBody.append($tr);
 				});
@@ -155,7 +155,7 @@ align:right;
 			<br>
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
-					<table id="powerTable" class="table table-bordered display">
+					<table id="powerTable" class="table table-hover table-bordered display">
 						<thead>
 						<tr>
 							<th>#</th>					

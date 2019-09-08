@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import accommodation.model.vo.Acm;
 import adminowner.admin.model.vo.AdminIndex;
+import adminowner.admin.model.vo.Chart;
 import adminowner.admin.model.vo.Notice;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
@@ -597,7 +598,29 @@ public class AdminDao {
 	}
     return list;
    }
-   
+   public ArrayList<Chart> chartSearch(Connection conn){
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   String sql= prop.getProperty("chartSearch");
+	   ArrayList<Chart> list = new ArrayList<>();
+	   
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			list.add(new Chart(rset.getInt(1),
+								rset.getInt(2)
+					));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	   return list;
+   }
    
    
    

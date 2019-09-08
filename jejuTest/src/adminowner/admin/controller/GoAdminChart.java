@@ -1,6 +1,7 @@
 package adminowner.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,17 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import adminowner.admin.model.service.AdminService;
+import adminowner.admin.model.vo.Chart;
+
 /**
- * Servlet implementation class GoAdminSearchReservPayment
+ * Servlet implementation class GoAdminChart
  */
-@WebServlet("/adminSearchReservPower.ad")
-public class GoAdminSearchReservPayment extends HttpServlet {
+@WebServlet("/adminChart.ad")
+public class GoAdminChart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GoAdminSearchReservPayment() {
+    public GoAdminChart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,8 +34,18 @@ public class GoAdminSearchReservPayment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Chart> list = new AdminService().chartSearch();
+		JSONArray arr= new JSONArray();
+		for(Chart c :list) {
+			JSONObject jChart = new JSONObject();
+			jChart.put("month",c.getMonth());
+			jChart.put("price", c.getPrice());
+			arr.add(jChart);
+		}
+		System.out.println(arr);
 		
-		request.getRequestDispatcher("views/adminowner/admin/searchReservPayment.jsp").forward(request, response);
+		request.setAttribute("arr",arr);
+		request.getRequestDispatcher("views/adminowner/admin/adminChart.jsp").forward(request, response);
 	}
 
 	/**

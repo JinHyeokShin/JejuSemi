@@ -53,60 +53,7 @@ ul.sidebar-menu li ul.sub li.active a {
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap.min.js"></script>
-<script>
-$(document).ready(function(){
-// 		var data2;
-// 			$.ajax({
-// 				url:'/notUsed.ad',
-// 				success:function(data){
-// 					data = data2;
-// 		}
-// 		});
-// 			var table = $('#myTable').DataTable({
-// 				url:'/notUsed.ad',
-// 				columns: [
-// 				{"data":'memNum'},
-// 				{"data":'memId'},
-// 				{"data":'memName'},
-// 				{"data":'memGender'},
-// 				{"data":'memPhone'},
-// 				{"data":'nationCode'},
-// 				{"data":'memPoint'},
-// 				{"data":'memType'},
-// 				{"data":'memStatus'},
-// 				{"data":'enrollDate'},
-// 				{"data":'noShow'}
-// 			    ]
-// 			});
-			var table = $('#myTable').DataTable({
-				ajax: {
-			        url: 'notUsed',
-			        dataSrc: 'data'
-				},
-				columns: [
-				{"data":'memNum'},
-				{"data":'memStatus'},
-				{"data":'memName'},
-				{"data":'noShow'},
-				{"data":'memPhone'},
-				{"data":'memType'},
-				{"data":'memGender'},
-				{"data":'memPoint'},
-				{"data":'enrollDate'},
-				{"data":'memId'},
-				{"data":'nationCode'}
-			    ]
-			});
-});
 
-	
-	
-
-
-
-
-
-</script>
 <%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
 </head>
 <body>
@@ -161,7 +108,54 @@ $(document).ready(function(){
 		</section>
 	</section>
 
+<script>
+$(document).ready(function(){
+// 		var data2;
+// 			$.ajax({
+// 				url:'/notUsed.ad',
+// 				success:function(data){
+// 					data = data2;
+// 		}
+// 		});
+// 			var table = $('#myTable').DataTable({
+// 				url:'/notUsed.ad',
+// 				columns: [
+// 				{"data":'memNum'},
+// 				{"data":'memId'},
+// 				{"data":'memName'},
+// 				{"data":'memGender'},
+// 				{"data":'memPhone'},
+// 				{"data":'nationCode'},
+// 				{"data":'memPoint'},
+// 				{"data":'memType'},
+// 				{"data":'memStatus'},
+// 				{"data":'enrollDate'},
+// 				{"data":'noShow'}
+// 			    ]
+// 			});
+			var table = $('#myTable').DataTable({
+				ajax: {
+			        url: 'notUsed',
+			        dataSrc: 'data'
+				},
+				columns: [
+				{"data":'memNum'},
+				{"data":'memStatus'},
+				{"data":'memName'},
+				{"data":'noShow'},
+				{"data":'memPhone'},
+				{"data":'memType'},
+				{"data":'memGender'},
+				{"data":'memPoint'},
+				{"data":'enrollDate'},
+				{"data":'memId'},
+				{"data":'nationCode'}
+			    ]
+			});
+});
 
+
+</script>
 
 
 
