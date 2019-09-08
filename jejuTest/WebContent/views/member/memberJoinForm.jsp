@@ -41,7 +41,7 @@ select{
 #nonoJapan {
 	z-index:100;
 	width:450px;
-	height: 450px; */
+	height: 450px; 
 	background: white;
 	display:none;
 	position: absolute;

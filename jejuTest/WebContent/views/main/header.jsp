@@ -122,7 +122,15 @@
          .dd{
             float: left;
          }
-         
+         #cocar{
+         	z-index:100;
+         	width:706px;
+         	height:798px;
+         	display: none;         	
+         	position: absolute;
+			width:100%;
+			text-align:center;
+         }
 
 
 </style>
@@ -382,9 +390,26 @@
           	function mypage(){
     			location.href = "<%= request.getContextPath()%>/mypage.me";
     		}
+          	
+          	$(function(){
+          		$("#nav3").on('click',function(){
+          			$("#cocar").css('display','block');
+          		});
+          		
+          		$("#cocarImg").on('click',function(){
+          			$(this).parents("#cocar").css('display','none');
+          		});
+          		
+          	});
 
       </script> 
 
+    
+    <div id="cocar">
+    	<img src="<%= request.getContextPath()%>/resources/images/cocarInJeju.PNG" id="cocarImg">
+    </div>
+    
+    
     
     <!-- END nav -->
 
