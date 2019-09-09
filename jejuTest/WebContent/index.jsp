@@ -133,8 +133,10 @@
               <img src="resources/images/hero_4.jpg" alt="Image" class="img-fluid rounded">
             </div>
             <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
-              <h2 class="heading mb-4">제주도 ㄱㄱ</h2>
-              <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+              <h2 class="heading mb-4" style="font-size:52px";>Show Me The
+              <span style="color:#fd7e14; font-size:66px;">"JeJu"</span>
+              </h2>
+              <p class="mb-5">주말만 바라보고 한주를 버텨온 사람들처럼, 이날을 바라보며 몇 달을 버티는 사람들이 있습니다. 반가운 사람들이 모여들어 이야기도 풍성해지고 여유와 즐거움마저 풍성해지는 제주에서 즐거운 추억을 만들어 보세요. </p>
               <p><a href="<%=contextPath%>/resources/video/jejuVideo.mp4"  data-fancybox class="btn btn-primary text-white py-2 mr-3 text-uppercase letter-spacing-1">Watch the video</a></p>
             </div>
             
@@ -151,7 +153,8 @@
         
           <div class="row justify-content-center text-center mb-5">
         <div class="col-md-7 mb-5">
-          <h2 class="heading" data-aos="fade-up">추천/베스트 숙소</h2>
+          <h2 class="heading" data-aos="fade-up">Best Hotel</h2>
+           <p data-aos="fade-up" data-aos-delay="100">여긴 어떠신가요? 여러분에게 적합한 숙소를 추천드립니다!</p>
         </div>
       </div>
 
@@ -194,9 +197,8 @@
 						            
 						            $.each(thumbnailList, function(index2, value2){
 						            	
-						            	if(value.acmNum == value2.acmNum){						            		
-									      str += '<input type="hidden" id="acmNum" value="'+value2.acmNum+'">'+
-									    	  	 '<div class="front" style="height: 250px;"><img src="'+value2.imgPath+'" id="acmImg" style="width:350px; height:250px;">';						            		
+						            	if(value.acmNum == value2.acmNum){
+									      str += '<div class="front" style="height: 250px;"><img src="'+value2.imgPath+'" style="width:350px; height:250px;">';						            		
 						            	}						            	
 						            });
 						            
@@ -267,7 +269,7 @@
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
-              <h2 class="heading" data-aos="fade-up">인기 숙소</h2>
+              <h2 class="heading" data-aos="fade-up">Popular Hotel</h2>
               <p data-aos="fade-up" data-aos-delay="100">요즘 제주도에서 가장 핫한 숙소들을 만나보세요!</p>
             </div>
           </div>
@@ -385,7 +387,10 @@
         <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
               <h2 class="heading" data-aos="fade-up">Contact Us</h2>
-              <p data-aos="fade-up">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+              <p data-aos="fade-up" data-aos-delay="100">
+              	JejuBoram은 맞춤형 서비스를 제공하기 위해 고객지원센터를 운영하고 있습니다.<br>
+				언제 어디서든 JejuBoram 고객지원센터만 기억하신다면 <br>
+				보다 빠르게 최상의 서비스를 만나보실 수 있습니다.</p>
             </div>
           </div>
         <div class="row">
@@ -430,7 +435,7 @@
           <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
             <div class="row">
               <div class="col-md-10 ml-auto contact-info">
-                <p><span class="d-block">Address:</span> <span class="text-black"> 서울특별시 강남구 테헤란로14길 6 남도빌딩</span></p>
+                <p><span class="d-block">Address:</span> <span class="text-black" style="font-family:initial;"> 서울특별시 강남구 테헤란로14길 6 남도빌딩</span></p>
                 <p><span class="d-block">Phone:</span> <span class="text-black">  02-562-2378</span></p>
                 <p><span class="d-block">Email:</span> <span class="text-black"> admin@jejuboram.com</span></p>
               </div>
@@ -444,7 +449,7 @@
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white font-weight-bold">제주에서 놀면서 일하실분!</h2>
+              <h2 class="text-white font-weight-bold" style="font-family:monospace; width:700px; padding-top:10px;">제주에서 놀면서 일하고 싶으신가요?</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
               <!-- Extra large modal -->

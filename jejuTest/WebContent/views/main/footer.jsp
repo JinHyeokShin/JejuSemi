@@ -7,23 +7,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<footer class="section footer-section" style="width:100%">
+<footer class="section footer-section" style="width:100%; height:600px;">
         <div class="container">
           <div class="row mb-4">
-            <div class="col-md-3 mb-5">
+            <div class="col-md-3 mb-5" style="font-size:17px;">
               <ul class="list-unstyled link">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Terms &amp; Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-               <li><a href="#">Rooms</a></li>
+<!--                 <li><a href="#">About Us</a></li> -->
+                <li><a href="#section-home">Home</a></li>
+                <li><a href="#section-about">Recommend</a></li>
+               <li><a href="<%=request.getContextPath() %>/tourList.to">Tour Spot</a></li>
               </ul>
             </div>
-            <div class="col-md-3 mb-5">
+            <div class="col-md-3 mb-5" style="font-size:17px;">
               <ul class="list-unstyled link">
-                <li><a href="#">The Rooms &amp; Suites</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Restaurant</a></li>
+                <li><a href="<%=request.getContextPath() %>/festival.do">Jeju Festival</a></li>
+                <li><a href="<%=request.getContextPath() %>/faq.fq">FAQ</a></li>
+                <li><a href="#section-contact">Contact Us</a></li>
+<!--                 <li><a href="#">Restaurant</a></li> -->
               </ul>
             </div>
             <div class="col-md-3 mb-5 pr-md-5 contact-info">
@@ -45,7 +45,7 @@
           <div class="row pt-5">
             <p class="col-md-8 text-left">
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart text-primary" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart text-primary" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >JejuBoram</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
               
