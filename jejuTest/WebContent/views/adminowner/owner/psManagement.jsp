@@ -29,16 +29,6 @@
     transition: all 0.3s ease;
     cursor: pointer;
 }
-/* ul.sidebar-menu li ul.sub li.active a {
-    color: #fd7e14;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    display: block;
-    cursor: pointer;
-} */
 .profile-pic img {
     width: 60%;
     height: 50%;
@@ -113,12 +103,9 @@ cursor : default;
 						</thead>
 						<tbody>
 							<%if(rList.isEmpty()){ %>
-							<tr><td colspan="8">비이이이임!!!</td></tr>
+							<tr><td colspan="7" text-align="center">조회된 리뷰가 없습니다.</td></tr>
 							<%}else{ %>
-							
-								<%for(Review i:rList){ 
-									
-								%>
+								<%for(Review i: rList){%>
 									<tr>
 										<td><%=i.getReviewNum() %></td>
 										<td><%=i.getReviewTitle() %></td>

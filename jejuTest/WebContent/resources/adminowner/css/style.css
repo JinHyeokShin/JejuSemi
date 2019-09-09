@@ -2021,8 +2021,8 @@ ul li {
 
 /* PROFILE PAGE CONF */
 .profile-pic img {
-	width: 130px;
-	height: 130px;
+	width: 60%;
+	height: 50%;
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	border: 10px solid #f1f2f7;
