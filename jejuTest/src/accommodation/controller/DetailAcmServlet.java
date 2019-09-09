@@ -61,6 +61,8 @@ public class DetailAcmServlet extends HttpServlet {
 			ArrayList<Reply> replyList = new ReviewService().selectReply(acmNum);
 			request.setAttribute("replyList", replyList);
 			
+			System.out.println(replyList.get(0));
+			
 			
 			request.getRequestDispatcher("views/accommodation/acmDetail.jsp").forward(request, response);			
 		} else {
