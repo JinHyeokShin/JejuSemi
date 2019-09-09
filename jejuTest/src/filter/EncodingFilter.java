@@ -14,9 +14,9 @@ import javax.servlet.annotation.WebFilter;
  */
 //@webFilter(filterName="어떤 역할을 하는 필터인지", urlPatterns="어떤 서블릿을 가기전에 거칠 것인지 패턴")
 @WebFilter(filterName="encoding", urlPatterns="/*")
-public class EncodingFilter implements Filter {
+public class EncodingFilter implements Filter  {
 	
-	/*
+
 	 * Filter클래스의 라이프 사이클
 	 * - init() : Filter클래스 생성
 	 * - doFilter(request, response, chain) : 요청에 필터를 적용하겠다 판단이 되면 이 메소드 실행
