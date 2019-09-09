@@ -114,7 +114,7 @@ public class MemberService {
 		return updateMem;
 	   
    }
-   
+   	// 회원 비번 수정
 	public Member updateMyPwd(String memId, String memPwd, String newPwd) {
 		Connection conn = getConnection();
 		
@@ -154,8 +154,24 @@ public class MemberService {
 			close(conn);
 			
 			return updateMem;
+					
+		}
+	   
+	   // 회원정보삭제
+	   public int deleteMember(String memId) {
+			Connection conn = getConnection();
 			
+			int result = new MemberDao().deleteMember(conn, memId);
 			
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			
+			close(conn);
+			
+			return result;
 		}
 
 }

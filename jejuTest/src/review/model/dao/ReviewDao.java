@@ -183,5 +183,67 @@ public class ReviewDao {
 	}
 	
 	
-
+	
+	public ArrayList<ReviewB> selectTopAvg(Connection conn){
+		ArrayList<ReviewB> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTopAvg");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ReviewB rb = new ReviewB();
+				rb.setAcmNum(rset.getInt(2));
+				rb.setAvgScore(rset.getDouble(3));
+				
+				list.add(rb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return list;
+	}
+	
+	
+	
+	public ReviewB selectBestReview(Connection conn, int acmNum) {
+		ReviewB review = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBestReview");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				review = new ReviewB(rset.getInt("review_num"),
+						             rset.getString("mem_name"),
+						             rset.getInt("acm_num"),
+						             rset.getString("reservation_num"),
+						             rset.getString("img_path"),
+						             rset.getInt("review_score"),
+						             rset.getString("review_title"),
+						             rset.getString("review_content"),
+						             rset.getDate("review_date"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return review;		
+	}
+	
+	
 }
