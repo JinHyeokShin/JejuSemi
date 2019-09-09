@@ -15,7 +15,8 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class MyPwdUpdateServelt
  */
-@WebServlet("/mypwd.me")
+@WebServlet(name="MyPwdUpdateServlet", urlPatterns="/myPwd.me")
+
 public class MyPwdUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

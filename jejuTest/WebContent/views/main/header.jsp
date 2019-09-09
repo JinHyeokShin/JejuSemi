@@ -156,7 +156,7 @@
                 <li class="nav-item"><a class="nav-link" href="#section-home" id="nav1">Home</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav2">Flight</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav3">RentCar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">Recommand</a></li>              
+                <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">Recommend</a></li>              
                 <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/tourList.to" id="nav5">TourSpot</a></li>   
                 <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/festival.do" id="nav6">JejuFestival</a></li>  
                 <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/faq.fq" id="nav7">FAQ</a></li>       
