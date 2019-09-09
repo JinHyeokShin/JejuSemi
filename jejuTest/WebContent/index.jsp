@@ -96,7 +96,7 @@
 	
 	/* slick 돌리는 function */
 	jq(document).ready(function(){		
-		
+		  topAvgReview()
 		  powerListView();
 	      
 	});
@@ -143,6 +143,8 @@
       </section>
 	
 	
+	<!-- 추천 숙소 -->
+	
 	<section class="py-5" id="section-recommand">
         <div class="container">
         
@@ -153,167 +155,112 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="block-2">
-            <div class="flipper">
-              <div class="front" style="background-image: url(resources/images/testHotel.jpg);">
-                <div class="box">
-                  <h2>테스트 호텔</h2>
-                  <p>게스트하우스</p>
-                </div>
-              </div>
-              <div class="back">
-                <!-- back content -->
-                <blockquote>
-                  <p>숙소가 너무 깨끗하고 사장님이 너무 친절하세요!!</p>
-                </blockquote>
-                <div class="author d-flex">
-                  <div class="image mr-3 align-self-center">
-                    <img src="resources/images/person_3.jpg" alt="">
-                  </div>
-                  <div class="name align-self-center">Will Smith <span class="position">President</span></div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- .flip-container -->
-        </div>
-
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="block-2"> <!-- .hover -->
-            <div class="flipper">
-              <div class="front" style="background-image: url(resources/images/person_1.jpg);">
-                <div class="box">
-                  <h2>Claire Williams</h2>
-                  <p>Business Manager</p>
-                </div>
-              </div>
-              <div class="back">
-                <!-- back content -->
-                <blockquote>
-                  <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-                </blockquote>
-                <div class="author d-flex">
-                  <div class="image mr-3 align-self-center">
-                    <img src="resources/images/person_1.jpg" alt="">
-                  </div>
-                  <div class="name align-self-center">Claire Williams <span class="position">Business Manager</span></div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- .flip-container -->
-        </div>
-
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="block-2">
-            <div class="flipper">
-              <div class="front" style="background-image: url(resources/images/person_2.jpg);">
-                <div class="box">
-                  <h2>Jane Johnson</h2>
-                  <p>Marketing Director</p>
-                </div>
-              </div>
-              <div class="back">
-                <!-- back content -->
-                <blockquote>
-                  <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-                </blockquote>
-                <div class="author d-flex">
-                  <div class="image mr-3 align-self-center">
-                    <img src="resources/images/person_2.jpg" alt="">
-                  </div>
-                  <div class="name align-self-center">Jane Johnson <span class="position">Marketing Director</span></div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- .flip-container -->
-        </div>
+      <div class="row bestAcms">
+      
+      
 
 
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="block-2">
-            <div class="flipper">
-              <div class="front" style="background-image: url(resources/images/person_3.jpg);">
-                <div class="box">
-                  <h2>Will Smith</h2>
-                  <p>President</p>
-                </div>
-              </div>
-              <div class="back">
-                <!-- back content -->
-                <blockquote>
-                  <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-                </blockquote>
-                <div class="author d-flex">
-                  <div class="image mr-3 align-self-center">
-                    <img src="resources/images/person_3.jpg" alt="">
-                  </div>
-                  <div class="name align-self-center">Will Smith <span class="position">President</span></div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- .flip-container -->
-        </div>
-
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="block-2"> <!-- .hover -->
-            <div class="flipper">
-              <div class="front" style="background-image: url(resources/images/person_1.jpg);">
-                <div class="box">
-                  <h2>Claire Williams</h2>
-                  <p>Business Manager</p>
-                </div>
-              </div>
-              <div class="back">
-                <!-- back content -->
-                <blockquote>
-                  <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-                </blockquote>
-                <div class="author d-flex">
-                  <div class="image mr-3 align-self-center">
-                    <img src="resources/images/person_1.jpg" alt="">
-                  </div>
-                  <div class="name align-self-center">Claire Williams <span class="position">Business Manager</span></div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- .flip-container -->
-        </div>
-
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="block-2">
-            <div class="flipper">
-              <div class="front" style="background-image: url(resources/images/person_2.jpg);">
-                <div class="box">
-                  <h2>Jane Johnson</h2>
-                  <p>Marketing Director</p>
-                </div>
-              </div>
-              <div class="back">
-                <!-- back content -->
-                <blockquote>
-                  <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-                </blockquote>
-                <div class="author d-flex">
-                  <div class="image mr-3 align-self-center">
-                    <img src="resources/images/person_2.jpg" alt="">
-                  </div>
-                  <div class="name align-self-center">Jane Johnson <span class="position">Marketing Director</span></div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- .flip-container -->
-        </div>
-
-      </div>
+      </div> <!-- row close -->
           
           
           
         </div>
       </section>
   
+	<script>
+		
+		/* 추천 숙소 */
+	
+		function topAvgReview(){
+			
+			$.ajax({
+				url:"topAvg.rv",
+				type:"post",
+				success:function(result){
+					var topAvgList = result.topAvgList;
+					var acmList = result.acmList;
+					var thumbnailList = result.thumbnailList;
+					var reviewList = result.reviewList;
+					
+					console.log("베스트 숙소 호출 성공");
+					
+					var str = "";
+					
+					$.each(topAvgList,function(index, value){
+						
+						str += '<div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">'+
+						          '<div class="block-2" style="height: 250px;">'+
+						            '<div class="flipper">';
+						            
+						            $.each(thumbnailList, function(index2, value2){
+						            	
+						            	if(value.acmNum == value2.acmNum){
+									      str += '<div class="front" style="height: 250px;"><img src="'+value2.imgPath+'" style="width:350px; height:250px;">';						            		
+						            	}						            	
+						            });
+						            
+						        str += '<div class="box">';
+						        	$.each(acmList, function(index3, value3){
+						        		if(value.acmNum == value3.acmNum){
+						                  str += '<b style="color:#fd7e14;">'+value3.acmName+'</b>';
+						                  
+							                  if(value3.acmType == "H"){
+							                  	str += '<p>호텔</p>';	
+							                  } else if(value3.acmType == "R"){
+							                	  str += '<p>리조트</p>';
+							                  } else if(value3.acmType == "C"){
+							                	  str += '<p>콘도</p>';
+							                  } else if(value3.acmType == "G"){
+							                	  str += '<p>게스트하우스</p>';
+							                  } else if(value3.acmType == "M"){
+							                	  str += '<p>민박</p>';
+							                  }						                  
+						        		}
+						        	});
+						   	   str += '</div>'+
+						              '</div>'+
+						              '<div class="back" style="height: 250px;">'+
+						                '<!-- back content -->'+
+						                '<blockquote>';
+						                
+						                $.each(reviewList, function(index4, value4){
+						                	if(value.acmNum == value4.acmNum){
+						                		str += '<p>'+value4.reviewContent+'</p>'+
+						                			   '</blockquote>'+
+											                '<div class="author d-flex">'+											                  
+											                  '<div class="name align-self-center" style="width:100%;">'+value4.memName+'<img src="'+value4.imgPath+'"><span style="float:right;">'+value4.reviewDate+'</span></div>'+
+											                '</div>'+
+											              '</div>'+
+											            '</div>'+
+											          '</div> <!-- .flip-container -->'+
+											        '</div>';					                		
+						                	}
+						                });
+					});
+					console.log("베스트 숙소 str 생성완료");
+					
+					$(".bestAcms").html(str);
+					
+				},
+				error:function(){
+					console.log('추천 숙소 불러오기 실패');
+				}
+			});
+			
+			
+		}
+	
+	
+		/*  */
+	
+	
+	</script>
+  
+  
     
     <!-- END .block-2 -->
+    
+    <!-- 인기숙소 -->
 
       <section class="section bg-light" id="section-rooms">
         <div class="container">

@@ -13,12 +13,28 @@ public class ReviewB {	// 숙소 페이지에서 리뷰 담아와서 뿌려줄 �
 	private String reviewTitle;		// 후기 제목
 	private String reviewContent;	// 후기 내용
 	private Date reviewDate;		// 후기 작성 날짜
+	private double avgScore;		// 숙소당 평균 평점
 	
 	
 	
 	public ReviewB() {
 		
 	}
+
+	
+	
+
+	public double getAvgScore() {
+		return avgScore;
+	}
+
+
+
+
+	public void setAvgScore(double avgScore) {
+		this.avgScore = avgScore;
+	}
+
 
 
 

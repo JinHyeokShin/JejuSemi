@@ -73,6 +73,11 @@ public class ReviewService {
 	}
 	
 	
+	/**
+	 * 해당 숙소의 리뷰 평점 호출
+	 * @param acmNum
+	 * @return
+	 */
 	public double selectAvg(int acmNum) {
 		Connection conn = getConnection();
 		
@@ -84,6 +89,11 @@ public class ReviewService {
 	}
 	
 	
+	/**
+	 * 해당 숙소의 모든 리뷰 호출
+	 * @param acmNum
+	 * @return
+	 */
 	public ArrayList<ReviewB> selectAcmReview(int acmNum){
 		Connection conn = getConnection();
 		
@@ -94,5 +104,33 @@ public class ReviewService {
 		return list;		
 	}
 	
+	
+	
+	/**
+	 * 평균 평점 가장 높은 숙소 6개 호출
+	 * @return
+	 */
+	public ArrayList<ReviewB> selectTopAvg(){
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ReviewB> list = new ReviewDao().selectTopAvg(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	
+	
+	public ReviewB selectBestReview(int acmNum) {
+		Connection conn = getConnection();
+		
+		ReviewB reviewB = new ReviewDao().selectBestReview(conn, acmNum);
+		
+		close(conn);
+		
+		return reviewB;
+	}
 
 }
