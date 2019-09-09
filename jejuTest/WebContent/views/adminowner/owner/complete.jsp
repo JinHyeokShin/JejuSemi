@@ -132,7 +132,7 @@
     </section>
     <script>
     function goDashBoard(){
-  		location.href = "<%= request.getContextPath() %>/ownerIndex.ow";
+  		location.href = "<%= request.getContextPath() %>/page.ow";
   	}
     </script>
     <%@ include file="../../../views/adminowner/common/footer.jsp" %>
