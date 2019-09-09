@@ -76,7 +76,7 @@ public class ReservSendServlet extends HttpServlet {
 	        			
 	        	"<div style=\"line-height: 1.8em;\">" +	
 	        		"<div>" +
-	        			"<p><h2>" + reservName + "고객님 감사합니다! 고객님의 예약이 완료되었습니다!" + "</h2></p>" +
+	        			"<p style='margin-left:30px'><h2>" + reservName + " 고객님 감사합니다! 고객님의 예약이 완료되었습니다!" + "</h2></p>" +
 	        			"<ul>" +
 		        			"<li>예약 내역 확인을 부탁드립니다</li>" +
 		        			"<li>예약 관련 문제 발생 시, 고객센터에 문의 바랍니다.</li>" +
@@ -89,47 +89,40 @@ public class ReservSendServlet extends HttpServlet {
 	        	        "<div>" +
 	    		        	"<div>" +
 	    		        		"<b><label>예약자명 : </label></b>" +
-	    		        		"<lable style='margin-left:30px;'>" + reservName + "</lable>" +	
+	    		        		"<lable style='margin-left:52px;'>" + reservName + "</lable>" +	
 	    		        	"</div>" +
 	    		        	
 							"<div>" +
 								"<b><label>핸드폰 번호 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + reservPhone + "</lable>" +	 
+								"<lable style='margin-left:35px;'>" + reservPhone + "</lable>" +	 
 							"</div>" +
 						"</div>" +
 		      		        		
 						"<div>" +
 							"<div>" +
 								"<b><label>이메일 주소 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + reservEmail + "</lable>" +		
+								"<lable style='margin-left:35;'>" + reservEmail + "</lable>" +		
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
 								"<b><label>숙소명 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + acmName + "</lable>" +	
+								"<lable style='margin-left:64px;'>" + acmName + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
 								"<b><label>객실명 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + roomName + "</lable>" +	
-							"</div>" +
-						"</div>" +
-							
-						"<div>" +
-							"<div>" +
-								"<b><label>결제방법 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + payMethod + "</lable>" +	
+								"<lable style='margin-left:64px;'>" + roomName + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
 								"<b><label>예약인원 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + reservPax + "명" + "</lable>" +	
+								"<lable style='margin-left:50px;'>" + reservPax + "명" + "</lable>" +	
 							"</div>" +
 						"</div>" +
 						
@@ -137,21 +130,21 @@ public class ReservSendServlet extends HttpServlet {
 						"<div>" +
 							"<div>" +
 								"<b><label>가격 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + reservPrice + "원" + "</lable>" +	
+								"<lable style='margin-left:75px;'>" + reservPrice + "원" + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
 								"<b><label>체크인 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + checkIn + "</lable>" +	
+								"<lable style='margin-left:63px;'>" + checkIn + "</lable>" +	
 							"</div>" +
 						"</div>" +
 							
 						"<div>" +
 							"<div>" +
 								"<b><label>체크아웃 : </label></b>" +
-								"<lable style='margin-left:30px;'>" + checkOut + "</lable>" +	
+								"<lable style='margin-left:50px;'>" + checkOut + "</lable>" +	
 							"</div>" +
 						"</div>" +
 								
