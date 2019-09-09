@@ -109,9 +109,9 @@ ul.sidebar-menu li ul.sub li.active a {
 							<p>Welcome to jeju.</p>
 							<br>
 							<p>
-								<button class="btn btn-theme" onclick="acmApproval();">
-									<i class="fa fa-envelope"></i> 문의 확인
-								</button>
+<!-- 								<button class="btn btn-theme" onclick="acmApproval();"> -->
+<!-- 									<i class="fa fa-envelope"></i> 문의 확인 -->
+<!-- 								</button> -->
 							</p>
 						</div>
 						<!-- /col-md-4 -->
@@ -128,6 +128,8 @@ ul.sidebar-menu li ul.sub li.active a {
 					</div>
 					<!-- /row -->
 				</div>
+				
+				
 				<div class="col-lg-12 mt">
 					<div class="row content-panel">
 
@@ -137,7 +139,6 @@ ul.sidebar-menu li ul.sub li.active a {
 										사항</a></li>
 								<li><a data-toggle="tab" href="#power" class="contact-map">파워
 										조회</a></li>
-								<li><a data-toggle="tab" href="#edit">통계..?</a></li>
 							</ul>
 						</div>
 
@@ -207,10 +208,11 @@ ul.sidebar-menu li ul.sub li.active a {
 
 										</div>
 									</div>
-
+</div>
 								</div>
 							</div>
 						</div>
+					</div>
 					</div>
 		</section>
 	</section>

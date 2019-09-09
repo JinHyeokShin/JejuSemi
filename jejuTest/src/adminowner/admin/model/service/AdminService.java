@@ -187,7 +187,12 @@ public class AdminService {
 		close(conn);
 		return list;
 	}
-	
+	public int adminPowerAutoSus() {
+		Connection conn = getConnection();
+		int result = new AdminDao().adminPowerAutoSus(conn);
+		close(conn);
+		return result;
+	}
 	
 	
 	

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import accommodation.model.vo.Acm;
 import adminowner.admin.model.service.AdminService;
+import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.PageInfo;
 
 /**
@@ -56,7 +57,9 @@ public class GoAdminSearchAcm extends HttpServlet {
 		ArrayList<Acm> list = new AdminService().selectAcm(currentPage, boardLimit);
 		PageInfo pi = new PageInfo(currentPage,count,pageLimit,maxPage,startPage,endPage,boardLimit);
 		
+		AdminIndex ai = new AdminService().adminIndex();
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute("ai", ai);
 		request.setAttribute("acmList", list);
 		request.setAttribute("pi", pi);
 		request.getRequestDispatcher("views/adminowner/admin/searchAcm.jsp").forward(request, response);

@@ -15,6 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import adminowner.admin.model.service.AdminService;
+import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.Chart;
 
 /**
@@ -57,16 +58,15 @@ public class GoAdminChart extends HttpServlet {
 		
 		for(Chart c :list2) {
 			JSONObject jChart2 = new JSONObject();
-			jChart2.put("type", c.getType());
-			jChart2.put("price", c.getPrice());
+			jChart2.put("label", c.getType());
+			jChart2.put("value", c.getPrice());
 			arr2.add(jChart2);
 		}
 		
 		
-		
-		
-		System.out.println(arr1);
-		System.out.println(arr2);
+		AdminIndex ai = new AdminService().adminIndex();
+		request.setCharacterEncoding("utf-8");
+		request.setAttribute("ai", ai);
 		request.setAttribute("arr1",arr1);
 		request.setAttribute("arr2", arr2);
 		request.getRequestDispatcher("views/adminowner/admin/adminChart.jsp").forward(request, response);

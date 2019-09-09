@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import adminowner.admin.model.service.AdminService;
+import adminowner.admin.model.vo.AdminIndex;
 import adminowner.admin.model.vo.PageInfo;
 import review.model.vo.Review;
 
@@ -57,8 +58,9 @@ public class GoAdminSearchReview extends HttpServlet {
 		PageInfo pi = new PageInfo(currentPage,count,pageLimit,maxPage,startPage,endPage,boardLimit);
 		
 		System.out.println(list);
-		
+		AdminIndex ai = new AdminService().adminIndex();
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute("ai", ai);
 		request.setAttribute("rList", list);
 		request.setAttribute("pi",pi);
 		request.getRequestDispatcher("views/adminowner/admin/searchReview.jsp").forward(request, response);
