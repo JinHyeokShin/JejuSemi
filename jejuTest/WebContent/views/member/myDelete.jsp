@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>회원탈퇴창</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
@@ -163,51 +163,49 @@
     	<%-- 헤더,메뉴바 --%>
 	<%@ include file="../main/header.jsp" %>
 	
-    <div class="main-content" role="main">
-        <div class="main-wrap">
-            <div class="main-user">
-                &nbsp; <%=memName%>
-            </div>
-            <hr>
-            <h1> &nbsp; &nbsp; <span class="text-danger">Jeju</span>Boram 회원탈퇴</h1><br>
+ <div class="main-content" role="main">
+        <div class="main-wrap" style="height:760px">
+        <hr>
+        <h1 style="padding-left:30px; padding-top:5px;"><span class="text-danger">Jeju</span>Boram 회원탈퇴</h1>
+            
             <form id="updateForm" action="<%= request.getContextPath() %>/mydelete.me" method="post">
             <hr>
-            <ul class="item-link">
-                    <li id="item-myme" class="item-list">
-                    <div class="deltext">     	
-                	<h4>JejuBoram 아이디는 재사용 및 복구 불가 안내</h4><br>
-                	회원탈퇴 진행 시 본일을 포함한 타인 모두 아이디 <span class="text-danger">재사용이나 복구가 불가능합니다.</span> <br>
-                	신중이 선택하신 후 결정해주세요.
-                	</div>
-                	<br>
-                	<input type="checkbox" style="margin :auto;">약관에 동의합니다</input>
-                    </li>
-                    
-                    <hr>
-                    
-                    <li id="item-mypay" class="item-list">
-                    <div class="deltext">
-                    <h4>JejuBoram 회원 탈퇴 사유</h4><br>
-                    	남겨 주신 정보를 바탕으로 보다 나은 서비스를 제공해 드리기 위해 노력하겠습니다.<br>
-                    <input type="checkbox">서비스 불만족</input><br>
-                    <input type="checkbox">유사 서비스로의 이전</input><br>
-                    <input type="checkbox">시스템 장애</input><br>
-                    <input type="checkbox">서비스 이용 불필요</input><br>
-                    <input type="checkbox">기타 &nbsp;<input type="text-area"></input></input>
-                             
-                    
-                    </div>  
-                    </li>
-                    
-               </div>
-            
-            
-            </form>
-       		<div align="center"> 
+       
+               <div class="deltext" style="padding:30px">        
+                  <h4>JejuBoram 아이디는 재사용 및 복구 불가 안내</h4><br>
+                  회원탈퇴 진행 시 본일을 포함한 타인 모두 아이디 <span class="text-danger">재사용이나 복구가 불가능합니다.</span> <br>
+                  신중이 선택하신 후 결정해주세요.
+                  
+                  <br>
+                  <br>
+                  <input type="checkbox" style="margin :auto;">약관에 동의합니다
+              </div>
+
+				<hr>
+
+               <div class="deltext" style="padding:30px">
+                  <h4>JejuBoram 회원 탈퇴 사유</h4><br>
+                     남겨 주신 정보를 바탕으로 보다 나은 서비스를 제공해 드리기 위해 노력하겠습니다.<br>
+                  <input type="checkbox">서비스 불만족<br>
+                  <input type="checkbox">유사 서비스로의 이전<br>
+                  <input type="checkbox">시스템 장애<br>
+                  <input type="checkbox">서비스 이용 불필요<br>
+                  <input type="checkbox">기타 &nbsp;
+                  <input type="text">
+              </div>  
+  			
+  			
+        
+              
+          </form>
+          
+       </div>
+		
+		
+              <div align="center"> 
                 <input type="submit" value="회원탈퇴" id="deleteBtn" onclick="myDeletePwd();">
-                <input type="submit" value="취소" id="cancelBtn" onclick="goMyMe();">
-            </div>
-        </div>
+                <input type="submit" value="취소" id="cancelBtn" onclick="goMyme()">
+              </div>
     </div>
 	<%-- 풋터 --%>
     <%@ include file="../main/footer.jsp" %>

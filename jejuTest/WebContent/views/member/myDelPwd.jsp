@@ -6,25 +6,13 @@
 	String msg = (String)request.getAttribute("msg");
 	String memId = m.getMemId();
 	String memPwd = m.getMemPwd();
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	var msg = "<%= msg %>";
-	$(function(){
-		if(msg != "null"){ // 메세지 전달값이 있을 경우
-			alert(msg);
-		}
-		
-		if(msg == "회원이 탈퇴되었습니다 이용해주셔서 감사합니다."){
-			window.close();
-		}
-	});
-	
-</script>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/animate.css">
@@ -39,7 +27,7 @@
 <!-- Theme Style -->
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
 
-<title>Insert title here</title>
+<title>회원탈퇴 비밀번호 확인창</title>
 
 <style>
     .maintable{
@@ -86,28 +74,22 @@
 	</form>
 	
 	<script>
-		
-		function deleteMember(){
-		var pwd = prompt("비밀번호를 입력해주세요");
-			
-			if(pwd == "<%= memPwd %>"){
-				var bool = confirm("정말로 탈퇴하시겠습니까?");
-				
-				if(bool){
-					
-					$("#updateForm").attr("action", "<%= request.getContextPath() %>/mydeletepwd.me");
-					$("#updateForm").submit();
-				}
-				
-			}else{
-				alert("비밀번호를 잘못 입력하였습니다.");
-			}
-			
-		}
-		
-		
 	
-
+	
+		
+	function deleteMember(){
+		var msg = "<%=msg %>";
+		
+		$(function(){
+			if(msg = "success"){ 
+				alert("회원이 탈퇴가 완료되었습니다.");
+				window.close();
+				
+			} else if(msg = "fail"){
+				 alert("비밀번호가 틀립니다.");
+			}
+		})
+	};
 		
 	</script>
 	

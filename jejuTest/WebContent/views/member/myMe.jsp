@@ -196,18 +196,16 @@
     border-radius: 5px;
     width:185px;
     }
-    
-    
-  
-	
-
-
-
-
 
 </style>
  
 </head>
+<script>
+   $(function(){
+      $('html, body').animate( { scrollTop : 820 }, 400 );
+   });
+</script>
+
 <body>
     	<%-- 헤더,메뉴바 --%>
 	<%@ include file="../main/header.jsp" %>

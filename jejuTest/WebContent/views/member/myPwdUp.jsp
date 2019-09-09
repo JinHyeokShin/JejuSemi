@@ -1,31 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
 <%
-	String msg = (String)request.getAttribute("msg");
-
 	Member m = (Member)session.getAttribute("loginUser");
 	String memId = m.getMemId();
 	String memPwd = m.getMemPwd();
-	
+	String msg = (String)request.getAttribute("msg");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	var msg = "<%= msg %>";
-	$(function(){
-		if(msg != "null"){ // 메세지 전달값이 있을 경우
-			alert(msg);
-		}
-		
-		if(msg == "성공적으로 비밀번호를 변경하였습니다."){
-			window.close();
-		}
-	});
-	
-</script>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/animate.css">
@@ -86,19 +71,25 @@
 		<br><br>
 		
 		<div class="btns" align="center">
-			<input type="submit" id="updatePwdBtn" onclick="checkPwd();" value="변경하기">
+			<input type="button" id="updatePwdBtn" onclick="checkPwd();" value="변경하기">
 		</div>
 	</form>
 	
 	<script>
 		
 		function checkPwd(){
-			var userPwd = $("#memPwd");
+			
+			var popupX = (document.body.offsetWidth / 2) - (200 / 2);
+			var popupY= (document.body.offsetHeight / 2) - (300 / 2);
+
+			window.open('', '', 'status=no, height=300, width=200, left='+ popupX + ', top='+ popupY);
+
+			var memPwd = $("#memPwd");
 			var newPwd = $("#newPwd");
 			var newPwd2 = $("#newPwd2");
 			
 			if(memPwd.val().trim() == "" || newPwd.val().trim() == "" || newPwd2.val().trim() == ""){
-				alert("값이 누락되었습니다!!");
+				alert("비밀번호를 입력해주세요.");
 				return;
 			}
 			
@@ -107,24 +98,23 @@
 				return;
 			}
 			
-			String memId = <%=((Member)session.getAttribute("loginUser")).getMemId()%>;
-			
-			Member updateMem = new MemberService().updatePwd(memId, newPwd);
-			if(updateMem != null) { // 성공적으로 수정되었을 경우
-				request.getSession().setAttribute("loginUser", updateMem);
-				
-				request.setAttribute("msg", "성공적으로 비밀번호를 변경하였습니다.");
-				
-				}else { // 수정에 실패했을 경우 
-				request.setAttribute("msg", "비밀번호 변경에 실패했습니다.");
-				
-			
-			$("#updatePwdForm").submit();		
-			}
-		}
-	
-
+	 		$("#updatePwdForm").submit();
+		}	
 		
+		
+		var msg = "<%=msg %>";
+		
+		$(function(){
+			if(msg == "success"){ 
+				alert("비밀번호 변경이 완료되었습니다.");
+				window.close();
+				
+			} else if(msg == "fail"){
+				 alert("비밀번호 변경이 실패하였습니다.");
+			}
+			
+			
+		});
 	</script>
 	
 </body>

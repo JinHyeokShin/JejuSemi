@@ -42,7 +42,15 @@ public class MyPwdUpdateServlet extends HttpServlet {
 		
 		Member updateMem = new MemberService().updateMyPwd(memId, memPwd, newPwd);
 		
+		String msg = "";
 		
+		if(updateMem.getMemId() != null) {
+			msg = "success";
+		}else {
+			msg = "fail";
+		}
+		
+		request.setAttribute("msg", msg);
 		// 성공이던 실패던 동일한 페이지가 보여지게끔
 		RequestDispatcher view = request.getRequestDispatcher("views/member/myPwdUp.jsp");
 		
