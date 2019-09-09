@@ -1,6 +1,6 @@
 package review.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ReviewB {	// 숙소 페이지에서 리뷰 담아와서 뿌려줄 전용 객체
 	

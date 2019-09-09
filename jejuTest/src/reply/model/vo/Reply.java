@@ -19,7 +19,7 @@ public class Reply {
 		this.replyContent = replyContent;
 	}
 
-	public Reply(int replyNum, int reviewNum, int memNum, String replyContent, Date replyDate) {
+	public Reply(int replyNum, int reviewNum, String replyContent, Date replyDate) {
 		super();
 		this.replyNum = replyNum;
 		this.reviewNum = reviewNum;

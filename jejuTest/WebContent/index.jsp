@@ -96,7 +96,7 @@
 	
 	/* slick 돌리는 function */
 	jq(document).ready(function(){		
-		  topAvgReview()
+		  topAvgReview();
 		  powerListView();
 	      
 	});
@@ -194,8 +194,9 @@
 						            
 						            $.each(thumbnailList, function(index2, value2){
 						            	
-						            	if(value.acmNum == value2.acmNum){
-									      str += '<div class="front" style="height: 250px;"><img src="'+value2.imgPath+'" style="width:350px; height:250px;">';						            		
+						            	if(value.acmNum == value2.acmNum){						            		
+									      str += '<input type="hidden" id="acmNum" value="'+value2.acmNum+'">'+
+									    	  	 '<div class="front" style="height: 250px;"><img src="'+value2.imgPath+'" id="acmImg" style="width:350px; height:250px;">';						            		
 						            	}						            	
 						            });
 						            

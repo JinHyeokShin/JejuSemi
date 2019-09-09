@@ -1,7 +1,6 @@
 package review.model.service;
 
 import static common.JDBCTemplate.close;
-
 import static common.JDBCTemplate.commit;
 import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
@@ -9,6 +8,7 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import reply.model.vo.Reply;
 import review.model.dao.ReviewDao;
 import review.model.vo.Review;
 import review.model.vo.ReviewB;
@@ -132,5 +132,25 @@ public class ReviewService {
 		
 		return reviewB;
 	}
+	
+	
+	/**
+	 * 해당 숙소의 리뷰에 달린 사장님 댓글들 호출
+	 * @param acmNum
+	 * @return
+	 */
+	public ArrayList<Reply> selectReply(int acmNum){
+		Connection conn = getConnection();
+		
+		ArrayList<Reply> list = new ReviewDao().selectReply(conn, acmNum);
+		
+		close(conn);
+		
+		return list;
+		
+		
+	}
+	
+	
 
 }

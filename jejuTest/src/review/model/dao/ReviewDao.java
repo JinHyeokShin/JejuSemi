@@ -1,6 +1,8 @@
 package review.model.dao;
 
 import java.io.FileReader;
+
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+
+import reply.model.vo.Reply;
 
 import static common.JDBCTemplate.*;
 import reservation.model.dao.ReservationDao;
@@ -243,6 +247,38 @@ public class ReviewDao {
 			close(pstmt);			
 		}
 		return review;		
+	}
+	
+	
+	
+	
+	public ArrayList<Reply> selectReply(Connection conn, int acmNum){
+		ArrayList<Reply> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_num"),
+						           rset.getInt("review_num"),
+						           rset.getString("reply_content"),
+						           rset.getDate("reply_date")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return list;
 	}
 	
 	

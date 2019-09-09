@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="accommodation.model.vo.*, java.text.SimpleDateFormat, java.util.*, accommodation.model.service.*,
-    							 nation.model.vo.*, review.model.vo.*"%>
+    							 nation.model.vo.*, review.model.vo.*, reply.model.vo.*"%>
     
 <%
 	Acm acm = (Acm)request.getAttribute("acm");
@@ -23,7 +23,7 @@
 	
 	ArrayList<Nation> nationList = (ArrayList<Nation>)request.getAttribute("nationList");
 	ArrayList<ReviewB> reservList = (ArrayList<ReviewB>)request.getAttribute("reservList");
-		
+	ArrayList<Reply> replyList = (ArrayList<Reply>)request.getAttribute("replyList");
  %>
     
     
@@ -1086,16 +1086,22 @@
 				<span><%=r.getMemName() %> </span><img src="<%=contextPath%>/<%=r.getImgPath()%>"><span style="float:right"><%=r.getReviewDate() %></span>			
 			</div>
 			
+				<%if(replyList != null) {%>
+					<%for(Reply rp : replyList) {%>
+						<%if(r.getReviewNum() == rp.getReviewNum()) {%>
+							<!-- 사장님 댓글  -->			
+							<div class="aa reply0" style="margin-top:5px;">
+								<div class="aa dd reply1" style="width:40%; height:100%;"></div>
+								<div class="aa dd reply2" style="width:60%; height:100%;padding-left:30px;padding-right:30px;padding-top:10px;padding-bottom:10px;border-radius:15px;background:#faedd2;">
+									<p style="font-size:16px;"><%=rp.getReplyContent()%></p>
+									<span style="float:right;font-size:13px;"><%=rp.getReplyDate()%></span>
+								</div>
+							</div>
+							<!--  -->
+						<%} %>
+					<%} %>
+				<%} %>
 			
-			<!-- 사장님 댓글  -->			
-			<div class="aa reply0" style="margin-top:5px;">
-				<div class="aa dd reply1" style="width:40%; height:100%;"></div>
-				<div class="aa dd reply2" style="width:60%; height:100%;padding-left:30px;padding-right:30px;padding-top:10px;padding-bottom:10px;border-radius:15px;background:#faedd2;">
-					<p style="font-size:16px;">댓글내용</p>
-					<span style="float:right;font-size:13px;">작성날짜</span>
-				</div>
-			</div>
-			<!--  -->
 			
 			
 			<script>
