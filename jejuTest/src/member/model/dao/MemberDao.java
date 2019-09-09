@@ -339,7 +339,7 @@ public class MemberDao {
 		
 	}
 	
-public int updateMember(Connection conn, Member mem) {
+	public int updateMember(Connection conn, Member mem) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -410,6 +410,29 @@ public int updateMember(Connection conn, Member mem) {
 		
 		
 		return mem;
+		
+	}
+	
+	public int deleteMember(Connection conn, String memId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
 		
 	}
 }

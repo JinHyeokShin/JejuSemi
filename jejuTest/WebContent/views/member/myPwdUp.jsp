@@ -2,6 +2,11 @@
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
 <%
 	String msg = (String)request.getAttribute("msg");
+
+	Member m = (Member)session.getAttribute("loginUser");
+	String memId = m.getMemId();
+	String memPwd = m.getMemPwd();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -35,7 +40,7 @@
 <!-- Theme Style -->
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
 
-<title>Insert title here</title>
+<title>비밀번호 수정창</title>
 
 <style>
     .maintable{
@@ -66,22 +71,22 @@
 		<table class="maintable">
 			<tr>
 				<td><label>현재 비밀번호</label></td>
-				<td><input type="password" name="memPwd" id="memPwd"></td>
+				<td><input type="password" name="memPwd" id="memPwd" required></td>
 			</tr>
 			<tr>
 				<td><label>변경할 비밀번호</label></td>
-				<td><input type="password" name="newPwd" id="newPwd"></td>
+				<td><input type="password" name="newPwd" id="newPwd" required></td>
 			</tr>
 			<tr>
 				<td><label>변경할 비밀번호 확인</label></td>
-				<td><input type="password" name="newPwd2" id="newPwd2"></td>
+				<td><input type="password" name="newPwd2" id="newPwd2" required></td>
 			</tr>
 		</table>
 		
 		<br><br>
 		
 		<div class="btns" align="center">
-			<input type="button" id="updatePwdBtn" onclick="checkPwd();" value="변경하기">
+			<input type="submit" id="updatePwdBtn" onclick="checkPwd();" value="변경하기">
 		</div>
 	</form>
 	

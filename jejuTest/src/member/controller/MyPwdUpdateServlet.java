@@ -47,9 +47,7 @@ public class MyPwdUpdateServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("views/member/myPwdUp.jsp");
 		
 		view.forward(request, response);
-		
-		
-		
+	
 		
 	}
 
