@@ -2,15 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@page import = "org.json.simple.*" %>
 <%
-	JSONArray arr = (JSONArray)request.getAttribute("arr");
+	JSONArray arr1 = (JSONArray)request.getAttribute("arr1");
+	JSONArray arr2 = (JSONArray)request.getAttribute("arr2");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-    	<%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
+<%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery/jquery.min.js"></script>
+
 <script class="include" type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.dcjqaccordion.2.7.js"></script>
 <script src="<%= request.getContextPath() %>/resources/adminowner/lib/raphael/raphael.min.js"></script>
 <script src="<%= request.getContextPath() %>/resources/adminowner/lib/morris/morris.min.js"></script>
@@ -51,21 +56,27 @@
           
             <div class="col-lg-6">
               <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> 최근 4개월간 수익</h4>
+							<h4>
+								<i class="fa fa-angle-right"></i> 최근 4개월간 매출
+							</h4>
+							<div class="panel-body">
+
+								<!--                   <div id="hero-graph" class="graph"></div> -->
+								<div id="morrisChart1" class="graph"></div>
+								
+								
+							</div>
+						</div>
+            </div>
+            
+            <div class="col-lg-6">
+              <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> 최근 4개월간 숙소유형별 매출</h4>
                 <div class="panel-body">
-                  <div id="morrisChart"></div>
+                  <div id="morrisChart2" class="graph"></div>
                 </div>
               </div>
             </div>
-            
-<!--             <div class="col-lg-6"> -->
-<!--               <div class="content-panel"> -->
-<!--                 <h4><i class="fa fa-angle-right"></i> Chart Example 2</h4> -->
-<!--                 <div class="panel-body"> -->
-<!--                   <div id="hero-bar" class="graph"></div> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--             </div> -->
           </div>
 <!--           <div class="row mt"> -->
 <!--             <div class="col-lg-6"> -->
@@ -90,24 +101,45 @@
       </section>
     </section>
 <script>
-new Morris.Line({
-	  // ID of the element in which to draw the chart.
-	  element: 'morrisChart',
-	  // Chart data records -- each entry in this array corresponds to a point on
-	  // the chart.
-	  data: <%=arr%>,
-	  // The name of the data record attribute that contains x-values.
-	  xkey: 'month',
-	  // A list of names of data record attributes that contain y-values.
-	  ykeys: ['price'],
-	  // Labels for the ykeys -- will be displayed when you hover over the
-	  // chart.
-	  labels: ['price']
-	});
+		new Morris.Line({
+		  // ID of the element in which to draw the chart.
+		  element: 'morrisChart1',
+		  // Chart data records -- each entry in this array corresponds to a point on
+		  // the chart.
+		  data: <%=arr1%>,
+		  // The name of the data record attribute that contains x-values.
+		  xkey: 'jMonth',
+		  // A list of names of data record attributes that contain y-values.
+		  ykeys: ['jPrice'],
+		  // Labels for the ykeys -- will be displayed when you hover over the
+		  // chart.
+		  labels: ['price'],
+		  xLabels : "month",
+		  lineColors:"fd7e14"
+		});
+		
+		
+		new Morris.Donut({
+			element:'morrisChart2',
+			data:<%=arr2%>
+			
+		});
 
-
-
-
+// 		new Morris.Donut({
+			  
+// 			  element: 'members-tickets',
+			  
+// 			  data: [
+// 			    { label: 'Nick', value: 2 },
+// 			    { label: 'Justin', value: 5 },
+// 			    { label: 'Amber', value: 3 },
+// 			    { label: 'Dan', value: 3 },
+// 			    { label: 'Rich', value: 4 }
+// 			  ]
+			  
+// 			});
+		
+		
 </script>
         <%@ include file="../../../views/adminowner/common/footer.jsp" %>
       

@@ -78,6 +78,10 @@ ul.sidebar-menu li ul.sub li.active a {
 				}//success end
 			});//$ajax end
 	});//document redy function end
+	
+	function acmApproval(){
+		location.href ="<%= request.getContextPath() %>/adminChart.ad"
+	}
 </script>
 
 
@@ -105,7 +109,7 @@ ul.sidebar-menu li ul.sub li.active a {
 							<p>Welcome to jeju.</p>
 							<br>
 							<p>
-								<button class="btn btn-theme">
+								<button class="btn btn-theme" onclick="acmApproval();">
 									<i class="fa fa-envelope"></i> 문의 확인
 								</button>
 							</p>

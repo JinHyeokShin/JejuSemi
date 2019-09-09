@@ -10,17 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-<script class="include" type="text/javascript"
-	src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.dcjqaccordion.2.7.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-<script
-	src="<%= request.getContextPath() %>/resources/adminowner/lib/morris-conf.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery/jquery.min.js"></script>
+
+<script class="include" type="text/javascript" src="<%= request.getContextPath() %>/resources/adminowner/lib/jquery.dcjqaccordion.2.7.js"></script>
+<script src="<%= request.getContextPath() %>/resources/adminowner/lib/raphael/raphael.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/adminowner/lib/morris/morris.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/adminowner/lib/morris-conf.js"></script>
 </head>
 <body>
 
@@ -62,12 +58,13 @@
 		  // the chart.
 		  data: <%=arr%>,
 		  // The name of the data record attribute that contains x-values.
-		  xkey: 'month',
+		  xkey: 'jMonth',
 		  // A list of names of data record attributes that contain y-values.
-		  ykeys: ['price'],
+		  ykeys: ['jPrice'],
 		  // Labels for the ykeys -- will be displayed when you hover over the
 		  // chart.
-		  labels: ['price']
+		  labels: ['price'],
+		  xLabels : "month"
 		});
 
 </script>

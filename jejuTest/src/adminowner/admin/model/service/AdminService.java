@@ -181,6 +181,12 @@ public class AdminService {
 		return list;
 		
 	}
+	public ArrayList<Chart> chartSearch2(){
+		Connection conn = getConnection();
+		ArrayList<Chart> list = new AdminDao().chartSearch2(conn);
+		close(conn);
+		return list;
+	}
 	
 	
 	

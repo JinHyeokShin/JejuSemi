@@ -1,7 +1,9 @@
 package adminowner.admin.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,18 +35,40 @@ public class GoAdminChart extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Chart> list = new AdminService().chartSearch();
-		JSONArray arr= new JSONArray();
-		for(Chart c :list) {
-			JSONObject jChart = new JSONObject();
-			jChart.put("month",c.getMonth());
-			jChart.put("price", c.getPrice());
-			arr.add(jChart);
-		}
-		System.out.println(arr);
+		//통계 1 라인
+		ArrayList<Chart> list1 = new AdminService().chartSearch();
+		JSONArray arr1= new JSONArray();
 		
-		request.setAttribute("arr",arr);
+		for(Chart c :list1) {
+			Date n = new Date();
+			n.setMonth(c.getMonth()-1);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			JSONObject jChart1 = new JSONObject();
+			jChart1.put("jMonth",sdf.format(n));
+			jChart1.put("jPrice", c.getPrice());
+			arr1.add(jChart1);
+		}
+		//통계 2 도넛
+		ArrayList<Chart> list2 = new AdminService().chartSearch2();
+		JSONArray arr2 = new JSONArray();
+		
+		for(Chart c :list2) {
+			JSONObject jChart2 = new JSONObject();
+			jChart2.put("type", c.getType());
+			jChart2.put("price", c.getPrice());
+			arr2.add(jChart2);
+		}
+		
+		
+		
+		
+		System.out.println(arr1);
+		System.out.println(arr2);
+		request.setAttribute("arr1",arr1);
+		request.setAttribute("arr2", arr2);
 		request.getRequestDispatcher("views/adminowner/admin/adminChart.jsp").forward(request, response);
 	}
 
