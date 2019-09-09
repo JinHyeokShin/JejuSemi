@@ -43,11 +43,15 @@ public class ContactUsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
+		
+		 request.setCharacterEncoding("utf-8");
 		 // 한글 깨짐이 생기기 때문에 문자를 변경해줘야 한다.
-		 String name = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
-		 String phone = new String(request.getParameter("phone").getBytes("ISO-8859-1"), "UTF-8");
-		 String email = new String(request.getParameter("email").getBytes("ISO-8859-1"), "UTF-8");
-		 String message = new String(request.getParameter("message").getBytes("ISO-8859-1"), "UTF-8");
+		 String name = new String(request.getParameter("name"));
+		 String phone = new String(request.getParameter("phone"));
+		 String email = new String(request.getParameter("email"));
+		 String message = new String(request.getParameter("message"));
+		 
+		 response.setCharacterEncoding("utf-8");
 
 		 Properties prop = System.getProperties();
 	        
@@ -69,7 +73,7 @@ public class ContactUsServlet extends HttpServlet {
 	        	String subject = "사용자 문의 내역입니다" + "<" + email + ">";  // 제목
 	        	String content = 									 // 내용
 	        		"<div>" +
-	        			"<p><h3>" + "<span style='color:blue'>" + "<" +name + "</span>" + "님이 문의 주신 내용입니다" +">" + "</h3></p>" +
+	        			"<h3 style='color:blue'><" + name + " 님이 문의하신 내용입니다.>" + "</h3>" +
 	        	        "<div>" +
         		        	"<div>" +
         		        		"<b><label>Name</label></b> <br>" +

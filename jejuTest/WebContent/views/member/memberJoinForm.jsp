@@ -103,12 +103,12 @@ select{
                  <!-- 회원 가입 서블릿 이동 -->
                <form role="form" id="joinForm" action="<%= request.getContextPath() %>/insert.me" method="post" onsubmit="return joinValidate();">
                   
-                  <div class="form-group" style="margin-bottom:-1rem; margin-left:355px;">
-                       <label for="inputJoin1">일반회원</label>
-                       <input type="radio" class="join-control" id="inputJoin1" name="memType" value="U" required>
-                       <label for="inputJoin2">기업회원</label>
-                       <input type="radio" class="join-control" id="inputJoin2" name="memType" value="O" required>
-                   </div>
+<!--                   <div class="form-group" style="margin-bottom:-1rem; margin-left:355px;"> -->
+<!--                        <label for="inputJoin1">일반회원</label> -->
+<!--                        <input type="radio" class="join-control" id="inputJoin1" name="memType" value="U" required> -->
+<!--                        <label for="inputJoin2">기업회원</label> -->
+<!--                        <input type="radio" class="join-control" id="inputJoin2" name="memType" value="O" required> -->
+<!--                    </div> -->
                   
                    <div class="form-group">
                        <label for="inputName">성명</label>
