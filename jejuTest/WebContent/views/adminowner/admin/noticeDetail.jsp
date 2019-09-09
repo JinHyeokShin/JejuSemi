@@ -16,7 +16,7 @@ Notice nD = (Notice)request.getAttribute("n");
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <title>Come To Jeju -</title>
 <style>
-ul.sidebar-menu li a.active1, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
+ul.sidebar-menu li a.active2, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus
 	{
 	background: #fd7e14;
 	color: #fff;

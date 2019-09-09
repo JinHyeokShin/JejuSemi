@@ -104,9 +104,11 @@ ul.sidebar-menu li ul.sub li.active a {
 						</div>
 						<!-- /col-md-4 -->
 						<div class="col-md-4 profile-text">
+						<br><br>
 							<h3><%= loginUser.getMemName() %></h3>
 							<h6>Main Administrator</h6>
-							<p>Welcome to jeju.</p>
+							<br><br>
+							<p style="font-size: 15px;">Welcome to jeju.</p>
 							<br>
 							<p>
 <!-- 								<button class="btn btn-theme" onclick="acmApproval();"> -->

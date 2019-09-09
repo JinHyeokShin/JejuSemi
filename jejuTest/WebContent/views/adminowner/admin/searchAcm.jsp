@@ -108,7 +108,7 @@ ul.sidebar-menu li ul.sub li.active a {
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
 				 total : <%=list.size() %>
-					<table id="myTable" class="table table-hover table-bordered">
+					<table id="myTable" class="table table-hover table-bordered" style="font-size: 15px;">
 						<thead>
 							<tr>
 								<th>숙소 번호</th>
