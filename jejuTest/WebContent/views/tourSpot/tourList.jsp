@@ -457,7 +457,7 @@ body.modal-open[style] {
 		<div class="container">
 			<div class="row justify-content-center text-center mb-5">
 				<div class="col-md-7">
-					<h2 class="heading text-white" data-aos="fade">추천 관광지</h2>
+					<h2 class="heading text-white" data-aos="fade">Best TourSpot</h2>
 					<p class="text-white" data-aos="fade" data-aos-delay="100">
 						개인의 취향에 맞는 관광지를 통해 <br> 더욱 즐거운 제주도 여행을 경험해보세요</p>
 				</div>

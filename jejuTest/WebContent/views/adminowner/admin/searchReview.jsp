@@ -9,6 +9,12 @@
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
+	
+	AdminIndex ai = (AdminIndex)request.getAttribute("ai");
+	int uCount =ai.getuCount();
+	int oCount =ai.getoCount();
+	int pTotal =ai.getpTotal();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -97,9 +103,46 @@ ul.sidebar-menu li ul.sub li.active a {
 	<%@ include file="../../../views/adminowner/common/adminSidebar.jsp"%>
 	<section id="main-content">
 		<section class="wrapper site-min-height">
-			<h3>
-				<i class="fa fa-angle-right"></i> 리뷰 조회
-			</h3>
+			<div class="row mt">
+				<div class="col-lg-12">
+					<div class="row content-panel">
+						<div class="col-md-4 profile-text mt mb centered">
+							<div class="right-divider hidden-sm hidden-xs">
+								<h4><%=uCount %></h4>
+								<h6>유저 수</h6>
+								<h4><%=oCount %></h4>
+								<h6>숙소 수</h6>
+								<h4>
+									￦<%=pTotal %></h4>
+								<h6>누적 수입</h6>
+							</div>
+						</div>
+						<!-- /col-md-4 -->
+						<div class="col-md-4 profile-text">
+							<h3><%= loginUser.getMemName() %></h3>
+							<h6>Main Administrator</h6>
+							<p>Welcome to jeju.</p>
+							<br>
+							<p>
+<!-- 								<button class="btn btn-theme" onclick="acmApproval();"> -->
+<!-- 									<i class="fa fa-envelope"></i> 문의 확인 -->
+<!-- 								</button> -->
+							</p>
+						</div>
+						<!-- /col-md-4 -->
+						<div class="col-md-4 centered">
+							<div class="profile-pic">
+								<p>
+									<img
+										src="<%=request.getContextPath()%>/resources/adminowner/img/jejuMain.png"
+										class="img-circle">
+								</p>
+							</div>
+						</div>
+						<!-- /col-md-4 -->
+					</div>
+					<!-- /row -->
+				</div>
 			<br>
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
@@ -152,6 +195,7 @@ ul.sidebar-menu li ul.sub li.active a {
 					<%}else { %>
 						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchReview.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
 					<%} %>
+					</div>
 					</div>
 				</div>
 			</div>

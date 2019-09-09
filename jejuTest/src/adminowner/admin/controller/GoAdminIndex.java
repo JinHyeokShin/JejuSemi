@@ -32,9 +32,12 @@ public class GoAdminIndex extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int result = new AdminService().adminPowerAutoSus();
 		AdminIndex ai = new AdminService().adminIndex();
 		ArrayList<Notice> nList = new AdminService().selectNList();
 		
+		
+		System.out.println(result);
 		request.setAttribute("nList",nList);
 		request.setAttribute("ai", ai);
 		

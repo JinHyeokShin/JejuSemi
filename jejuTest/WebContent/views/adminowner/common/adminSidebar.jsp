@@ -294,55 +294,54 @@ align:middle;
             </li>
             <li>
             <a class="active2" onclick="goNotice();">
-                <i class="fa fa-calendar"></i>
+                <i class="fa fa-comment-o"></i>
                 <span>공지사항</span>
             </a>
             </li>
             <li>
             <a class="active3" onclick="goSearchAcm();">
-                <i class="fa fa-comment-o"></i>
+                <i class="fa fa-search"></i>
                 <span>숙소 조회</span>
             </a>
             <li>
             <a class="active4" onclick="goSearchMember();">
-                <i class="fa fa-users"></i>
+                <i class="fa fa-search"></i>
                 <span>회원 조회</span>
             </a>
             </li>
             <li>
                 <a class="active5" onclick="goSearchReview();">
-                  <i class="fa fa-bolt"></i>
+                  <i class="fa fa-search"></i>
                   <span>리뷰 조회</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
             <li>
                 <a class="active6" onclick="goSearchReservPayment();">
-                  <i class="fa fa-envelope"></i>
+                  <i class="fa fa-search"></i>
                   <span>예약 및 결제 조회</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
             <li>
                 <a class="active7" onclick="goSearchPower();">
-                  <i class="fa fa-envelope"></i>
+                  <i class="fa fa-bolt"></i>
                   <span>파워 등록 관리</span>
                   <!-- <span class="label label-theme pull-right mail-info">2</span> -->
                   </a>
             </li>
             <li>
                 <a class="active8" onclick="goSearchChart();">
-                  <i class="fa fa-envelope"></i>
+                  <i class="fa fa-signal"></i>
                   <span>통계 조회</span>
                   <span class="label label-theme pull-right mail-info"></span>
                   </a>
             </li>
-
           </ul>
           <!-- sidebar menu end-->
         </div>
       </aside>
-      
+      <i class="fas fa-signal"></i>
       
     <!--sidebar end-->
   <!-- js placed at the end of the document so the pages load faster -->

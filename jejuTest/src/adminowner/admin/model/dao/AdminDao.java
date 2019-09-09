@@ -621,6 +621,45 @@ public class AdminDao {
 	}
 	   return list;
    }
+   public ArrayList<Chart> chartSearch2(Connection conn){
+	   PreparedStatement pstmt = null;
+	   ResultSet rset = null;
+	   String sql= prop.getProperty("chartSearch2");
+	   ArrayList<Chart> list = new ArrayList<>();
+	   
+	   try {
+		pstmt = conn.prepareStatement(sql);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			list.add(new Chart(rset.getString(1),
+								rset.getInt(2)
+					));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	   return list;
+   }
+   public int adminPowerAutoSus(Connection conn) {
+	   PreparedStatement pstmt = null;
+	   String sql= prop.getProperty("adminPowerAutoSus");
+	   int result = 0;
+	   try {
+		pstmt =conn.prepareStatement(sql);
+		result = pstmt.executeUpdate();
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}
+	   return result;
+   }
    
    
    

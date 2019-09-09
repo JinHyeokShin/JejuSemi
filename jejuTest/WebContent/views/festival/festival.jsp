@@ -52,7 +52,7 @@
 	<div class="container">
 		<div class="row justify-content-center text-center mb-5">
 			<div class="col-md-7">
-				<h2 class="heading text-white" data-aos="fade-up" style="padding:40px;">제주행사 소식</h2>
+				<h2 class="heading text-white" data-aos="fade-up" style="padding:40px;">Jeju Festival</h2>
 				<p data-aos="fade" data-aos-delay="100" class="text-white">
 					제주, 얼마나 알아보셨나요? <br> 제주만의 보석 같은 축제가 여러분의 선택을 기다립니다.
 				</p>

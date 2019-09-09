@@ -151,18 +151,19 @@ ul.sidebar-menu li ul.sub li.active a {
 						<button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/adminSearchMem.ad?currentPage=<%= currentPage+1 %>'">next &gt;</button>
 					<%} %>
 					</div>
-		<div class="searchArea" align="center">
-			<select id="searchCondition" name="searchCondition">
-				<option>----</option>
-				<option value="category">이름</option>
-				<option value="writer">전화번호</option>
-			</select>
-			<input type="search">
-			
-			<button class="btn btn-theme" onclick="SearchTarget();">검색하기</button>
-			<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow'">초기화하기</button>
-			
-		</div>
+<%-- 		<form>
+			<div class="searchArea" align="center">
+				<select id="searchCondition" name="searchCondition">
+					<option>----</option>
+					<option value="memName">이름</option>
+					<option value="memPhone">전화번호</option>
+				</select>
+				<input type="search">
+				
+				<button class="btn btn-theme" type="submit">검색하기</button>
+				<button class="btn btn-theme" onclick="location.href='<%= request.getContextPath() %>/management.ow'">초기화하기</button>
+			</div>
+		</form> --%>
 		</div>
 		</div>
 		</section>

@@ -1,6 +1,8 @@
 package review.model.dao;
 
 import java.io.FileReader;
+
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+
+import reply.model.vo.Reply;
 
 import static common.JDBCTemplate.*;
 import reservation.model.dao.ReservationDao;
@@ -183,5 +187,99 @@ public class ReviewDao {
 	}
 	
 	
-
+	
+	public ArrayList<ReviewB> selectTopAvg(Connection conn){
+		ArrayList<ReviewB> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTopAvg");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ReviewB rb = new ReviewB();
+				rb.setAcmNum(rset.getInt(2));
+				rb.setAvgScore(rset.getDouble(3));
+				
+				list.add(rb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return list;
+	}
+	
+	
+	
+	public ReviewB selectBestReview(Connection conn, int acmNum) {
+		ReviewB review = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBestReview");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				review = new ReviewB(rset.getInt("review_num"),
+						             rset.getString("mem_name"),
+						             rset.getInt("acm_num"),
+						             rset.getString("reservation_num"),
+						             rset.getString("img_path"),
+						             rset.getInt("review_score"),
+						             rset.getString("review_title"),
+						             rset.getString("review_content"),
+						             rset.getDate("review_date"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return review;		
+	}
+	
+	
+	
+	
+	public ArrayList<Reply> selectReply(Connection conn, int acmNum){
+		ArrayList<Reply> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, acmNum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_num"),
+						           rset.getInt("review_num"),
+						           rset.getString("reply_content"),
+						           rset.getDate("reply_date")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);			
+		}
+		return list;
+	}
+	
+	
 }

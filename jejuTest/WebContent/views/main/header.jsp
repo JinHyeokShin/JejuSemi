@@ -141,7 +141,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
       <div class="container">
-        <a class="navbar-brand" href="<%= request.getContextPath() %>/index.jsp"><span class="text-danger">Jeju</span>Boram</a>
+        <a class="navbar-brand" href="<%= request.getContextPath() %>/index.jsp"><!-- <span class="text-danger">Jeju</span>Boram -->
+        	<img src="<%= request.getContextPath() %>/resources/images/logo1.png" onmouseover="this.src='<%= request.getContextPath() %>/resources/images/logo2.png'" onmouseout="this.src='<%= request.getContextPath() %>/resources/images/logo1.png'">
+        </a>
         <div class="site-menu-toggle js-site-menu-toggle  ml-auto"  data-aos="fade" data-toggle="collapse" data-target="#templateux-navbar-nav" aria-controls="templateux-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span></span>
               <span></span>
@@ -154,7 +156,7 @@
                 <li class="nav-item"><a class="nav-link" href="#section-home" id="nav1">Home</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav2">Flight</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" id="nav3">RentCar</a></li>
-                <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">Recommand</a></li>              
+                <li class="nav-item"><a class="nav-link" href="#section-about" id="nav4">Recommend</a></li>              
                 <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/tourList.to" id="nav5">TourSpot</a></li>   
                 <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/festival.do" id="nav6">JejuFestival</a></li>  
                 <li class="nav-item"><a class="nav-link" href="<%=contextPath %>/faq.fq" id="nav7">FAQ</a></li>       

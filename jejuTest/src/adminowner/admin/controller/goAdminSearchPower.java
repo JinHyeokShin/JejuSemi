@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import adminowner.admin.model.service.AdminService;
+import adminowner.admin.model.vo.AdminIndex;
+
 /**
  * Servlet implementation class goAdminSearchPower
  */
@@ -26,6 +29,11 @@ public class goAdminSearchPower extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AdminIndex ai = new AdminService().adminIndex();
+		request.setCharacterEncoding("utf-8");
+		request.setAttribute("ai", ai);
+		
+		
 		request.getRequestDispatcher("views/adminowner/admin/searchPower.jsp").forward(request, response);
 	
 	}

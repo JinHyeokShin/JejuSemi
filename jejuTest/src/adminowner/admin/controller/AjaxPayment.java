@@ -49,7 +49,8 @@ public class AjaxPayment extends HttpServlet {
 	    pCurrentPage = 1;
 	    
 	    if(request.getParameter("pCurrentPage") != null) {
-	    	pCurrentPage = Integer.parseInt(request.getParameter("currentPage"));
+	    	pCurrentPage = Integer.parseInt(request.getParameter("pCurrentPage"));
+	    	System.out.println(pCurrentPage);
 	    }
 	      
 	    pPageLimit = 5;

@@ -3,6 +3,7 @@ package adminowner.admin.model.vo;
 public class Chart {
 	private int month;
 	private int price;
+	private String type;
 	
 	public Chart() {
 		
@@ -11,6 +12,12 @@ public class Chart {
 	public Chart(int month, int price) {
 		super();
 		this.month = month;
+		this.price = price;
+	}
+
+	public Chart(String type,int price) {
+		super();
+		this.type = type;
 		this.price = price;
 	}
 
@@ -30,9 +37,15 @@ public class Chart {
 		this.price = price;
 	}
 
-	@Override
-	public String toString() {
-		return "Chart [month=" + month + ", price=" + price + "]";
+	public String getType() {
+		return type;
 	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+
+	
 	
 }

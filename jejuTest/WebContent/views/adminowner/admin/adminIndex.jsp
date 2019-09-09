@@ -78,6 +78,10 @@ ul.sidebar-menu li ul.sub li.active a {
 				}//success end
 			});//$ajax end
 	});//document redy function end
+	
+	function acmApproval(){
+		location.href ="<%= request.getContextPath() %>/adminChart.ad"
+	}
 </script>
 
 
@@ -100,14 +104,16 @@ ul.sidebar-menu li ul.sub li.active a {
 						</div>
 						<!-- /col-md-4 -->
 						<div class="col-md-4 profile-text">
+						<br><br>
 							<h3><%= loginUser.getMemName() %></h3>
 							<h6>Main Administrator</h6>
-							<p>Welcome to jeju.</p>
+							<br><br>
+							<p style="font-size: 15px;">Welcome to jeju.</p>
 							<br>
 							<p>
-								<button class="btn btn-theme">
-									<i class="fa fa-envelope"></i> 문의 확인
-								</button>
+<!-- 								<button class="btn btn-theme" onclick="acmApproval();"> -->
+<!-- 									<i class="fa fa-envelope"></i> 문의 확인 -->
+<!-- 								</button> -->
 							</p>
 						</div>
 						<!-- /col-md-4 -->
@@ -124,6 +130,8 @@ ul.sidebar-menu li ul.sub li.active a {
 					</div>
 					<!-- /row -->
 				</div>
+				
+				
 				<div class="col-lg-12 mt">
 					<div class="row content-panel">
 
@@ -133,7 +141,6 @@ ul.sidebar-menu li ul.sub li.active a {
 										사항</a></li>
 								<li><a data-toggle="tab" href="#power" class="contact-map">파워
 										조회</a></li>
-								<li><a data-toggle="tab" href="#edit">통계..?</a></li>
 							</ul>
 						</div>
 
@@ -203,10 +210,11 @@ ul.sidebar-menu li ul.sub li.active a {
 
 										</div>
 									</div>
-
+</div>
 								</div>
 							</div>
 						</div>
+					</div>
 					</div>
 		</section>
 	</section>
