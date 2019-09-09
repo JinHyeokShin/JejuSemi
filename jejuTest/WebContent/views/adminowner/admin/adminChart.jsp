@@ -147,17 +147,10 @@
     </section>
 <script>
 		new Morris.Line({
-		  // ID of the element in which to draw the chart.
 		  element: 'morrisChart1',
-		  // Chart data records -- each entry in this array corresponds to a point on
-		  // the chart.
 		  data: <%=arr1%>,
-		  // The name of the data record attribute that contains x-values.
 		  xkey: 'jMonth',
-		  // A list of names of data record attributes that contain y-values.
 		  ykeys: ['jPrice'],
-		  // Labels for the ykeys -- will be displayed when you hover over the
-		  // chart.
 		  labels: ['price'],
 		  xLabels : "month",
 		  lineColors:"fd7e14"
@@ -168,23 +161,8 @@
 			element:'morrisChart2',
 			data:<%=arr2%>,
 			colors:['#fd7e14','#ffa254','#fcc351','#fad996','#d9ff00']
-// 			colors:"#fd7e14"s
 		});
 
-// 		new Morris.Donut({
-			  
-// 			  element: 'members-tickets',
-			  
-// 			  data: [
-// 			    { label: 'Nick', value: 2 },
-// 			    { label: 'Justin', value: 5 },
-// 			    { label: 'Amber', value: 3 },
-// 			    { label: 'Dan', value: 3 },
-// 			    { label: 'Rich', value: 4 }
-// 			  ]
-			  
-// 			});
-		
 		
 </script>
         <%@ include file="../../../views/adminowner/common/footer.jsp" %>
